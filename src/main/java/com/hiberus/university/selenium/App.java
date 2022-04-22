@@ -1,4 +1,4 @@
-package com.hiberus.university.iris.maven.first;
+package com.hiberus.university.selenium;
 
 /**
  * Hello world!
