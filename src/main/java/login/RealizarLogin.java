@@ -1,20 +1,17 @@
-package com.hiberus.university.selenium;
+package login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Hello world!
- *
- */
-public class App {
+public class RealizarLogin {
     public static WebDriver driver;
-    public static final String ruta = "https://hiberus.com/";
+    public static final String ruta = "https://saucedemo.com/";
 
     public static void main( String[] args ) {
         // Paso 1
@@ -28,8 +25,13 @@ public class App {
         driver.manage().window().maximize();
 
         driver.get(ruta);
-        driver.findElement(By.xpath("//a[@href='/consultoria-y-estrategia-de-negocio']")).click();
-        driver.navigate().back();
+        WebElement inptUsername = driver.findElement(By.id("user-name"));
+        WebElement inptPassw = driver.findElement(By.id("password"));
+
+        inptUsername.sendKeys("standard_user");
+        inptPassw.sendKeys("secret_sauce");
+
+        driver.findElement(By.id("login-button")).click();
 
 
     }
