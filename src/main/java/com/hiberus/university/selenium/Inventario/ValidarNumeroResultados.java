@@ -1,4 +1,4 @@
-package Inventario;
+package com.hiberus.university.selenium.Inventario;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

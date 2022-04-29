@@ -1,19 +1,21 @@
-package Inventario;
+package com.hiberus.university.selenium.Login;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class IncrementarValorCarrito {
+
+public class RealizarLogin {
     public static WebDriver driver;
 
     public static void main(String[] args) {
 
         //Paso0
+
         String userProfile = "C:\\Users\\scasado\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -31,15 +33,13 @@ public class IncrementarValorCarrito {
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         //Paso 4. Pulsar en el botón del Login
         driver.findElement(By.id("login-button")).click();
-        //Paso5 Agregar producto al carrito
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        //Paso6 Validamos que en el carrito sale valor 1
-        driver.findElement(By.className("shopping_cart_badge")).getText();
-        if (driver.findElement(By.className("shopping_cart_badge")).getText()=="1"){
-            System.out.println("Hay 1 resultado");
-        }else {
-            System.out.println("No hay 1 resultado");
+        //Paso 5. Validar que hemos accedido correctamente a la página, comprobando que se muestra
+        //la URL https://www.saucedemo.com/inventory.html
+        if (driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")) {
+            System.out.println("Login correcto");
+        } else {
+            System.out.println("Url incorrecta");
         }
-        driver.quit();
+        driver.close();
     }
 }

@@ -1,4 +1,4 @@
-package Login;
+package com.hiberus.university.selenium.Login;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

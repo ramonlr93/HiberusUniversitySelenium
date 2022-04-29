@@ -1,4 +1,4 @@
-package Login;
+package com.hiberus.university.selenium.Login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
 
 
-public class RealizarLogin {
+public class RealizarLogin2 {
     public static WebDriver driver;
 
     public static void main(String[] args) {
@@ -27,10 +27,21 @@ public class RealizarLogin {
 
         //Paso1 Ir a la pagina
         driver.get("https://www.saucedemo.com/");
+
+        login("standard_user", "secret_sauce" );
+
+        driver.get("https://www.saucedemo.com/");
+        login("standard_user", "secret_sauce" );
+
+
+        driver.close();
+    }
+
+    public static void login(String user, String passwd) {
         //Paso2 Escribir el username
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("user-name")).sendKeys(user);
         //Paso3 Escribir el password
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("password")).sendKeys(passwd);
         //Paso 4. Pulsar en el botón del Login
         driver.findElement(By.id("login-button")).click();
         //Paso 5. Validar que hemos accedido correctamente a la página, comprobando que se muestra
@@ -40,6 +51,6 @@ public class RealizarLogin {
         } else {
             System.out.println("Url incorrecta");
         }
-        driver.close();
+
     }
 }
