@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="HiberusUniversitySelenium" />
         <module name="com.hiberus.university.iris.maven.first" />
+        <module name="com.hiberus.university" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>

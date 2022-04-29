@@ -3,6 +3,9 @@
 .jar
 .war
 .ear
+workspace.xml
+misc.xml
+compiler.xml
 hs_err_pid*
 
 # OSX

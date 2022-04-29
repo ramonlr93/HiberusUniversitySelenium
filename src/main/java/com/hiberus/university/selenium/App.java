@@ -29,5 +29,24 @@ public class App {
 
 
         System.out.println( "\n" + "\n" + "Este es el valor que devuelve: " );
+
+        //  Paso 3
+        String titulo = driver.getTitle();
+        int longitud = titulo.length();
+
+        //  Paso 4
+        System.out.println("Título: " + titulo + "\nLongitud: " + longitud);
+
+        //  Paso 5
+        String url = driver.getCurrentUrl();
+        System.out.println("la url es " + url);
+        if (url.equals("https://saucedemo.com"))
+            System.out.println("La url " + url + "es correcta");
+        else
+            System.out.println("La url " + url + "no es correcta");
+
+        //Paso 8
+        driver.close();
+
     }
 }
