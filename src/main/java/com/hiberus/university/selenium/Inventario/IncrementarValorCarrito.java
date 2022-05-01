@@ -35,11 +35,10 @@ public class IncrementarValorCarrito {
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         //Paso6 Validamos que en el carrito sale valor 1
         driver.findElement(By.className("shopping_cart_badge")).getText();
-        if (driver.findElement(By.className("shopping_cart_badge")).getText()=="1"){
+        if (driver.findElement(By.className("shopping_cart_badge")).getText() == "1") {
             System.out.println("Hay 1 resultado");
-        }else {
-            System.out.println("No hay 1 resultado");
-        }
+        } else System.out.println("No hay 1 resultado");
         driver.quit();
     }
 }
+
