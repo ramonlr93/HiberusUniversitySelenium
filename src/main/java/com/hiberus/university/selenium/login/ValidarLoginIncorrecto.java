@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class RealizarLogin {
+public class ValidarLoginIncorrecto {
 
     public static WebDriver driver;
 
@@ -25,37 +25,43 @@ public class RealizarLogin {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1
+        //Paso 1
         driver.get("https://www.saucedemo.com");
 
-        // Paso 2
+        //Paso 2
         // Escribir el username
         WebElement userBox = driver.findElement(By.id("user-name"));
-        userBox.sendKeys("standard_user");
+        userBox.sendKeys("standarduser");
         Thread.sleep(2000);
 
-        // Paso 3
-        // Escribir el password secret_sauce
+        //Paso 3
+        //Escribir el password secret_sauce
         WebElement passBox = driver.findElement(By.id("password"));
         passBox.sendKeys("secret_sauce");
         Thread.sleep(2000);
 
-        // Paso 4
+        //Paso 4
         // Pulsar en el botón de login
         WebElement clickButton = driver.findElement(By.id("login-button"));
         clickButton.click();
 
         // Paso 5
-        // Validar que se ha accedido correctamente a la web
-        String url = driver.getCurrentUrl();
+        // Validar que aparece el mensaje de error
+        WebElement errorMessage = driver.findElement(By.xpath("//button[@class='error-button']"));
 
-        if (url.equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("Página correcta");
+        if (errorMessage.isDisplayed()){
+            System.out.println("El mensaje de error se muestra");
         } else {
-            System.out.println("Página incorrecta");
+            System.out.println("El mensaje de error no se muestra.");
         }
+
+
         Thread.sleep(2000);
+
         driver.quit();
-        }
+
+
     }
+}
+
 
