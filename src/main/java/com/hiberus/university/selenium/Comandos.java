@@ -26,6 +26,5 @@ public class Comandos {
         driver.get(ruta);
         driver.findElement(By.xpath("//a[@href='/consultoria-y-estrategia-de-negocio']")).click();
         driver.navigate().back();
-
     }
 }
