@@ -20,6 +20,10 @@ public class LoginPage extends AbstractPage {
   @FindBy(xpath = "//input[@data-test='login-button']")
   private WebElement loginButton;
 
+  @FindBy(xpath = "//h3[@data-test='error']")
+  private WebElement errorMessage;
+
+
   public LoginPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
@@ -52,13 +56,7 @@ public class LoginPage extends AbstractPage {
     usernameInput.sendKeys(username);
   }
 
-  public boolean hasLockedOutError() {
-    WebElement elem = getDriver().findElement(By.xpath("//button[@class='error-button']"));
-    return elem.isDisplayed();
-  }
-
   public boolean hasUsernamePasswordError() {
-    WebElement elem = getDriver().findElement(By.xpath("//button[@class='error-button']"));
-    return elem.isDisplayed();
+    return errorMessage.isDisplayed();
   }
 }
