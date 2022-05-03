@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class App {
 
+
+    // Paso 1
     public static WebDriver driver;
     public static void main( String[] args ) {
 
@@ -29,5 +31,7 @@ public class App {
         driver.quit();
 
         System.out.println( "Hello World! QA FORMACION" );
+
     }
+
 }
