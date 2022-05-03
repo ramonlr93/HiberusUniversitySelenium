@@ -26,6 +26,7 @@ public interface Consts {
     public static final String ID_BUTTON_ADD_ONESIE = "add-to-cart-sauce-labs-onesie";
     public static final String ID_BUTTON_REMOVE_ONESIE = "remove-sauce-labs-onesie";
     public static final String CLASS_SHOPPING_CART_NUMBER = "shopping_cart_badge";
+    public static final String XPATH_BOTONES_REMOVE = "//button[contains(@id, 'remove')]";
 
 
 }

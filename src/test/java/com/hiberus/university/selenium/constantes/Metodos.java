@@ -48,7 +48,7 @@ public class Metodos {
     //  ENTONCES CUANDO PROBAMOS QUEREMOS QUE NINGÚN ELEMENTO ESTE SELECCIONADO PARA EL CORRECTO FUNCIONAMIENTO DE LAS PRUEBAS
     public static void quitarElementosCarro(WebDriver driver) {
         try {
-            driver.findElements(By.xpath("//button[contains(@id, 'remove')]"))
+            driver.findElements(By.xpath(Consts.XPATH_BOTONES_REMOVE))
                     .forEach(element -> element.click());
         } catch (Exception e){}
     }
