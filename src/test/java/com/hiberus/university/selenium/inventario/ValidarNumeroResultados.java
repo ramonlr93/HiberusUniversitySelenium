@@ -18,7 +18,7 @@ public class ValidarNumeroResultados {
         Metodos.login(driver);
         List<WebElement> inventoryElements = driver.findElements(By.className(Consts.CLASS_INVENTORY_ITEM));
 
-        if (inventoryElements.size() != 6)
+        if (inventoryElements.size() == 6)
             System.out.println(Consts.COLOR_VERDE + "PRUEBA PASADA: hay 6 elementos en la página");
         else
             System.out.println(Consts.COLOR_ROJO + "PRUEBA FALLIDA: no hay 6 elementos en la página");
