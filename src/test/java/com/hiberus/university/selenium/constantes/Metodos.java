@@ -43,6 +43,9 @@ public class Metodos {
         login(driver, Consts.USERNAME, Consts.PASSWORD);
     }
 
+    // METODO PARA QUITAR LOS ELEMENTOS DEL CARRO EN CASO DE QUE HAYA,
+    //  CON SI SE HA AÑADIDO AL CARRO EN UNA SESIÓN ANTERIOR SE QUEDA PARA LA SIGUIENTE,
+    //  ENTONCES CUANDO PROBAMOS QUEREMOS QUE NINGÚN ELEMENTO ESTE SELECCIONADO PARA EL CORRECTO FUNCIONAMIENTO DE LAS PRUEBAS
     public static void quitarElementosCarro(WebDriver driver) {
         try {
             driver.findElements(By.xpath("//button[contains(@id, 'remove')]"))

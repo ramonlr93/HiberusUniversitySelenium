@@ -5,7 +5,7 @@ public interface Consts {
     // -------------------------------------- \\
     // ---- DEFINICION DE LAS CONSTANTES ---- \\
     // -------------------------------------- \\
-    public static final String PATH_CONFIGURACION = "C:\\Users\\ArielM\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+    public static final String PATH_CONFIGURACION = "C:\\Users\\iamarin\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
 
     public static final String PAGINA_LOGIN = "https://www.saucedemo.com/";
     public static final String PAGINA_INVENTARIO = "https://www.saucedemo.com/inventory.html";
@@ -23,8 +23,9 @@ public interface Consts {
     public static final String XPATH_DIV_ERROR = "//h3[@data-test='error']";
     public static final String CLASS_INVENTORY_ITEM = "inventory_item";
     public static final String ID_BUTTON_ADD_BOLT_TSHIRT = "add-to-cart-sauce-labs-bolt-t-shirt";
-    public static final String ID_BUTTON_REMOVE_BOLT_TSHIRT = "remove-sauce-labs-bolt-t-shirt";
-    public static final String CLASS_SHOPPING_CART = "shopping_cart_link";
+    public static final String ID_BUTTON_ADD_ONESIE = "add-to-cart-sauce-labs-onesie";
+    public static final String ID_BUTTON_REMOVE_ONESIE = "remove-sauce-labs-onesie";
+    public static final String CLASS_SHOPPING_CART_NUMBER = "shopping_cart_badge";
 
 
 }

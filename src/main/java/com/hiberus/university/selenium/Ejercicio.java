@@ -13,7 +13,7 @@ public class Ejercicio {
 
     public static void main(String[] args) throws InterruptedException {
         // Paso 1
-        String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+        String userProfile = "C:\\Users\\iamarin\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();

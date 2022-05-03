@@ -6,8 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class IncrementoValorCarrito {
-    private static WebDriver driver;
+public class MuestraBotonRemove {
+    public static WebDriver driver;
+
     public static void main(String[] args) {
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
         driver = Metodos.init(driver, Consts.PAGINA_LOGIN);
@@ -16,24 +17,24 @@ public class IncrementoValorCarrito {
         Metodos.login(driver);
         Metodos.quitarElementosCarro(driver);
 
-        WebElement boltTShirtButton = driver.findElement(By.id(Consts.ID_BUTTON_ADD_BOLT_TSHIRT));
-        boltTShirtButton.click();
+        WebElement addOnesieButton = driver.findElement(By.id(Consts.ID_BUTTON_ADD_ONESIE));
+        addOnesieButton.click();
 
-
-        boolean hay1ElementoCarro = false;
+        WebElement removeOnesieButton;
         try {
-            hay1ElementoCarro = driver.findElement(By.className(Consts.CLASS_SHOPPING_CART_NUMBER)).getText().equals("1");
+             removeOnesieButton = driver.findElement(By.id(Consts.ID_BUTTON_REMOVE_ONESIE));
         } catch (Exception e) {
-            System.out.println("PRUEBA FALLIDA: No se ha añadido correctamente el elemento al carro");
+            System.out.println("PRUEBA FALLIDA: No se ha encontrado el botón de quitar del carrito");
             driver.close();
             return;
         }
 
-        if (hay1ElementoCarro)
-            System.out.println("PRUEBA PASADA: Se ha añadido correcatamente en el carro");
+        if (removeOnesieButton.isDisplayed())
+            System.out.println("PRUEBA PASADA: Se ve el botón de quitar del carrito");
         else
-            System.out.println("PRUEBA FALLIDA: Hay un número distinto a 1 en el carrito");
+            System.out.println("PRUEBA FALLIDA: No se ve el botón de quitar del carrito");
 
         driver.close();
     }
+
 }
