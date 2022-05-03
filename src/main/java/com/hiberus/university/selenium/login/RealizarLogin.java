@@ -16,20 +16,16 @@ public class RealizarLogin {
     public static void main( String[] args ) throws InterruptedException {
 
         //Paso0
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
+        String userProfile= "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+        WebDriverManager.chromedriver().setup(); // cargar Chromedriver
+        ChromeOptions options = new ChromeOptions(); // Crear instancia para opciones de chrome
+        options.addArguments("user-data-dir=" + userProfile); //
+
         driver= new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         // Paso1
-        PagesFactory.start(driver);
-        driver.get(LoginPage.PAGE_URL);
-        PagesFactory pf = PagesFactory.getInstance();
-        LoginPage loginPage = pf.getLoginPage();
-        loginPage.enterUsername("standard_user");
-        loginPage.enterPassword("secret_sauce");
-        loginPage.clickLogin();
-        driver.close();
+
     }
 }
