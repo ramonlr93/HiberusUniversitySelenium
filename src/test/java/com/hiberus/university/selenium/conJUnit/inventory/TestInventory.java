@@ -4,6 +4,7 @@ import com.hiberus.university.selenium.constantes.Consts;
 import com.hiberus.university.selenium.constantes.Metodos;
 import org.junit.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -37,8 +38,8 @@ public class TestInventory {
         boolean hay1ElementoCarro = false;
         try {
             hay1ElementoCarro = driver.findElement(By.className(Consts.CLASS_SHOPPING_CART_NUMBER)).getText().equals("1");
-        } catch (Exception e) {
-            fail("PRUEBA FALLIDA: No se ha añadido correctamente el elemento al carro");
+        } catch (NoSuchElementException e) {
+            fail("PRUEBA FALLIDA: No se ha añadido correctamente el elemento al carro\n");
             return;
         }
         assertTrue("PRUEBA FALLIDA: Hay un número distinto a 1 en el carrito", hay1ElementoCarro);
@@ -46,7 +47,7 @@ public class TestInventory {
 
 
     @Test
-    public void muestraBotonRemove() throws Exception {
+    public void muestraBotonRemove() {
         Metodos.quitarElementosCarro(driver);
 
         WebElement addOnesieButton = driver.findElement(By.id(Consts.ID_BUTTON_ADD_ONESIE));
@@ -55,8 +56,8 @@ public class TestInventory {
         WebElement removeOnesieButton;
         try {
             removeOnesieButton = driver.findElement(By.id(Consts.ID_BUTTON_REMOVE_ONESIE));
-        } catch (Exception e) {
-            fail("PRUEBA FALLIDA: No se ha encontrado el botón de quitar del carrito");
+        } catch (NoSuchElementException e) {
+            fail("PRUEBA FALLIDA: No se ha encontrado el botón de quitar del carrito\n");
             return;
         }
 
@@ -80,7 +81,7 @@ public class TestInventory {
             // QUE PARA QUE PASE LA PRUEBA ESA VARIABLE TIENE QUE ESTAR A FALSE
             driver.findElement(By.className(Consts.CLASS_SHOPPING_CART_NUMBER)).getText();
             hayElementosCarrito = true;
-        } catch (Exception e) {}
+        } catch (NoSuchElementException e) {}
 
         assertFalse("PRUEBA FALLIDA: Si que se ve el icono sin tener elementos en el carrito", hayElementosCarrito); // SI NO HAY ELEMENTOS EN EL CARRITO
     }

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -42,8 +43,8 @@ public class TestLogin
         WebElement mensajeError;
         try {
             mensajeError  = driver.findElement(By.xpath(Consts.XPATH_DIV_ERROR));
-        } catch (Exception e) {
-            fail("PRUEBA FALLIDA: NO se muestra el mensaje de error");
+        } catch (NoSuchElementException e) {
+            fail("PRUEBA FALLIDA: NO se muestra el mensaje de error\n");
             return;
         }
         assertTrue(mensajeError.isDisplayed());
