@@ -34,9 +34,9 @@ public class EliminarProductoCarrito {
         } catch (Exception e) {}
 
         if (!hayElementosCarrito) // SI NO HAY ELEMENTOS EN EL CARRITO
-            System.out.println("PRUEBA PASADA: No hay icono cuando no hay elementos en el carrito");
+            System.out.println(Consts.COLOR_VERDE + "PRUEBA PASADA: No hay icono cuando no hay elementos en el carrito");
         else
-            System.out.println("PRUEBA FALLIDA: Si que se ve el icono sin tener elementos en el carrito");
+            System.out.println(Consts.COLOR_ROJO + "PRUEBA FALLIDA: Si que se ve el icono sin tener elementos en el carrito");
 
         driver.close();
     }

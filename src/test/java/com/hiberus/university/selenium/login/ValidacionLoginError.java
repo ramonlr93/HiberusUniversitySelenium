@@ -25,14 +25,14 @@ public class ValidacionLoginError {
         try {
            mensajeError  = driver.findElement(By.xpath(Consts.XPATH_DIV_ERROR));
         } catch (Exception e) {
-            System.out.println("NO se muestra el mensaje de error");
+            System.out.println(Consts.COLOR_ROJO + "NO se muestra el mensaje de error");
             driver.close();
             return;
         }
 
         boolean seVeMensajeError = mensajeError.isDisplayed();
 
-        System.out.println((seVeMensajeError ? "S" : "NO s") + "e muestra el mensaje de error");
+        System.out.println((seVeMensajeError ? Consts.COLOR_VERDE + "S" : Consts.COLOR_ROJO + "NO s") + "e muestra el mensaje de error");
 
         driver.close();
     }

@@ -24,15 +24,15 @@ public class IncrementoValorCarrito {
         try {
             hay1ElementoCarro = driver.findElement(By.className(Consts.CLASS_SHOPPING_CART_NUMBER)).getText().equals("1");
         } catch (Exception e) {
-            System.out.println("PRUEBA FALLIDA: No se ha añadido correctamente el elemento al carro");
+            System.out.println(Consts.COLOR_ROJO + "PRUEBA FALLIDA: No se ha añadido correctamente el elemento al carro");
             driver.close();
             return;
         }
 
         if (hay1ElementoCarro)
-            System.out.println("PRUEBA PASADA: Se ha añadido correcatamente en el carro");
+            System.out.println(Consts.COLOR_VERDE + "PRUEBA PASADA: Se ha añadido correcatamente en el carro");
         else
-            System.out.println("PRUEBA FALLIDA: Hay un número distinto a 1 en el carrito");
+            System.out.println(Consts.COLOR_ROJO + "PRUEBA FALLIDA: Hay un número distinto a 1 en el carrito");
 
         driver.close();
     }

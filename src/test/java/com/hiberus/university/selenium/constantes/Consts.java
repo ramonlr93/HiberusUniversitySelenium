@@ -12,6 +12,12 @@ public interface Consts {
     public static final String USERNAME = "standard_user";
     public static final String PASSWORD = "secret_sauce";
 
+    /* ------------------------------- */
+    /* ------- COLORES CONSOLA ------- */
+    /* ------------------------------- */
+
+    public static final String COLOR_VERDE = "\u001B[32m\n";
+    public static final String COLOR_ROJO = "\u001B[31m\n";
 
     /* ------------------------------ */
     /* --- ELEMENTOS DE LA PÁGINA --- */

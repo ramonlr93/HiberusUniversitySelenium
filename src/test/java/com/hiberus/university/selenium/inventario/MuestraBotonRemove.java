@@ -24,15 +24,15 @@ public class MuestraBotonRemove {
         try {
              removeOnesieButton = driver.findElement(By.id(Consts.ID_BUTTON_REMOVE_ONESIE));
         } catch (Exception e) {
-            System.out.println("PRUEBA FALLIDA: No se ha encontrado el botón de quitar del carrito");
+            System.out.println(Consts.COLOR_ROJO + "PRUEBA FALLIDA: No se ha encontrado el botón de quitar del carrito");
             driver.close();
             return;
         }
 
         if (removeOnesieButton.isDisplayed())
-            System.out.println("PRUEBA PASADA: Se ve el botón de quitar del carrito");
+            System.out.println(Consts.COLOR_VERDE + "PRUEBA PASADA: Se ve el botón de quitar del carrito");
         else
-            System.out.println("PRUEBA FALLIDA: No se ve el botón de quitar del carrito");
+            System.out.println(Consts.COLOR_ROJO + "PRUEBA FALLIDA: No se ve el botón de quitar del carrito");
 
         driver.close();
     }
