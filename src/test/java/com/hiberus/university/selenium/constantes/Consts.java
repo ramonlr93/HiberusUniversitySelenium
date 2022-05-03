@@ -1,6 +1,6 @@
 package com.hiberus.university.selenium.constantes;
 
-public interface Constantes {
+public interface Consts {
 
     // -------------------------------------- \\
     // ---- DEFINICION DE LAS CONSTANTES ---- \\
@@ -12,6 +12,7 @@ public interface Constantes {
     public static final String USERNAME = "standard_user";
     public static final String PASSWORD = "secret_sauce";
 
+
     /* ------------------------------ */
     /* --- ELEMENTOS DE LA PÁGINA --- */
     /* ------------------------------ */
@@ -20,6 +21,10 @@ public interface Constantes {
     public static final String ID_INPUT_PASSWORD = "password";
     public static final String ID_BOTON_LOGIN = "login-button";
     public static final String XPATH_DIV_ERROR = "//h3[@data-test='error']";
+    public static final String CLASS_INVENTORY_ITEM = "inventory_item";
+    public static final String ID_BUTTON_ADD_BOLT_TSHIRT = "add-to-cart-sauce-labs-bolt-t-shirt";
+    public static final String ID_BUTTON_REMOVE_BOLT_TSHIRT = "remove-sauce-labs-bolt-t-shirt";
+    public static final String CLASS_SHOPPING_CART = "shopping_cart_link";
 
 
 }

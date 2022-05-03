@@ -2,7 +2,7 @@ package com.hiberus.university.selenium;
 
 import static org.junit.Assert.assertTrue;
 
-import com.hiberus.university.selenium.constantes.Constantes;
+import com.hiberus.university.selenium.constantes.Consts;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +21,7 @@ public class AppTest
     public static void main(String args[])
     {
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
-        String userProfile = Constantes.PATH_CONFIGURACION;
+        String userProfile = Consts.PATH_CONFIGURACION;
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -32,7 +32,7 @@ public class AppTest
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         // --------- EJECUCIÓN DEL DRIVER --------- \\
-        driver.get(Constantes.PAGINA_LOGIN);
+        driver.get(Consts.PAGINA_LOGIN);
 
 
 /*
