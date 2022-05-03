@@ -15,7 +15,7 @@ public class RealizarLogin {
 
   public static WebDriver driver;
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) {
 
     //Paso0
     WebDriverManager.chromedriver().setup();
