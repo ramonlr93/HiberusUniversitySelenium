@@ -7,11 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.concurrent.TimeUnit;
-
 public class Metodos {
 
-    public static WebDriver init(WebDriver driver, String url) {
+    public static WebDriver init(String url) {
 
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
         String userProfile = Consts.PATH_CONFIGURACION;
@@ -20,9 +18,8 @@ public class Metodos {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-data-dir=" + userProfile);
 
-        driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.MILLISECONDS);
 
         driver.get(url);
 

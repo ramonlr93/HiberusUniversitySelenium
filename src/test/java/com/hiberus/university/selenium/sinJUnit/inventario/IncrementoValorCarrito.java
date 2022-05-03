@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.inventario;
+package com.hiberus.university.selenium.sinJUnit.inventario;
 
 import com.hiberus.university.selenium.constantes.Consts;
 import com.hiberus.university.selenium.constantes.Metodos;
@@ -10,7 +10,7 @@ public class IncrementoValorCarrito {
     private static WebDriver driver;
     public static void main(String[] args) {
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
-        driver = Metodos.init(driver, Consts.PAGINA_LOGIN);
+        driver = Metodos.init(Consts.PAGINA_LOGIN);
 
         // --------- EJECUCIÓN DEL DRIVER --------- \\
         Metodos.login(driver);
