@@ -4,7 +4,6 @@ import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
