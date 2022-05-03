@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.Login;
 
+import com.hiberus.university.selenium.Inventario.Constantes;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ public class RealizarLogin {
     //Paso0
     public static void main(String[] args) throws InterruptedException {
 
-        String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
+        String userProfile = Constantes.pathChrome;
         WebDriverManager.chromedriver().setup(); //cargar Chromedriver
         ChromeOptions options = new ChromeOptions(); // crear instancia para opciones de chrome
         options.addArguments("user-data-dir=" + userProfile);

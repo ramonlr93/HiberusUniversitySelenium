@@ -1,6 +1,5 @@
-package com.hiberus.university.selenium.Login;
+package com.hiberus.university.selenium.Inventario;
 
-import com.hiberus.university.selenium.Inventario.Constantes;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,14 +7,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class ValidarLogin {
+public class ValidarNumeroResultados {
 
     public static WebDriver driver;
 
-    //Paso0
     public static void main(String[] args) throws InterruptedException {
+
+        //Paso 0
 
         String userProfile = Constantes.pathChrome;
         WebDriverManager.chromedriver().setup(); //cargar Chromedriver
@@ -26,37 +27,29 @@ public class ValidarLogin {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1
-
+// Paso 1 Ir a web
         driver.get("https://www.saucedemo.com/");
 
         //Paso 2
         //Escribir el username
-        driver.findElement(By.id("user-name")).sendKeys("standard_use");
-        //Thread.sleep(2000);
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        Thread.sleep(2000);
 
         //Paso 3
         //Escribir el password
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        //Thread.sleep(2000);
+        Thread.sleep(2000);
 
         //Paso4
         //Pulsar LOGIN
         driver.findElement(By.id("login-button")).click();
-        //Thread.sleep(2000);
+        Thread.sleep(2000);
 
-        //Paso5
-        //Validar que aparece mensaje de error
-        WebElement errorMessage = driver.findElement(By.xpath("//h3[@data-test=\"error\"]"));
-        boolean status = errorMessage.isDisplayed();
-        if (status == true) {
-            System.out.println("LA PRUEBA ES CORRECTA, SE VISUALIZA EL MENSAJE DE ERROR");
-        } else {
-            System.out.println("LA PRUEBA ES ERRONEA, SE VISUALIZA EL MENSAJE DE ERROR");
-        }
-        //Paso6
-        driver.quit();
+        //Paso 5 Obtener elnúmero de resultados
+        List<WebElement> lista = driver.findElements(By.xpath("//div[@class = 'inventory_item']"));
+        System.out.println("El número de resultados es: " + lista.size());
 
 
+        driver.close();
     }
 }
