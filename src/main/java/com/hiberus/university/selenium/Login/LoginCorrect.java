@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.Login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -23,24 +23,30 @@ public class LoginCorrect {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        // Ir a la página
         driver.get(URL);
 
-        // Realizar Login
+        // Escribir usuario
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         Thread.sleep(500);
+
+        // Escribir contraseña
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         Thread.sleep(500);
+
+        // Pulsar submit
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
         Thread.sleep(500);
 
+        // Comprobar que la url en la que estamos es correcta
         if(driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")){
             System.out.println("URL Correcta");
         }else{
             System.out.println("URL Incorrecta");
         }
-
         Thread.sleep(2000);
 
+        // Cerrar
         driver.close();
 
 

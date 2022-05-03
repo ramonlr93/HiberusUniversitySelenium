@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.Inventario;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -23,27 +23,27 @@ public class ValidarNumeroResultados {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        // Ir a la URL
         driver.get(URL);
 
+        // Escribir username
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         Thread.sleep(500);
+
+        // Escribir password
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         Thread.sleep(500);
+
+        // Pulsar submit
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
         Thread.sleep(500);
 
-        if(driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("URL Correcta");
-        }else{
-            System.out.println("URL Incorrecta");
-        }
-
+        // Validar que el número de productos mostrados es 6
         int len = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div")).size();
-
         System.out.println("Numero de items: " + len);
         Thread.sleep(2000);
 
-
+        // Cerramos
         driver.close();
 
     }

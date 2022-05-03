@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.Inventario;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -22,24 +22,31 @@ public class IncrementoValorCarrito {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        // Ir a la página
         driver.get(URL);
 
+        // Escribir el usuario
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         Thread.sleep(500);
+
+        // Escribir la contraseña
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         Thread.sleep(500);
+
+        // Pulsar submit
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
         Thread.sleep(500);
 
-        if(driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("URL Correcta");
-        }else{
-            System.out.println("URL Incorrecta");
-        }
+        // Agregar al carrito el producto Sauce Labs Bolt T-Shirt
+        driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+        Thread.sleep(500);
 
-        driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-backpack']")).click();
+        // Validamos que en el icono se a agregado el valor 1
+        String numeroDeElementos = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        System.out.println("Se ha agregado el valor: " + numeroDeElementos);
         Thread.sleep(2000);
 
+        // Cerramos
         driver.close();
 
     }

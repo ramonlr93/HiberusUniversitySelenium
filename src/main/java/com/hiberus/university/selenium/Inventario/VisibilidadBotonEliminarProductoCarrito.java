@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.Inventario;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -23,24 +23,26 @@ public class VisibilidadBotonEliminarProductoCarrito {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        // Ir a la URL
         driver.get(URL);
 
+        // Introducir username
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         Thread.sleep(500);
+
+        // Introducir password
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         Thread.sleep(500);
+
+        // Pulsar submit
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
         Thread.sleep(500);
 
-        if(driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("URL Correcta");
-        }else{
-            System.out.println("URL Incorrecta");
-        }
-
+        // Añadir producto
         driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-onesie']")).click();
         Thread.sleep(1000);
 
+        // Comprobar que el botón ha cambiado y ahora es remove
         boolean remove = driver.findElement(By.xpath("//button[@name ='remove-sauce-labs-onesie']")).isDisplayed();
         System.out.println("Existe botón remove: " + remove);
 
@@ -48,6 +50,7 @@ public class VisibilidadBotonEliminarProductoCarrito {
         driver.findElement(By.xpath("//button[@name ='remove-sauce-labs-onesie']")).click();
         Thread.sleep(2000);
 
+        // Cerramos
         driver.close();
     }
 

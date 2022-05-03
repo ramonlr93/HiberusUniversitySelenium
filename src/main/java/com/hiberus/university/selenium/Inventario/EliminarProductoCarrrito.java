@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.Inventario;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class EliminarProductoCarrrito {
@@ -23,27 +24,35 @@ public class EliminarProductoCarrrito {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        // Ir a la URL
         driver.get(URL);
 
+        // Escribir el username
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         Thread.sleep(500);
+
+        // Escribir la password
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         Thread.sleep(500);
+
+        // Pulsar botón Login
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
         Thread.sleep(500);
 
-        if(driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("URL Correcta");
-        }else{
-            System.out.println("URL Incorrecta");
-        }
-
+        // Agregar producto
         driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-onesie']")).click();
         Thread.sleep(1000);
 
+        // Eliminar producto
         driver.findElement(By.xpath("//button[@name ='remove-sauce-labs-onesie']")).click();
+        Thread.sleep(500);
+
+        // Comprobación carrito
+        String numeroDeElementos = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        System.out.println(numeroDeElementos.equals("")?"Se ha puesto el carrito a 0":"No se ha puesto el carrito a 0");
         Thread.sleep(2000);
 
+        // Cerrar
         driver.close();
     }
 
