@@ -33,7 +33,7 @@ public class LoginPage extends AbstractPage {
   public void clickLogin() {
     log.info("Logging in...");
     try {
-        loginButton.click();
+      loginButton.click();
     } catch (org.openqa.selenium.TimeoutException e) {
       log.info("Timeout clicking login: " + e.getClass().getSimpleName());
 
@@ -43,13 +43,13 @@ public class LoginPage extends AbstractPage {
   }
 
   public void enterPassword(String password) {
-      passwordInput.click();
-      passwordInput.sendKeys(password);
+    passwordInput.click();
+    passwordInput.sendKeys(password);
   }
 
   public void enterUsername(String username) {
-      usernameInput.click();
-      usernameInput.sendKeys(username);
+    usernameInput.click();
+    usernameInput.sendKeys(username);
   }
 
   public boolean hasLockedOutError() {

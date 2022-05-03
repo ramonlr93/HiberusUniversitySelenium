@@ -7,42 +7,37 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartPage extends AbstractPage
-{
-    public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
+public class CartPage extends AbstractPage {
+  public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
 
-    @FindBy(xpath = "//button[text()='Open Menu']")
-    private WebElement hamburgerElem;
+  @FindBy(xpath = "//button[text()='Open Menu']")
+  private WebElement hamburgerElem;
 
-    @FindBy(css = "a.btn_action.checkout_button")
-    private WebElement checkoutElem;
+  @FindBy(css = "a.btn_action.checkout_button")
+  private WebElement checkoutElem;
 
-    @FindBy(css = "#shopping_cart_container > a")
-    private WebElement shoppingCartElem;
+  @FindBy(css = "#shopping_cart_container > a")
+  private WebElement shoppingCartElem;
 
-    @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
-    private List<WebElement> itemsList;
+  @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
+  private List<WebElement> itemsList;
 
-    public CartPage(WebDriver driver)
-    {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+  public CartPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
 
-    @Override
-    public WebElement getPageLoadedTestElement()
-    {
-        return hamburgerElem;
-    }
+  @Override
+  public WebElement getPageLoadedTestElement() {
+    return hamburgerElem;
+  }
 
-    public void clickCheckout()
-    {
-        checkoutElem.click();
-    }
+  public void clickCheckout() {
+    checkoutElem.click();
+  }
 
-    public int getItemCount()
-    {
-        return itemsList.size();
-    }
+  public int getItemCount() {
+    return itemsList.size();
+  }
 
 }

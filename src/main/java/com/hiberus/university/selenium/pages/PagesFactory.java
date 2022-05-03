@@ -4,21 +4,13 @@ import org.openqa.selenium.WebDriver;
 
 public class PagesFactory {
   private static PagesFactory pagesFactories;
-  private WebDriver driver;
+  private final WebDriver driver;
 
-  private CheckOutStepOnePage checkOutStepOnePage;
-  private CheckOutStepTwoPage checkOutStepTwoPage;
-  private InventoryPage inventoryPage;
-  private LoginPage loginPage;
-  private CartPage cartPage;
-
-  public static void start(WebDriver driver) {
-    pagesFactories = new PagesFactory(driver);
-  }
-
-  public static PagesFactory getInstance() {
-    return pagesFactories;
-  }
+  private final CheckOutStepOnePage checkOutStepOnePage;
+  private final CheckOutStepTwoPage checkOutStepTwoPage;
+  private final InventoryPage inventoryPage;
+  private final LoginPage loginPage;
+  private final CartPage cartPage;
 
   private PagesFactory(WebDriver driver) {
     this.driver = driver;
@@ -27,6 +19,14 @@ public class PagesFactory {
     inventoryPage = new InventoryPage(driver);
     loginPage = new LoginPage(driver);
     cartPage = new CartPage(driver);
+  }
+
+  public static void start(WebDriver driver) {
+    pagesFactories = new PagesFactory(driver);
+  }
+
+  public static PagesFactory getInstance() {
+    return pagesFactories;
   }
 
   public WebDriver getDriver() {
