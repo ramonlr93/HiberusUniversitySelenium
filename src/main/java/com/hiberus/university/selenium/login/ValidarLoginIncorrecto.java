@@ -14,21 +14,25 @@ public class ValidarLoginIncorrecto {
     public static WebDriver driver;
 
     public static void main( String[] args ) {
-        //Paso0
+        // Step 0
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso1
+        // Step 1
         PagesFactory.start(driver);
         driver.get(LoginPage.PAGE_URL);
         PagesFactory pf = PagesFactory.getInstance();
         LoginPage loginPage = pf.getLoginPage();
-        loginPage.enterUsername("standard");
+        // Step 2
+        loginPage.enterUsername("bad_standard_user");
+        // Step 3
         loginPage.enterPassword("secret_sauce");
+        // Step 4
         loginPage.clickLogin();
+        // Step 5
         if (loginPage.hasUsernamePasswordError()) {
             System.out.println("Test OK");
         } else {
