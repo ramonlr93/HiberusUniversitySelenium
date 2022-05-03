@@ -1,9 +1,31 @@
+# Katalon
+Reports
+Libs
+Drivers
+output
+!output/.gitkeep
+.cache
+.build
+.project
+
 # Java
 .class
 .jar
 .war
 .ear
 hs_err_pid*
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+.settings/
+.project
+.classpath
+.tern-project
 
 # OSX
 .DS_Store
@@ -17,7 +39,22 @@ Desktop.ini
 *.iml
 .idea/
 
+# Vscode
+.vscode
+
 # Maven
 target/
+
+# Gradle
+build/
+out/
+.gradle
+.nb-gradle
+
+# allure
+.allure
+
+# OpenDocument
+.~lock.*.odt#
 
 *derby.log
