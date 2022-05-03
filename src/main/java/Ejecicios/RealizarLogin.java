@@ -35,5 +35,6 @@ public class RealizarLogin {
 
         // 5
         System.out.println(driver.getCurrentUrl());
+        driver.close();
     }
 }
