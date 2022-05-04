@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.practica1;
+package com.hiberus.university.selenium.practica2.practica1;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
