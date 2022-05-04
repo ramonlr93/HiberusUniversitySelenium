@@ -1,7 +1,10 @@
 package com.hiberus.university.selenium.pages;
 
+import com.hiberus.university.selenium.util.MyFluentWait;
+import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScriptTimeoutException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +21,10 @@ abstract class AbstractPage {
 
   AbstractPage(WebDriver driver) {
     this.driver = driver;
+    wait = new MyFluentWait<>(driver)
+      .withTimeout(60, ChronoUnit.SECONDS)
+      .pollingEvery(2, ChronoUnit.SECONDS)
+      .ignoring(NoSuchElementException.class);;
   }
 
   public abstract WebElement getPageLoadedTestElement();

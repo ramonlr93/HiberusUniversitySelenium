@@ -1,4 +1,4 @@
-package com.saucelabs.example;
+package com.hiberus.university.selenium.util;
 
 // Licensed to the Software Freedom Conservancy (SFC) under one
 // or more contributor license agreements.  See the NOTICE file
@@ -17,28 +17,23 @@ package com.saucelabs.example;
 // specific language governing permissions and limitations
 // under the License.
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.ui.Sleeper;
-import org.openqa.selenium.support.ui.Wait;
-
+import java.time.Clock;
+import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-//import static java.util.concurrent.TimeUnit.MILLISECONDS;
-//import static java.util.concurrent.TimeUnit.SECONDS;
-
-import java.time.Clock;
-import java.time.Duration;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.Wait;
 //import org.openqa.selenium.support.ui.Clock;
 //import org.openqa.selenium.support.ui.Duration;
 //import org.openqa.selenium.support.ui.Sleeper;
