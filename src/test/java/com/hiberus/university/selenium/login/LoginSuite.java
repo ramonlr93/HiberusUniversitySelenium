@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
@@ -6,13 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class LoginSuite {
 
     public static WebDriver driver;
     public static  String username;
@@ -33,6 +34,7 @@ public class AppTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
     }
 
     @Test
@@ -58,6 +60,7 @@ public class AppTest {
         driver.findElement(By.id("password")).sendKeys("secret__sauce");
 
         driver.findElement(By.id("login-button")).click();
+
 
         boolean isMessageErrorVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
 

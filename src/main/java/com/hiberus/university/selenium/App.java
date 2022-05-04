@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class App {
    public static WebDriver driver;
     public static void main( String[] args ) {
-        String userProfile="C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+        String userProfile="C:\\Usuarios\\Bloodlust\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup(); //Cargar ChromeDriver
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-data-dir="+userProfile);
@@ -41,6 +41,8 @@ public class App {
         }
 
         driver.navigate().back();
+
+
 
         //System.out.println(url);
     }
