@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,12 +16,13 @@ public class IncrementarValorCarrito {
     public static void main(String[] args) {
 
         //Paso0
-        String userProfile = "C:\\Users\\scasado\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("user-data-dir=" + userProfile);
+        String userProfile = "C:\\Users\\scasado\\AppData\\Local\\Mozilla\\Firefox\\Profiles\\v1gb2eq4.default-release";
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("user-data-dir=" + userProfile);
 
-        driver = new ChromeDriver(chromeOptions);
+        driver = new FirefoxDriver(firefoxOptions);
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
@@ -34,10 +37,13 @@ public class IncrementarValorCarrito {
         //Paso5 Agregar producto al carrito
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         //Paso6 Validamos que en el carrito sale valor 1
-        driver.findElement(By.className("shopping_cart_badge")).getText();
-        if (driver.findElement(By.className("shopping_cart_badge")).getText() == "1") {
+        String result = driver.findElement(By.className("shopping_cart_badge")).getText();
+
+        if (result.equals("1")) {
             System.out.println("Hay 1 resultado");
-        } else System.out.println("No hay 1 resultado");
+        } else {
+            System.out.println("No hay 1 resultado");
+        }
         driver.quit();
     }
 }
