@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -108,11 +110,11 @@ public class InventarioSuite
         try{
             driver.findElement(By.xpath("//span[@class = 'shopping_cart_badge']"));
             productos = true;
-            Assert.assertFalse("El carrito no está vacío", productos);
         }catch (NoSuchElementException e){
             productos = false;
-            Assert.assertFalse("El carrito no está vacío",  productos);
         }
+
+        Assert.assertFalse("El carrito no está vacío", productos);
     }
 
     @Test
@@ -142,25 +144,18 @@ public class InventarioSuite
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
 
+        //Guardamos la lista inicial que aparece de A a Z
+        List<WebElement> lista = driver.findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
+
+        //Cambiamos de Z a A y guardamos la lista
         driver.findElement(By.xpath("//option[@value = 'za']")).click();
-        List<WebElement> lista = driver.findElements(By.xpath("//div[@class = 'inventory_item']"));
-        String[] productos = new String[6];
+        List<WebElement> lista2 = driver.findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
 
-        for(int i=0; i<lista.size(); i++){
+        //Ordenamos al revés la que está de A a Z
+        Collections.reverse(lista);
 
-            productos[i] = driver.findElement(By.xpath("//div[@class = 'inventory_list']/child::div["+(i+1)+"]" +
-                    "/descendant::div[@class = 'inventory_item_name']")).getText();
-        }
+        Assert.assertArrayEquals("La lista no está ordenada de la Z a la A", lista.toArray(), lista2.toArray());
 
-        boolean correct;
-        if(productos[0].equals("T-Shirt (Red)") && productos[1].equals("Sauce Labs Onesie") && productos[2].equals("Sauce Labs Fleece Jacket") &&
-        productos[3].equals("Sauce Labs Bolt T-Shirt") && productos[4].equals("Sauce Labs Bike Light") && productos[5].equals("Sauce Labs Backpack")){
-            correct = true;
-        }else{
-            correct = false;
-        }
-
-        Assert.assertTrue("No está correctamente ordenado", correct);
     }
 
     @After
