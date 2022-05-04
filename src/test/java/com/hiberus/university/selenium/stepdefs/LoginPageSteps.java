@@ -55,5 +55,10 @@ public class LoginPageSteps {
 
   @Then("The user should be shown an invalid message")
   public void theUserShouldBeShownAnInvalidMessage() {
+    PagesFactory pf = PagesFactory.getInstance();
+    log.info("The user should be shown an invalid username/password message");
+
+    LoginPage loginPage = pf.getLoginPage();
+    Assert.assertTrue(loginPage.hasUsernamePasswordError());
   }
 }
