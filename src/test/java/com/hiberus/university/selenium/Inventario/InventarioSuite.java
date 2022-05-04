@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +27,8 @@ public class InventarioSuite
     public static WebDriver driver;
     public static String username;
     public static String password;
+    public static WebDriverWait wait;
+
 
     @Before
     public void setUp(){
@@ -38,8 +42,10 @@ public class InventarioSuite
         options.addArguments("user-data-dir=" + userProfile); //Añadimos los argumentos del perfil
 
         driver = new ChromeDriver(options); //Inicializamos el driver
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize(); //Maximiza la ventana
+
+        wait = new WebDriverWait(driver, 10,500);
     }
 
     @Test
