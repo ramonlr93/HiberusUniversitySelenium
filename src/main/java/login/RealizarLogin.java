@@ -35,6 +35,5 @@ public class RealizarLogin {
 
         System.out.println((driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html")) ? "Estas dentro de la web": "Estas dentro de la web");
 
-
     }
 }
