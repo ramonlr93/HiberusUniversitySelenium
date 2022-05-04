@@ -1,7 +1,6 @@
-package com.hiberus.university.selenium.sinJUnit.inventario;
+/*
+package sinJUnit.inventario;
 
-import com.hiberus.university.selenium.constantes.Consts;
-import com.hiberus.university.selenium.constantes.Metodos;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,7 @@ public class ValidarNumeroResultados {
     private static WebDriver driver;
     public static void main(String[] args) {
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
-        driver = Metodos.init(Consts.PAGINA_LOGIN);
+        driver = Metodos.initDriver(Consts.PAGINA_LOGIN);
 
         // --------- EJECUCIÓN DEL DRIVER --------- \\
         Metodos.login(driver);
@@ -26,4 +25,4 @@ public class ValidarNumeroResultados {
 
         driver.close();
     }
-}
+}*/

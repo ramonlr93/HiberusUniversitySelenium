@@ -1,7 +1,6 @@
-package com.hiberus.university.selenium.sinJUnit.login;
+/*
+package sinJUnit.login;
 
-import com.hiberus.university.selenium.constantes.Consts;
-import com.hiberus.university.selenium.constantes.Metodos;
 import org.openqa.selenium.*;
 
 public class ValidacionLoginError {
@@ -9,7 +8,7 @@ public class ValidacionLoginError {
 
     public static void main(String args[]) {
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
-        driver = Metodos.init(Consts.PAGINA_LOGIN);
+        driver = Metodos.initDriver(Consts.PAGINA_LOGIN);
 
         // --------- EJECUCIÓN DEL DRIVER --------- \\
         Metodos.login(driver, "standard_use", Consts.PASSWORD);
@@ -36,4 +35,4 @@ public class ValidacionLoginError {
 
         driver.close();
     }
-}
+}*/

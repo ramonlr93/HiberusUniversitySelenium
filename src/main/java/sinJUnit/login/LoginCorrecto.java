@@ -1,7 +1,7 @@
-package com.hiberus.university.selenium.sinJUnit.login;
+/*package sinJUnit.login;
 
-import com.hiberus.university.selenium.constantes.Consts;
-import com.hiberus.university.selenium.constantes.Metodos;
+import static com.hiberus.university.selenium.constantes.Consts.*;
+import static com.hiberus.university.selenium.constantes.Metodos.*;
 import org.openqa.selenium.WebDriver;
 
 public class LoginCorrecto {
@@ -11,12 +11,12 @@ public class LoginCorrecto {
     public static void main(String args[]) {
 
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
-        driver = Metodos.init(Consts.PAGINA_LOGIN);
+        driver = initDriver(PAGINA_LOGIN);
 
         // --------- EJECUCIÓN DEL DRIVER --------- \\
-        Metodos.login(driver);
+        login(driver);
 
-        boolean correcto = driver.getCurrentUrl().equals(Consts.PAGINA_INVENTARIO);
+        boolean correcto = driver.getCurrentUrl().equals(PAGINA_INVENTARIO);
 
         System.out.println("Login " + (correcto ? "correcto" : "incorrecto"));
 
@@ -24,3 +24,4 @@ public class LoginCorrecto {
     }
 
 }
+*/

@@ -1,7 +1,7 @@
-package com.hiberus.university.selenium.conJUnit;
+package com.hiberus.university.selenium;
 
-import com.hiberus.university.selenium.conJUnit.inventory.TestInventory;
-import com.hiberus.university.selenium.conJUnit.login.TestLogin;
+import com.hiberus.university.selenium.inventory.TestInventory;
+import com.hiberus.university.selenium.login.TestLogin;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
