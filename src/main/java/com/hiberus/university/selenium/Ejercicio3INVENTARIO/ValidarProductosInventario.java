@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 
-public class ValidarNumeroDeResultados {
+public class ValidarProductosInventario {
     public static WebDriver driver;
 
     public static void main(String[] args) throws InterruptedException {
