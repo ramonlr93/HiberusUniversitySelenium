@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -155,7 +156,78 @@ public class InventarioSuite
         Collections.reverse(lista);
 
         Assert.assertArrayEquals("La lista no está ordenada de la Z a la A", lista.toArray(), lista2.toArray());
+    }
 
+    @Test
+    public void ordenaPrecioMenorMayor(){
+
+        driver.get("https://www.saucedemo.com/");
+        driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("login-button")).click();
+
+        List<WebElement> lista = driver.findElements(By.className("inventory_item_price"));
+
+        String texto;
+        double[] precios = new double[6];
+
+        for(int i=0; i<lista.size(); i++){
+            texto = lista.get(i).getText().substring(1);
+            precios[i] = (Double.valueOf(texto));
+        }
+
+        Arrays.sort(precios);
+        double valorAnterior = 0;
+        boolean correcto = false;
+
+        for(int i=0; i<precios.length; i++){
+
+            if(precios[i] >= valorAnterior){
+                correcto = true;
+            }else{
+                correcto = false;
+                break; // En caso de que alguna vez entremos en el else, salimos del for con el boolean en false
+            }
+            valorAnterior = precios[i];
+        }
+
+        Assert.assertTrue("El orden no es correcto, no está de menor a mayor", correcto);
+    }
+
+    @Test
+    public void ordenarPreciosMayorMenor(){
+
+        driver.get("https://www.saucedemo.com/");
+        driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("login-button")).click();
+
+        List<WebElement> lista = driver.findElements(By.className("inventory_item_price"));
+
+        String texto;
+        Double[] precios = new Double[6];
+
+        for(int i=0; i<lista.size(); i++){
+            texto = lista.get(i).getText().substring(1);
+            precios[i] = (Double.valueOf(texto));
+        }
+
+        Arrays.sort(precios, Collections.<Double>reverseOrder());
+        double valorAnterior = 10000;
+        boolean correcto = false;
+
+        for(int i=0; i<precios.length; i++){
+
+            if(precios[i] <= valorAnterior){
+                correcto = true;
+            }else{
+                correcto = false;
+                break;
+            }
+            valorAnterior = precios[i];
+        }
+
+        Assert.assertTrue("El orden no es correcto, no está de mayor a menor", correcto);
     }
 
     @After
