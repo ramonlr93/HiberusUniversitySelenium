@@ -92,8 +92,14 @@ public class InventarioSuite
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
 
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        String productos = driver.findElement(By.xpath("//span[@class = 'shopping_cart_badge']")).getText();
+        String productos = "";
+        try{
+            driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+            productos = driver.findElement(By.xpath("//span[@class = 'shopping_cart_badge']")).getText();
+        }catch (NoSuchElementException e){
+            productos = "asdadsasd"; //Fuerzo el error en caso de que no se encuentre el elemento con la lista de carrito
+        }
+
         Assert.assertEquals("No existe 1 artículo en el carrito", "1", productos);
     }
 
@@ -107,6 +113,7 @@ public class InventarioSuite
 
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
+
         boolean productos;
         try{
             driver.findElement(By.xpath("//span[@class = 'shopping_cart_badge']"));
