@@ -11,10 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -154,15 +151,27 @@ public class InventarioSuite
 
         //Guardamos la lista inicial que aparece de A a Z
         List<WebElement> lista = driver.findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
+        List<String> listaNombre = new ArrayList();
+
+        for(int i=0; i<lista.size(); i++){
+
+            listaNombre.add(lista.get(i).getText());
+        }
 
         //Cambiamos de Z a A y guardamos la lista
         driver.findElement(By.xpath("//option[@value = 'za']")).click();
         List<WebElement> lista2 = driver.findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
+        List<String> listaNombre2 = new ArrayList();
+
+        for(int i=0; i<lista2.size(); i++){
+
+            listaNombre2.add(lista2.get(i).getText());
+        }
 
         //Ordenamos al revés la que está de A a Z
-        Collections.reverse(lista);
+        Collections.reverse(listaNombre);
 
-        Assert.assertArrayEquals("La lista no está ordenada de la Z a la A", lista.toArray(), lista2.toArray());
+        Assert.assertArrayEquals("La lista no está ordenada de la Z a la A", listaNombre.toArray(), listaNombre2.toArray());
     }
 
     @Test
@@ -176,29 +185,27 @@ public class InventarioSuite
         List<WebElement> lista = driver.findElements(By.className("inventory_item_price"));
 
         String texto;
-        double[] precios = new double[6];
+        Double[] precios = new Double[6];
 
         for(int i=0; i<lista.size(); i++){
             texto = lista.get(i).getText().substring(1);
             precios[i] = (Double.valueOf(texto));
         }
 
-        Arrays.sort(precios);
-        double valorAnterior = 0;
-        boolean correcto = false;
+        driver.findElement(By.xpath("//option[@value = 'lohi']")).click();
+        List<WebElement> lista2 = driver.findElements(By.className("inventory_item_price"));
 
-        for(int i=0; i<precios.length; i++){
+        Double[] precios2 = new Double[6];
 
-            if(precios[i] >= valorAnterior){
-                correcto = true;
-            }else{
-                correcto = false;
-                break; // En caso de que alguna vez entremos en el else, salimos del for con el boolean en false
-            }
-            valorAnterior = precios[i];
+        for(int i=0; i<lista2.size(); i++){
+            texto = lista2.get(i).getText().substring(1);
+            precios2[i] = (Double.valueOf(texto));
         }
 
-        Assert.assertTrue("El orden no es correcto, no está de menor a mayor", correcto);
+        Arrays.sort(precios);
+        double valorAnterior = 0;
+
+        Assert.assertArrayEquals("El orden no es correcto, no está de menor a mayor", precios, precios2);
     }
 
     @Test
@@ -220,21 +227,18 @@ public class InventarioSuite
         }
 
         Arrays.sort(precios, Collections.<Double>reverseOrder());
-        double valorAnterior = 10000;
-        boolean correcto = false;
 
-        for(int i=0; i<precios.length; i++){
+        driver.findElement(By.xpath("//option[@value = 'hilo']")).click();
+        List<WebElement> lista2 = driver.findElements(By.className("inventory_item_price"));
 
-            if(precios[i] <= valorAnterior){
-                correcto = true;
-            }else{
-                correcto = false;
-                break;
-            }
-            valorAnterior = precios[i];
+        Double[] precios2 = new Double[6];
+
+        for(int i=0; i<lista2.size(); i++){
+            texto = lista2.get(i).getText().substring(1);
+            precios2[i] = (Double.valueOf(texto));
         }
 
-        Assert.assertTrue("El orden no es correcto, no está de mayor a menor", correcto);
+        Assert.assertArrayEquals("El orden no es correcto, no está de mayor a menor", precios, precios2);
     }
 
     @After

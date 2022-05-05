@@ -85,7 +85,7 @@ public class CheckoutSuite
 
         Double precioFinal = Double.valueOf(driver.findElement(By.className("summary_subtotal_label")).getText().substring(13));
 
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("finish"))).click();
+        //wait.until(ExpectedConditions.elementToBeClickable(By.id("finish"))).click();
 
         Assert.assertEquals("Los precios no son iguales", precioFinal, precio);
         //assertEquals compara objetos, pero no double, por lo que declaramos los precios como Double
