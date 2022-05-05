@@ -34,18 +34,20 @@ public class inventario
         options.addArguments("user-data-dir=" + userProfile);
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        pausa = new WebDriverWait(driver, 10, 1000);
         driver.manage().window().maximize();
+    }
+
+    public static void logIn() {
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
     }
 
     @Test
     public void numeroDeProductosEsSeis() throws InterruptedException {
         driver.get(ruta);
-        pausa = new WebDriverWait(driver, 10, 1000);
-
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        logIn();
 
         //pausa.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("login-button"))));
         List<WebElement> hijos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div"));
@@ -57,12 +59,7 @@ public class inventario
     @Test
     public void existeSauceLabsBoltTShirt() throws InterruptedException {
         driver.get(ruta);
-        pausa = new WebDriverWait(driver, 10, 1000);
-
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-
-        driver.findElement(By.id("login-button")).click();
+        logIn();
 
         //Validacion
         boolean SauceLabsBoltTShirtVisible;
@@ -77,12 +74,9 @@ public class inventario
     }
 
     @Test
-    public void SauceLabsBoltTShirtSeAñadeACarro() throws InterruptedException {
+    public void SeAñadeACarroSauceLabsBoltTShirt() throws InterruptedException {
         driver.get(ruta);
-
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        logIn();
 
         //Validacion
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
@@ -98,12 +92,9 @@ public class inventario
     }
 
     @Test
-    public void SauceLabsBoltTShirtEliminarDelCarro() throws InterruptedException {
+    public void EliminarDelCarroSauceLabsBoltTShirt() throws InterruptedException {
         driver.get(ruta);
-
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        logIn();
 
         //Validacion
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
@@ -122,10 +113,7 @@ public class inventario
     @Test
     public void Añadir3ProductosAlCArro() throws InterruptedException {
         driver.get(ruta);
-
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        logIn();
 
         //Validacion
         List<WebElement> listaProductos = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
@@ -137,6 +125,39 @@ public class inventario
         int cantidadEnCarro = Integer.parseInt(driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText());
 
         Assert.assertEquals("• PRUEBA FALLIDA - No hay 3 prodctos en el carro", 3, cantidadEnCarro);
+    }
+
+    @Test
+    public void OrdenarInventarioZ_A() throws InterruptedException {
+        driver.get(ruta);
+        logIn();
+
+        //Validacion
+        List<WebElement> listaProductos = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+
+        WebElement btnFiltrar = driver.findElement(By.xpath("//select[@data-test='product_sort_container']"));
+        btnFiltrar.findElement(By.xpath("//option[@value='za']")).click();
+
+        List<WebElement> listaProductosZA = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+
+        boolean estaOrdenadoZA = true;
+        int idxListaDesorden = 0;
+        int idxListaZA = listaProductosZA.size() - 1;
+
+        while (idxListaDesorden < listaProductos.size()) {
+            String nombreListaDesorden = listaProductos.get(idxListaDesorden).findElement(By.xpath("//div[@class='inventory_item_name']")).getText();
+            String nombreListaZA = listaProductosZA.get(idxListaZA).findElement(By.xpath("//div[@class='inventory_item_name']")).getText();
+
+            if (!nombreListaDesorden.equals(nombreListaZA)) {
+                estaOrdenadoZA = false;
+                break;
+            }
+            idxListaDesorden++;
+            idxListaZA--;
+        }
+
+        Assert.assertFalse("• PRUEBA FALLIDA - Los elementos no estan ordenada de Z-A", estaOrdenadoZA);
+
     }
 
     @After
