@@ -115,7 +115,6 @@ public class CheckoutSuite
 
         Assert.assertEquals("El texto que aparece no es el esperado",
                 "Your order has been dispatched, and will arrive just as fast as the pony can get there!", texto);
-
     }
 
     @After

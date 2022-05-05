@@ -8,21 +8,17 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Unit test for simple App.
  */
-public class CarriotoSuite
+public class CarritoSuite
 {
     /**
      * Rigorous Test :-)
@@ -79,7 +75,7 @@ public class CarriotoSuite
         Assert.assertFalse("El producto no se ha eliminado.", existe);
     }
 
-    
+
 
     @After
     public void testDown(){
