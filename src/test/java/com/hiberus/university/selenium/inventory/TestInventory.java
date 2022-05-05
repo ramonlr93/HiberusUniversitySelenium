@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.hiberus.university.selenium.constantes.Consts.*;
 import static org.junit.Assert.*;
-import static com.hiberus.university.selenium.constantes.Metodos.*;
+import static com.hiberus.university.selenium.Constantes.*;
 
 public class TestInventory {
 
@@ -93,8 +92,20 @@ public class TestInventory {
     @Test
     public void añadir3ProductosCarrito() {
         List<WebElement> botones =  driver.findElements(By.xpath(XPATH_BOTONES_ADD));
-        for (int i = 0; i < 3; i++)
-            botones.get(i).click();
+        int rnd1 = (int) Math.floor(Math.random()*(botones.size()));
+        int rnd2;
+        int rnd3;
+
+        do
+            rnd2 = (int) Math.floor(Math.random()*botones.size());
+        while (rnd1 == rnd2);
+        do
+            rnd3 = (int) Math.floor(Math.random()*botones.size());
+        while (rnd1 == rnd3 || rnd2 == rnd3);
+
+        botones.get(rnd1).click();
+        botones.get(rnd2).click();
+        botones.get(rnd3).click();
 
 
         boolean hay3ElementoCarro = false;

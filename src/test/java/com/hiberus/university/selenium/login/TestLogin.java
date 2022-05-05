@@ -10,8 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-import static com.hiberus.university.selenium.constantes.Consts.*;
-import static com.hiberus.university.selenium.constantes.Metodos.*;
+import static com.hiberus.university.selenium.Constantes.*;
 import static org.junit.Assert.*;
 
 /**
