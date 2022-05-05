@@ -53,7 +53,7 @@ public class InventarioSuite {
         passwrod.sendKeys("secret_sauce");
         boton.click();
         inventario = driver.findElements(By.xpath("//div[@class='inventory_item']"));
-        Assert.assertEquals("El inventario no son 6 objetos", inventario.size(), 6);
+        Assert.assertEquals("El inventario no son 6 objetos",6 ,inventario.size());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class InventarioSuite {
         botonAdd=driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
         botonAdd.click();
         carrito = driver.findElements(By.xpath("//a[@class='shopping_cart_link']//child::*"));
-        Assert.assertNotEquals("No se añadio y borrado del carrito",carrito.size(),0);
+        Assert.assertNotEquals("No se añadio y borrado del carrito",0,carrito.size());
     }
 
     @Test
@@ -119,7 +119,7 @@ public class InventarioSuite {
         botonRemove = driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt"));
         botonRemove.click();
         carrito = driver.findElements(By.xpath("//a[@class='shopping_cart_link']//child::*"));
-        Assert.assertEquals("No se añadio y borrado del carrito",carrito.size(),0);
+        Assert.assertEquals("No se añadio y borrado del carrito",0,carrito.size());
     }
 
     @Test
@@ -129,6 +129,9 @@ public class InventarioSuite {
         WebElement boton;
         List<WebElement> botonAdd;
         List<WebElement> carrito;
+        int valorAleatorio;
+        int valorAleatorio2;
+        int valorAleatorio3;
         driver.get("https://www.saucedemo.com");
         usuario = driver.findElement(By.id("user-name"));
         passwrod = driver.findElement(By.id("password"));
@@ -137,11 +140,28 @@ public class InventarioSuite {
         passwrod.sendKeys("secret_sauce");
         boton.click();
         botonAdd=driver.findElements(By.xpath("//button[@class='btn btn_primary btn_small btn_inventory']"));
-        for (int a=0;a<3;a++){
-            botonAdd.get(a).click();
+        valorAleatorio = (int) (Math.random()*botonAdd.size());
+        botonAdd.get(valorAleatorio).click();
+        valorAleatorio2 = (int) (Math.random()*botonAdd.size());
+        if(valorAleatorio2!=valorAleatorio){
+            botonAdd.get(valorAleatorio2).click();
+        }else{
+            while(valorAleatorio2==valorAleatorio){
+                valorAleatorio2 = (int) (Math.random()*botonAdd.size());;
+            }
+            botonAdd.get(valorAleatorio2).click();
+        }
+        valorAleatorio3 = (int) (Math.random()*botonAdd.size());
+        if(valorAleatorio3!=valorAleatorio && valorAleatorio3!=valorAleatorio2){
+            botonAdd.get(valorAleatorio3).click();
+        }else{
+            while(valorAleatorio3==valorAleatorio || valorAleatorio3==valorAleatorio2 ){
+                valorAleatorio3 = (int) (Math.random()*botonAdd.size());;
+            }
+            botonAdd.get(valorAleatorio3).click();
         }
         carrito = driver.findElements(By.xpath("//a[@class='shopping_cart_link']//child::*"));
-        Assert.assertEquals("No se añadio y borrado del carrito",carrito.get(0).getText(),"3");
+        Assert.assertEquals("No se añadio y borrado del carrito","3",carrito.get(0).getText());
     }
 
     @Test
@@ -150,7 +170,9 @@ public class InventarioSuite {
         WebElement passwrod;
         WebElement boton;
         List<WebElement> inventario;
+        List<String> inventarioTexto=new ArrayList<String>();
         List<WebElement> inventarioInverso;
+        List<String> inventarioTextoInverso=new ArrayList<String>();
         Select selector;
         driver.get("https://www.saucedemo.com");
         usuario = driver.findElement(By.id("user-name"));
@@ -161,10 +183,16 @@ public class InventarioSuite {
         boton.click();
         inventario = driver.findElements(By.xpath("//div[@class='inventory_item']"));
         Collections.reverse(inventario);
+        for (WebElement elemento : inventario) {
+            inventarioTexto.add(elemento.getText());
+        }
         selector = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
         selector.selectByVisibleText("Name (Z to A)");
         inventarioInverso = driver.findElements(By.xpath("//div[@class='inventory_item']"));
-        Assert.assertEquals("No se ordeno correctamente",inventario,inventarioInverso);
+        for (WebElement elemento : inventarioInverso) {
+            inventarioTextoInverso.add(elemento.getText());
+        }
+        Assert.assertEquals("No se ordeno correctamente",inventarioTexto,inventarioTextoInverso);
     }
 
 

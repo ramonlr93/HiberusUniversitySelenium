@@ -1,27 +1,24 @@
-package com.hiberus.university.selenium;
-
-import static org.junit.Assert.assertTrue;
+package com.hiberus.university.selenium.logout;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Unit test for simple App.
- */
+public class LogOutSuite {
 
-public class LoginSuite {
-    /**
-     * Rigorous Test :-)
-     */
     public static WebDriver driver;
+    public static WebDriverWait wait;
+
 
     @Before
     public void setUpDriver() {
@@ -30,12 +27,12 @@ public class LoginSuite {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-data-dir=" + userProfile);
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @Test
-    public void testLogin()  {
+    public void comprobarLogOut() {
         WebElement usuario;
         WebElement passwrod;
         WebElement boton;
@@ -46,26 +43,10 @@ public class LoginSuite {
         usuario.sendKeys("standard_user");
         passwrod.sendKeys("secret_sauce");
         boton.click();
-        String url = driver.getCurrentUrl();
-        Assert.assertEquals("La URL no es correcta","https://www.saucedemo.com/inventory.html", url);
-    }
+        driver.findElement(By.id("react-burger-menu-btn")).click();
+        driver.findElement(By.id("logout_sidebar_link")).click();
+        Assert.assertEquals("No se hizo logout","https://www.saucedemo.com/",driver.getCurrentUrl());
 
-    @Test
-    public void testLoginFailed()  {
-        WebElement usuario;
-        WebElement passwrod;
-        WebElement boton;
-        boolean error;
-        driver.get("https://www.saucedemo.com");
-        usuario = driver.findElement(By.id("user-name"));
-        passwrod = driver.findElement(By.id("password"));
-        boton = driver.findElement(By.id("login-button"));
-        usuario.sendKeys("standard_use");
-        passwrod.sendKeys("secret_sauce");
-        //3.- Hacer login''
-        boton.click();
-        error = driver.findElement(By.xpath("//div[@class='error-message-container error']")).isDisplayed();
-        Assert.assertTrue("El login no fallo correctamente", error);
     }
 
     @After
