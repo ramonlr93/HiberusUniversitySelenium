@@ -203,7 +203,6 @@ public class InventarioSuite
         }
 
         Arrays.sort(precios);
-        double valorAnterior = 0;
 
         Assert.assertArrayEquals("El orden no es correcto, no está de menor a mayor", precios, precios2);
     }
