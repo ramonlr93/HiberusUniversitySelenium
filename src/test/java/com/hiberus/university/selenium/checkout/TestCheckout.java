@@ -59,8 +59,6 @@ public class TestCheckout {
         String precioTotalPaginaStr = driver.findElement(By.className(CLASS_DIV_TOTAL_PRICE)).getText();
         Float precioTotalPagina = Float.parseFloat(precioTotalPaginaStr.substring(precioTotalPaginaStr.indexOf("$") + 1));
 
-        driver.findElement(By.id(ID_BOTON_FINISH)).click();
-
         assertEquals("PRUEBA FALLIDA: el precio no esta bien calculado", precioTotal, precioTotalPagina);
 
     }
