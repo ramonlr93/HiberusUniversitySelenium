@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hiberus.university.selenium.Constantes.*;
@@ -27,15 +28,15 @@ public class TestCarrito {
     @Test
     public void eliminarProductoDesdeCarro() {
         List<WebElement> botonesProductos = driver.findElements(By.xpath(XPATH_BOTONES_ADD));
-        int rnd1 = (int) Math.floor(Math.random()*(botonesProductos.size()));
-        int rnd2;
-
-        do
-            rnd2 = (int) Math.floor(Math.random()*botonesProductos.size());
-        while (rnd1 == rnd2);
-
-        botonesProductos.get(rnd1).click();
-        botonesProductos.get(rnd2).click();
+        List<Integer> numerosRandom = new ArrayList<>();
+        for (int i = 0; i < 2; i++){
+            int rnd;
+            do
+                rnd = (int) Math.floor(Math.random()*(botonesProductos.size()));
+            while (numerosRandom.contains(rnd));
+            botonesProductos.get(rnd).click();
+            numerosRandom.add(rnd);
+        }
 
         driver.findElement(By.className(CLASS_SHOPPING_CART_NUMBER)).click();
 

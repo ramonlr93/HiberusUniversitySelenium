@@ -92,20 +92,15 @@ public class TestInventory {
     @Test
     public void añadir3ProductosCarrito() {
         List<WebElement> botones =  driver.findElements(By.xpath(XPATH_BOTONES_ADD));
-        int rnd1 = (int) Math.floor(Math.random()*(botones.size()));
-        int rnd2;
-        int rnd3;
-
-        do
-            rnd2 = (int) Math.floor(Math.random()*botones.size());
-        while (rnd1 == rnd2);
-        do
-            rnd3 = (int) Math.floor(Math.random()*botones.size());
-        while (rnd1 == rnd3 || rnd2 == rnd3);
-
-        botones.get(rnd1).click();
-        botones.get(rnd2).click();
-        botones.get(rnd3).click();
+        List<Integer> numerosRandom = new ArrayList<>();
+        for (int i = 0; i < 3; i++){
+            int rnd;
+            do
+                rnd = (int) Math.floor(Math.random()*(botones.size()));
+            while (numerosRandom.contains(rnd));
+            botones.get(rnd).click();
+            numerosRandom.add(rnd);
+        }
 
 
         boolean hay3ElementoCarro = false;

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,26 +29,24 @@ public class TestCheckout {
     public void precioFinalCorrecto() {
         List<WebElement> productosPrecios = driver.findElements(By.className(CLASS_PRODUCT_PRICE));
         List<WebElement> productosBotones = driver.findElements(By.xpath(XPATH_BOTONES_ADD));
-        int rnd1 = (int) Math.floor(Math.random()*(productosPrecios.size()));
-        int rnd2;
-        int rnd3;
 
-        do
-            rnd2 = (int) Math.floor(Math.random()*productosPrecios.size());
-        while (rnd1 == rnd2);
-        do
-            rnd3 = (int) Math.floor(Math.random()*productosPrecios.size());
-        while (rnd1 == rnd3 || rnd2 == rnd3);
+        List<Integer> numerosRandom = new ArrayList<>();
+        for (int i = 0; i < 3; i++){
+            int rnd;
+            do
+                rnd = (int) Math.floor(Math.random()*(productosBotones.size()));
+            while (numerosRandom.contains(rnd));
+            productosBotones.get(rnd).click();
+            numerosRandom.add(rnd);
+        }
 
-        productosBotones.get(rnd1).click();
-        productosBotones.get(rnd2).click();
-        productosBotones.get(rnd3).click();
+        ArrayList<Float> precios = new ArrayList<>();
+        for (int rnd : numerosRandom)
+            precios.add(Float.parseFloat(productosPrecios.get(rnd).getText().substring(1)));
 
-        Float precioProducto1 = Float.parseFloat(productosPrecios.get(rnd1).getText().substring(1));
-        Float precioProducto2 = Float.parseFloat(productosPrecios.get(rnd2).getText().substring(1));
-        Float precioProducto3 = Float.parseFloat(productosPrecios.get(rnd3).getText().substring(1));
-
-        Float precioTotal = precioProducto1 + precioProducto2 + precioProducto3;
+        Float precioTotal = 0f;
+        for (Float precio : precios)
+            precioTotal += precio;
 
         driver.findElement(By.className(CLASS_SHOPPING_CART_NUMBER)).click();
         driver.findElement(By.id(ID_BOTON_CHECKOUT)).click();
