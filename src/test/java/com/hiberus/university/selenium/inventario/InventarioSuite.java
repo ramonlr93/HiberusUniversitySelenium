@@ -26,7 +26,6 @@ public class InventarioSuite {
         options.addArguments("user-data-dir=" + userProfile);
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, 10, 500);
     }
@@ -43,11 +42,8 @@ public class InventarioSuite {
         // Pulsar submit
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='inventory_list']/child::div"))));
-
-
         // Validar que el número de productos mostrados es 6
-        int len = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div")).size();
+        int len = wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElement(By.xpath("//div[@class='inventory_list']/child::div")))).size();
         Assert.assertEquals( "PRUEBA FALLIDA, NUMERO DE ITEMS NO ES 6", 6, len);
     }
 
@@ -62,10 +58,8 @@ public class InventarioSuite {
         // Pulsar submit
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='inventory_list']/child::div"))));
-
         // Comprobar que el botón ha cambiado y ahora es remove
-        boolean existeProducto = driver.findElement(By.xpath("//div[text() = 'Sauce Labs Bolt T-Shirt']")).isDisplayed();
+        boolean existeProducto = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[text() = 'Sauce Labs Bolt T-Shirt']")))).isDisplayed();
         Assert.assertTrue("PRUEBA FALLIDA, EL ITEM NO EXISTE. ", existeProducto);
     }
 
@@ -136,6 +130,9 @@ public class InventarioSuite {
 
     @Test
     public void ordenarInventarioDeZAA(){
+        List nombreAZ = new ArrayList();
+        List nombreZA = new ArrayList();
+
         // Ir a la página
         driver.get(URL);
         // Escribir el usuario
@@ -153,9 +150,15 @@ public class InventarioSuite {
         driver.findElement(By.xpath("//option[@value = 'za']")).click();
         // Camisetas de la Z-A
         List<WebElement> camisetasZA = driver.findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
+
+        for (int i=0;i<camisetasZA.size();i++){
+            nombreAZ.add(camisetasAZ.get(i).getText());
+            nombreZA.add(camisetasZA.get(i).getText());
+        }
+
         // Hago un reverse al array inicial
-        Collections.reverse(camisetasAZ);
-        Assert.assertArrayEquals("PRUEBA FALLIDA, EL ORDEN NO ES DE Z-A", camisetasAZ.toArray(), camisetasZA.toArray());
+        Collections.reverse(nombreAZ);
+        Assert.assertEquals("PRUEBA FALLIDA, EL ORDEN NO ES DE Z-A", nombreAZ, nombreZA);
     }
 
     @Test
@@ -184,14 +187,14 @@ public class InventarioSuite {
 
         // Añado valores a los arraylist de double
         for (int i=0;i<camisetasHL.size();i++){
-            precioHL.add(Double.parseDouble(camisetasHL.get(i).getText().substring(1,5)));
-            precioLH.add(Double.parseDouble(camisetasLH.get(i).getText().substring(1,5)));
+            precioHL.add(Double.parseDouble(camisetasHL.get(i).getText().substring(1,6)));
+            precioLH.add(Double.parseDouble(camisetasLH.get(i).getText().substring(1,6)));
         }
 
         // Ordeno de menor a mayor
         Collections.sort(precioHL);
 
-        Assert.assertArrayEquals("PRUEBA FALLIDA, EL ORDEN NO ES DE L-H", precioHL.toArray(), precioLH.toArray());
+        Assert.assertEquals("PRUEBA FALLIDA, EL ORDEN NO ES DE L-H", precioHL, precioLH);
     }
 
     @Test
@@ -220,14 +223,14 @@ public class InventarioSuite {
 
         // Añado valores a los arraylist de double
         for (int i=0;i<camisetasHL.size();i++){
-            precioHL.add(Double.parseDouble(camisetasHL.get(i).getText().substring(1,5)));
-            precioLH.add(Double.parseDouble(camisetasLH.get(i).getText().substring(1,5)));
+            precioHL.add(Double.parseDouble(camisetasHL.get(i).getText().substring(1,6)));
+            precioLH.add(Double.parseDouble(camisetasLH.get(i).getText().substring(1,6)));
         }
 
         // Ordeno de mayor a menor
         Collections.sort(precioLH, Collections.reverseOrder());
 
-        Assert.assertArrayEquals("PRUEBA FALLIDA, EL ORDEN NO ES DE H-L", camisetasHL.toArray(), camisetasHL.toArray());
+        Assert.assertEquals("PRUEBA FALLIDA, EL ORDEN NO ES DE H-L", camisetasHL, camisetasHL);
     }
 
 

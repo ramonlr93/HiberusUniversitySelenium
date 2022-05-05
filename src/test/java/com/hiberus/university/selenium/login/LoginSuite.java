@@ -30,7 +30,6 @@ public class LoginSuite {
         options.addArguments("user-data-dir=" + userProfile);
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, 10, 500);
     }
