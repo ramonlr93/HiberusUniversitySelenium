@@ -133,20 +133,20 @@ public class inventario
         logIn();
 
         //Validacion
-        List<WebElement> listaProductos = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        List<WebElement> listaProductos = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
 
         WebElement btnFiltrar = driver.findElement(By.xpath("//select[@data-test='product_sort_container']"));
         btnFiltrar.findElement(By.xpath("//option[@value='za']")).click();
 
-        List<WebElement> listaProductosZA = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        List<WebElement> listaProductosZA = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
 
         boolean estaOrdenadoZA = true;
         int idxListaDesorden = 0;
         int idxListaZA = listaProductosZA.size() - 1;
 
         while (idxListaDesorden < listaProductos.size()) {
-            String nombreListaDesorden = listaProductos.get(idxListaDesorden).findElement(By.xpath("//div[@class='inventory_item_name']")).getText();
-            String nombreListaZA = listaProductosZA.get(idxListaZA).findElement(By.xpath("//div[@class='inventory_item_name']")).getText();
+            String nombreListaDesorden = listaProductos.get(idxListaDesorden).getText();
+            String nombreListaZA = listaProductosZA.get(idxListaZA).getText();
 
             if (!nombreListaDesorden.equals(nombreListaZA)) {
                 estaOrdenadoZA = false;
@@ -156,7 +156,7 @@ public class inventario
             idxListaZA--;
         }
 
-        Assert.assertFalse("• PRUEBA FALLIDA - Los elementos no estan ordenada de Z-A", estaOrdenadoZA);
+        Assert.assertTrue("• PRUEBA FALLIDA - Los elementos no estan ordenada de Z-A", estaOrdenadoZA);
 
     }
 
