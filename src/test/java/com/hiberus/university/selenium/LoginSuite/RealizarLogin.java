@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class RealizarLogin {
@@ -38,11 +40,9 @@ public class RealizarLogin {
 
         //Paso 3. Escribir password
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        Thread.sleep(2000);
 
         //Paso 4. Pulsar boton login
         driver.findElement(By.id("login-button")).click();
-        Thread.sleep(2000);
 
         //Paso 5. Validar que se encuentra en https://www.saucedemo.com/inventory.html
         String paginaActual = driver.getCurrentUrl();

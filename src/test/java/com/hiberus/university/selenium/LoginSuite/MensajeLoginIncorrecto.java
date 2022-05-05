@@ -10,11 +10,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class MensajeLoginIncorrecto {
 
     public static WebDriver driver;
+    public static WebDriverWait wait;
 
     @Before
     public void setUp() {
@@ -26,6 +29,7 @@ public class MensajeLoginIncorrecto {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
+        wait = new WebDriverWait(driver, 20, 500);
     }
 
     @Test
@@ -36,20 +40,17 @@ public class MensajeLoginIncorrecto {
 
         //Paso 2. Escribir username
         driver.findElement(By.id("user-name")).sendKeys("standard");
-        Thread.sleep(2000);
 
         //Paso 3. Escribir password
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
 
         //Paso 4. Pulsar boton login
         driver.findElement(By.id("login-button")).click();
-        Thread.sleep(2000);
 
         //Paso 5. Validar que se encuentra en https://www.saucedemo.com/inventory.html
-        WebElement mensajeError = driver.findElement(By.xpath("//h3[@data-test='error']"));
-        boolean error = mensajeError.isDisplayed();
-        Assert.assertTrue("Al introducir un nombre de usuario incorrecto, no aparece el mensaje de Errod", error);
-
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//h3[@data-test='error']"))));
+        boolean error = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
+        Assert.assertTrue("Al introducir un nombre de usuario incorrecto, no aparece el mensaje de Error", error);
 
     }
 
