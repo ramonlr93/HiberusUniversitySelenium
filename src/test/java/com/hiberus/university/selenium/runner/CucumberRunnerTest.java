@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
   plugin =  {"pretty"},
-  glue = {"com/hiberus/university/selenium/stepdefs"},
+  glue = {"com.hiberus.university.selenium.stepdefs"},
   features = {"src/test/resources/"}
 )
 public class CucumberRunnerTest {
