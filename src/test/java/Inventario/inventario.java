@@ -13,8 +13,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,12 +34,12 @@ public class inventario
         options.addArguments("user-data-dir=" + userProfile);
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @Test
-    public void numeroDeProductosEsSeis() throws  InterruptedException {
+    public void numeroDeProductosEsSeis() throws InterruptedException {
         driver.get(ruta);
         pausa = new WebDriverWait(driver, 10, 1000);
 
@@ -51,11 +51,11 @@ public class inventario
         List<WebElement> hijos = driver.findElements(By.xpath("//div[@class='inventory_list']/child::div"));
 
         //Validacion
-        Assert.assertEquals("PRUEBA FALLIDA - Nuemero de elementos no es 6", 6, hijos.size());
+        Assert.assertEquals("• PRUEBA FALLIDA - Nuemero de elementos no es 6", 6, hijos.size());
     }
 
     @Test
-    public void existeSauceLabsBoltTShirt() throws  InterruptedException {
+    public void existeSauceLabsBoltTShirt() throws InterruptedException {
         driver.get(ruta);
         pausa = new WebDriverWait(driver, 10, 1000);
 
@@ -73,31 +73,70 @@ public class inventario
             SauceLabsBoltTShirtVisible = false;
         }
 
-        Assert.assertTrue("PRUEBA FALLIDA - El elemento error no aparece", SauceLabsBoltTShirtVisible);
+        Assert.assertTrue("• PRUEBA FALLIDA - El elemento error no aparece", SauceLabsBoltTShirtVisible);
     }
 
     @Test
-    public void SauceLabsBoltTShirtSeAñadeACarro() throws  InterruptedException {
+    public void SauceLabsBoltTShirtSeAñadeACarro() throws InterruptedException {
         driver.get(ruta);
-//        pausa = new WebDriverWait(driver, 10, 1000);
 
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
 
         //Validacion
-        driver.findElement(By.xpath("//div[contains(text(), 'Sauce Labs Bolt T-Shirt')]")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         boolean seAñadioAlCarrito;
-
         try {
             seAñadioAlCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).isDisplayed();
         } catch (NoSuchElementException e) {
             seAñadioAlCarrito = false;
         }
 
+        Assert.assertTrue("• PRUEBA FALLIDA - Sauce Labs Bolt T-Shirt NO se ha agregado", seAñadioAlCarrito);
 
+    }
 
-        Assert.assertTrue("PRUEBA FALLIDA - El item no se añadio", seAñadioAlCarrito);
+    @Test
+    public void SauceLabsBoltTShirtEliminarDelCarro() throws InterruptedException {
+        driver.get(ruta);
+
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+
+        //Validacion
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
+
+        boolean seEliminoDelCarrito;
+        try {
+            seEliminoDelCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            seEliminoDelCarrito = true;
+        }
+
+        Assert.assertFalse("• PRUEBA FALLIDA - Sauce Labs Bolt T-Shirt NO se ha eliminado", seEliminoDelCarrito);
+    }
+
+    @Test
+    public void Añadir3ProductosAlCArro() throws InterruptedException {
+        driver.get(ruta);
+
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+
+        //Validacion
+        List<WebElement> listaProductos = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
+        Collections.shuffle(listaProductos);
+        for (int i = 0; i < 3; i++) {
+            listaProductos.get(i).click();
+        }
+
+        int cantidadEnCarro = Integer.parseInt(driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText());
+
+        Assert.assertEquals("• PRUEBA FALLIDA - No hay 3 prodctos en el carro", 3, cantidadEnCarro);
     }
 
     @After
@@ -106,3 +145,4 @@ public class inventario
     }
 
 }
+
