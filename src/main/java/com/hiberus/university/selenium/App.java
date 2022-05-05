@@ -26,6 +26,7 @@ public class App {
         driver.get("https://opensource-demo.orangehrmlive.com/");
         Thread. sleep(2000);
         driver.close();
-        System.out.println("Hello World! QA Santos");
+        int x = 2;
+        System.out.println("Hello World! QA Santos" + ++x);
     }
 }

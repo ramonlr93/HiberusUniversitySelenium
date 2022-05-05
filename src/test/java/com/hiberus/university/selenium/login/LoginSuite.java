@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package com.hiberus.university.selenium.login;
 
 import static org.junit.Assert.assertTrue;
 
@@ -9,17 +9,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.concurrent.TimeUnit;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class LoginSuite {
     /**
      * Rigorous Test :-)
      */
 
     public static WebDriver driver;
+    public static WebDriverWait wait;
 
     @Before
     public void tearUp() {
@@ -30,8 +35,8 @@ public class AppTest {
         options.addArguments("user-data-dir=" + userProfile);
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, 5,500);
     }
 
     @Test
@@ -43,10 +48,11 @@ public class AppTest {
 
 
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
-
-        Assert.assertEquals("LA PRUEBA ES FALLIDA PORQUE NO ESTAMOS EN LA URL QUE DEBERIAMOS ESTAR", "https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
+        Thread.sleep(2000);
+        String urlActual = driver.getCurrentUrl();
+        Assert.assertEquals("LA PRUEBA ES FALLIDA PORQUE NO ESTAMOS EN LA URL QUE DEBERIAMOS ESTAR", "https://www.saucedemo.com/inventory.html", urlActual);
     }
 
     @Test
@@ -58,25 +64,38 @@ public class AppTest {
 
 
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
-
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
+        Thread.sleep(2000);
 
-        Assert.assertTrue("LA PRUEBA A FALLADO PORQUE NO HA SALIDO EL MENSAJE DE ERROR", driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed());
+        boolean existe;
+        try {
+            existe = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//h3[@data-test='error']")))).isDisplayed();
+        } catch (NoSuchElementException e) {
+            existe = false;
+        }
+        Assert.assertTrue("LA PRUEBA A FALLADO PORQUE NO HA SALIDO EL MENSAJE DE ERROR", existe);
     }
-
     @Test
-    public void testNumberoInventoryItems() throws InterruptedException {
+    public void testAddProductoSauce() throws InterruptedException {
         driver.get("https://www.saucedemo.com/");
 
-
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_use");
-
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
 
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
 
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
 
-        Assert.assertEquals("LA PRUEBA A FALLADO PORQUE EL NUMERO DE ITEMS NO ES 6", 6,driver.findElements(By.xpath("//div[@class='inventory_item']")).size());
+
+        try {
+            wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")))).click();
+        } catch (NoSuchElementException e) {
+
+        }
+        Thread.sleep(2000);
+        String numCarro = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")))).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals("EL PRODUCTO Sauce Labs Bolt T-Shirt NO SE HA AÑADIDO AL CARRO", "1", numCarro);
     }
 
     @After
