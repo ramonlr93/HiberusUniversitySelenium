@@ -44,15 +44,13 @@ public class EliminarProductoCarrito {
         driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
         Thread.sleep(5000);
         String sinProducto = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
-
         int sinProd;
         System.out.println(addProduct);
         if(sinProducto.equals("")) {
             sinProd = 0;
             sinProducto = "Sin producto";
         }
-        System.out.println(sinProducto); "1" -- ""
-
+        System.out.println(sinProducto);
         driver.quit();
     }
 }

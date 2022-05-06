@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class EliminarCarrito{
+public class Agregar3productos{
 
     public static WebDriver driver;
     public static WebDriverWait wait;
@@ -35,7 +35,7 @@ public class EliminarCarrito{
     }
 
     @Test
-    public void incrementarValorCarrito() {
+    public void incrementarValorCarrito3() {
         //Paso1 Ir a la pagina
         driver.get("https://www.saucedemo.com/");
         //Paso2 Escribir el username
@@ -45,17 +45,18 @@ public class EliminarCarrito{
         //Paso 4. Pulsar en el botón del Login
         driver.findElement(By.id("login-button")).click();
         //Paso5 Agregar producto al carrito
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        //Paso6 Eliminar producto del carrito
-        String addProduct = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
-        //Paso6 Eliminar producto del carrito
-        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
-        String sinProducto = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
-
+        driver.findElement(By.xpath("//button[@name='add-to-cart-sauce-labs-backpack']")).click();
+        driver.findElement(By.xpath("//button[@name='add-to-cart-sauce-labs-bike-light']")).click();
+        driver.findElement(By.xpath("//button[@name='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+        //Paso6 Validamos que en el carrito sale valor 3
+        int getSize = Integer.parseInt(driver.findElement(By.className("shopping_cart_badge")).getText());
+        Assert.assertEquals("Número de items incorrecto",3, getSize);
+        System.out.println(getSize);
     }
     @After
     public void quitDriver(){
         driver.quit();
     }
 }
+
 
