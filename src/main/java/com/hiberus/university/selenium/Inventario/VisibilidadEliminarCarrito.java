@@ -33,9 +33,11 @@ public class VisibilidadEliminarCarrito {
         //Paso 4. Pulsar en el botón del Login
         driver.findElement(By.id("login-button")).click();
         //Paso5 Agregamos producto al carrito
-        driver.findElement(By.id("add-to-cart-Sauce-Labs-Onesie")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
         //Paso 6 Visibilidad botón Eliminar carrito
        boolean status = driver.findElement(By.id("remove-sauce-labs-onesie")).isDisplayed();
+       //Paso 7
+        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
         driver.quit();
     }
 }
