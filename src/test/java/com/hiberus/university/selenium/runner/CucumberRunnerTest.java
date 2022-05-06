@@ -22,6 +22,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -46,20 +48,11 @@ public class CucumberRunnerTest {
           firefoxOptions.addArguments("--headless");
         }
         driver = new FirefoxDriver(firefoxOptions);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        PagesFactory.start(driver);
         break;
       case EDGE:
         WebDriverManager.edgedriver().setup();
         EdgeOptions edgeOptions = new EdgeOptions();
         driver = new EdgeDriver(edgeOptions);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        PagesFactory.start(driver);
-        break;
-      case IEXPLORE:
-        // TODO: implement internet explorer driver
         break;
       default:
         WebDriverManager.chromedriver().setup();
@@ -68,10 +61,10 @@ public class CucumberRunnerTest {
           chromeOptions.addArguments("--headless");
         }
         driver = new ChromeDriver(chromeOptions);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        PagesFactory.start(driver);
     }
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
+    PagesFactory.start(driver);
   }
 
   @AfterClass
