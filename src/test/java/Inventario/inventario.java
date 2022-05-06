@@ -28,7 +28,7 @@ public class inventario
 
     @Before
     public void SetUp() {
-        String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
+        String userProfile = "C:\\Users\\mezquerro\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-data-dir=" + userProfile);
@@ -136,6 +136,7 @@ public class inventario
         List<WebElement> listaProductos = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
 
         WebElement btnFiltrar = driver.findElement(By.xpath("//select[@data-test='product_sort_container']"));
+
         btnFiltrar.findElement(By.xpath("//option[@value='za']")).click();
 
         List<WebElement> listaProductosZA = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
@@ -156,11 +157,64 @@ public class inventario
             idxListaZA--;
         }
 
-        Assert.assertTrue("• PRUEBA FALLIDA - Los elementos no estan ordenada de Z-A", estaOrdenadoZA);
-
+        Assert.assertTrue("• PRUEBA FALLIDA - Los elementos no estan ordenados de Z-A", estaOrdenadoZA);
     }
 
-    @After
+    @Test
+    public void OrdenarInventarioPrecioAscendente() throws InterruptedException {
+        driver.get(ruta);
+        logIn();
+
+        //Validacion
+        driver.findElement(By.xpath("//select[@data-test='product_sort_container']/option[@value='lohi']")).click();
+
+        List<WebElement> listaTrasFiltro = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
+
+
+        // almacenar como queda la lista tras dar a filtrar
+        List<Float> preciosLista = new ArrayList<>();
+        for (WebElement p: listaTrasFiltro) {
+            preciosLista.add(Float.valueOf(p.getText().substring(1, p.getText().length())));
+        }
+
+        // calcular como debe ser la lista correcta
+        List<Float> listaEsperada = new ArrayList<>();
+        for (WebElement p: driver.findElements(By.xpath("//div[@class='inventory_item_price']"))) {
+            listaEsperada.add(Float.valueOf(p.getText().substring(1, p.getText().length())));
+        }
+        Collections.sort(listaEsperada);
+
+        Assert.assertEquals("• PRUEBA FALLIDA - Lista no ordenada de manera ascendente", listaEsperada, preciosLista);
+    }
+
+    @Test
+    public void OrdenarInventarioPrecioDescendente() throws InterruptedException {
+        driver.get(ruta);
+        logIn();
+
+        //Validacion
+        driver.findElement(By.xpath("//select[@data-test='product_sort_container']/option[@value='hilo']")).click();
+
+        List<WebElement> listaTrasFiltro = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
+
+
+        // almacenar como queda la lista tras dar a filtrar
+        List<Float> preciosLista = new ArrayList<>();
+        for (WebElement p: listaTrasFiltro) {
+            preciosLista.add(Float.valueOf(p.getText().substring(1, p.getText().length())));
+        }
+
+        // calcular como debe ser la lista correcta
+        List<Float> listaEsperada = new ArrayList<>();
+        for (WebElement p: driver.findElements(By.xpath("//div[@class='inventory_item_price']"))) {
+            listaEsperada.add(Float.valueOf(p.getText().substring(1, p.getText().length())));
+        }
+        Collections.sort(listaEsperada, Collections.reverseOrder());
+
+        Assert.assertEquals("• PRUEBA FALLIDA - Lista no ordenada de manera descendente", listaEsperada, preciosLista);
+    }
+
+        @After
     public void tearDown() {
         driver.close();
     }
