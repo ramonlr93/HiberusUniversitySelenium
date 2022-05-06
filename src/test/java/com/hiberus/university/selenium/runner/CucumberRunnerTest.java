@@ -18,6 +18,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -49,7 +51,12 @@ public class CucumberRunnerTest {
         PagesFactory.start(driver);
         break;
       case EDGE:
-        // TODO: implement edge driver
+        WebDriverManager.edgedriver().setup();
+        EdgeOptions edgeOptions = new EdgeOptions();
+        driver = new EdgeDriver(edgeOptions);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        PagesFactory.start(driver);
         break;
       case IEXPLORE:
         // TODO: implement internet explorer driver
