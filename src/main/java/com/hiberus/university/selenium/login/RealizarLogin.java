@@ -16,10 +16,10 @@ public class RealizarLogin {
         //Paso0
         WebDriverManager.chromedriver().setup(); // cargar Chromedriver
         ChromeOptions options = new ChromeOptions(); // Crear instancia para opciones de chrome
-        driver= new ChromeDriver(options);
+        driver = new ChromeDriver(options);
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
         // Paso1
         driver.close();
     }
