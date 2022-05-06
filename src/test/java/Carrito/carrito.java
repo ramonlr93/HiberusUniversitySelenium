@@ -58,7 +58,6 @@ public class carrito
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
         try {
             for (WebElement btn: driver.findElements(By.xpath("//button[contains(@id, 'remove-sauce-labs')]"))) {
-                Thread.sleep(1000);
                 btn.click();
             }
         } catch (NoSuchElementException e) {
@@ -75,13 +74,11 @@ public class carrito
         List<WebElement> listaProductos = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
         Collections.shuffle(listaProductos);
         for (int i = 0; i < 2; i++) {
-            Thread.sleep(1000);
             listaProductos.get(i).click();
         }
 
         // entrar al carrito
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
-        Thread.sleep(1000);
         WebElement elm = driver.findElement(By.xpath( "//div[@class='cart_item']//button[contains(@id,'remove-sauce-labs')]"));
 
 
