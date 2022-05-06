@@ -34,11 +34,6 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.Wait;
-//import org.openqa.selenium.support.ui.Clock;
-//import org.openqa.selenium.support.ui.Duration;
-//import org.openqa.selenium.support.ui.Sleeper;
-//import org.openqa.selenium.support.ui.SystemClock;
-//import org.openqa.selenium.support.ui.Wait;
 
 /**
  * An implementation of the {@link Wait} interface that may have its timeout and polling interval
