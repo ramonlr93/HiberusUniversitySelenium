@@ -32,7 +32,7 @@ public class RealizarPedido {
     }
 
     @Test
-    public void TestPrecioFinal() throws InterruptedException {
+    public void TestRealizarPedido() throws InterruptedException {
 
         //Paso 5. Añadir al carrito 1 producto al azar
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
