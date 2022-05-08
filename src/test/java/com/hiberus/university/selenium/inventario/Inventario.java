@@ -11,7 +11,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +57,7 @@ public class Inventario {
     }
 
     @Test
-    public void validarPdorcutoShirtInventario() {
+    public void validarProdudtoShirtInventario() {
         driver.get("https://www.saucedemo.com/");
 
         WebElement userBox = driver.findElement(By.id("user-name"));
@@ -120,7 +124,7 @@ public class Inventario {
     }
 
     @Test
-    public void anadirProductosCarro() {
+    public void anadirTresProductosAlCarro() {
         driver.get("https://www.saucedemo.com/");
 
         WebElement userBox = driver.findElement(By.id("user-name"));
@@ -164,15 +168,83 @@ public class Inventario {
         WebElement clickButton = driver.findElement(By.id("login-button"));
         clickButton.click();
 
-        WebElement selector = driver.findElement(By.xpath("//option[@value='az'']"));
-        //select[@class='product_shrt_container']
 
 
+        //lista de la A a la Z
+        List<WebElement> inventoryResultsAtoZ = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        List<String> nameInventoryResultsAtoZ = new ArrayList<>();
+
+        for(int i = 0; i < inventoryResultsAtoZ.size(); i++) {
+            nameInventoryResultsAtoZ.add(inventoryResultsAtoZ.get(i).getText());
+        }
+
+        Select selectOption = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
+        selectOption.selectByIndex(1);
+        //selectOption.selectByValue("az");
+
+
+
+        //lista de la Z a la A
+        List<WebElement> inventoryResultsZtoA = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        List<String> nameInventoryResultsZtoA = new ArrayList<>();
+
+        for(int i = 0; i < inventoryResultsZtoA.size(); i++) {
+            nameInventoryResultsZtoA.add(inventoryResultsZtoA.get(i).getText());
+        }
+
+        // Paso revertir la lista
+        Collections.reverse(nameInventoryResultsAtoZ);
+
+        // Validar filtro de seleccion
+        Assert.assertEquals("El Filtro sera de la Z a la A", nameInventoryResultsAtoZ, nameInventoryResultsZtoA);
 
     }
 
+    @Test
+    public void ordenarInventarioMenorMayor() {
+        driver.get("https://www.saucedemo.com/");
+
+        WebElement userBox = driver.findElement(By.id("user-name"));
+        userBox.sendKeys("standard_user");
+
+        WebElement passBox = driver.findElement(By.id("password"));
+        passBox.sendKeys("secret_sauce");
+
+        WebElement clickButton = driver.findElement(By.id("login-button"));
+        clickButton.click();
 
 
+
+        //lista de Menor a Mayor
+        List<WebElement> inventoryResultsMenorMayor = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        List<String> nameInventoryResultsMenorMayor = new ArrayList<>();
+
+
+        for(int i = 0; i < inventoryResultsMenorMayor.size(); i++) {
+            nameInventoryResultsMenorMayor.add(inventoryResultsMenorMayor.get(i).getText());
+        }
+
+        Select selectOption = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
+        selectOption.selectByIndex(2);
+        //selectOption.selectByValue("Zlohi");
+
+
+
+        //lista de Mayor a Menor
+        List<WebElement> inventoryResultsMayorMenor = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        List<String> nameInventoryResultsMayorMenor = new ArrayList<>();
+
+        for(int i = 0; i < inventoryResultsMayorMenor.size(); i++) {
+            nameInventoryResultsMayorMenor.add(inventoryResultsMayorMenor.get(i).getText());
+        }
+
+        // Paso revertir la lista
+        Collections.reverse(nameInventoryResultsMenorMayor);
+
+        // Validar filtro de seleccion NO SE CUAL PONER
+        Assert.assertEquals("El Filtro de menor a mayor no funciona correctamente", nameInventoryResultsMenorMayor, nameInventoryResultsMayorMenor);
+
+    }
 
     @After
     public void tearDom() {
