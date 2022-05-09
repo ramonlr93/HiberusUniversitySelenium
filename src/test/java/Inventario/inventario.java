@@ -1,5 +1,6 @@
 package Inventario;
 
+import Common.constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -23,19 +24,23 @@ import java.util.concurrent.TimeUnit;
 public class inventario
 {
     public static WebDriver driver;
-    public static final String ruta = "https://saucedemo.com/";
     public static WebDriverWait pausa;
 
     @Before
     public void SetUp() {
-        String userProfile = "C:\\Users\\mezquerro\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-data-dir=" + userProfile);
+        options.addArguments("user-data-dir=" + constants.userProfile);
 
         driver = new ChromeDriver(options);
         pausa = new WebDriverWait(driver, 10, 1000);
         driver.manage().window().maximize();
+
+        try {
+            VaciarTodoCarrito();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void logIn() {
@@ -44,9 +49,23 @@ public class inventario
         driver.findElement(By.id("login-button")).click();
     }
 
+    public static void VaciarTodoCarrito() throws InterruptedException {
+        driver.get(constants.ulrPruebas);
+        logIn();
+
+        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        try {
+            for (WebElement btn: driver.findElements(By.xpath("//button[contains(@id, 'remove-sauce-labs')]"))) {
+                btn.click();
+            }
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void numeroDeProductosEsSeis() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //pausa.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("login-button"))));
@@ -58,7 +77,7 @@ public class inventario
 
     @Test
     public void existeSauceLabsBoltTShirt() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
@@ -75,7 +94,7 @@ public class inventario
 
     @Test
     public void SeAñadeACarroSauceLabsBoltTShirt() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
@@ -93,26 +112,21 @@ public class inventario
 
     @Test
     public void EliminarDelCarroSauceLabsBoltTShirt() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
+        pausa.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")))).click();
 
-        boolean seEliminoDelCarrito;
-        try {
-            seEliminoDelCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).isDisplayed();
-        } catch (NoSuchElementException e) {
-            seEliminoDelCarrito = true;
-        }
+        boolean  seEliminoDelCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).isDisplayed();
 
-        Assert.assertFalse("• PRUEBA FALLIDA - Sauce Labs Bolt T-Shirt NO se ha eliminado", seEliminoDelCarrito);
+        Assert.assertTrue("• PRUEBA FALLIDA - Sauce Labs Bolt T-Shirt NO se ha eliminado", seEliminoDelCarrito);
     }
 
     @Test
     public void Añadir3ProductosAlCArro() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
@@ -129,7 +143,7 @@ public class inventario
 
     @Test
     public void OrdenarInventarioZ_A() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
@@ -162,7 +176,7 @@ public class inventario
 
     @Test
     public void OrdenarInventarioPrecioAscendente() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
@@ -189,7 +203,7 @@ public class inventario
 
     @Test
     public void OrdenarInventarioPrecioDescendente() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
