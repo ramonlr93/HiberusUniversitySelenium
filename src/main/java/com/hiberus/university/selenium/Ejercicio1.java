@@ -18,7 +18,7 @@ public class Ejercicio1 {
     public static void main( String[] args ) {
 
         // Paso 1
-        String userProfile= "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
+        String userProfile= "C:\\Users\\migue\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup(); //cargar Chromedriver
         ChromeOptions options = new ChromeOptions(); //crear instancia para opciones de chrome
         options.addArguments("user-data-dir=" + userProfile);
