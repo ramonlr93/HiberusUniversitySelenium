@@ -64,6 +64,7 @@ public class EliminarDesdeCarrito {
             Assert.assertTrue("El producto mono SI se encuentra en el carrito", isMonoDeleted);
         } catch (
                 NoSuchElementException e) {
+            System.out.println("No se encuentran los articulos deseados");
         }
     }
 

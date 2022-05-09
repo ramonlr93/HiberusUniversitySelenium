@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -29,8 +30,8 @@ public class EliminarProductosCarrito {
     @Test
     public void TestEliminarProductoCarrito() throws InterruptedException {
         //Paso 5. Añadir y eliminar del carrito el producto Sauce Labs Bolt T-Shirt
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")))).click();
 
         //Paso 6. Validar que el carrito esta vacio
         boolean isCarritoDisplayed;

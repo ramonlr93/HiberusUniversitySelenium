@@ -12,6 +12,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class RealizarLogin {
 
@@ -19,6 +21,12 @@ public class RealizarLogin {
 
     @Before
     public void setUp() {
+    //Otra manera de instanciar el navegador
+        /*WebDriverManager.chromedriver().setup();
+        driver= new ChromeDriver();
+        driver.manage().deleteAllCookies();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();*/
 
         String rutadriver = "C:\\Program Files\\Google\\Chrome\\Application\\101.0.4951.54";
         WebDriverManager.chromedriver().setup();
