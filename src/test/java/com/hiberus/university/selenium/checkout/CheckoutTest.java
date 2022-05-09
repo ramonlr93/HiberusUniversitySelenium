@@ -62,8 +62,6 @@ public class CheckoutTest {
 
         driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
 
-        WebElement carrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
-
         driver.findElement(By.id("shopping_cart_container")).click();
 
         driver.findElement(By.id("checkout")).click();
@@ -102,6 +100,53 @@ public class CheckoutTest {
         System.out.println(total);
 
         Assert.assertEquals("No coinciden los totales", total, sumaPrecios);
+
+        //Reiniciamos el carrito y cerramos sesión (para poder volver a pasar el test sin problema)
+        driver.findElement(By.id("react-burger-menu-btn")).click();
+        driver.findElement(By.id("reset_sidebar_link")).click();
+        driver.findElement(By.id("logout_sidebar_link")).click();
+
+    }
+
+    @Test
+    public void RealizarPedidoTest() {
+
+        driver.get("https://www.saucedemo.com");
+        //Thread.sleep(2000);
+
+
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        //Thread.sleep(2000);
+
+
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        //Thread.sleep(2000);
+
+
+        driver.findElement(By.id("login-button")).click();
+        //Thread.sleep(2000);
+
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+
+        driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
+
+        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
+
+        driver.findElement(By.id("shopping_cart_container")).click();
+
+        driver.findElement(By.id("checkout")).click();
+
+        driver.findElement(By.id("first-name")).sendKeys("Miguel");
+
+        driver.findElement(By.id("last-name")).sendKeys("Casado");
+
+        driver.findElement(By.id("postal-code")).sendKeys("47001");
+
+        driver.findElement(By.id("continue")).click();
+
+        driver.findElement(By.id("finish")).click();
+
+        Assert.assertEquals("Fallo al realizar el pedido", "Your order has been dispatched, and will arrive just as fast as the pony can get there!", driver.findElement(By.xpath("//div[@class='complete-text']")).getText());
 
         //Reiniciamos el carrito y cerramos sesión (para poder volver a pasar el test sin problema)
         driver.findElement(By.id("react-burger-menu-btn")).click();
