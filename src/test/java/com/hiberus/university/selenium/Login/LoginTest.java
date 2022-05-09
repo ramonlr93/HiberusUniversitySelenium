@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Login {
+public class LoginTest {
     public static WebDriver driver;
 
     @Before
