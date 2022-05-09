@@ -1,5 +1,6 @@
 package Checkout;
 
+import Common.constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -24,15 +25,13 @@ import java.util.NoSuchElementException;
 public class chekout
 {
     public static WebDriver driver;
-    public static final String ruta = "https://saucedemo.com/";
     public static WebDriverWait pausa;
 
     @Before
     public void SetUp() {
-        String userProfile = "C:\\Users\\mezquerro\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-data-dir=" + userProfile);
+        options.addArguments("user-data-dir=" + constants.userProfile);
 
         driver = new ChromeDriver(options);
         pausa = new WebDriverWait(driver, 10, 1000);
@@ -52,7 +51,7 @@ public class chekout
     }
 
     public static void VaciarTodoCarrito() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
@@ -67,7 +66,7 @@ public class chekout
 
     @Test
     public void ComprobarPrecioEnChekout() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion
@@ -100,7 +99,7 @@ public class chekout
 
     @Test
     public void RealizarUnPedido() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         //Validacion

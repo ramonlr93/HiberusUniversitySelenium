@@ -1,5 +1,6 @@
 package LogOut;
 
+import Common.constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -7,16 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * Unit test for simple App.
@@ -24,15 +20,13 @@ import java.util.NoSuchElementException;
 public class logOut
 {
     public static WebDriver driver;
-    public static final String ruta = "https://saucedemo.com/";
     public static WebDriverWait pausa;
 
     @Before
     public void SetUp() {
-        String userProfile = "C:\\Users\\mezquerro\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-data-dir=" + userProfile);
+        options.addArguments("user-data-dir=" + constants.userProfile);
 
         driver = new ChromeDriver(options);
         pausa = new WebDriverWait(driver, 10, 1000);
@@ -45,9 +39,10 @@ public class logOut
         driver.findElement(By.id("login-button")).click();
     }
 
+
     @Test
     public void RealizarLogOut() throws InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         logIn();
 
         driver.findElement(By.id("react-burger-menu-btn")).click();

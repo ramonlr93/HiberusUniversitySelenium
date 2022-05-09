@@ -2,6 +2,7 @@ package Login;
 
 import static org.junit.Assert.assertTrue;
 
+import Common.constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -21,15 +22,13 @@ import java.util.concurrent.TimeUnit;
 public class login
 {
     public static WebDriver driver;
-    public static final String ruta = "https://saucedemo.com/";
     public static WebDriverWait pausa;
 
     @Before
     public void SetUp() {
-        String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-data-dir=" + userProfile);
+        options.addArguments("user-data-dir=" + constants.userProfile);
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -38,7 +37,7 @@ public class login
 
     @Test
     public void correctLoginUser() throws  InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         pausa = new WebDriverWait(driver, 10, 1000);
 
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
@@ -54,7 +53,7 @@ public class login
 
     @Test
     public void incorrectLoginUser() throws  InterruptedException {
-        driver.get(ruta);
+        driver.get(constants.ulrPruebas);
         pausa = new WebDriverWait(driver, 10, 1000);
 
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard");
