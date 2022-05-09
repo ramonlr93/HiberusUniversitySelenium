@@ -246,7 +246,7 @@ public class InventarioSuite
     List<WebElement> listaProductosHighToLow = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
     List<String> nombresListaProductosHighToLow = new ArrayList<String>();
 
-    // Con un bucle recorremos los nombres de los productos y lo añadimos a una lista:ç
+    // Con un bucle recorremos los nombres de los productos y lo añadimos a una lista:
     for(WebElement listaPrecios01: listaProductosHighToLow){
         nombresListaProductosHighToLow.add(listaPrecios01.getText());
     }
