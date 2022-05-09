@@ -1,19 +1,20 @@
-package com.hiberus.university.selenium;
+package Ejercicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Ejercicio2 {
+public class Ej3_RealizarLogin {
     public static WebDriver driver;
 
     public static void main( String[] args ) throws  InterruptedException {
 
-        //Paso 1
+        //Paso 0
         String userProfile = "C:\\Users\\Flores\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -23,30 +24,30 @@ public class Ejercicio2 {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
+        //Paso 1
+        driver.get("https://www.saucedemo.com/");
+
         //Paso 2
-        driver.get("https://www.hiberus.com/");
+        WebElement element = driver.findElement(By.id("user-name"));
+        element.sendKeys("standard_user");
+        Thread.sleep(2000);
 
         //Paso 3
-        Thread.sleep(4000);
-        driver.findElement(By.xpath("//a[@href='/consultoria-y-estrategia-de-negocio']")).click();
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        Thread.sleep(2000);
 
         //Paso 4
-        Thread.sleep(4000);
-        driver.navigate().back();
+        driver.findElement(By.id("login-button")).click();
 
         //Paso 5
-        Thread.sleep(4000);
-        driver.navigate().forward();
+        String url = driver.getCurrentUrl();
+        System.out.println("La url es " + url);
+        if (url.equals("https://www.saucedemo.com/inventory.html")) {
+            System.out.println("La url " + url + " es correcta");
+        } else {
+            System.out.println("La url " + url + " no es correcta");
+        }
 
-        //Paso 6
-        Thread.sleep(4000);
-        driver.navigate().to("https://www.hiberus.com/");
-
-        //Paso 7
-        Thread.sleep(4000);
-        driver.navigate().refresh();
-
-        //Paso 8
         Thread.sleep(4000);
         driver.close();
     }

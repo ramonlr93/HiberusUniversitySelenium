@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Inventario;
+package Ejercicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -9,11 +9,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Ej3_VisibilidadBotonEliminarProductoCarrito {
+public class Ej3_ValidarLoginIncorrecto {
     public static WebDriver driver;
 
     public static void main( String[] args ) throws  InterruptedException {
-
         //Paso 0
         String userProfile = "C:\\Users\\Flores\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
@@ -26,7 +25,6 @@ public class Ej3_VisibilidadBotonEliminarProductoCarrito {
 
         //Paso 1
         driver.get("https://www.saucedemo.com/");
-
         //Paso 2
         WebElement element = driver.findElement(By.id("user-name"));
         element.sendKeys("standard_user");
@@ -36,26 +34,25 @@ public class Ej3_VisibilidadBotonEliminarProductoCarrito {
 
         //Paso 4
         driver.findElement(By.id("login-button")).click();
-        Thread.sleep(2000);
 
         //Paso 5
-        WebElement addcamiseta = driver.findElement(By.id("add-to-cart-sauce-labs-onesie"));
-        addcamiseta.click();
-        Thread.sleep(2000);
-
-        //Paso 6
-        boolean remove = driver.findElement(By.id("remove-sauce-labs-onesie")).isDisplayed();
-
-        if (remove) {
-            System.out.println("Aparece el boton remove");
+        boolean status = driver.findElement(By.xpath("//div[@class='error-message-container error']")).isDisplayed();
+        if (status){
+            System.out.println("Aparece el error");
         } else {
-            System.out.println("No aparece el boton remove");
+            System.out.println("No aparece el error");
         }
 
-        //Se ha añadido remover aqui para que al volver a ejecutar la prueba se abra sin productos añadidos
-        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
+        /**try {
+            boolean status = driver.findElement(By.xpath("//div[@class='error-message-container error']")).isDisplayed();
+            if (status)
+                System.out.println("Aparece el error");
+        } catch (NoSuchElementException find){
+            System.out.println("No aparece el error");
+        }**/
 
         Thread.sleep(2000);
         driver.close();
+
     }
 }

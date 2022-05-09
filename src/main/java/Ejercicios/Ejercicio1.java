@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium;
+package Ejercicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

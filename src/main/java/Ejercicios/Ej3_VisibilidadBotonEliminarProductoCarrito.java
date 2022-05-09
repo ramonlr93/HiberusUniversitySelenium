@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Inventario;
+package Ejercicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -7,10 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Ej3_IncrementoValorCarrito {
+public class Ej3_VisibilidadBotonEliminarProductoCarrito {
     public static WebDriver driver;
 
     public static void main( String[] args ) throws  InterruptedException {
@@ -40,22 +39,21 @@ public class Ej3_IncrementoValorCarrito {
         Thread.sleep(2000);
 
         //Paso 5
-        WebElement addcamiseta = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        WebElement addcamiseta = driver.findElement(By.id("add-to-cart-sauce-labs-onesie"));
         addcamiseta.click();
         Thread.sleep(2000);
 
         //Paso 6
-        boolean carrito = driver.findElement(By.className("shopping_cart_badge")).isDisplayed();
+        boolean remove = driver.findElement(By.id("remove-sauce-labs-onesie")).isDisplayed();
 
-        if (carrito) {
-            WebElement contenido = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
-            System.out.println("Se ha añadido " + contenido.getText() + " elementos");
+        if (remove) {
+            System.out.println("Aparece el boton remove");
         } else {
-            System.out.println("No se ha añadido ningun producto al carrito");
+            System.out.println("No aparece el boton remove");
         }
 
         //Se ha añadido remover aqui para que al volver a ejecutar la prueba se abra sin productos añadidos
-        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
 
         Thread.sleep(2000);
         driver.close();

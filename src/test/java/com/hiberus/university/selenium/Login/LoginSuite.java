@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Loguin;
+package com.hiberus.university.selenium.Login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoguinSuite {
+public class LoginSuite {
     public static WebDriver driver;
 
     @Before
@@ -26,7 +26,7 @@ public class LoguinSuite {
     }
 
     @Test
-    public void testLoguin() throws  InterruptedException {
+    public void testLogin() throws  InterruptedException {
         driver.get("https://www.saucedemo.com/");
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -40,7 +40,7 @@ public class LoguinSuite {
     }
 
     @Test
-    public void testLoguinIncorrecto() throws  InterruptedException {
+    public void testLoginIncorrecto() throws  InterruptedException {
         driver.get("https://www.saucedemo.com/");
         driver.findElement(By.id("user-name")).sendKeys("standard_use");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");

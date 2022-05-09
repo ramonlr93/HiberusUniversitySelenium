@@ -1,16 +1,17 @@
-package com.hiberus.university.selenium.Inventario;
+package Ejercicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.omg.CORBA.WStringSeqHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Ej3_EliminarProductoCarrito {
+public class Ej3_ValidarNumeroResultados {
     public static WebDriver driver;
 
     public static void main( String[] args ) throws  InterruptedException {
@@ -37,28 +38,17 @@ public class Ej3_EliminarProductoCarrito {
 
         //Paso 4
         driver.findElement(By.id("login-button")).click();
-        Thread.sleep(2000);
 
         //Paso 5
-        WebElement addcamiseta = driver.findElement(By.id("add-to-cart-sauce-labs-onesie"));
-        addcamiseta.click();
-        Thread.sleep(2000);
+        List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        int contar = productos.size();
 
-        //Paso 6
-        WebElement removecamiseta = driver.findElement(By.id("remove-sauce-labs-onesie"));
-        removecamiseta.click();
-
-        //Paso 7
-        try {
-            boolean carrito = driver.findElement(By.className("shopping_cart_badge")).isDisplayed();
-
-            if (carrito) {
-                System.out.println("Hay productos en el carrito ");
-            }
-
-        } catch (NoSuchElementException find){
-                System.out.println("No hay productos en el carrito");
+        if (contar == 6) {
+            System.out.println("Los productos son 6");
+        } else {
+            System.out.println("Los productos no son 6");
         }
+
         Thread.sleep(2000);
         driver.close();
     }

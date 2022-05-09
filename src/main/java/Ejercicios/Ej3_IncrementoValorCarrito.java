@@ -1,7 +1,6 @@
-package com.hiberus.university.selenium.Inventario;
+package Ejercicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.omg.CORBA.WStringSeqHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Ej3_ValidarNumeroResultados {
+public class Ej3_IncrementoValorCarrito {
     public static WebDriver driver;
 
     public static void main( String[] args ) throws  InterruptedException {
@@ -38,16 +37,25 @@ public class Ej3_ValidarNumeroResultados {
 
         //Paso 4
         driver.findElement(By.id("login-button")).click();
+        Thread.sleep(2000);
 
         //Paso 5
-        List<WebElement> productos = driver.findElements(By.xpath("//div[@class='inventory_item']"));
-        int contar = productos.size();
+        WebElement addcamiseta = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        addcamiseta.click();
+        Thread.sleep(2000);
 
-        if (contar == 6) {
-            System.out.println("Los productos son 6");
+        //Paso 6
+        boolean carrito = driver.findElement(By.className("shopping_cart_badge")).isDisplayed();
+
+        if (carrito) {
+            WebElement contenido = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
+            System.out.println("Se ha añadido " + contenido.getText() + " elementos");
         } else {
-            System.out.println("Los productos no son 6");
+            System.out.println("No se ha añadido ningun producto al carrito");
         }
+
+        //Se ha añadido remover aqui para que al volver a ejecutar la prueba se abra sin productos añadidos
+        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
 
         Thread.sleep(2000);
         driver.close();
