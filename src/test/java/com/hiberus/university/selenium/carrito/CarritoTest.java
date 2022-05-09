@@ -60,8 +60,6 @@ public class CarritoTest {
 
         driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
 
-        WebElement carrito = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
-
         driver.findElement(By.id("shopping_cart_container")).click();
 
         driver.findElement(By.id("remove-sauce-labs-onesie")).click();
@@ -70,7 +68,7 @@ public class CarritoTest {
 
         WebElement carrito2 = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
 
-        Assert.assertEquals("No se elimina del carrito", carrito2.getText(), carrito2.getText());
+        Assert.assertEquals("No se elimina del carrito", "1", carrito2.getText());
 
         //Reiniciamos el carrito y cerramos sesión (para poder volver a pasar el test sin problema)
         driver.findElement(By.id("react-burger-menu-btn")).click();
