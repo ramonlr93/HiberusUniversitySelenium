@@ -3,6 +3,7 @@ package com.hiberus.university.selenium.inventario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -40,16 +41,16 @@ public class ValidarNumeroResultados {
         driver.findElement(By.id("login-button")).click();
 
         //Paso 5
-        int[] lista = driver.findElement(By.xpath('//div[@class="inventory_item"]'));
-        int longitud = lista.length;
+        WebElement lista = driver.findElement(By.xpath("//div[@class='inventory_item']"));
 
-        if(longitud == 6)
-        {
-            System.out.println("El numero de articulos ES IGUAL a 6");
-        }
-        else{
-            System.out.println("El numero de articulos NO ES IGUAL a 6");
-        }
+
+      //  if(lista == 6)
+      //  {
+      //      System.out.println("El numero de articulos ES IGUAL a 6");
+     //   }
+     //   else{
+     //       System.out.println("El numero de articulos NO ES IGUAL a 6");
+     //   }
 
     }
 }

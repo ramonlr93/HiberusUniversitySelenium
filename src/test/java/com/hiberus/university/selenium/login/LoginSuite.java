@@ -1,21 +1,19 @@
-package com.hiberus.university.selenium;
-
-import static org.junit.Assert.assertTrue;
+package com.hiberus.university.selenium.login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
+public class LoginSuite {
+
     public static WebDriver driver;
 
     @Before
@@ -64,13 +62,11 @@ public class AppTest
 
         Assert.assertTrue("PRUEBA FALLIDA, EL ELEMENTO NO APARECE", isMessageErrorVisible);
     }
-    
+
 
     @After
     public void tearDown(){
         driver.quit();
     }
-
-
 
 }

@@ -1,21 +1,20 @@
-package com.hiberus.university.selenium;
-
-import static org.junit.Assert.assertTrue;
+package com.hiberus.university.selenium.carrito;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
+public class CarritoSuite {
+
     public static WebDriver driver;
 
     @Before
@@ -34,8 +33,9 @@ public class AppTest
      * Rigorous Test :-)
      */
     @Test
-    public void testLogin() throws InterruptedException
+    public void testEliminarProducto() throws InterruptedException
     {
+        boolean isProductDeleted;
         driver.get("https://www.saucedemo.com");
 
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
@@ -44,33 +44,27 @@ public class AppTest
 
         driver.findElement(By.id("login-button")).click();
 
-        String url = driver.getCurrentUrl();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
 
-        Assert.assertEquals("EL LOGIN ES FALLIDO PORQUE NO ESTAMOS EN LA URL QUE NOS PIDE", "https://www.saucedemo.com/inventory.html");
+        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+
+        driver.findElement(By.id("remove-sauce-labs-backpack")).click();
+
+        try {
+            isProductDeleted = driver.findElement(By.xpath("//div[text()= 'Sauce Labs Backpack']")).isDisplayed();
+        }
+        catch(NoSuchElementException exception1) {
+            isProductDeleted = false;
+        }
+
+        Assert.assertFalse("PRUEBA FALLIDA, EL ELEMENTO NO SE HA ELIMINADO DEL CARRITO", isProductDeleted);
     }
 
-    @Test
-    public void testLoginIncorrect() throws InterruptedException
-    {
-        driver.get("https://www.saucedemo.com");
-
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
-        driver.findElement(By.id("login-button")).click();
-
-        boolean isMessageErrorVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
-
-        Assert.assertTrue("PRUEBA FALLIDA, EL ELEMENTO NO APARECE", isMessageErrorVisible);
-    }
-    
 
     @After
     public void tearDown(){
         driver.quit();
     }
-
-
 
 }

@@ -1,6 +1,10 @@
-package com.hiberus.university.selenium.inventario;
+package com.hiberus.university.selenium.logout;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,13 +12,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class EliminarProductoCarrito {
+public class LogOutSuite {
 
     public static WebDriver driver;
 
-    public static void main ( String[] args ) throws InterruptedException{
-
-        //Paso 0
+    @Before
+    public void setUp(){
         String userProfile= "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -23,38 +26,32 @@ public class EliminarProductoCarrito {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+    }
 
-        //Paso 1
+    /**
+     * Rigorous Test :-)
+     */
+    @Test
+    public void testLogOut() throws InterruptedException
+    {
         driver.get("https://www.saucedemo.com");
 
-
-        //Paso 2
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
 
-
-        //Paso 3
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
 
-
-        //Paso 4
         driver.findElement(By.id("login-button")).click();
 
-        //Paso 5
-        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
+        driver.findElement(By.id("logout_sidebar_link")).click();
 
-        //Paso 6
-        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
+        String url = driver.getCurrentUrl();
 
+        Assert.assertEquals("EL LOGIN ES FALLIDO PORQUE NO ESTAMOS EN LA URL QUE NOS PIDE", "https://www.saucedemo.com");
+    }
 
-        //Paso 7
-        if(driver.findElement(By.xpath("//span[contains(@class, 'shopping_cart_badge') and contains(text(), '1']")).isDisplayed())
-        {
-            System.out.println("ERROR!! NO se ha eliminado el producto del icono del carrito");
-        }
-        else
-        {
-            System.out.println("SI se ha eliminado el producto del carrito");
-        }
+    @After
+    public void tearDown(){
+        driver.quit();
     }
 
 }

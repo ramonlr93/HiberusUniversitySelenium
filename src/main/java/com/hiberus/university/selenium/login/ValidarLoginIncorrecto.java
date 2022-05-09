@@ -44,15 +44,14 @@ public class ValidarLoginIncorrecto {
         Thread.sleep(3000);
 
         //Paso 6
-
-        if(driver.findElement(By.xpath('//div[@class="error-message-container error"]')).isDisplayed())
+        if(driver.findElement(By.xpath("//div[@class='error-message-container error']")).isDisplayed())
         {
-            System.out.println("El error se ha mostrado");
+         System.out.println("El error se ha mostrado");
         }
-        else
-        {
-            System.out.println("No se ha mostrado el error");
-        }
+       else
+       {
+           System.out.println("No se ha mostrado el error");
+       }
 
         Thread.sleep(3000);
 
