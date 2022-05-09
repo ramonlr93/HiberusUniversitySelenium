@@ -1,7 +1,6 @@
 package com.hiberus.university.selenium.run;
 
-import com.hiberus.university.selenium.inventario.InventarioTest;
-import com.hiberus.university.selenium.login.LoginSuite;
+import com.hiberus.university.selenium.login.LoginSuiteTest;
 
 import org.junit.runners.Suite;
 import org.junit.runner.RunWith;
