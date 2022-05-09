@@ -1,8 +1,7 @@
-package com.hiberus.university.selenium.Login;
+package com.hiberus.university.selenium.Loguin;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,10 +9,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Ej3_ValidarLoginIncorrecto {
+public class Ej3_RealizarLogin {
     public static WebDriver driver;
 
     public static void main( String[] args ) throws  InterruptedException {
+
         //Paso 0
         String userProfile = "C:\\Users\\Flores\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
         WebDriverManager.chromedriver().setup();
@@ -26,34 +26,29 @@ public class Ej3_ValidarLoginIncorrecto {
 
         //Paso 1
         driver.get("https://www.saucedemo.com/");
+
         //Paso 2
         WebElement element = driver.findElement(By.id("user-name"));
         element.sendKeys("standard_user");
+        Thread.sleep(2000);
 
         //Paso 3
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        Thread.sleep(2000);
 
         //Paso 4
         driver.findElement(By.id("login-button")).click();
 
         //Paso 5
-        boolean status = driver.findElement(By.xpath("//div[@class='error-message-container error']")).isDisplayed();
-        if (status){
-            System.out.println("Aparece el error");
+        String url = driver.getCurrentUrl();
+        System.out.println("La url es " + url);
+        if (url.equals("https://www.saucedemo.com/inventory.html")) {
+            System.out.println("La url " + url + " es correcta");
         } else {
-            System.out.println("No aparece el error");
+            System.out.println("La url " + url + " no es correcta");
         }
 
-        /**try {
-            boolean status = driver.findElement(By.xpath("//div[@class='error-message-container error']")).isDisplayed();
-            if (status)
-                System.out.println("Aparece el error");
-        } catch (NoSuchElementException find){
-            System.out.println("No aparece el error");
-        }**/
-
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         driver.close();
-
     }
 }
