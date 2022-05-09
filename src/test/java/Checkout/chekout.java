@@ -71,30 +71,29 @@ public class chekout
         logIn();
 
         //Validacion
-        float precioFinalEsperado = 0f;
         List<WebElement> listaProductos = driver.findElements(By.xpath("//div[@class='inventory_item_description']"));
         Collections.shuffle(listaProductos);
         // Añadir 3 elementos y sumar sus precios a "precioFinal"
         for (int i = 0; i < 3; i++) {
             listaProductos.get(i).findElement(By.xpath("//button[contains(@id, 'add-to-cart-sauce-labs')]")).click();
-            String campoPrecio = listaProductos.get(i).findElement(By.xpath("//div[@class='inventory_item_price']")).getText();
-            precioFinalEsperado += Float.valueOf(campoPrecio.substring(1, campoPrecio.length()));
+        }
+        // entrar al carrito
+        float precioFinalEsperado = 0f;
+        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        for (WebElement campoPrecio: driver.findElements(By.xpath("//div[@class='inventory_item_price']"))) {
+            precioFinalEsperado += Float.valueOf(campoPrecio.getText().substring(1, campoPrecio.getText().length()));
         }
 
-        // entrar al carrito
-        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
-        // pulsar checkout
+        // ir a checkout
         driver.findElement(By.id("checkout")).click();
-        // coger precios dentro del carrito
-        Float precio = Float.valueOf(driver.findElement(By.xpath("//div[@class='summary_total_label']")).getText().substring(7, 12));
-
         //relleno del form
         driver.findElement(By.id("first-name")).sendKeys("Mario");
         driver.findElement(By.id("last-name")).sendKeys("Ezquerro Ruiz");
         driver.findElement(By.id("postal-code")).sendKeys("26000");
-        Thread.sleep(1000);
-        // click en botones
+        // click en continuar
         driver.findElement(By.id("continue")).click();
+        // coger precio dentro del carrito
+        Float precio = Float.valueOf(driver.findElement(By.xpath("//div[@class='summary_subtotal_label']")).getText().substring(13,18));
 
         Assert.assertEquals("• PRUEBA FALLIDA - Error precios finales no coinciden", String.valueOf(precioFinalEsperado), String.valueOf(precio));
     }
@@ -110,20 +109,16 @@ public class chekout
         for (int i = 0; i < 3; i++) {
             listaProductos.get(i).click();
         }
-
         // entrar al carrito
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
         // pulsar checkout
-        Thread.sleep(1000);
         driver.findElement(By.id("checkout")).click();
         //relleno del form
         driver.findElement(By.id("first-name")).sendKeys("Mario");
         driver.findElement(By.id("last-name")).sendKeys("Ezquerro Ruiz");
         driver.findElement(By.id("postal-code")).sendKeys("26000");
-        Thread.sleep(1000);
         // click en botones
         driver.findElement(By.id("continue")).click();
-        Thread.sleep(1000);
         driver.findElement(By.id("finish")).click();
 
         String msjEsperado = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
