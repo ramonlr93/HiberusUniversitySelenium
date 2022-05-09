@@ -14,8 +14,7 @@ public class Realizarlogin {
     //Paso 0
 
     public static WebDriver driver;
-
-    public static void main(String[] args) {
+     public static void main(String[] args) throws InterruptedException {
 
         String userProfile = "C:\\Users\\mnavarro\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup(); // cargar Chromedriver
@@ -32,15 +31,17 @@ public class Realizarlogin {
         // Paso 2 Escribir el username standar user
         WebElement element = driver.findElement(By.id("user-name"));
         element.sendKeys("standard_user");
+        Thread.sleep(2000);
 
 
         // Paso 3 Escribier el password secret sauce
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
+        Thread.sleep(2000);
 
         // Paso 4 Pulsar el botón del Login
         WebElement element1 = driver.findElement(By.id("login-button"));
         element1.click();
+        Thread.sleep(2000);
 
         // Paso 5 Validar que hemos accecido correctamente a la página, comprobando que se muestra la URL https://www.saucedemo.com
         String url = driver.getCurrentUrl();

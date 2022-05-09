@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Validarelnúmeroderesultados {
@@ -31,7 +32,7 @@ public class Validarelnúmeroderesultados {
         element.sendKeys("standard_user");
 
 
-        // Paso 3 Escribier el password secret sauce
+        // Paso 3 Escribir el password secret sauce
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
 
 
@@ -40,6 +41,11 @@ public class Validarelnúmeroderesultados {
         element1.click();
 
         //Paso 5 Validar que el número de productos mostrados es igual a 6
+        List<WebElement> elementNameList =driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        if (elementNameList.size() == 6) {
+
+        }
+
 
     }
 
