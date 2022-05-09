@@ -64,12 +64,6 @@ public class Login {
         clickButton.click();
 
         WebElement error = driver.findElement(By.xpath("//div[@class='error-message-container error']"));
-        if (error.isDisplayed()) {
-            System.out.println("Ha saltado el error");
-        } else {
-            System.out.println("No ha saltado el error");
-        }
-
         String url = driver.getCurrentUrl();
         Assert.assertTrue("El Login ha Fallado", error.isDisplayed());
     }
