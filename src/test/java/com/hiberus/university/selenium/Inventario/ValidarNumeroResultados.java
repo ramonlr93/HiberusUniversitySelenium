@@ -186,7 +186,7 @@ public class ValidarNumeroResultados {
     }
 
     //@Test
-    public void ordenarMenorMayor(){
+    public void ordenarMenorMayor() {
         driver.get("https://www.saucedemo.com/");
 
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
@@ -199,18 +199,16 @@ public class ValidarNumeroResultados {
         List<String> inventoryResultsMenorMayor = new ArrayList<>();
 
         //Almacenamos los precios de los productos en una lista
-        for (int i=0; i <inventoryPriceMenorMayor.size(); i++){
+        for (int i = 0; i < inventoryPriceMenorMayor.size(); i++) {
             inventoryResultsMenorMayor.add(inventoryPriceMenorMayor.get(i).getText());
 
 
-
+        }
     }
 
 
 
-
-    @After
-    public void tearDom() {
-        driver.quit();
+    //@After
+    //public void tearDom(;) {
+        //driver.quit();
     }
-}
