@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.BackOfficeClubDeportivoTenerife;
+package com.hiberus.university.selenium.CitaPrevia;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -34,8 +34,8 @@ public class LoginBack {
         driver.findElement(By.id("mat-input-1")).sendKeys("27Abril2022!!");
 
         //Paso 5
-       driver.findElement(By.xpath("//span[contains(@class,'mat-button-focus-overlay')]")).click();
+       driver.findElement(By.xpath("//span[(@class='mat-button-wrapper' and text()=' Entrar ')]")).click();
 
-        driver.quit();
+        //driver.quit();
     }
 }
