@@ -9,4 +9,5 @@ import org.junit.runners.Suite;
         ValidarNumeroResultadosTest.class
 })
 public class RunTest {
+
 }
