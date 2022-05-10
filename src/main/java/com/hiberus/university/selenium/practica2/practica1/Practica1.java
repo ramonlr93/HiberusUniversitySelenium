@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.*;
+
 public class Practica1 {
     public static WebDriver driver;
 
@@ -23,19 +25,19 @@ public class Practica1 {
         // Paso 2. Abrir la página https://www.saucedemo.com/
         driver.get("https://www.saucedemo.com/");
 
-        Thread.sleep(2000);
+        sleep(2000);
 
         // Paso 3. Obtenga el nombre del titulo de la pagina y la longitud del título
         String title = driver.getTitle();
         int length = title.length();
 
-        Thread.sleep(2000);
+        sleep(2000);
 
         // Paso 4. Imprima el título de la página y la longitud del título en la consola de IntellIJ.
         System.out.println("Título: " + title);
         System.out.println("Longitud: " + length);
 
-        Thread.sleep(2000);
+        sleep(2000);
 
         // Paso 5. Obtenga la URL de la página y verifique si es una página correcta.
         String url = driver.getCurrentUrl();
@@ -44,19 +46,19 @@ public class Practica1 {
         }else{
             System.out.println("Página Incorrecta");
         }
-        Thread.sleep(2000);
+        sleep(2000);
 
         // Paso 6. Obtenga la fuente de la página (código fuente HTML) y la longitud de la fuente de la
         //página.
         String pagesource = driver.getPageSource();
         int pagesourcelength = pagesource.length();
 
-        Thread.sleep(2000);
+        sleep(2000);
 
         // Paso 7. Imprimir longitud de página en la consola de IntellIJ.
         System.out.println("Longitud de la fuente: " +pagesourcelength);
 
-        Thread.sleep(2000);
+        sleep(2000);
 
         // Paso 8. Cierra el Navegador
         driver.close();

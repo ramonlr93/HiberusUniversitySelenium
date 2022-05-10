@@ -1,63 +1,53 @@
-package com.hiberus.university.selenium.inventary;
+package com.hiberus.university.selenium.car;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class DeleteItemFromShoppingCar {
-
+public class CarSuiteTest {
     public static WebDriver driver;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static WebDriverWait wait;
+
+    @Before
+    public void setupClass() {
         String userProfile = "C:\\Users\\Dayana Dumas Leon\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-data-dir=" + userProfile);
 
         driver = new ChromeDriver(options);
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1.
-        driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000);
+        wait = new WebDriverWait(driver,10,500);
+    }
 
-        //Paso 2 y 3.
+    @Test
+    public void deleteCarProductTest() {
+        driver.get("https://www.saucedemo.com/");
+
         String username = "standard_user";
         String password = "secret_sauce";
 
         //driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
-        Thread.sleep(2000);
+        driver.findElement(By.xpath("//input[@id='login-button']")).submit();
 
-        //Paso 4.
-        driver.findElement(By.xpath("//input[@id='login-button']")).click();
-        Thread.sleep(2000);
+    }
 
-        //Paso 5.
-        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
-        driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
-        Thread.sleep(2000);
-
-        //Paso 6.
-        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
-        Thread.sleep(2000);
-
-        WebElement shoppingcardeleted= driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
-        if (shoppingcardeleted.isDisplayed()){
-            System.out.println("Se ha eliminado el producto");
-        }
-        else {
-            System.out.println("No se ha eliminado el producto");
-        }
-        Thread.sleep(2000);
-
-        driver.close();
+    @After
+    public void tearDom() {
+        driver.quit();
     }
 }

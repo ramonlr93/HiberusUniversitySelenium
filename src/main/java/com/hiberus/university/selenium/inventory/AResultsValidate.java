@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.inventary;
+package com.hiberus.university.selenium.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -7,9 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class BAddItemToShoppingCar {
+public class AResultsValidate {
     public static WebDriver driver;
 
     public static void main(String[] args) throws InterruptedException {
@@ -22,7 +23,7 @@ public class BAddItemToShoppingCar {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1.
+        //Paso 1.
         driver.get("https://www.saucedemo.com/");
         Thread.sleep(2000);
 
@@ -37,22 +38,21 @@ public class BAddItemToShoppingCar {
 
         //Paso 4.
         driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+
+
         Thread.sleep(2000);
 
         //Paso 5.
-        //driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
-        WebElement shoppingcar = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
-        Thread.sleep(2000);
-
-        if (shoppingcar.getText().equals("1")) {
-            System.out.println("Se ha agregado el valor 1");
+        List<WebElement> elementNameList =driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        if (elementNameList.size()==6) {
+            System.out.println("Product Number Correct");
         }
         else {
-            System.out.println("No se ha agregado el producto");
+            System.out.println("Product Number Correct");
         }
-        Thread.sleep(2000);
-
         driver.close();
     }
+
 }

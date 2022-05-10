@@ -22,31 +22,41 @@ public class Login {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1. Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
-        //Paso 2 y 3. Escribir el username standard_user y el password secret_sauce
+        // Paso 1. Ir a la URl https://www.saucedemo.com
+        driver.get("https://www.saucedemo.com/");
+        Thread.sleep(5000);
+
+        //Paso 2 y 3. Enter username standard_user and password secret_sauce
         String username = "standard_user";
         String password = "secret_sauce";
+
+        Thread.sleep(5000);
 
         //driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
 
-        //Paso 4. Pulsar en el botón del Login.
+        Thread.sleep(5000);
+
+        //Paso 4. Push Login Button.
         driver.findElement(By.xpath("//input[@id='login-button']")).click();
 
-        //Paso 5. Validar que hemos accedido correctamente a la página, comprobando que se muestra la URL.
-        String currenturl = driver.getCurrentUrl();
-        if (currenturl.equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("La Página es correcta");
+        Thread.sleep(5000);
+
+        //Paso 5. Validate correct URL
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl.equals("https://www.saucedemo.com/inventory.html")){
+            System.out.println("The URL is correct");
         }
         else {
-            System.out.println("La Página no  es correcta");
+            System.out.println("The URL is not correct");
         }
 
-        driver.quit();
+        Thread.sleep(5000);
+
+        //driver.quit();
 
     }
 }

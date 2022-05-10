@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.inventary;
+package com.hiberus.university.selenium.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -46,12 +46,12 @@ public class ButtonDeleteVisibility {
         Thread.sleep(2000);
 
         //Paso 6.
-        WebElement buttonremove = driver.findElement(By.id("remove-sauce-labs-onesie"));
-        if (buttonremove.isDisplayed()){
-            System.out.println("Se visualiza el botón Remove");
+        WebElement buttonRemove = driver.findElement(By.id("remove-sauce-labs-onesie"));
+        if (buttonRemove.isDisplayed()){
+            System.out.println("Remove Button is Visible");
         }
         else {
-            System.out.println("No se visualiza el botón Remove");
+            System.out.println("Remove Button is not Visible");
         }
         Thread.sleep(2000);
 
