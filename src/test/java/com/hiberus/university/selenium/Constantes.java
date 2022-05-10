@@ -15,13 +15,11 @@ public class Constantes {
     public static WebDriver initDriver(String url) {
 
         // --------- CONFIGURACIÓN DEL DRIVER --------- \\
-        String userProfile = PATH_CONFIGURACION;
+
 
         WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-data-dir=" + userProfile);
-
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver();
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
 

@@ -22,7 +22,6 @@ public class TestCarrito {
     public void setUp() {
         driver = initDriver(PAGINA_LOGIN);
         login(driver);
-        quitarElementosCarro(driver);
     }
 
     @Test

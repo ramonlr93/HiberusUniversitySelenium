@@ -12,7 +12,6 @@ import java.util.List;
 
 
 import static com.hiberus.university.selenium.Constantes.*;
-import static com.hiberus.university.selenium.Constantes.quitarElementosCarro;
 import static org.junit.Assert.assertEquals;
 
 public class TestCheckout {
@@ -22,7 +21,6 @@ public class TestCheckout {
     public void setUp() {
         driver = initDriver(PAGINA_LOGIN);
         login(driver);
-        quitarElementosCarro(driver);
     }
 
     @Test

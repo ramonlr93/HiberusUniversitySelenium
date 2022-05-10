@@ -21,7 +21,6 @@ public class TestInventory {
     public void setUp() {
         driver = initDriver(PAGINA_LOGIN);
         login(driver);
-        quitarElementosCarro(driver);
     }
 
     @Test
@@ -90,10 +89,11 @@ public class TestInventory {
     }
 
     @Test
-    public void añadir3ProductosCarrito() {
+    public void añadir3ProductosCarrito() throws InterruptedException {
         List<WebElement> botones =  driver.findElements(By.xpath(XPATH_BOTONES_ADD));
         List<Integer> numerosRandom = new ArrayList<>();
         for (int i = 0; i < 3; i++){
+            Thread.sleep(2000);
             int rnd;
             do
                 rnd = (int) Math.floor(Math.random()*(botones.size()));
@@ -101,7 +101,6 @@ public class TestInventory {
             botones.get(rnd).click();
             numerosRandom.add(rnd);
         }
-
 
         boolean hay3ElementoCarro = false;
         try {
