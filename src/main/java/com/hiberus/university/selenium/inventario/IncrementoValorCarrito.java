@@ -1,4 +1,5 @@
 package com.hiberus.university.selenium.inventario;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 public class IncrementoValorCarrito {
 
     public static WebDriver driver;
@@ -48,9 +50,9 @@ public class IncrementoValorCarrito {
         ).getText();
         int i = Integer.parseInt(numarticulos);
 
-        if(i == 1){
+        if (i == 1) {
             System.out.println("El articulo se ha cargado en el carrito");
-        }else {
+        } else {
             System.out.println("Es incorrecto. No se ha agregado el articulo.");
         }
 
