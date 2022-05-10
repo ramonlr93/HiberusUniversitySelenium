@@ -9,16 +9,16 @@ public class CheckOutStepOnePage extends AbstractPage {
   public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-one.html";
 
   @FindBy(xpath = "//input[@data-test='firstName']")
-  private WebElement firstNameElem;
+  private WebElement firstNameInput;
 
   @FindBy(xpath = "//input[@data-test='lastName']")
-  private WebElement lastNameElem;
+  private WebElement lastNameInput;
 
   @FindBy(xpath = "//input[@data-test='postalCode']")
-  private WebElement postalCodeElem;
+  private WebElement postalCodeInput;
 
-  @FindBy(css = "div.checkout_buttons > input")
-  private WebElement continueElem;
+  @FindBy(xpath = "//input[@data-test='continue']")
+  private WebElement continueButton;
 
   public CheckOutStepOnePage(WebDriver driver) {
     super(driver);
@@ -27,26 +27,26 @@ public class CheckOutStepOnePage extends AbstractPage {
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return firstNameElem;
+    return firstNameInput;
   }
 
   public void enterFirstName(String firstName) {
-    firstNameElem.clear();
-    firstNameElem.sendKeys(firstName);
+    firstNameInput.clear();
+    firstNameInput.sendKeys(firstName);
   }
 
   public void enterLastName(String lastName) {
-    lastNameElem.clear();
-    lastNameElem.sendKeys(lastName);
+    lastNameInput.clear();
+    lastNameInput.sendKeys(lastName);
   }
 
   public void enterPostalCode(String postalCode) {
-    postalCodeElem.clear();
-    postalCodeElem.sendKeys(postalCode);
+    postalCodeInput.clear();
+    postalCodeInput.sendKeys(postalCode);
   }
 
   public void clickContinue() {
-    continueElem.submit();
+    continueButton.submit();
   }
 }
 

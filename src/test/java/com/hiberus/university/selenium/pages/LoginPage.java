@@ -10,13 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage extends AbstractPage {
   public static final String PAGE_URL = "https://www.saucedemo.com";
 
-  @FindBy(xpath = "//input[@data-test='username']")
+  @FindBy(id = "user-name")
   private WebElement usernameInput;
 
-  @FindBy(xpath = "//input[@data-test='password']")
+  @FindBy(id = "password")
   private WebElement passwordInput;
 
-  @FindBy(xpath = "//input[@data-test='login-button']")
+  @FindBy(id = "login-button")
   private WebElement loginButton;
 
   @FindBy(xpath = "//h3[@data-test='error']")

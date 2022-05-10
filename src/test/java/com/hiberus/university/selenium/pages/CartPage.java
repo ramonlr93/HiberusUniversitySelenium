@@ -1,6 +1,7 @@
 package com.hiberus.university.selenium.pages;
 
 import java.util.List;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -13,8 +14,8 @@ public class CartPage extends AbstractPage {
   @FindBy(xpath = "//button[text()='Open Menu']")
   private WebElement hamburgerElem;
 
-  @FindBy(css = "a.btn_action.checkout_button")
-  private WebElement checkoutElem;
+  @FindBy(css = "//button[@data-test='checkout']")
+  private WebElement checkoutButton;
 
   @FindBy(css = "#shopping_cart_container > a")
   private WebElement shoppingCartElem;
@@ -33,11 +34,21 @@ public class CartPage extends AbstractPage {
   }
 
   public void clickCheckout() {
-    checkoutElem.click();
+    checkoutButton.click();
   }
 
   public int getItemCount() {
     return itemsList.size();
   }
 
+  public List<WebElement> getItemsList() {
+    return itemsList;
+  }
+
+  public void deleteCarItemtByName(String itemName) {
+    String xpathName = itemName.replace(" ", "-").toLowerCase();
+    String xpath = String.format("//button[@data-test='remove-" + xpathName + "']");
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    itemElem.click();
+  }
 }

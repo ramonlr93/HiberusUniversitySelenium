@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
+import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,12 @@ public class CheckOutStepTwoPage extends AbstractPage {
 
   @FindBy(css = "div.summary_total_label")
   private WebElement totalElem;
+
+  @FindBy(xpath = "//button[@data-test='finish']")
+  private WebElement finishButton;
+
+  @FindBy(xpath = "//div[@class='inventory_item_price']")
+  private List<WebElement> checkoutItemPriceList;
 
   public CheckOutStepTwoPage(WebDriver driver) {
     super(driver);
@@ -37,6 +44,10 @@ public class CheckOutStepTwoPage extends AbstractPage {
 
   public String getTotal() {
     return totalElem.getText();
+  }
+
+  public List<WebElement> getCheckoutItemPriceList() {
+    return checkoutItemPriceList;
   }
 }
 
