@@ -11,5 +11,8 @@
         <module name="com.hiberus.university" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.hiberus.university" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
