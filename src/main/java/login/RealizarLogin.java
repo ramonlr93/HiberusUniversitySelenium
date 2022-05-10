@@ -15,7 +15,7 @@ public class RealizarLogin {
 
     public static void main( String[] args ) {
         // Paso 1
-        String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+        String userProfile = "\\home\\mario\\.config\\google-chrome\\Default\\Download Service";
         WebDriverManager.chromedriver().setup();  //Cargar ChroneDriver
         ChromeOptions options = new ChromeOptions();  //Crear instancia para opciones de chrome
         options.addArguments("user-data-dir=" + userProfile);

@@ -1,5 +1,6 @@
 package login;
 
+import common.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ public class RealizarLoginIncorrecto {
 
     public static void main( String[] args ) {
         // Paso 1
-        String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+        String userProfile = Constants.userProfile;
         WebDriverManager.chromedriver().setup();  //Cargar ChroneDriver
         ChromeOptions options = new ChromeOptions();  //Crear instancia para opciones de chrome
         options.addArguments("user-data-dir=" + userProfile);
@@ -24,7 +25,7 @@ public class RealizarLoginIncorrecto {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        driver.get(ruta);
+        driver.get(Constants.ulrPruebas);
         WebElement inptUsername = driver.findElement(By.id("user-name"));
         WebElement inptPassw = driver.findElement(By.id("password"));
 
