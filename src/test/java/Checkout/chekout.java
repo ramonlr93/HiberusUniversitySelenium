@@ -80,7 +80,7 @@ public class chekout
         float precioFinalEsperado = 0f;
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
         for (WebElement campoPrecio: driver.findElements(By.xpath("//div[@class='inventory_item_price']"))) {
-            precioFinalEsperado += Float.valueOf(campoPrecio.getText().substring(1, campoPrecio.getText().length()));
+            precioFinalEsperado += Float.valueOf(campoPrecio.getText().substring(1));
         }
 
         // ir a checkout
@@ -92,7 +92,7 @@ public class chekout
         // click en continuar
         driver.findElement(By.id("continue")).click();
         // coger precio dentro del carrito
-        Float precio = Float.valueOf(driver.findElement(By.xpath("//div[@class='summary_subtotal_label']")).getText().substring(13,18));
+        Float precio = Float.valueOf(driver.findElement(By.xpath("//div[@class='summary_subtotal_label']")).getText().substring(13));
 
         Assert.assertEquals("• PRUEBA FALLIDA - Error precios finales no coinciden", String.valueOf(precioFinalEsperado), String.valueOf(precio));
     }

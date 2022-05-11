@@ -1,4 +1,4 @@
-package page;
+package pages;
 
 import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
