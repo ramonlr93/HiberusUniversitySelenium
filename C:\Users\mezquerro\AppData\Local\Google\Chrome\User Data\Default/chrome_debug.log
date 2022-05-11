@@ -1,4 +1,0 @@
-[28008:28008:0510/170009.603115:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
-[28049:28049:0510/170009.644832:WARNING:sandbox_linux.cc(377)] InitializeSandbox() called with multiple threads in process gpu-process.
-[28008:28008:0510/170009.844995:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://www.saucedemo.com/ (0)
-[28008:28008:0510/170011.201764:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
