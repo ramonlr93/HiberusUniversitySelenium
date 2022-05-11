@@ -1,4 +1,4 @@
-package Ejecicios;
+package com.hiberus.university.selenium.Ejecicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -8,9 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class ElliminarProductoCarro {
+public class IncrementoValorCarrito {
     public static WebDriver driver;
-
     public static void main(String[] args) throws InterruptedException {
         String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup(); //Cargar ChromeDriver
@@ -33,10 +32,8 @@ public class ElliminarProductoCarro {
         // 4
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
         // 5
-        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bike-light']")).click();
+        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']")).click();
         // 6
-        driver.findElement(By.xpath("//button[@id='remove-sauce-labs-bike-light']")).click();
-        // 7
         System.out.println(driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText());
         driver.close();
     }

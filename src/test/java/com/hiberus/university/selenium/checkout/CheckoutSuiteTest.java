@@ -57,9 +57,9 @@ public class CheckoutSuiteTest {
 
         double priceItemsdouble = 0;
         for (int i = 0; i < itemsCarro.size(); i++) {
-            priceItemsdouble += Double.parseDouble(itemsCarro.get(i).getText().substring(1).replace("REMOVE",""));
+            priceItemsdouble += Double.parseDouble(itemsCarro.get(i).getText().substring(1).replace("REMOVE", ""));
         }
-        String priceItems = ""+priceItemsdouble;
+        String priceItems = "" + priceItemsdouble;
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[@class='shopping_cart_link']")))).click();
         // 7
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("checkout")))).click();
@@ -67,14 +67,43 @@ public class CheckoutSuiteTest {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("first-name")))).sendKeys("hola");
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("last-name")))).sendKeys("adios");
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("postal-code")))).sendKeys("no");
-        // 9
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("continue")))).click();
 
-        // 10
         String totalPricewait = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='summary_subtotal_label']")))).getText().substring(13);
-
+        // 9
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("finish")))).click();
+        // 10
 
         Assert.assertEquals("ERROR LA SUMA DEL PRECIO TOTAL NO ES CORRECTA.", priceItems, totalPricewait);
+    }
+
+    @Test
+    public void makeAnOrderTest() throws InterruptedException {
+        // 1
+        driver.get("https://www.saucedemo.com/");
+        // 2
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
+        // 3
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
+        // 4
+        driver.findElement(By.xpath("//input[@id='login-button']")).submit();
+        // 5
+        List<WebElement> items = wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.xpath("//button[text()='Add to cart']"))));
+        items.get(dado.nextInt(items.size())).click();
+        // 6
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[@class='shopping_cart_link']")))).click();        // 7
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("checkout")))).click();
+        // 8
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("first-name")))).sendKeys("hola");
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("last-name")))).sendKeys("adios");
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("postal-code")))).sendKeys("no");
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("continue")))).click();
+        // 9
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("finish")))).click();
+        // 10
+        String textExpected = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
+        String text = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='complete-text']")))).getText();
+        Assert.assertEquals("ERROR EL TEXTO NO ES IGUAL.", textExpected, text);
     }
 
     @After

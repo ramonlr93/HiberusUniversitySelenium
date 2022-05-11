@@ -1,6 +1,8 @@
-package Ejecicios;
+package com.hiberus.university.selenium.Ejecicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,9 +10,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
 
 
-public class Ejercicio1 {
+public class Ejercicio2 {
     public static WebDriver driver;
-    public static void main( String[] args ) {
+
+    public static void main(String[] args) throws InterruptedException {
         // 1
         String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup(); //Cargar ChromeDriver
@@ -22,23 +25,25 @@ public class Ejercicio1 {
         driver.manage().window().maximize();
 
         // 2
-        driver.get("https://www.saucedemo.com");
+        driver.get("https://www.hiberus.com/");
+        Thread.sleep(2000);
 
         // 3
-        String titulo = driver.getTitle();
-        int lTitulo = driver.getTitle().length();
+        driver.findElement(By.xpath("//a[@href='/consultoria-y-estrategia-de-negocio']")).click();
+        Thread.sleep(2000);
+
         // 4
-        System.out.println("Titulo: "+titulo);
-        System.out.println("Longitud del titulo: "+ lTitulo);
-
+        driver.navigate().back();
+        Thread.sleep(2000);
         // 5
-        String url = driver.getCurrentUrl();
-        if (url.equals("https://www.saucedemo.com")){
-            System.out.println("Correcto");
-        } else{
-            System.out.println("Incorrecto");
-        }
-
+        driver.navigate().forward();
+        Thread.sleep(2000);
+        // 6
+        driver.navigate().to("https://www.hiberus.com/");
+        Thread.sleep(2000);
+        // 7
+        driver.navigate().refresh();
+        Thread.sleep(2000);
         // 8
         driver.close();
     }

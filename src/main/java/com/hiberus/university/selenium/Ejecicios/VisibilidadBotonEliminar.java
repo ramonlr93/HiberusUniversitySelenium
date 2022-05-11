@@ -1,4 +1,4 @@
-package Ejecicios;
+package com.hiberus.university.selenium.Ejecicios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -8,8 +8,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class ValidarLogin {
+public class VisibilidadBotonEliminar {
     public static WebDriver driver;
+
     public static void main(String[] args) throws InterruptedException {
         String userProfile = "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
         WebDriverManager.chromedriver().setup(); //Cargar ChromeDriver
@@ -22,17 +23,19 @@ public class ValidarLogin {
 
         // 1
         driver.get("https://www.saucedemo.com/");
+
         // 2
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_use");
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
         Thread.sleep(1000);
         // 3
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         Thread.sleep(1000);
         // 4
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
-
         // 5
-        System.out.println(driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed());
+        driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bike-light']")).click();
+        // 6
+        System.out.println(driver.findElement(By.xpath("//button[@id='remove-sauce-labs-bike-light']")).isDisplayed());
         driver.close();
     }
 }
