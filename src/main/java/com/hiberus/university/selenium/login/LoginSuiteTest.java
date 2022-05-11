@@ -29,7 +29,6 @@ public class LoginSuiteTest {
 
     @Before
     public void setUp() {
-        //Paso0
         WebDriverManager.chromedriver().setup();
 
         driver = new ChromeDriver();
