@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Carrito;
+package com.hiberus.university.selenium.carrito;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;

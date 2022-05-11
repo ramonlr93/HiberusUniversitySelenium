@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Checkout;
+package com.hiberus.university.selenium.checkout;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

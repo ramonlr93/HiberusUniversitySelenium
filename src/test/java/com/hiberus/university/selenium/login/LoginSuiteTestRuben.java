@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Login;
+package com.hiberus.university.selenium.login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
