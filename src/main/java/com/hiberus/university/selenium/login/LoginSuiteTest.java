@@ -1,5 +1,8 @@
 package com.hiberus.university.selenium.login;
 
+import com.hiberus.university.selenium.pages.InventoryPage;
+import com.hiberus.university.selenium.pages.LoginPage;
+import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -10,6 +13,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -26,37 +30,28 @@ public class LoginSuiteTest {
     @Before
     public void setUp() {
         //Paso0
-        WebDriverManager.chromedriver().setup(); // Cargar Chromedriver
+        WebDriverManager.chromedriver().setup();
 
-        driver= new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 10, 500);
+        PagesFactory.start(driver);
     }
 
     @Test
     public void loginTest() {
+        driver.get(LoginPage.PAGE_URL);
+        PagesFactory pf = PagesFactory.getInstance();
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
-
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
-
-        // Validar que hemos accedido correctamente a la página, comprobando que se
-        // muestra la URL https://www.saucedemo.com/inventory.html
-        String url = driver.getCurrentUrl(); // Almacenar la URL actual
-
-        Assert.assertEquals("EL LOGIN ES FALLIDO. ",
-                "https://www.saucedemo.com/inventory.html", url);
+        Assert.assertEquals("login failed",
+          InventoryPage.PAGE_URL, driver.getCurrentUrl());
     }
 
     @Test
