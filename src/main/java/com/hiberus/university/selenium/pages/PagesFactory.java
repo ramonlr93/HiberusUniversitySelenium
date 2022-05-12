@@ -6,9 +6,14 @@ public class PagesFactory {
 
     private static PagesFactory pagesFactories;
     private final WebDriver driver;
+    private final LoginPage loginPage;
+
+    private final InventoryPage inventoryPage;
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
+        this.loginPage = new LoginPage(driver);
+        this.inventoryPage = new InventoryPage(driver);
     }
 
     public static void start(WebDriver driver) {
