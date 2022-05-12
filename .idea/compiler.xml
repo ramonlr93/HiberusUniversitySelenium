@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="HiberusUniversitySelenium" />
+        <module name="practicaSelenium3" />
         <module name="com.hiberus.university.iris.maven.first" />
+        <module name="HiberusUniversitySelenium" />
         <module name="com.hiberus.university" />
       </profile>
     </annotationProcessing>
