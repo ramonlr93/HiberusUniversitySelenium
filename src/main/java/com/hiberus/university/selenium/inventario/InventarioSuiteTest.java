@@ -1,6 +1,11 @@
 package com.hiberus.university.selenium.inventario;
 
+import com.hiberus.university.selenium.pages.CartPage;
+import com.hiberus.university.selenium.pages.InventoryPage;
+import com.hiberus.university.selenium.pages.LoginPage;
+import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class InventarioSuiteTest {
 
     public static WebDriver driver;
@@ -30,6 +36,8 @@ public class InventarioSuiteTest {
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 10, 500);
+        PagesFactory.start(driver);
+        driver.get(LoginPage.PAGE_URL);
     }
 
     @Test
@@ -83,30 +91,25 @@ public class InventarioSuiteTest {
 
     @Test
     public void addCartProductTest() {
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
+        PagesFactory pf = PagesFactory.getInstance();
 
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        String itemName = "Sauce Labs Backpack";
+        log.info("the user adds " + itemName + " by 'Add To Cart'");
+        InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.addItemToCartByName(itemName);
 
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
+        log.info("the user clicks on the shopping cart");
+        inventoryPage.clickOnShoppingCart();
 
-        // Agregar al carrito el producto 'Sauce Labs Bolt T-Shirt'
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-
-        //  Validar que, en el icono del carrito, se ha agregado 1 producto
-        String productsQuantityInCart = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
-
-        if(productsQuantityInCart.equals("")) {
-            productsQuantityInCart = null;
-        }
-
-        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", 1, Integer.parseInt(productsQuantityInCart));
+        log.info("there should be 1 item in the shopping cart");
+        CartPage cartPage = pf.getCartPage();
+        int currentCount = cartPage.getItemCount();
+        Assert.assertEquals(1, currentCount);
     }
 
     @Test
@@ -195,54 +198,29 @@ public class InventarioSuiteTest {
      */
     @Test
     public void sortInventoryAlphabeticalOrderTest() {
-        // Paso 1
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
+        PagesFactory pf = PagesFactory.getInstance();
 
-        // Paso 2
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        // Paso 3
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.selectOption("az");
 
-        // Paso 4
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
+        List<WebElement> inventoryList = inventoryPage.getInventoryNameList();
+        List<String> nameInventoryResult = new ArrayList<>();
+        List<String> nameInventoryResultSorted = new ArrayList<>();
 
-        // Implementacion logica necesaria para el Paso 6
-        // Obtenemos el listado de elementos mostrado dado que esta ordenado por defecto con el filtro (A to Z)
-        List<WebElement> inventoryResultsAtoZ = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
-        List<String> nameInventoryResultsAtoZ = new ArrayList<>();
-
-        // Almacenamos los nombres de los productos en una Lista
-        for(int i = 0; i < inventoryResultsAtoZ.size(); i++) {
-            nameInventoryResultsAtoZ.add(inventoryResultsAtoZ.get(i).getText());
+        for (WebElement webElement : inventoryList) {
+            nameInventoryResult.add(webElement.getText());
+            nameInventoryResultSorted.add(webElement.getText());
         }
 
-        // Paso 5
-        //  Seleccionar el filtro NAME (Z TO A)
-        Select selectOption = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
-        selectOption.selectByValue("za");
-
-        // Implementacion logica necesaria para el Paso 6
-        // Obtenemos el listado de elementos mostrado -- Filtro ya aplicado NAME (Z to A)
-        List<WebElement> inventoryResultsZtoA = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
-        List<String> nameInventoryResultsZtoA = new ArrayList<>();
-
-        // Almacenamos los nombres de los productos de la nueva lista
-        for(int i = 0; i < inventoryResultsZtoA.size(); i++) {
-            nameInventoryResultsZtoA.add(inventoryResultsZtoA.get(i).getText());
-        }
-
-        //Revertimos la lista ordenada (A to Z), de este modo se convertira en el resultado esperado
-        Collections.reverse(nameInventoryResultsAtoZ);
-
-        // Paso 6
-        // Validar que el filtro seleccionado, ordena por el orden alfabético de la Z a la A
-        Assert.assertEquals("EL FILTRO 'Name (Z to A)', NO FUNCIONA CORRECTAMENTE. ", nameInventoryResultsAtoZ, nameInventoryResultsZtoA);
-    }
+        Collections.sort(nameInventoryResultSorted);
+        Assert.assertEquals("list is not sorted",
+          nameInventoryResultSorted, nameInventoryResult);
+       }
 
     /**
      *    Validar el filtro de ordenamiento de precio de Menor a Mayor

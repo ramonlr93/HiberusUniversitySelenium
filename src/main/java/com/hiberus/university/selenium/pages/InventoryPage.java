@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,8 +17,8 @@ public class InventoryPage extends AbstractPage {
   @FindBy(id = "shopping_cart_container")
   private WebElement shoppingCart;
 
-  @FindBy(css = "#inventory_list")
-  private WebElement inventoryContainer;
+  @FindBy(xpath = "//div[@class='inventory_item']")
+  private List<WebElement> inventoryContainer;
 
   @FindBy(xpath = "//select[@data-test='product_sort_container']")
   private WebElement selectOptions;
@@ -27,9 +28,12 @@ public class InventoryPage extends AbstractPage {
     PageFactory.initElements(driver, this);
   }
 
+  @FindBy(xpath = "//div[@class='inventory_item_name']")
+  private List<WebElement> inventoryNameList;
+
   @Override
   public WebElement getPageLoadedTestElement() {
-    return inventoryContainer;
+    return selectOptions;
   }
 
   public void addItemToCartByName(String itemName) {
@@ -55,5 +59,13 @@ public class InventoryPage extends AbstractPage {
   public void selectOption(String option) {
     Select selectOption = new Select(selectOptions);
     selectOption.selectByValue(option);
+  }
+
+  public List<WebElement> getItemList() {
+    return inventoryContainer;
+  }
+
+  public List<WebElement> getInventoryNameList() {
+    return inventoryNameList;
   }
 }

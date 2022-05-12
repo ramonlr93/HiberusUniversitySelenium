@@ -1,7 +1,9 @@
 package com.hiberus.university.selenium.pages;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
+@Getter
 public class PagesFactory {
 
   private static PagesFactory pagesFactories;
@@ -28,29 +30,5 @@ public class PagesFactory {
 
   public static PagesFactory getInstance() {
     return pagesFactories;
-  }
-
-  public WebDriver getDriver() {
-    return driver;
-  }
-
-  public CheckOutStepOnePage getCheckOutStepOnePage() {
-    return checkOutStepOnePage;
-  }
-
-  public CheckOutStepTwoPage getCheckOutStepTwoPage() {
-    return checkOutStepTwoPage;
-  }
-
-  public InventoryPage getInventoryPage() {
-    return inventoryPage;
-  }
-
-  public LoginPage getLoginPage() {
-    return loginPage;
-  }
-
-  public CartPage getCartPage() {
-    return cartPage;
   }
 }
