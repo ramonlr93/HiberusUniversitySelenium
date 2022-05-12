@@ -75,7 +75,7 @@ public class CartPage extends AbstractPage {
 
     @Override
     public WebElement getPageLoadedTestElement() {
-        return hamburgerElem;
+        return checkoutButton;
     }
 
     public void clickCheckout() {
