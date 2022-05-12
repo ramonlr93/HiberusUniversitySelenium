@@ -4,10 +4,16 @@ import static org.junit.Assert.assertTrue;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +23,10 @@ import java.util.concurrent.TimeUnit;
 public class AppTest 
 {
     public static WebDriver driver;
+
+    public static WebDriverWait wait;
+
+    public static Actions actions;
 
     @Before
     public void setUp(){
@@ -28,6 +38,10 @@ public class AppTest
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
+        wait = new WebDriverWait(driver, 10, 500 );
+
+        actions = new Actions(driver);
     }
 
     /**
@@ -36,33 +50,38 @@ public class AppTest
     @Test
     public void testLogin() throws InterruptedException
     {
-        driver.get("https://www.saucedemo.com");
+        //Anadir al carrito un producto y pulsar el boton aceptar de la popup que parece cuando se anade
+        //driver.get("https://www.demoblaze.com/index.html");
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+       // driver.findElement(By.xpath("//h4[@class='card-title']/a[@href='prod.html?idp_=1']")).click();
 
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+       // wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[@onclick='addToCart(1)']"))));
+       // driver.findElement(By.xpath("//a[@onclick='addToCart(1)']")).click();
 
-        driver.findElement(By.id("login-button")).click();
+       // wait.until(ExpectedConditions.alertIsPresent());
+        //Alert alerta = driver.switchTo().alert();
+        //alerta.accept();
 
-        String url = driver.getCurrentUrl();
+        //Mostrar una alerta cuando se hace un click derecho
+       // driver.get("https://the-internet.herokuapp.com/context_menu");
+        //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("hot-spot"))));
+        //actions.contextClick(driver.findElement(By.id("hot-spot"))).perform();
+        //wait.until(ExpectedConditions.alertIsPresent());
+        //Alert alerta = driver.switchTo().alert();
+        //String text = alerta.getText();
+        //alerta.accept();
 
-        Assert.assertEquals("EL LOGIN ES FALLIDO PORQUE NO ESTAMOS EN LA URL QUE NOS PIDE", "https://www.saucedemo.com/inventory.html");
-    }
+        //Hacer un drag and drop
+        driver.get("https://demoqa.com/droppable");
 
-    @Test
-    public void testLoginIncorrect() throws InterruptedException
-    {
-        driver.get("https://www.saucedemo.com");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("draggable"))));
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        WebElement draggable = driver.findElement(By.id("draggable"));
+        WebElement droppable = driver.findElement(By.id("droppable"));
 
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        actions.dragAndDrop(draggable, droppable).perform();
 
-        driver.findElement(By.id("login-button")).click();
 
-        boolean isMessageErrorVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
-
-        Assert.assertTrue("PRUEBA FALLIDA, EL ELEMENTO NO APARECE", isMessageErrorVisible);
     }
     
 

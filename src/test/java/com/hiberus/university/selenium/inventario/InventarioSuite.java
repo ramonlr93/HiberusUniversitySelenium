@@ -10,7 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +27,8 @@ public class InventarioSuite
 {
     public static WebDriver driver;
 
+    public static WebDriverWait wait;
+
     @Before
     public void setUp(){
         String userProfile= "C:\\Users\\pue\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
@@ -35,6 +39,8 @@ public class InventarioSuite
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
+        wait = new WebDriverWait(driver, 10, 500);
     }
 
     /**
@@ -83,6 +89,7 @@ public class InventarioSuite
 
         driver.findElement(By.id("login-button")).click();
 
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
 
         boolean isProductAdded = driver.findElement(By.xpath("//span[@class='shopping_cart_badge' and text() = '1']")).isDisplayed();
@@ -120,13 +127,16 @@ public class InventarioSuite
 
         driver.findElement(By.id("login-button")).click();
 
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        List<WebElement> lista = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        Collections.shuffle(lista);
+
+        for (int i=0; i<3; i++){
+            lista.get(i).click();
+        }
 
         boolean isProductAdded = driver.findElement(By.xpath("//span[@class='shopping_cart_badge' and text() = '3']")).isDisplayed();
 
-        Assert.assertTrue("PRUEBA FALLIDA, NO SE HAN ANADIDO LOS PRODUCTOS", isProductAdded);
+        Assert.assertTrue("PRUEBA FALLIDA, NO SE HAN ANADIDO LOS 3 PRODUCTOS", isProductAdded);
     }
 
     @Test

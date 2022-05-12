@@ -8,9 +8,12 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CarritoSuite {
@@ -50,6 +53,7 @@ public class CarritoSuite {
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
 
         driver.findElement(By.id("remove-sauce-labs-backpack")).click();
+
 
         try {
             isProductDeleted = driver.findElement(By.xpath("//div[text()= 'Sauce Labs Backpack']")).isDisplayed();

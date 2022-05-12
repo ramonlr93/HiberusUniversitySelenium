@@ -1,5 +1,8 @@
 package com.hiberus.university.selenium.login;
 
+import com.hiberus.university.selenium.pages.InventoryPage;
+import com.hiberus.university.selenium.pages.LoginPage;
+import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -26,6 +29,7 @@ public class LoginSuite {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        PagesFactory.start(driver);
     }
 
     /**
@@ -34,17 +38,14 @@ public class LoginSuite {
     @Test
     public void testLogin() throws InterruptedException
     {
-        driver.get("https://www.saucedemo.com");
+        driver.get(LoginPage.PAGE_URL);
+        PagesFactory pf = PagesFactory.getInstance();
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standar_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
-        driver.findElement(By.id("login-button")).click();
-
-        String url = driver.getCurrentUrl();
-
-        Assert.assertEquals("EL LOGIN ES FALLIDO PORQUE NO ESTAMOS EN LA URL QUE NOS PIDE", "https://www.saucedemo.com/inventory.html");
+        Assert.assertEquals("LOGIN FAILED", InventoryPage.PAGE_URL, driver.getCurrentUrl());
     }
 
     @Test
@@ -52,7 +53,7 @@ public class LoginSuite {
     {
         driver.get("https://www.saucedemo.com");
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("user-name")).sendKeys("standard_userrrr");
 
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
 

@@ -42,11 +42,13 @@ public class LogOutSuite {
 
         driver.findElement(By.id("login-button")).click();
 
+        driver.findElement(By.id("react-burger-menu-btn")).click();
+
         driver.findElement(By.id("logout_sidebar_link")).click();
 
         String url = driver.getCurrentUrl();
 
-        Assert.assertEquals("EL LOGIN ES FALLIDO PORQUE NO ESTAMOS EN LA URL QUE NOS PIDE", "https://www.saucedemo.com");
+        Assert.assertEquals("EL LOGIN ES FALLIDO PORQUE NO ESTAMOS EN LA URL QUE NOS PIDE", "https://www.saucedemo.com/", url);
     }
 
     @After

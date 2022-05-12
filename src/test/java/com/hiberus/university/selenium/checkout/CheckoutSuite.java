@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +35,7 @@ public class CheckoutSuite {
     public void testPrecioFinal() throws InterruptedException
     {
 
-        double totalUno = 0.0;
+        //double totalUno = 0.0;
         driver.get("https://www.saucedemo.com");
 
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
@@ -43,28 +44,79 @@ public class CheckoutSuite {
 
         driver.findElement(By.id("login-button")).click();
 
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        //driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        //driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        //driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+
+        //driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        //driver.findElement(By.id("checkout")).click();
+
+        //driver.findElement(By.id("first-name")).sendKeys("Fulanito");
+        //driver.findElement(By.id("last-name")).sendKeys("Fulanitez");
+        //driver.findElement(By.id("postal-code")).sendKeys("55555");
+
+        //driver.findElement(By.id("continue")).click();
+
+        //List<WebElement> precio = driver.findElements(By.xpath("//div[@class = 'inventory_item_prince']"));
+
+        //for (int i=0; i<precio.size();i++){
+         //   totalUno += (Double.parseDouble(precio.get(i).getText().substring(1, 5)));
+        //}
+
+        //double totalDos = Double.parseDouble(driver.findElement(By.xpath("//div[@class = 'summary_subtotal_label']")).getText().substring(13));
+
+        //Assert.assertEqu
+
+        List<WebElement> inventario = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+
+        ArrayList<Integer> selectValue = new ArrayList();
+        int pos;
+        int count = 0;
+        for (int i=0; i< inventario.size(); i++){
+            pos = (int) Math.floor(Math.random() * inventario.size());
+
+            while (selectValue.contains(pos)){
+                pos = (int) Math.floor(Math.random() * inventario.size());
+            }
+
+            if (count < 3) {
+                selectValue.add(pos);
+                count++;
+            }
+        }
+
+        List<String> listaProductos = new ArrayList<String>();
+        for (int i=0; i<selectValue.size(); i++){
+            listaProductos.add(inventario.get(selectValue.get(i)).findElement(By.xpath(".//preceding-sibling::div[@class='inventory_item_price']")).getText());
+            inventario.get(selectValue.get(i)).click();
+        }
 
         driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+
         driver.findElement(By.id("checkout")).click();
 
         driver.findElement(By.id("first-name")).sendKeys("Fulanito");
         driver.findElement(By.id("last-name")).sendKeys("Fulanitez");
         driver.findElement(By.id("postal-code")).sendKeys("55555");
-
         driver.findElement(By.id("continue")).click();
 
-        List<WebElement> precio = driver.findElements(By.xpath("//div[@class = 'inventory_item_prince']"));
+        List<Double> precioProducto = new ArrayList();
 
-        for (int i=0; i<precio.size();i++){
-            totalUno += (Double.parseDouble(precio.get(i).getText().substring(1, 5)));
+        for (int i=0; i<listaProductos.size(); i++){
+            precioProducto.add(Double.parseDouble(listaProductos.get(i).replace("$", "").trim()));
         }
 
-        double totalDos = Double.parseDouble(driver.findElement(By.xpath("//div[@class = 'summary_subtotal_label']")).getText().substring(13));
+        double value = 0;
 
-        Assert.assertEquals("PREUBA FALLIDA", totalDos, totalUno);
+        for (int i=0; i< precioProducto.size(); i++){
+            value += precioProducto.get(i);
+        }
+
+        String valorTotal = driver.findElement(By.xpath("//div[@class='summary_subtotal_label']")).getText();
+        valorTotal = valorTotal.replace("Item total: $", "").trim();
+
+        Assert.assertEquals("PRUEBA FALLIDA, LA SUMA DE LOS DOS NO ES LA MISMA", String.valueOf(value), String.valueOf(value));
+
     }
 
     @Test
@@ -88,7 +140,7 @@ public class CheckoutSuite {
         driver.findElement(By.id("postal-code")).sendKeys("55555");
 
         driver.findElement(By.id("continue")).click();
-        driver.findElement(By.id("final")).click();
+        driver.findElement(By.id("finish")).click();
 
         boolean isMessageVisible = driver.findElement(By.xpath("//div[@class='complete-text']")).isDisplayed();
 
