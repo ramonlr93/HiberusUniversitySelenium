@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-public class CarTSuiteTest {
+public class CartSuiteTest {
     public static WebDriver driver;
 
     public static WebDriverWait wait;
