@@ -11,7 +11,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
+import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -98,20 +101,18 @@ public class InventarioSuite {
 
         @Test
 
-        public void eliminarProductoDelInventario() throws InterruptedException {
+        public void eliminarProductoDelInventario()  {
 
                 // Agregar al carrito el producto Sauce Labs Bolt T-Shirt
 
                 driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
 
-                Thread.sleep(2000);
 
+                // Eliminar del carrito el producto 'Sauce Labs Bolt T-Shirt'
 
-                // Eliminar del carrito el producto
-
+                //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt"))));
                 driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
 
-                Thread.sleep(2000);
 
                 //Validar que se ha eliminado el producto del carrito
 
@@ -174,11 +175,10 @@ public class InventarioSuite {
         }
 }
 
-         @Test
-
+       @Test
         public void ordenarInventarioAlfabeticamente () {
 
-        //Implementación logica necesaria para el paso: Seleccionar el filtro NAME (Z TO A
+        //Implementación logica necesaria para el paso: Seleccionar el filtro NAME (Z TO A)
         //Obtenemos el listado de elementos mostrados dado que está ordenado por defecto con el filtro (A to Z)
         List<WebElement> inventoryResultsAtoZ = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
         List<String> nameInventoryResultsAtoZ = new ArrayList();
@@ -196,9 +196,69 @@ public class InventarioSuite {
 
 }
 
-          @Test
+        /**
+         *    Validar el filtro de ordenamiento de precio de Menor a Mayor
+         */
+        @Test
+        public void sortInventoryAlphabeticalPriceTest() {
 
-          public void
+                //  Seleccionar el filtro 'Price (high to low)'
+                Select selectOptionHilo = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
+                selectOptionHilo.selectByValue("hilo");
+
+                // Implementacion logica necesaria para el Paso 6
+                // Obtenemos el listado de elementos mostrado -- Filtro aplicado 'Price (high to low)'
+                List<WebElement> inventoryResultsHighToLow = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
+                List<Double> priceInventoryResultsHighToLow = new ArrayList<>();
+
+                // Almacenamos los precios de los productos de la nueva lista
+                for(int i = 0; i < inventoryResultsHighToLow.size(); i++) {
+                        priceInventoryResultsHighToLow.add(Double.parseDouble(inventoryResultsHighToLow.get(i).getText().replace("$", "").trim()));
+                }
+
+                // Comparamos los valores de la lista
+                Comparator<Double> comparator = (x, y) -> Double.compare(x, y);
+
+                // Ordenamos de menor a mayor los valores comparados de la lista
+                priceInventoryResultsHighToLow.sort(comparator);
+
+                // Seleccionar el filtro 'Price (low to high)'
+                Select selectOptionLohi = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
+                selectOptionLohi.selectByValue("lohi");
+
+                // Obtenemos el listado de elementos mostrado -- Filtro aplicado 'Price (low to high)'
+                List<WebElement> inventoryResultsLowToHigh = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
+                List<Double> priceInventoryResultsLowToHigh = new ArrayList<>();
+
+                // Almacenamos los precios de los productos de la nueva lista
+                for(int i = 0; i < inventoryResultsLowToHigh.size(); i++) {
+                        priceInventoryResultsLowToHigh.add(Double.parseDouble(inventoryResultsLowToHigh.get(i).getText().replace("$", "").trim()));
+                }
+
+                // Paso 6
+                // Validar que el filtro seleccionado, ordena por el orden de precio de menor a mayor
+                Assert.assertEquals("EL FILTRO 'Price (low to high)', NO FUNCIONA CORRECTAMENTE. ", priceInventoryResultsHighToLow, priceInventoryResultsLowToHigh);
+        }
+
+
+        @Test
+        public void realizarLogout () {
+
+
+                // Realizar el Logout
+
+                driver.findElement(By.id("react-burger-menu-btn")).click();
+                //wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//nav[@class='bm-item-list']"))));
+                driver.findElement(By.id("logout_sidebar_link")).click();
+
+                // Validar que el logout se ha realizado llevándonos a la página del Login
+
+                String loginPageUrl = driver.getCurrentUrl();
+                Assert.assertEquals("NO SE HA REALIZADO EL LOGOUT, NO ESTAMOS EN LA PAGINA DEL LOGIN ",
+                        "https://www.saucedemo.com/", loginPageUrl);
+
+        }
+
 
 
     @After

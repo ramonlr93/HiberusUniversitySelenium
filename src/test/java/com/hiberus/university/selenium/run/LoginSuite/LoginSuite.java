@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class LoginSuite {
@@ -68,10 +69,16 @@ public class LoginSuite {
 
         driver.findElement(By.id("login-button")).click();
 
-        boolean isMessageErrorVisible = driver.findElement(By.xpath("//h3[@date-test='error']")).isDisplayed();
 
-        Assert.assertTrue("PRUEBA FALLIDA, EL MENSAJE NO SE MUESTRA ", isMessageErrorVisible);
+        // Validar que se visualiza el elemento web del mensaje de error
+        boolean isMessageErrorVisible;
+        try {
+            isMessageErrorVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
+        } catch (NoSuchElementException n) {
+            isMessageErrorVisible = false;
+        }
 
+        Assert.assertTrue("PRUEBA FALLIDA, EL ELEMENTO DE ERROR NO APARECE. ", isMessageErrorVisible);
     }
 
     @After
