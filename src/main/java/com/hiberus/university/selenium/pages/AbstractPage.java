@@ -1,7 +1,8 @@
 package com.hiberus.university.selenium.pages;
 
-import com.hiberus.university.selenium.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
+
+import com.hiberus.university.selenium.utils.MyFluentWait;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -14,7 +15,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
-
 @Slf4j
 abstract class AbstractPage {
 
@@ -23,7 +23,7 @@ abstract class AbstractPage {
 
     AbstractPage(WebDriver driver) {
         this.driver = driver;
-        wait = new MyFluentWait(driver)
+        wait = new MyFluentWait<>(driver)
                 .withTimeout(60, ChronoUnit.SECONDS)
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
