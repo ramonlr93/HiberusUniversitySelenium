@@ -1,10 +1,10 @@
 package com.hiberus.university.selenium.run;
 
-import com.hiberus.university.selenium.carrito.CarTSuiteTest;
+import com.hiberus.university.selenium.carrito.CartSuiteTest;
 import com.hiberus.university.selenium.checkout.CheckoutSuiteTest;
 import com.hiberus.university.selenium.InventarioSuiteTest;
-import com.hiberus.university.selenium.login.LoginSuiteTest;
 
+import com.hiberus.university.selenium.login.LoginSuiteTest;
 import com.hiberus.university.selenium.logout.LogOutSuiteTest;
 import org.junit.runners.Suite;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         LogOutSuiteTest.class,
         InventarioSuiteTest.class,
         CheckoutSuiteTest.class,
-        CarTSuiteTest.class
+        CartSuiteTest.class
 })
 
 public class RunTest {
