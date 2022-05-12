@@ -1,8 +1,10 @@
 package com.hiberus.university.selenium.inventory;
 
+import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class InventorySuiteTest {
 
     public static WebDriver driver;
@@ -43,67 +46,35 @@ public class InventorySuiteTest {
 
     @Test
     public void validateInventoryResultsTest() {
-
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
+        PagesFactory pf = PagesFactory.getInstance();
+        InventoryPage inventoryPage = pf.getInventoryPage();
 
         Assert.assertEquals("EL NUMERO DE ITEMS RESULTANTES EN EL INVENTARIO, NO ES EL CORRECTO. ",
-                6, inventoryResults.size());
+                6, inventoryPage.getList().size());
     }
 
     @Test
     public void validateExistenceGivenProductTest() {
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
-
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
-
-        // Validar que el producto 'Sauce Labs Bolt T-Shirt' aparece en el inventario.
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
-
-        boolean isProductPresent = false;
-        for(int i = 0; i < inventoryResults.size(); i++) {
-            if(inventoryResults.get(i).getText().equals("Sauce Labs Bolt T-Shirt")) {
-                isProductPresent = true;
-            }
-        }
+        PagesFactory pf = PagesFactory.getInstance();
+        InventoryPage inventoryPage = pf.getInventoryPage();
 
         Assert.assertTrue("EL PRODUCTO 'Sauce Labs Bolt T-Shirt', NO APARECE EN EL LISTADO DE ITEMS DEL INVENTARIO ",
-                isProductPresent);
+                inventoryPage.productName("Sauce Labs Bolt T-Shirt"));
     }
 
     @Test
     public void addCartProductTest() {
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
+        PagesFactory pf = PagesFactory.getInstance();
+        InventoryPage inventoryPage = pf.getInventoryPage();
 
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
-
-        // Agregar al carrito el producto 'Sauce Labs Bolt T-Shirt'
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-
-        //  Validar que, en el icono del carrito, se ha agregado 1 producto
-        String productsQuantityInCart = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
-
-        if(productsQuantityInCart.equals("")) {
-            productsQuantityInCart = null;
+        try {
+            inventoryPage.addItemToCartByName("Sauce Labs Bolt T-Shirt");
+        } catch (NoSuchElementException e) {
+            log.info("Clicking add, caught exception, type: " + e.getClass().getSimpleName());
         }
 
-        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", 1, Integer.parseInt(productsQuantityInCart));
+        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", 1, inventoryPage.getNumberCart());
+
     }
 
     @Test

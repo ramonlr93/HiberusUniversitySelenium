@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class InventoryPage extends AbstractPage {
   public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
 
@@ -22,6 +24,9 @@ public class InventoryPage extends AbstractPage {
   @FindBy(xpath = "//select[@data-test='product_sort_container']")
   private WebElement selectOptions;
 
+  @FindBy(xpath = "//div[@class='inventory_item_name']")
+  List<WebElement> inventoryResults;
+
   public InventoryPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
@@ -30,6 +35,20 @@ public class InventoryPage extends AbstractPage {
   @Override
   public WebElement getPageLoadedTestElement() {
     return inventoryContainer;
+  }
+
+  public List<WebElement> getList(){
+    return inventoryResults;
+  }
+
+  public boolean productName(String itemName) {
+    boolean validar = false;
+    for(int i = 0; i < inventoryResults.size(); i++) {
+      if(inventoryResults.get(i).getText().equals(itemName)) {
+        validar = true;
+      }
+    }
+    return validar;
   }
 
   public void addItemToCartByName(String itemName) {
@@ -50,6 +69,10 @@ public class InventoryPage extends AbstractPage {
 
   public void clickOnShoppingCart() {
     shoppingCart.click();
+  }
+
+  public int getNumberCart() {
+    return Integer.parseInt(shoppingCart.getText());
   }
 
   public void selectOption(String option) {
