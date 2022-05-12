@@ -72,8 +72,8 @@ public class InventorySuiteTest {
         } catch (NoSuchElementException e) {
             log.info("Clicking add, caught exception, type: " + e.getClass().getSimpleName());
         }
-        Integer num = 1;
-        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", num, inventoryPage.getNumberCart());
+
+        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", 1, inventoryPage.getNumberCart());
 
     }
 
@@ -89,8 +89,8 @@ public class InventorySuiteTest {
         } catch (NoSuchElementException e) {
             log.info("Clicking remove, caught exception, type: " + e.getClass().getSimpleName());
         }
-        Integer num = 0;
-        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", num, inventoryPage.getNumberCart());
+
+        Assert.assertEquals("LA CANTIDAD ACTUAL EN EL CARRITO NO ES LA ESPERADA. ", 0, inventoryPage.getNumberCart());
     }
 
     @Test

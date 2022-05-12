@@ -71,7 +71,7 @@ public class InventoryPage extends AbstractPage {
     shoppingCart.click();
   }
 
-  public Integer getNumberCart() {
+  public int getNumberCart() {
     try {
       return Integer.parseInt(shoppingCart.getText());
     } catch (Exception e) {
