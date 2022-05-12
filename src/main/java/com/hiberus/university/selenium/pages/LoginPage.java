@@ -21,7 +21,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(id = "login-button")
     private WebElement loginButton;
 
-    @FindBy(id = "//h3[@data-test='error']")
+    @FindBy(xpath = "//h3[@data-test='error']")
     private WebElement errorMessage;
 
 
@@ -33,7 +33,6 @@ public class LoginPage extends AbstractPage {
     @Override
     public WebElement getPageLoadedTestElement() {
         return loginButton;
-
     }
 
     public void enterPassword(String password){

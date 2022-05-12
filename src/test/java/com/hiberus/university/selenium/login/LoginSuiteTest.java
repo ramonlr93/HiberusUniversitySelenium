@@ -39,13 +39,11 @@ public class LoginSuiteTest {
 
         wait = new WebDriverWait(driver, 10, 500);
         PagesFactory.start(driver);
+        driver.get(LoginPage.PAGE_URL);
     }
 
     @Test
     public void loginTest() {
-
-        // Ir a la página https://www.saucedemo.com
-        driver.get(LoginPage.PAGE_URL);
         PagesFactory pf = PagesFactory.getInstance();
         LoginPage loginPage = pf.getLoginPage();
         loginPage.enterUsername("standard_user");
@@ -57,7 +55,13 @@ public class LoginSuiteTest {
 
     @Test
     public void loginIncorrectTest() {
+        PagesFactory pf = PagesFactory.getInstance();
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secretsauce");
+        loginPage.clickLogin();
 
+        Assert.assertTrue("EL ELEMENTO ERROR MESSAGE NO EXISTE", loginPage.hasMessageError());
     }
 
     @After

@@ -1,6 +1,7 @@
 package com.hiberus.university.selenium.pages;
 
 import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.jcajce.provider.symmetric.AES;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class CheckoutInformationPage extends AbstractPage {
+
+    public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-one.html";
 
     @FindBy(xpath = "//input[@data-test='firstName']")
     private WebElement firstNameInput;
@@ -19,8 +22,14 @@ public class CheckoutInformationPage extends AbstractPage {
     @FindBy(xpath = "//input[@data-test='postalCode']")
     private WebElement postalCodeInput;
 
-    @FindBy(xpath = "//button[@data-test='continue']")
+    @FindBy(id = "continue")
     private WebElement continueButton;
+
+    @FindBy(xpath = "//h3[@data-test = 'error']")
+    private WebElement messageError;
+
+    @FindBy(id = "cancel")
+    private WebElement cancelButton;
 
     CheckoutInformationPage(WebDriver driver) {
         super(driver);
@@ -61,5 +70,22 @@ public class CheckoutInformationPage extends AbstractPage {
             log.info("Clicking continue, caught exception, type: " + e.getClass().getSimpleName());
         }
     }
+
+    public void clickCancel(){
+        log.info("Clicking in...");
+        try {
+            cancelButton.click();
+        } catch (TimeoutException e) {
+            log.info("Timeout clicking cancel: " + e.getClass().getSimpleName());
+        } catch (Exception e) {
+            log.info("Clicking cancel, caught exception, type: " + e.getClass().getSimpleName());
+        }
+    }
+
+    public boolean hasMessageError(){
+        return messageError.isDisplayed();
+    }
+
+
 
 }

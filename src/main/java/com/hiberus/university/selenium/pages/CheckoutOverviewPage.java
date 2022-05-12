@@ -5,6 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class CheckoutOverviewPage extends AbstractPage {
     public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-two.html";
 
@@ -16,6 +20,12 @@ public class CheckoutOverviewPage extends AbstractPage {
 
     @FindBy(css = "div.summary_total_label")
     private WebElement total;
+
+    @FindBy(css = "div.inventory_item_price")
+    private List <WebElement> itemprices;
+
+    @FindBy(id = "cancel")
+    private WebElement cancelButton;
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -37,5 +47,18 @@ public class CheckoutOverviewPage extends AbstractPage {
 
     public String getTotal() {
         return total.getText();
+    }
+
+    public Float getSumPrices(){
+        float sum = 0f;
+
+        for(int i=0;i<itemprices.size();i++){
+            sum += Float.parseFloat(itemprices.get(i).getText().substring(1));
+        }
+        return sum;
+    }
+
+    public void clickCancelButton(){
+        cancelButton.click();
     }
 }

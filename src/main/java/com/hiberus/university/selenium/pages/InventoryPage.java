@@ -25,13 +25,16 @@ public class InventoryPage extends AbstractPage {
     private List <WebElement> removeItemFromCartButtons;
 
     @FindBy(xpath = "//select[@data-test = 'product_sort_container']")
-    private Select filtre;
+    private WebElement filtre;
 
     @FindBy(id = "shopping_cart_container")
     private WebElement shoppingCart;
 
     @FindBy(xpath = "//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']")
     private List <WebElement> itemNames;
+
+    @FindBy(xpath = "//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']")
+    private List <WebElement> itemPrices;
 
     InventoryPage(WebDriver driver) {
         super(driver);
@@ -43,36 +46,20 @@ public class InventoryPage extends AbstractPage {
         return null;
     }
 
-    public void addItemToCartByName(String name){
-        List <String> buttons = new ArrayList<String>();
-        for (int i=0;i<addToCartButtons.size();i++){
-            buttons.add(addToCartButtons.get(i).getText());
-        }
+    private String getButton(String itemName) {
+        return "//div[contains(., '" + itemName + "')]/parent::a/parent::div/following-sibling::div/button";
+    }
 
-        log.info("adding item ...");
-        try {
-            addToCartButtons.get(buttons.indexOf(name)).click();
-        } catch (TimeoutException e) {
-            log.info("Timeout clicking add-button: " + e.getClass().getSimpleName());
-        } catch (Exception e) {
-            log.info("Clicking add-button, caught exception, type: " + e.getClass().getSimpleName());
-        }
+    public void addItemToCartByName(String name){
+        String xpath = getButton(name);
+        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+        itemElem.click();
     }
 
     public void removeItemFromCart(String name){
-        List <String> buttons = new ArrayList<String>();
-        for (int i=0;i<removeItemFromCartButtons.size();i++){
-            buttons.add(removeItemFromCartButtons.get(i).getText());
-        }
-
-        log.info("removing item ...");
-        try {
-            removeItemFromCartButtons.get(removeItemFromCartButtons.indexOf(name)).click();
-        } catch (TimeoutException e) {
-            log.info("Timeout clicking remove-button: " + e.getClass().getSimpleName());
-        } catch (Exception e) {
-            log.info("Clicking remove-button, caught exception, type: " + e.getClass().getSimpleName());
-        }
+        String xpath = getButton(name);
+        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+        itemElem.click();
     }
 
     public void clickOnShoppingCart() {
@@ -80,35 +67,21 @@ public class InventoryPage extends AbstractPage {
     }
 
     public void sortOption(String option) {
-        filtre.selectByValue(option);
+        Select selectFiltre = new Select(filtre);
+        selectFiltre.selectByValue(option);
+    }
+
+    public String getShoppingCartNumber(){
+        return shoppingCart.getText();
     }
 
     // MI SORT
 
-    public void sortByValue(String option){
-        switch (option) {
-            case "az":
-                sortFromAToZ("az");
-                break;
-            case "za":
-                sortFromZToA("za");
-                break;
-            case "lohi":
-                sortFromLoToHi("lohi");
-                break;
-            case "hilo":
-                sortFromHiToLo("hilo");
-                break;
-            default:
-                log.info("Invalid parameter");
-        }
-    }
-
-    private boolean sortFromAToZ(String value){
+    public boolean sortFromAToZ(){
         List <String> defaultNames = new ArrayList<String>();
         List <String> namesAZ = new ArrayList<String>();
 
-        filtre.selectByValue(value);
+        sortOption("az");
 
         List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
 
@@ -119,14 +92,15 @@ public class InventoryPage extends AbstractPage {
 
         Collections.sort(defaultNames);
 
-        return defaultNames == namesAZ;
+        return defaultNames.equals(namesAZ);
     }
 
-    private boolean sortFromZToA(String value){
+    public boolean sortFromZToA(){
         List <String> defaultNames = new ArrayList<String>();
         List <String> namesZA = new ArrayList<String>();
 
-        filtre.selectByValue(value);
+        sortOption("za");
+
         List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
 
         for (int i=0;i<itemNames.size();i++){
@@ -136,41 +110,43 @@ public class InventoryPage extends AbstractPage {
 
         Collections.sort(defaultNames, Collections.reverseOrder());
 
-        return defaultNames == namesZA;
+        return defaultNames.equals(namesZA);
     }
 
-    private boolean sortFromLoToHi(String value){
+    public boolean sortFromLoToHi(){
         List <Double> defaultNames = new ArrayList<Double>();
         List <Double> namesLoHi = new ArrayList<Double>();
 
-        filtre.selectByValue(value);
-        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
+        sortOption("lohi");
+
+        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']"));
 
         for (int i=0;i<itemNames.size();i++){
-            defaultNames.add(Double.parseDouble(itemNames.get(i).getText().substring(1)));
+            defaultNames.add(Double.parseDouble(itemPrices.get(i).getText().substring(1)));
             namesLoHi.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
         }
 
         Collections.sort(defaultNames);
 
-        return defaultNames == namesLoHi;
+        return defaultNames.equals(namesLoHi);
     }
 
-    private boolean sortFromHiToLo(String value){
+    public boolean sortFromHiToLo(){
         List <Double> defaultNames = new ArrayList<Double>();
         List <Double> namesHiLo = new ArrayList<Double>();
 
-        filtre.selectByValue(value);
-        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
+        sortOption("hilo");
+
+        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']"));
 
         for (int i=0;i<itemNames.size();i++){
-            defaultNames.add(Double.parseDouble(itemNames.get(i).getText().substring(1)));
+            defaultNames.add(Double.parseDouble(itemPrices.get(i).getText().substring(1)));
             namesHiLo.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
         }
 
         Collections.sort(defaultNames, Collections.reverseOrder());
 
-        return defaultNames == namesHiLo;
+        return defaultNames.equals(namesHiLo);
     }
 
 

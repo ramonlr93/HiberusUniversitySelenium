@@ -14,8 +14,11 @@ public class CartPage extends AbstractPage {
     @FindBy(xpath = "//button[text()='Open Menu']")
     private WebElement hamburgerElem;
 
-    @FindBy(css = "//button[@data-test='checkout']")
+    @FindBy(id = "checkout")
     private WebElement checkoutButton;
+
+    @FindBy(id = "continue-shopping")
+    private WebElement continueShoppingButton;
 
     @FindBy(css = "#shopping_cart_container > a")
     private WebElement shoppingCartElem;
@@ -37,6 +40,10 @@ public class CartPage extends AbstractPage {
         checkoutButton.click();
     }
 
+    public void continueShoppingButton(){
+        continueShoppingButton.click();
+    }
+
     public int getItemCount() {
         return itemsList.size();
     }
@@ -45,7 +52,7 @@ public class CartPage extends AbstractPage {
         return itemsList;
     }
 
-    public void deleteCarItemtByName(String itemName) {
+    public void deleteCarItemByName(String itemName) {
         String xpathName = itemName.replace(" ", "-").toLowerCase();
         String xpath = String.format("//button[@data-test='remove-" + xpathName + "']");
         WebElement itemElem = getDriver().findElement(By.xpath(xpath));
