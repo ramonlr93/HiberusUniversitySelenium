@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class RealizarLogin {
+public class LoginSuiteTest {
 
     public static WebDriver driver;
 
