@@ -71,8 +71,12 @@ public class InventoryPage extends AbstractPage {
     shoppingCart.click();
   }
 
-  public int getNumberCart() {
-    return Integer.parseInt(shoppingCart.getText());
+  public Integer getNumberCart() {
+    try {
+      return Integer.parseInt(shoppingCart.getText());
+    } catch (Exception e) {
+      return 0;
+    }
   }
 
   public void selectOption(String option) {
