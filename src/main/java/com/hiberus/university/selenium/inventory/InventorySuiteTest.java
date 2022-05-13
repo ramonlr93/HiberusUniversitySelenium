@@ -26,8 +26,7 @@ public class InventorySuiteTest {
 
     @Before
     public void setUp() {
-        //Paso0
-        WebDriverManager.chromedriver().setup(); // Cargar Chromedriver
+       WebDriverManager.chromedriver().setup();
 
         driver= new ChromeDriver();
         driver.manage().deleteAllCookies();
@@ -95,44 +94,12 @@ public class InventorySuiteTest {
 
     @Test
     public void addCartThreeProductTest() {
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
 
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
 
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
 
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
 
-        // Agregar al carrito los 3 productos elegidos al azar
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
 
-        /*
-         * Bucle que almacena en el Array selectValue, el valor de los productos seleccionados al azar
-         */
-        ArrayList<Integer> selectValue = new ArrayList<>();
-        int pos;
-        int count = 0;
-        for(int  i = 0; i < inventoryResults.size(); i++) {
-            pos = (int) Math.floor(Math.random() * inventoryResults.size());
 
-            while (selectValue.contains(pos)) {
-                pos = (int) Math.floor(Math.random() * inventoryResults.size());
-            }
-
-            if(count < 3) {
-                selectValue.add(pos);
-                count++;
-            }
-        }
-
-        // Añadir al carrito los articulos seleccionados al azar
-        for(int i = 0; i < selectValue.size(); i++) {
-            inventoryResults.get(selectValue.get(i)).click();
-        }
 
         //  Validar que, en el icono del carrito, se han agregado 3 productos
         String productsQuantityInCart = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
