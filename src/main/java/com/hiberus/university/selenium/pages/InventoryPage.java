@@ -2,6 +2,7 @@ package com.hiberus.university.selenium.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,9 @@ public class InventoryPage extends AbstractPage{
 
     @FindBy(id = "react-burger-menu-btn")
     private WebElement openMenuButton;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name']")
+    private List<WebElement> inventoryNameList;
 
     InventoryPage (WebDriver driver){
         super(driver);
@@ -60,5 +64,24 @@ public class InventoryPage extends AbstractPage{
     public void selectOption(String option){
         Select selectOption = new Select(selectOptions);
         selectOption.selectByValue(option);
+    }
+
+    public int getInventoryCount(){
+        return inventoryContainerItem.size();
+    }
+
+    public boolean isDisplayedItemByName(String itemName){
+        WebElement itemElem;
+        try{
+            itemElem = getDriver().findElement(By.xpath(getButton(itemName)));
+        }
+        catch (NoSuchElementException e){
+            return false;
+        }
+        return itemElem.isDisplayed();
+    }
+
+    public List<WebElement> getInventoryNameList() {
+        return inventoryNameList;
     }
 }

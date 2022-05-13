@@ -1,5 +1,38 @@
 package com.hiberus.university.selenium.utils;
 
+// Licensed to the Software Freedom Conservancy (SFC) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The SFC licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.base.Throwables;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.Wait;
 
 /**
@@ -170,7 +203,7 @@ public class MyFluentWait<T> implements Wait<T>
      * <li>the current thread is interrupted</li>
      * </ol>
      *
-     * @param isTrue the parameter to pass to the {@link ExpectedCondition}
+     * @param isTrue the parameter to pass
      * @param <V>    The function's expected return type.
      * @return The function's return value if the function returned something different
      * from null or false before the timeout expired.
@@ -259,8 +292,4 @@ public class MyFluentWait<T> implements Wait<T>
     {
         throw new TimeoutException(message, lastException);
     }
-}
-
-
-public class MyFluentWait {
 }

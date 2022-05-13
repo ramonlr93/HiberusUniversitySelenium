@@ -1,7 +1,9 @@
 package com.hiberus.university.selenium.pages;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
+@Getter
 public class PagesFactory {
 
     private static PagesFactory pagesFactories;
