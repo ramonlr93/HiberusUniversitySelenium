@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.inventario;
+package com.hiberus.university.selenium.inventory;
 
 import com.hiberus.university.selenium.pages.CartPage;
 import com.hiberus.university.selenium.pages.InventoryPage;
