@@ -51,4 +51,4 @@ public class CartPage extends AbstractPage {
         WebElement itemElem = getDriver().findElement(By.xpath(xpath));
         itemElem.click();
     }
-}}
+}
