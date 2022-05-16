@@ -3,10 +3,10 @@ Feature: Validate Inventory test suite
 
   Background: Navigate to the home page
     Given the user is on the home page
+    And the user provides the username "<username>" and password "<password>"
 
   @testcase03
   Scenario Outline: validate inventory list size
-    And the user provides the username "<username>" and password "<password>"
     When the user clicks the login button
     Then the user see the inventory list with "<items>" size list
     Examples:
@@ -15,7 +15,6 @@ Feature: Validate Inventory test suite
 
   @testcase04
   Scenario Outline: validate exist "<item>" product in inventory list
-    And the user provides the username "<username>" and password "<password>"
     When the user clicks the login button
     Then the user see the "<item>" in the inventory list
     Examples:
@@ -24,9 +23,8 @@ Feature: Validate Inventory test suite
 
   @testcase05
   Scenario Outline: Add a single item in the shopping cart
-    And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
-    When the user adds a "<item>" by clicking 'Add To Cart'
+    When the user adds a "<item>" by clicking Add To Cart
     And the user clicks on the shopping cart
     Then there should be "1" items in the shopping cart
     Examples:
@@ -36,7 +34,6 @@ Feature: Validate Inventory test suite
   @testcase06
   @TODO
  # Scenario Outline: Delete an item in the shopping cart
- #   And the user provides the username "<username>" and password "<password>"
  #   When the user clicks the login button
  #   And the user adds a "<item>" by clicking 'Add To Cart'
  #   And the user clicks on the shopping cart
@@ -47,9 +44,9 @@ Feature: Validate Inventory test suite
 
   @testcase07
   Scenario Outline: Place multiple items in the shopping cart
-    And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
     When the user selects
+      | product                 |
       | Sauce Labs Backpack     |
       | Sauce Labs Bolt T-Shirt |
       | Sauce Labs Onesie       |
@@ -61,7 +58,6 @@ Feature: Validate Inventory test suite
 
   @testcase08
   Scenario Outline: sort inventory by alphabetical desc order
-    And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
     When the user clicks select "<optionSort>"
     Then the user see the list by alphabetical desc order
@@ -71,7 +67,6 @@ Feature: Validate Inventory test suite
 
   @testcase09
   Scenario Outline: sort inventory by price desc order
-    And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
     When the user clicks select "<optionSort>"
     Then the user see the list by price desc order
