@@ -1,5 +1,8 @@
 package com.hiberus.university.selenium.logout;
 
+import com.hiberus.university.selenium.pages.InventoryPage;
+import com.hiberus.university.selenium.pages.LoginPage;
+import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -30,32 +33,28 @@ public class LogoutTest {
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 10, 500);
+        PagesFactory.start(driver);
+        driver.get(LoginPage.PAGE_URL);
     }
 
     @Test
     public void logoutValidationTest() {
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
+        PagesFactory pf = PagesFactory.getInstance();
 
-        // Escribir el username standard_user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        InventoryPage inventoryPage = pf.getInventoryPage();
 
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
-
-        // Realizar el Logout
-        driver.findElement(By.id("react-burger-menu-btn")).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//nav[@class='bm-item-list']"))));
-        driver.findElement(By.id("logout_sidebar_link")).click();
+        inventoryPage.openMenu();
+        inventoryPage.clickLogout();
 
         // Validar que el logout se ha realizado llevándonos a la página del Login
         String loginPageUrl = driver.getCurrentUrl();
-        Assert.assertEquals("NO SE HA REALIZADO EL LOGOUT, NO ESTAMOS EN LA PAGINA DEL LOGIN ",
-                "https://www.saucedemo.com/", loginPageUrl);
-
+        Assert.assertEquals("Logout is failed",
+          LoginPage.PAGE_URL, loginPageUrl);
     }
 
     @After
