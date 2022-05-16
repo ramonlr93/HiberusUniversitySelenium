@@ -1,4 +1,4 @@
-package com.pages;
+package com.hiberus.university.selenium.pages;
 
 import org.openqa.selenium.WebDriver;
 public class PagesFactory {
