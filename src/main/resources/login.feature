@@ -8,7 +8,7 @@ Feature: Login test suite
     When the user clicks the login button
 
   Scenario Outline: Verify valid user can login
-    Then the user is logged successfully
+    Then the user show error message
 
     Examples:
       | username        | password      |

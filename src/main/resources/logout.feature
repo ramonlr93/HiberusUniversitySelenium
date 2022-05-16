@@ -1,5 +1,5 @@
 @Logout
-Feature: Login test suite
+Feature: Logout test suite
 
   Background:
     Given the user is on the home page
