@@ -4,6 +4,7 @@ package com.hiberus.university.selenium.pages.login;
 import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
+import com.hiberus.university.selenium.pages.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
