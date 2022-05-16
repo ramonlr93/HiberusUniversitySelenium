@@ -77,7 +77,7 @@ public class InventarioSuiteTest {
 
         driver.findElement(By.id("login-button")).click();
 
-        driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+        driver.findElement(By.xpath("//button[@name ='add-to-cart.feature-sauce-labs-bolt-t-shirt']")).click();
 
         String valorCarrito = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']")).getText();
 
@@ -95,7 +95,7 @@ public class InventarioSuiteTest {
 
         driver.findElement(By.id("login-button")).click();
 
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt")).click();
 
         driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
 
@@ -122,11 +122,11 @@ public class InventarioSuiteTest {
 
         driver.findElement(By.id("login-button")).click();
 
-        driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+        driver.findElement(By.xpath("//button[@name ='add-to-cart.feature-sauce-labs-bolt-t-shirt']")).click();
 
-        driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-bike-light']")).click();
+        driver.findElement(By.xpath("//button[@name ='add-to-cart.feature-sauce-labs-bike-light']")).click();
 
-        driver.findElement(By.xpath("//button[@name ='add-to-cart-sauce-labs-backpack']")).click();
+        driver.findElement(By.xpath("//button[@name ='add-to-cart.feature-sauce-labs-backpack']")).click();
 
         String valorCarrito = driver.findElement(By.xpath("//a[@class ='shopping_cart_link']")).getText();
 
@@ -305,8 +305,8 @@ public class InventarioSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito el producto 'Sauce Labs Bolt T-Shirt'
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt"))));
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt")).click();
 
         //  Validar que, en el icono del carrito, se ha agregado 1 producto
         String productsQuantityInCart = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
@@ -333,8 +333,8 @@ public class InventarioSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito el producto 'Sauce Labs Bolt T-Shirt'
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt"))));
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt")).click();
 
         // Eliminar del carrito el producto 'Sauce Labs Bolt T-Shirt'
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt"))));
@@ -366,7 +366,7 @@ public class InventarioSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito los 3 productos elegidos al azar
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart.feature')]"));
 
         /*
          * Bucle que almacena en el Array selectValue, el valor de los productos seleccionados al azar

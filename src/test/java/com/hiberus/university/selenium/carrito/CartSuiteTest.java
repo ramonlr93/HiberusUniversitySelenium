@@ -39,8 +39,8 @@ public class CartSuiteTest {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
-        driver.findElement(By.cssSelector("#add-to-cart-sauce-labs-fleece-jacket")).click();
-        driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+        driver.findElement(By.cssSelector("#add-to-cart.feature-sauce-labs-fleece-jacket")).click();
+        driver.findElement(By.id("add-to-cart.feature-test.allthethings()-t-shirt-(red)")).click();
         driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).click();
         driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
         String numeroCarrito   ;
@@ -70,7 +70,7 @@ public class CartSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito los 3 productos elegidos al azar
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart.feature')]"));
 
         /*
          * Bucle que almacena en el Array selectValue, el valor de los productos seleccionados al azar

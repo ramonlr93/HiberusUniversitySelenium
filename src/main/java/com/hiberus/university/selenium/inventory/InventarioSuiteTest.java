@@ -103,10 +103,10 @@ public class InventarioSuiteTest {
         InventoryPage inventoryPage = pf.getInventoryPage();
         inventoryPage.addItemToCartByName(itemName);
 
-        log.info("the user clicks on the shopping cart");
+        log.info("the user clicks on the shopping cart.feature");
         inventoryPage.clickOnShoppingCart();
 
-        log.info("there should be 1 item in the shopping cart");
+        log.info("there should be 1 item in the shopping cart.feature");
         CartPage cartPage = pf.getCartPage();
         int currentCount = cartPage.getItemCount();
         Assert.assertEquals(1, currentCount);
@@ -127,8 +127,8 @@ public class InventarioSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito el producto 'Sauce Labs Bolt T-Shirt'
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt"))));
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-bolt-t-shirt")).click();
 
         // Eliminar del carrito el producto 'Sauce Labs Bolt T-Shirt'
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt"))));
@@ -160,7 +160,7 @@ public class InventarioSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito los 3 productos elegidos al azar
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart.feature')]"));
 
         /*
          * Bucle que almacena en el Array selectValue, el valor de los productos seleccionados al azar

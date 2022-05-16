@@ -47,9 +47,9 @@ public class CheckoutSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         //Seleccionar 3 productos
-        driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-fleece-jacket")).click();
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-backpack")).click();
 
         //Ir al carrito
         driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).click();
@@ -94,7 +94,7 @@ public class CheckoutSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         //Seleccionar 1 producto
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("add-to-cart.feature-sauce-labs-bike-light")).click();
 
         //Ir al carrito
         driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).click();
@@ -138,7 +138,7 @@ public class CheckoutSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito los 3 productos elegidos al azar
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart.feature')]"));
 
         /*
          * Bucle que almacena en el Array selectValue, el valor de los productos seleccionados al azar
@@ -212,7 +212,7 @@ public class CheckoutSuiteTest {
         driver.findElement(By.id("login-button")).click();
 
         // Agregar al carrito los 3 productos elegidos al azar
-        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        List<WebElement> inventoryResults = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart.feature')]"));
 
         /*
          * Bucle que almacena en el Array selectValue, el valor de los productos seleccionados al azar

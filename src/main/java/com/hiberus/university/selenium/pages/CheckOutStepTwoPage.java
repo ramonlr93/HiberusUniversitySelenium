@@ -14,7 +14,7 @@ import java.util.List;
 public class CheckoutStepTwoPage extends AbstractPage {
     public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-two.html";
 
-    @FindBy(xpath = "//div[@class='cart-item']")
+    @FindBy(xpath = "//div[@class='cart.feature-item']")
     private List<WebElement> checkoutItems;
 
     @FindBy(xpath = "//div[@class='summary_subtotal_label']")
