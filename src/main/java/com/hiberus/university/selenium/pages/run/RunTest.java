@@ -1,11 +1,12 @@
 package com.hiberus.university.selenium.pages.run;
 
 
-import com.hiberus.university.selenium.carrito.CartSuiteTest;
-import com.hiberus.university.selenium.checkout.CheckoutSuiteTest;
-import com.hiberus.university.selenium.inventario.InventarioSuiteTest;
-import com.hiberus.university.selenium.login.LoginSuiteTest;
-import com.hiberus.university.selenium.logout.LogoutTest;
+
+import com.hiberus.university.selenium.pages.carrito.CartSuiteTest;
+import com.hiberus.university.selenium.pages.checkout.CheckoutSuiteTest;
+import com.hiberus.university.selenium.pages.inventario.InventarioSuiteTest;
+import com.hiberus.university.selenium.pages.login.LoginSuiteTest;
+import com.hiberus.university.selenium.pages.logout.LogoutTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
