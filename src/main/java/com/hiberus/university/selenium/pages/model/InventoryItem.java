@@ -1,13 +1,10 @@
-package com.model;
+package com.hiberus.university.selenium.pages.model;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class InventoryItem {
 
     private String name;
@@ -15,9 +12,3 @@ public class InventoryItem {
     private String price;
 
 }
-
-
-
-
-
-

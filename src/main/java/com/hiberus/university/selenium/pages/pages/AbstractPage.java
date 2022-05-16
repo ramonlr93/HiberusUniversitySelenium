@@ -1,10 +1,8 @@
-package com.hiberus.university.selenium.pages;
+package com.hiberus.university.selenium.pages.pages;
 
 
-
+import com.hiberus.university.selenium.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
-
-import com.utils.MyFluentWait;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;

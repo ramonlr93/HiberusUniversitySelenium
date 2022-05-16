@@ -1,4 +1,5 @@
-package com.hiberus.university.selenium.pages;
+package com.hiberus.university.selenium.pages.pages;
+
 
 
 import java.util.List;

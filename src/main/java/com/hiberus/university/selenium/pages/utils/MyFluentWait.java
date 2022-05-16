@@ -1,4 +1,5 @@
-package com.utils;
+package com.hiberus.university.selenium.pages.utils;
+
 
 // Licensed to the Software Freedom Conservancy (SFC) under one
 // or more contributor license agreements.  See the NOTICE file

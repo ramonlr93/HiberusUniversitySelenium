@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.pages;
+package com.hiberus.university.selenium.pages.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
