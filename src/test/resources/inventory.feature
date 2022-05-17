@@ -4,8 +4,8 @@ Feature: Inventory test
 
   Background:
     Given the user is on the home page
-    And the user provides the username "username"
-    And the user provides the password "password"
+    And the user provides the username "<username>"
+    And the user provides the password "<password>"
     When the user clicks the login button
     When the user is logged successfully
 
