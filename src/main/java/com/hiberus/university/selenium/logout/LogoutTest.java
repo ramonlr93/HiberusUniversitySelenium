@@ -1,35 +1,33 @@
-package com.hiberus.university.selenium.login;
+package com.hiberus.university.selenium.logout;
 
 import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Unit test for simple App.
- */
-public class LoginSuiteTest {
+public class LogoutTest {
+
     public static WebDriver driver;
 
     public static WebDriverWait wait;
 
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
+        //Paso0
+        WebDriverManager.chromedriver().setup(); // Cargar Chromedriver
 
-        driver = new ChromeDriver();
+        driver= new ChromeDriver();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -40,34 +38,27 @@ public class LoginSuiteTest {
     }
 
     @Test
-    public void loginTest() {
+    public void logoutValidationTest() {
         PagesFactory pf = PagesFactory.getInstance();
+
         LoginPage loginPage = pf.getLoginPage();
         loginPage.enterUsername("standard_user");
         loginPage.enterPassword("secret_sauce");
         loginPage.clickLogin();
+
         InventoryPage inventoryPage = pf.getInventoryPage();
-        List<WebElement> inventoryList = inventoryPage.getItemList();
-        inventoryList.get(0).getText();
-        inventoryList.get(0).findElement(By.xpath(".//button")).click();
-        Assert.assertEquals("login failed",
-          InventoryPage.PAGE_URL, driver.getCurrentUrl());
-    }
 
-    @Test
-    public void loginIncorrectTest() {
-        PagesFactory pf = PagesFactory.getInstance();
-        PagesFactory.getInstance().getLoginPage().enterUsername("bad_standard_user");
-        pf.getLoginPage().enterPassword("secret_sauce");
-        pf.getLoginPage().clickLogin();
+        inventoryPage.openMenu();
+        inventoryPage.clickLogout();
 
-        Assert.assertTrue("login incorrect ",
-          pf.getLoginPage().hasUsernamePasswordError());
+        // Validar que el logout se ha realizado llevándonos a la página del Login
+        String loginPageUrl = driver.getCurrentUrl();
+        Assert.assertEquals("Logout is failed",
+          LoginPage.PAGE_URL, loginPageUrl);
     }
 
     @After
     public void tearDown() {
         driver.close();
     }
-
 }

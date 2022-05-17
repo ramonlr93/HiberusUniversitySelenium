@@ -11,16 +11,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 @Slf4j
-abstract class AbstractPage {
+public abstract class BasePage {
 
   protected Wait<WebDriver> wait;
   private final WebDriver driver;
 
-  AbstractPage(WebDriver driver) {
+  @FindBy(id = "react-burger-menu-btn")
+  private WebElement menuButton;
+
+  @FindBy(id = "logout_sidebar_link")
+  private WebElement logoutButton;
+
+  BasePage(WebDriver driver) {
     this.driver = driver;
     wait = new MyFluentWait<>(driver)
       .withTimeout(60, ChronoUnit.SECONDS)
@@ -80,5 +87,13 @@ abstract class AbstractPage {
         log.error(e.getMessage());
       }
     }
+  }
+
+  public void openMenu() {
+    menuButton.click();
+  }
+
+  public void clickLogout() {
+    logoutButton.click();
   }
 }

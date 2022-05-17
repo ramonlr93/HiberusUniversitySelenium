@@ -1,58 +1,54 @@
 package com.hiberus.university.selenium.pages;
 
+import java.util.List;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
+public class CartPage extends BasePage {
+  public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
 
-public class CartPage extends AbstractPage {
+  @FindBy(xpath = "//button[text()='Open Menu']")
+  private WebElement hamburgerElem;
 
-    public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
+  @FindBy(css = "//button[@data-test='checkout']")
+  private WebElement checkoutButton;
 
-    @FindBy(id = "checkout")
-    private WebElement checkoutButton;
+  @FindBy(css = "#shopping_cart_container > a")
+  private WebElement shoppingCartElem;
 
-    @FindBy(xpath = "//button[@class='btn btn_secondary btn_small cart_button']")
-    private List<WebElement> removeButtonList;
+  @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
+  private List<WebElement> itemsList;
 
-    @FindBy(id = "continue-shopping")
-    private WebElement continueShoppingButton;
+  public CartPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
 
-    @FindBy(id = "react-burger-menu-btn")
-    private WebElement openMenuButton;
+  @Override
+  public WebElement getPageLoadedTestElement() {
+    return checkoutButton;
+  }
 
-    @FindBy(xpath = "//div[@class='cart_list']")
-    private List<WebElement> itemList;
+  public void clickCheckout() {
+    checkoutButton.click();
+  }
 
+  public int getItemCount() {
+    return itemsList.size();
+  }
 
-    CartPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+  public List<WebElement> getItemsList() {
+    return itemsList;
+  }
 
-    @Override
-    public WebElement getPageLoadedTestElement() {
-        return null;
-    }
-
-    public void clickCheckout() {
-        checkoutButton.click();
-    }
-
-    public int getItemCount() {
-        return itemList.size();
-
-    }
-
-    public void clickContinueShopping() {
-        continueShoppingButton.click();
-    }
-
-    public void removeItems() {
-        for(WebElement x: removeButtonList){
-            x.click();
-        }
-    }
+  public void deleteCarItemtByName(String itemName) {
+    String xpathName = itemName.replace(" ", "-").toLowerCase();
+    String xpath = String.format("//button[@data-test='remove-" + xpathName + "']");
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    itemElem.click();
+  }
 }

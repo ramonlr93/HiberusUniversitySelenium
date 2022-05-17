@@ -1,6 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,108 +8,61 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
+public class InventoryPage extends BasePage {
+  public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
 
-@Slf4j
-public class InventoryPage extends AbstractPage {
+  @FindBy(id = "shopping_cart_container")
+  private WebElement shoppingCart;
 
-    public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
+  @FindBy(xpath = "//div[@class='inventory_item']")
+  private List<WebElement> inventoryContainer;
 
-    @FindBy(xpath = "//div[@class='inventory-item']")
-    private List<WebElement> itemList;
+  @FindBy(xpath = "//select[@data-test='product_sort_container']")
+  private WebElement selectOptions;
 
-    @FindBy(id = "react-burger-menu-btn")
-    private WebElement openMenuButton;
+  public InventoryPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
 
-    @FindBy(id = "shopping_cart_container")
-    private WebElement shoppingCartElement;
+  @FindBy(xpath = "//div[@class='inventory_item_name']")
+  private List<WebElement> inventoryNameList;
 
-    @FindBy(id = "inventory_container")
-    private WebElement inventoryContainerElement;
+  @Override
+  public WebElement getPageLoadedTestElement() {
+    return selectOptions;
+  }
 
-    @FindBy(xpath = "//select[@class='product_sort_container']")
-    private WebElement errorMessage;
+  public void addItemToCartByName(String itemName) {
+    String xpath = getButton(itemName);
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    itemElem.click();
+  }
 
-    @FindBy(xpath = "//button[contains(@id, 'add-to-cart')]")
-    private WebElement addToCartButton;
+  public void removeItemToCartByName(String itemName) {
+    String xpath = getButton(itemName);
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    itemElem.click();
+  }
 
-    @FindBy(xpath = "//button[contains(contains(@id, 'remove')]")
-    private WebElement removeToCartButton;
+  private String getButton(String itemName) {
+    return "//div[contains(., '" + itemName + "')]/parent::a/parent::div/following-sibling::div/button";
+  }
 
-    @FindBy(xpath = "//select[@class='product_sort_container']/option::*")
-    private Select productSortContainerOption;
+  public void clickOnShoppingCart() {
+    shoppingCart.click();
+  }
 
-    @FindBy(xpath = "//select[@class='product_sort_container']")
-    private WebElement selectFilter;
+  public void selectOption(String option) {
+    Select selectOption = new Select(selectOptions);
+    selectOption.selectByValue(option);
+  }
 
-    InventoryPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+  public List<WebElement> getItemList() {
+    return inventoryContainer;
+  }
 
-    @Override
-    public WebElement getPageLoadedTestElement() {
-        return null;
-    }
-
-    public void clickOnShoppingCart() {
-        shoppingCartElement.click();
-    }
-
-    /*
-    public void addItemToCartByName01(String itemName) {
-        String xpath =
-                String.format("//div[contains(., '%s')]/parent::a/parent::div/following-sibling::div/button",
-                        itemName);
-        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-        itemElem.click();
-    }
-
-    public void removeItemByName01(String itemName) {
-        String xpath =
-                String.format("//div[contains(., '%s')]/parent::a/parent::div/following-sibling::div/button",
-                        itemName);
-        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-        itemElem.click();
-    }
-    */
-
-    public void addItemToCartByName(String itemName) {
-        String xpath = getButton(itemName);
-        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-        itemElem.click();
-    }
-
-    public void removeItemToCartByName(String itemName) {
-        String xpath = getButton(itemName);
-        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-        itemElem.click();
-    }
-
-    private String getButton(String itemName) {
-        return "//div[contains(., '" + itemName + "')]/parent::a/parent::div/following-sibling::div/button";
-    }
-
-    public void sortInventoryByNameDesc() {
-        productSortContainerOption.selectByValue("az");
-    }
-
-    public void sortInventoryByNameAsc() {
-        productSortContainerOption.selectByValue("za");
-    }
-
-    public void sortInventoryByPriceAsc() {
-        productSortContainerOption.selectByValue("hilo");
-    }
-
-    public void sortInventoryByPriceDesc() {
-        productSortContainerOption.selectByValue("lohi");
-
-    }
-
-    public void sortInventoryByValue(String value) {
-        Select selectOptionOrder = new Select(selectFilter);
-        selectOptionOrder.selectByValue(value);
-    }
-
+  public List<WebElement> getInventoryNameList() {
+    return inventoryNameList;
+  }
 }
