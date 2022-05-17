@@ -30,23 +30,5 @@ import java.util.concurrent.TimeUnit;
 )
 public class CucumberRunnerTest {
 
-        public static WebDriver driver;
 
-        @BeforeClass
-        public static void setUp() {
-                WebDriverManager.chromedriver().setup();
-
-                driver = new ChromeDriver();
-                driver.manage().deleteAllCookies();
-                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-                driver.manage().window().maximize();
-
-                PagesFactory.start(driver);
-
-        }
-
-        @AfterClass
-        public static void tearDown() {
-                driver.close();
-        }
 }
