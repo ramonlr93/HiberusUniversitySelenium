@@ -2,7 +2,6 @@ package com.hiberus.university.selenium.pages.pages;
 
 
 import com.hiberus.university.selenium.pages.utils.MyFluentWait;
-import com.hiberus.university.selenium.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
@@ -29,6 +28,7 @@ abstract class AbstractPage {
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
+
     public abstract WebElement getPageLoadedTestElement();
 
     protected WebDriver getDriver() {
