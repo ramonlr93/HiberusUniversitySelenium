@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.inventory;
+package com.hiberus.university.selenium.testCasesRuben.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class AResultsValidate {
+public class DeleteItemFromShoppingCar {
+
     public static WebDriver driver;
 
     public static void main(String[] args) throws InterruptedException {
@@ -23,7 +23,7 @@ public class AResultsValidate {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        //Paso 1.
+        // Paso 1.
         driver.get("https://www.saucedemo.com/");
         Thread.sleep(2000);
 
@@ -38,21 +38,26 @@ public class AResultsValidate {
 
         //Paso 4.
         driver.findElement(By.xpath("//input[@id='login-button']")).click();
-
-        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-
-
         Thread.sleep(2000);
 
         //Paso 5.
-        List<WebElement> elementNameList =driver.findElements(By.xpath("//div[@class='inventory_item']"));
-        if (elementNameList.size()==6) {
-            System.out.println("Product Number Correct");
+        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
+        driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
+        Thread.sleep(2000);
+
+        //Paso 6.
+        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
+        Thread.sleep(2000);
+
+        WebElement shoppingCarDeleted= driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
+        if (shoppingCarDeleted.isDisplayed()){
+            System.out.println("Product has been Remove");
         }
         else {
-            System.out.println("Product Number Correct");
+            System.out.println("Product has been Not Remove");
         }
+        Thread.sleep(2000);
+
         driver.close();
     }
-
 }

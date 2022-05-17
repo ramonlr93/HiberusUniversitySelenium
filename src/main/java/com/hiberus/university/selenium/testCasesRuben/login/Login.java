@@ -1,15 +1,14 @@
-package com.hiberus.university.selenium.inventory;
+package com.hiberus.university.selenium.testCasesRuben.login;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class DeleteItemFromShoppingCar {
+public class Login {
 
     public static WebDriver driver;
 
@@ -23,41 +22,40 @@ public class DeleteItemFromShoppingCar {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1.
-        driver.get("https://www.saucedemo.com/");
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
-        //Paso 2 y 3.
+        // Paso 1. Ir a la URl https://www.saucedemo.com
+        driver.get("https://www.saucedemo.com/");
+        Thread.sleep(5000);
+
+        //Paso 2 y 3. Enter username standard_user and password secret_sauce
         String username = "standard_user";
         String password = "secret_sauce";
 
         //driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
-        Thread.sleep(2000);
 
-        //Paso 4.
+        Thread.sleep(5000);
+
+        //Paso 4. Push Login Button.
         driver.findElement(By.xpath("//input[@id='login-button']")).click();
-        Thread.sleep(2000);
 
-        //Paso 5.
-        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
-        driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
-        //Paso 6.
-        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
-        Thread.sleep(2000);
-
-        WebElement shoppingCarDeleted= driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
-        if (shoppingCarDeleted.isDisplayed()){
-            System.out.println("Product has been Remove");
+        //Paso 5. Validate correct URL
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl.equals("https://www.saucedemo.com/inventory.html")){
+            System.out.println("The URL is correct");
         }
         else {
-            System.out.println("Product has been Not Remove");
+            System.out.println("The URL is not correct");
         }
-        Thread.sleep(2000);
 
-        driver.close();
+        Thread.sleep(5000);
+
+        driver.quit();
+
     }
 }
+

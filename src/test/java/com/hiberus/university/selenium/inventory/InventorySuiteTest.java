@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.Inventory;
+package com.hiberus.university.selenium.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -14,58 +14,53 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class InventorySuiteTest {
-        public static WebDriver driver;
 
-        public static WebDriverWait wait;
+    public static WebDriver driver;
 
-        @Before
-        public void setupClass() {
-            String userProfile = "C:\\Users\\Dayana Dumas Leon\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("user-data-dir=" + userProfile);
+    public static WebDriverWait wait;
 
-            driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
+    @Before
+    public void setupClass() {
+        String userProfile = "C:\\Users\\Dayana Dumas Leon\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\";
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("user-data-dir=" + userProfile);
 
-            wait = new WebDriverWait(driver,10,500);
-        }
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
 
-        @Test
-        public void resultValidate() {
-            driver.get("https://www.saucedemo.com/");
+        wait = new WebDriverWait(driver, 10, 500);
+    }
 
-            String username = "standard_user";
-            String password = "secret_sauce";
-
-            //driver.findElement(By.id("user-name")).sendKeys(username);
-            driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
-            driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
-            driver.findElement(By.xpath("//input[@id='login-button']")).submit();
-
-            wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='inventory_item']"))));
-
-            int list = driver.findElements(By.xpath("//div[@class='inventory_item']")).size();
-
-            Assert.assertEquals("Error: Items numbers is 6", 6, list);
-        }
-        @Test
-        public void validateProductExits() {
+    @Test
+    public void resultValidate() {
         driver.get("https://www.saucedemo.com/");
 
-        String username = "standard_user";
-        String password = "secret_sauce";
+        //driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
+        driver.findElement(By.xpath("//input[@id='login-button']")).submit();
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='inventory_item']"))));
+
+        int list = driver.findElements(By.xpath("//div[@class='inventory_item']")).size();
+
+        Assert.assertEquals("Error: Items numbers is 6", 6, list);
+    }
+
+    @Test
+    public void validateProductExits() {
+        driver.get("https://www.saucedemo.com/");
 
         //driver.findElement(By.id("user-name")).sendKeys(username);
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("secret_sauce");
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
 
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='inventory_item']"))));
@@ -74,10 +69,11 @@ public class InventorySuiteTest {
 
         boolean itemShow = driver.findElement(By.xpath("//div[text()='Sauce Labs Bolt T-Shirt']")).isDisplayed();
 
-        Assert.assertTrue("Product doesn't exist", itemShow );
+        Assert.assertTrue("Product doesn't exist", itemShow);
     }
-        @Test
-        public void addProductToCar() {
+
+    @Test
+    public void addProductToCar() {
         driver.get("https://www.saucedemo.com/");
 
         String username = "standard_user";
@@ -94,6 +90,7 @@ public class InventorySuiteTest {
         String productNumber = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
         Assert.assertEquals("Error: Is not Validate", "1", productNumber);
     }
+
     @Test
     public void deleteProductFromCar() {
         driver.get("https://www.saucedemo.com/");
@@ -113,9 +110,10 @@ public class InventorySuiteTest {
 
         String productNumber = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
         Assert.assertEquals("Error: Is not Validate", "", productNumber);
+    }
 
-    }@Test
-    public void add3ProductToCar() {
+    @Test
+    public void add3ProductToCart() {
         driver.get("https://www.saucedemo.com/");
 
         String username = "standard_user";
@@ -128,14 +126,26 @@ public class InventorySuiteTest {
 
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='inventory_item']"))));
 
-        List<WebElement> inventoryItems = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        List<WebElement> inventoryItemsContainer = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
 
+        List<WebElement> randomElementsList = getRandomElements(3, inventoryItemsContainer);
 
-
+        for (WebElement element : randomElementsList) {
+            element.click();
+        }
 
         String productNumber = driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).getText();
         Assert.assertEquals("Error: Is not Validate", "3", productNumber);
     }
+
+    private List<WebElement> getRandomElements(int countRandomElement, List<WebElement> inventoryItemsContainer) {
+        List<WebElement> resultsList = new ArrayList<>();
+
+        return resultsList;
+    }
+
+    //private List<WebElement> getRandomElements(int countRandomElements, List<WebElement> collection){
+
     @Test
     public void orderZToA() {
         driver.get("https://www.saucedemo.com/");
@@ -156,7 +166,8 @@ public class InventorySuiteTest {
 
         // Save List Products Names
         for (WebElement webElement : inventoryResultsAZ) {
-            nameInventoryResultsAZ.add(webElement.getText());}
+            nameInventoryResultsAZ.add(webElement.getText());
+        }
 
         // Create object of the Select class
         Select selectOption = new Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
@@ -168,7 +179,8 @@ public class InventorySuiteTest {
 
         // Save List Products Names
         for (WebElement webElement : inventoryResultsZA) {
-            nameInventoryResultsZA.add(webElement.getText());}
+            nameInventoryResultsZA.add(webElement.getText());
+        }
 
         //Reverse list
         Collections.reverse(nameInventoryResultsAZ);
@@ -176,6 +188,7 @@ public class InventorySuiteTest {
         //Validate select filter
         Assert.assertEquals("Name Filter 'Name (Z to A)', Failed", nameInventoryResultsAZ, nameInventoryResultsZA);
     }
+
     @Test
     public void orderLowToHigh() {
         driver.get("https://www.saucedemo.com/");
@@ -216,11 +229,13 @@ public class InventorySuiteTest {
         Collections.reverse(nameInventoryResultsLowToHigh);
 
         //Validate select filter
-        Assert.assertEquals("Name Filter 'Name ( Low To High)', Failed", nameInventoryResultsLowToHigh,nameInventoryResultsHighToLow);
+        Assert.assertEquals("Name Filter 'Name ( Low To High)', Failed", nameInventoryResultsLowToHigh, nameInventoryResultsHighToLow);
     }
+
     @After
     public void tearDom() {
-            // driver.quit();
-        }
+        driver.quit();
     }
+}
+
 

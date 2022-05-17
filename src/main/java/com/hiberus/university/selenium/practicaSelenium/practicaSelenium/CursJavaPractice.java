@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.practica2;
+package com.hiberus.university.selenium.practicaSelenium.practicaSelenium;
 
 public class CursJavaPractice {
 

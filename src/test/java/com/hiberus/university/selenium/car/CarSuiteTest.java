@@ -2,6 +2,7 @@ package com.hiberus.university.selenium.car;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -33,7 +34,7 @@ public class CarSuiteTest {
     }
 
     @Test
-    public void deleteCarProductTest() {
+    public void deleteProductFromCart() {
         driver.get("https://www.saucedemo.com/");
 
         String username = "standard_user";
@@ -44,10 +45,29 @@ public class CarSuiteTest {
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
         driver.findElement(By.xpath("//input[@id='login-button']")).submit();
 
+        //Agregar al carrito 2 productos elegidos al azar.
+
+
+
+
+
+        //Ir al carrito.
+        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+
+        //Eliminar uno de los productos
+
+        driver.findElement(By.xpath("//button[@id='checkout']")).click();
+
+
+        //Validar que el producto eliminado, no aparece en el carrito.
+        //Assert.assertEquals();
+
+
     }
 
     @After
     public void tearDom() {
         driver.quit();
     }
+
 }

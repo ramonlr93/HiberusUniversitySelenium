@@ -1,14 +1,15 @@
-package com.hiberus.university.selenium.login;
+package com.hiberus.university.selenium.testCasesRuben.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Login {
+public class ButtonDeleteVisibility {
 
     public static WebDriver driver;
 
@@ -22,42 +23,38 @@ public class Login {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        Thread.sleep(5000);
-
-        // Paso 1. Ir a la URl https://www.saucedemo.com
+        // Paso 1.
         driver.get("https://www.saucedemo.com/");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
-        //Paso 2 y 3. Enter username standard_user and password secret_sauce
+        //Paso 2 y 3.
         String username = "standard_user";
         String password = "secret_sauce";
-
-        Thread.sleep(5000);
 
         //driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+        Thread.sleep(2000);
 
-        Thread.sleep(5000);
-
-        //Paso 4. Push Login Button.
+        //Paso 4.
         driver.findElement(By.xpath("//input[@id='login-button']")).click();
+        Thread.sleep(2000);
 
-        Thread.sleep(5000);
+        //Paso 5.
+        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
+        driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
+        Thread.sleep(2000);
 
-        //Paso 5. Validate correct URL
-        String currentUrl = driver.getCurrentUrl();
-        if (currentUrl.equals("https://www.saucedemo.com/inventory.html")){
-            System.out.println("The URL is correct");
+        //Paso 6.
+        WebElement buttonRemove = driver.findElement(By.id("remove-sauce-labs-onesie"));
+        if (buttonRemove.isDisplayed()){
+            System.out.println("Remove Button is Visible");
         }
         else {
-            System.out.println("The URL is not correct");
+            System.out.println("Remove Button is not Visible");
         }
+        Thread.sleep(2000);
 
-        Thread.sleep(5000);
-
-        //driver.quit();
-
+        driver.close();
     }
 }
-

@@ -32,8 +32,6 @@ public class LoginSuiteTest {
 
         @Test
         public void testLogin() {
-            WebDriverWait wait = new WebDriverWait(driver,10,500);
-
             driver.get("https://www.saucedemo.com/");
 
             String username = "standard_user";
@@ -44,8 +42,6 @@ public class LoginSuiteTest {
             driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
 
             driver.findElement(By.xpath("//input[@id='login-button']")).click();
-
-            wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//h3[@data-test='error']"))));
 
             String url = driver.getCurrentUrl();
 

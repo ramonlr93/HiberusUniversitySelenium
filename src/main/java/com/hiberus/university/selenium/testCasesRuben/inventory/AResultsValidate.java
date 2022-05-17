@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.login;
+package com.hiberus.university.selenium.testCasesRuben.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class LoginValidate {
-
+public class AResultsValidate {
     public static WebDriver driver;
 
     public static void main(String[] args) throws InterruptedException {
@@ -23,33 +23,36 @@ public class LoginValidate {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        // Paso 1. Open Website “https://www.saucedemo.com/” ->es
+        //Paso 1.
         driver.get("https://www.saucedemo.com/");
         Thread.sleep(2000);
 
-        // Paso 2. Enter username standard_user ->
-        WebElement userBox = driver.findElement(By.id("user-name"));
-        userBox.sendKeys("standard_use");
+        //Paso 2 y 3.
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        //driver.findElement(By.id("user-name")).sendKeys(username);
+        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
         Thread.sleep(2000);
 
-        // Paso 3. Enter password secret_sauce ->
-        WebElement passBox = driver.findElement(By.id("password"));
-        passBox.sendKeys("secret_sauce");
+        //Paso 4.
+        driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+
+
         Thread.sleep(2000);
 
-        // Paso 4. Push login Button ->
-        WebElement clickButton = driver.findElement(By.id("login-button"));
-        clickButton.click();
-        Thread.sleep(2000);
-
-        // Paso 5. Validate error Message
-        WebElement error = driver.findElement(By.xpath("//div[@class='error-message-container error']"));
-        if(error.isDisplayed()){
-            System.out.println("Error is Message is showed");
+        //Paso 5.
+        List<WebElement> elementNameList =driver.findElements(By.xpath("//div[@class='inventory_item']"));
+        if (elementNameList.size()==6) {
+            System.out.println("Product Number Correct");
         }
         else {
-            System.out.println("Error is Message is not showed");
+            System.out.println("Product Number Correct");
         }
         driver.close();
     }
+
 }

@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.inventory;
+package com.hiberus.university.selenium.testCasesRuben.inventory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
