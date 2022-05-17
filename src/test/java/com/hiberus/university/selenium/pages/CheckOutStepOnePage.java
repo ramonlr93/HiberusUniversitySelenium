@@ -69,7 +69,7 @@ public class CheckoutStepOnePage extends AbstractPage {
 }*/
 
 // SOLUCIÓN JONATAN
-public class CheckOutStepOnePage extends AbstractPage {
+public class CheckOutStepOnePage extends BasePage {
     public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-one.html";
 
     @FindBy(xpath = "//input[@data-test='firstName']")

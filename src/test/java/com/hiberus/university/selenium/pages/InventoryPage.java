@@ -8,11 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class InventoryPage extends AbstractPage {
+public class InventoryPage extends BasePage {
   public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
-
-  @FindBy(xpath = "//button[text()='Open Menu']")
-  private WebElement hamburgerElem;
 
   @FindBy(id = "shopping_cart_container")
   private WebElement shoppingCart;

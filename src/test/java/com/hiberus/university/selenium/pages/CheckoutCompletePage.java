@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Slf4j
-public class CheckoutCompletePage extends AbstractPage {
+public class CheckoutCompletePage extends BasePage {
     public static final String PAGE_URL = "https://www.saucedemo.com/checkout-complete.html";
 
     @FindBy(id = "back-to-products")

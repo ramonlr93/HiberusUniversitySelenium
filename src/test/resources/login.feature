@@ -15,7 +15,7 @@ Feature: Login test suite
       | standard_user   | secret_sauce  |
 
   Scenario Outline: Verify valid user can login
-    Then the user should be show an invalid message
+    Then the user should be shown an invalid message
 
     Examples:
       | username   | password      |

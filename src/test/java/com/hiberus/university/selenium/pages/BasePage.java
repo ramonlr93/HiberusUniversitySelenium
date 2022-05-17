@@ -15,12 +15,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 @Slf4j
-abstract class AbstractPage {
+abstract class BasePage {
 
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
 
-    AbstractPage(WebDriver driver) {
+    BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)
                 .withTimeout(60, ChronoUnit.SECONDS)
