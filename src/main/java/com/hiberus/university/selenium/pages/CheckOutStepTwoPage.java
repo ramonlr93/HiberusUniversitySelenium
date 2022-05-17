@@ -42,4 +42,8 @@ public class CheckOutStepTwoPage extends AbstractPage{
         return total.getText();
     }
 
+    public void clickFinish(){
+        finishButton.click();
+    }
+
 }

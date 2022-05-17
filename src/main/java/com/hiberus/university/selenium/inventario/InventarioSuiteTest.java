@@ -130,24 +130,18 @@ public class InventarioSuiteTest {
     @Test
     public void testAnadirTres() throws InterruptedException
     {
-        driver.get("https://www.saucedemo.com");
+        PagesFactory pf = PagesFactory.getInstance();
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        InventoryPage inventoryPage = pf.getInventoryPage();
 
-        driver.findElement(By.id("login-button")).click();
+        int numItemsCart = inventoryPage.getThreeRandomItems();
 
-        List<WebElement> lista = driver.findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
-        Collections.shuffle(lista);
-
-        for (int i=0; i<3; i++){
-            lista.get(i).click();
-        }
-
-        boolean isProductAdded = driver.findElement(By.xpath("//span[@class='shopping_cart_badge' and text() = '3']")).isDisplayed();
-
-        Assert.assertTrue("PRUEBA FALLIDA, NO SE HAN ANADIDO LOS 3 PRODUCTOS", isProductAdded);
+        Assert.assertEquals("PRUEBA FALLIDA, NO SE HAN ANADIDO LOS 3 PRODUCTOS", 3, numItemsCart);
     }
 
     @Test
@@ -207,33 +201,27 @@ public class InventarioSuiteTest {
     @Test
     public void testOrdenarPrecioMayorMenor() throws InterruptedException
     {
-        List preciohilo = new ArrayList();
-        List preciolohi = new ArrayList();
+        PagesFactory pf = PagesFactory.getInstance();
 
-        driver.get("https://www.saucedemo.com");
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.selectOption("hilo");
 
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        List<WebElement> inventoryList = inventoryPage.getInventoryNameList();
+        List<String> nameInventoryResult = new ArrayList<>();
+        List<String> nameInventoryResultSorted = new ArrayList<>();
 
-        driver.findElement(By.id("login-button")).click();
-
-        Select filtro1 = new Select(driver.findElement(By.xpath("//select[@class=('product_sort_container')]")));
-        filtro1.selectByValue("lohi");
-        List<WebElement> menorMayor1 = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
-
-        Select filtro2 = new Select(driver.findElement(By.xpath("//select[@class=('product_sort_container')]")));
-        filtro2.selectByValue("hilo");
-        List<WebElement> menorMayor2 = driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
-
-
-        for(int i=0; i<menorMayor1.size(); i++){
-            preciohilo.add(Double.parseDouble(menorMayor2.get(i).getText().substring(1, 5)));
-            preciolohi.add(Double.parseDouble(menorMayor1.get(i).getText().substring(1, 5)));
+        for (WebElement webElement : inventoryList) {
+            nameInventoryResult.add(webElement.getText());
+            nameInventoryResultSorted.add(webElement.getText());
         }
 
-        Collections.sort(preciolohi, Collections.reverseOrder());
-        Assert.assertEquals("FALLIDO, NO HA ORDENADO DE MAYOR A MENOR", preciohilo, preciolohi);
+        Collections.sort(nameInventoryResultSorted);
+        Assert.assertEquals("list is not sorted", nameInventoryResultSorted, nameInventoryResult);
 
     }
 

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -19,6 +20,12 @@ abstract class AbstractPage {
 
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
+
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement openMenuButton;
+
+    @FindBy(id = "logout_sidebar_link")
+    private WebElement logoutButton;
 
     AbstractPage(WebDriver driver) {
         this.driver = driver;

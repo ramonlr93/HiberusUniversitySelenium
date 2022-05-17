@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -23,9 +24,6 @@ public class InventoryPage extends AbstractPage{
 
     @FindBy(xpath = "//a[@class = 'shopping_cart_link']")
     private WebElement shoppingCartButton;
-
-    @FindBy(id = "react-burger-menu-btn")
-    private WebElement openMenuButton;
 
     @FindBy(xpath = "//div[@class='inventory_item_name']")
     private List<WebElement> inventoryNameList;
@@ -83,5 +81,17 @@ public class InventoryPage extends AbstractPage{
 
     public List<WebElement> getInventoryNameList() {
         return inventoryNameList;
+    }
+
+    public int getThreeRandomItems(){
+        int numeroItemsCarrito = 0;
+        List<WebElement> lista = getDriver().findElements(By.xpath("//button[contains(@id, 'add-to-cart')]"));
+        Collections.shuffle(lista);
+
+        for (int i=0; i<3; i++){
+            lista.get(i).click();
+            numeroItemsCarrito++;
+        }
+        return numeroItemsCarrito;
     }
 }
