@@ -5,46 +5,85 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
-public class InventoryPage extends AbstractPage{
+import static java.lang.Integer.parseInt;
 
-    public static final String PAGE_URL = "https://www.saucedemo.com/inventory";
+public class InventoryPage extends AbstractPage {
+  public static final String PAGE_URL = "https://www.saucedemo.com/inventory.html";
 
-    @FindBy(xpath = "//div[@class='inventory_item_description']") //
-    private List<WebElement> inventoryItems;
+  @FindBy(xpath = "//button[text()='Open Menu']")
+  private WebElement hamburgerElem;
 
-    @FindBy (xpath = "//select[@class='product_sort_container']")
-    private WebElement sortProductButton; // Podría ser un List ***
+  @FindBy(id = "shopping_cart_container")
+  private WebElement shoppingCart;
 
+  @FindBy(css = "#inventory_list")
+  private WebElement inventoryContainer;
 
-    InventoryPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
+  @FindBy(xpath = "//select[@data-test='product_sort_container']")
+  private WebElement selectOptions;
+
+  @FindBy(xpath = "//div[@class='inventory_item_name']")
+  private List<WebElement> itemList;
+
+  public InventoryPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
+
+  @Override
+  public WebElement getPageLoadedTestElement() {
+    return inventoryContainer;
+  }
+
+  public void addItemToCartByName(String itemName) {
+    String xpath = getButton(itemName);
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    itemElem.click();
+  }
+
+  public void removeItemToCartByName(String itemName) {
+    String xpath = getButton(itemName);
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    itemElem.click();
+  }
+
+  private String getButton(String itemName) {
+    return "//div[contains(., '" + itemName + "')]/parent::a/parent::div/following-sibling::div/button";
+  }
+
+  public void clickOnShoppingCart() {
+    shoppingCart.click();
+  }
+
+  public void selectOption(String option) {
+    Select selectOption = new Select(selectOptions);
+    selectOption.selectByValue(option);
+  }
+
+  public int getInventoryItems () {
+    return itemList.size();
+  }
+
+  public boolean nameInventoryItem (String itemName) {
+    boolean result = false;
+    for (WebElement e: itemList) {
+      if (itemName.equals(e.getText())) {
+        result = true;
+      }
     }
+    return result;
+  }
 
-    @Override
-    public WebElement getPageLoadedTestElement() {
-        return sortProductButton;
+  public int getCartNumberOfItems () {
+    try {
+      return parseInt(shoppingCart.getText());
+    } catch (Exception e){
+      return 0;
     }
-
-    public void clickAddToCartButton (String itemName){
-        for (WebElement elm:inventoryItems){
-            elm.findElement(By.xpath("//button[contains(@id='add-"+itemName+"')]")).click();
-        }
-    }
-
-    public void clickRemoveButton (String itemName){
-        for (WebElement elm:inventoryItems){
-            elm.findElement(By.xpath("//button[contains(@id='remove-"+itemName+"')]")).click();
-        }
-    }
-
-
-    public void sortItemsBy(String order){
-        sortProductButton.click();
-        sortProductButton.findElement(By.xpath("//option[@value='"+order+"'])"));
-    }
-
+  }
 }

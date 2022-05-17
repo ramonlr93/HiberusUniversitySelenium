@@ -29,7 +29,11 @@ public class RealizarLogin {
         // Paso 1
         PagesFactory.start(driver);
         PagesFactory pf = PagesFactory.getInstance();
-        LoginPage loginPage = pf.getLogi
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();;
+
 
     }
 }
