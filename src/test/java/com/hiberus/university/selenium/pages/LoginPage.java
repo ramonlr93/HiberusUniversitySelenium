@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class LoginPage extends AbstractPage {
-    public static final String PAGE_URL = "https://www.saucedemo.com";
+    public static final String PAGE_URL = "https://www.saucedemo.com/";
 
     @FindBy(id = "user-name")
     private WebElement usernameInput;

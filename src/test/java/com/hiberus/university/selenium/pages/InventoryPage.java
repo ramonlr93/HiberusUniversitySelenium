@@ -28,7 +28,7 @@ public class InventoryPage extends AbstractPage {
 
     @Override
     public WebElement getPageLoadedTestElement() {
-        return null;
+        return products.get(0);
     }
 
     public WebElement getProductTitle(WebElement productContainer) {

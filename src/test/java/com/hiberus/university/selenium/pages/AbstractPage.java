@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 
-import java.net.URL;
 import java.time.temporal.ChronoUnit;
 
 @Slf4j
@@ -23,7 +22,7 @@ public abstract class AbstractPage {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)
                 .withTimeout(60, ChronoUnit.SECONDS)
-                .pollingEvery(2, ChronoUnit.SECONDS)
+                .pollingEvery(1, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
     public abstract WebElement getPageLoadedTestElement();
@@ -86,8 +85,14 @@ public abstract class AbstractPage {
     @FindBy(id = "logout_sidebar_link")
     private WebElement logOutButton;
 
-    public void logOut() {
+    public void clicksOnLateralPanelButton() {
         sideBarButton.click();
-        logOutButton.click();
+    }
+    public void clicksOnTheLogoutButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(logOutButton)).click();
+    }
+    public void logOut() {
+        clicksOnLateralPanelButton();
+        clicksOnTheLogoutButton();
     }
 }
