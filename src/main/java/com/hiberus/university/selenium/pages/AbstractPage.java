@@ -1,6 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
-import com.hiberus.university.selenium.utils.MyFluentWait;
+import com.hiberus.university.selenium.model.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;

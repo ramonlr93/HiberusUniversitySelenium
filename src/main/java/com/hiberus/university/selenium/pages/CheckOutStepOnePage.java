@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CheckOutStepOnePage extends AbstractPage {
+public class CheckOutStepOnePage extends BasePage {
     public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-one.html";
 
     @FindBy(xpath = "//input[@data-test='firstName']")
