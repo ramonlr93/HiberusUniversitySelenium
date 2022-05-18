@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,3 +13,4 @@ public class InventoryItem {
     private String price;
 
 }
+

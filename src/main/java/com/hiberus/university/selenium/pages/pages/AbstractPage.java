@@ -28,7 +28,6 @@ abstract class AbstractPage {
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
-
     public abstract WebElement getPageLoadedTestElement();
 
     protected WebDriver getDriver() {

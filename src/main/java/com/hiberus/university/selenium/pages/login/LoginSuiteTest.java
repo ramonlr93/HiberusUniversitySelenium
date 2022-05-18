@@ -1,6 +1,7 @@
 package com.hiberus.university.selenium.pages.login;
 
 
+
 import com.hiberus.university.selenium.pages.pages.LoginPage;
 import com.hiberus.university.selenium.pages.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -49,5 +50,40 @@ public class LoginSuiteTest {
         loginPage.enterPassword("secret_sauce");
         loginPage.clickLogin();
 
+        Assert.assertEquals("login failed",
+                InventoryPage.PAGE_URL, driver.getCurrentUrl());
     }
+
+    @Test
+    public void loginIncorrectTest() {
+
+        // Ir a la página https://www.saucedemo.com
+        driver.get("https://www.saucedemo.com/");
+
+        // Escribir el username standard
+        WebElement inputUserName =  driver.findElement(By.id("user-name"));
+        inputUserName.sendKeys("standard");
+
+        // Escribir el password secret_sauce
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+
+        // Pulsar en el botón del Login
+        driver.findElement(By.id("login-button")).click();
+
+        // Validar que se visualiza el elemento web del mensaje de error
+        boolean isMessageErrorVisible;
+        try {
+            isMessageErrorVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
+        } catch (NoSuchElementException n) {
+            isMessageErrorVisible = false;
+        }
+
+        Assert.assertTrue("PRUEBA FALLIDA, EL ELEMENTO DE ERROR NO APARECE. ", isMessageErrorVisible);
+    }
+
+    @After
+    public void tearDown() {
+        driver.close();
+    }
+
 }

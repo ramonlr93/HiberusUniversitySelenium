@@ -1,7 +1,6 @@
 package com.hiberus.university.selenium.pages.logout;
 
 
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -65,4 +64,3 @@ public class LogoutTest {
         driver.close();
     }
 }
-
