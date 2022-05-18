@@ -30,7 +30,7 @@ public class App {
         driver.get("https://www.hiberus.com/");
         driver.quit();
 
-        System.out.println( "Hello World! QA FORMACION" );
+        System.out.println( "Hello World! QA FORMACION cambios git practica" );
 
     }
 
