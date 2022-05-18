@@ -66,4 +66,3 @@ public class InventoryPage extends BasePage {
         return inventoryNameList;
     }
 }
-

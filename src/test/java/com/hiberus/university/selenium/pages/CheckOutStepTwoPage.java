@@ -39,4 +39,3 @@ public class CheckOutStepTwoPage extends BasePage {
         return total.getText();
     }
 }
-
