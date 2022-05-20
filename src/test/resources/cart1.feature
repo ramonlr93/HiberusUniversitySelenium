@@ -1,12 +1,12 @@
 Feature: Cart Test Suite
 
 Background:
-  Given the user is in the home page
-  And the user provides the username "username"
-  And the user provides the password "password"
-  And the user clicks the login button
+  Given the user is on the home page
 
 Scenario Outline: Remove the item from cart
+  And the user provides the username "<username>"
+  And the user provides the password "<password>"
+  And the clicks the login button
   And the user added 2 items to the cart
   And the user clicked the cart button
   When the user removes a product from the cart
