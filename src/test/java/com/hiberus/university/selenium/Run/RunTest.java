@@ -1,5 +1,5 @@
 package com.hiberus.university.selenium.Run;
-
+/*
 import com.hiberus.university.selenium.carrito.CartSuiteTest;
 import com.hiberus.university.selenium.checkout.CheckoutSuiteTest;
 import com.hiberus.university.selenium.inventario.InventarioSuiteTest;
@@ -19,3 +19,4 @@ import org.junit.runners.Suite;
 })
 public class RunTest {
 }
+*/
