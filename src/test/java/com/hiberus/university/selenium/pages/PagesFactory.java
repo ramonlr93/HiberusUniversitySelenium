@@ -13,6 +13,7 @@ public class PagesFactory {
     private final CartPage cartPage;
     private final CheckOutStepOnePage checkOutStepOnePage;
     private final CheckOutStepTwoPage checkOutStepTwoPage;
+    private final CheckoutCompleted checkoutCompleted;
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
@@ -21,6 +22,7 @@ public class PagesFactory {
         cartPage = new CartPage(driver);
         checkOutStepOnePage = new CheckOutStepOnePage(driver);
         checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
+        checkoutCompleted = new CheckoutCompleted(driver);
     }
 
     public static void start(WebDriver driver) {
@@ -53,5 +55,9 @@ public class PagesFactory {
 
     public CheckOutStepTwoPage getCheckOutStepTwoPage() {
         return checkOutStepTwoPage;
+    }
+
+    public CheckoutCompleted getCheckoutCompleted() {
+        return checkoutCompleted;
     }
 }

@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class CheckoutSuiteTest {
 
     public static WebDriver driver;
@@ -84,8 +87,11 @@ public class CheckoutSuiteTest {
         checkoutOne.fillInformation("Fulanito", "Fulanitez", "5555");
         checkoutOne.clickContinue();
 
-        CheckOutStepTwoPage chechoutTwo = pf.getCheckOutStepTwoPage();
-        chechoutTwo.clickFinish();
+        CheckOutStepTwoPage checkoutTwo = pf.getCheckOutStepTwoPage();
+        checkoutTwo.clickFinish();
+
+        CheckoutCompleted checkoutCompleted = pf.getCheckoutCompleted();
+        assertEquals("FAILED, THE ORDER WAS NOT PLACED CORRECTLY", checkoutCompleted.getCompleteMessage());
 
     }
 

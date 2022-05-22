@@ -28,6 +28,13 @@ public class InventoryPage extends AbstractPage{
     @FindBy(xpath = "//div[@class='inventory_item_name']")
     private List<WebElement> inventoryNameList;
 
+    @FindBy(xpath = "//a[@id = 'logout_sidebar_link']")
+    private WebElement logoutButton;
+
+    @FindBy(xpath = "//button[@id = 'react-burger-menu-btn']")
+    private WebElement sidebarButton;
+
+
     InventoryPage (WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
@@ -56,6 +63,14 @@ public class InventoryPage extends AbstractPage{
 
     public void clickShoppingCart(){
         shoppingCartButton.click();
+    }
+
+    public void clickSidebarButton(){
+        sidebarButton.click();
+    }
+
+    public void clickLogoutButton(){
+        logoutButton.click();
     }
 
     //UNA MANERA FACIL DE HACER EL BOTON DE ORDENAR POR PRECIO O ALFABETICAMENTE

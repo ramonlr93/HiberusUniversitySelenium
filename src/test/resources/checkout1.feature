@@ -11,13 +11,13 @@ Scenario Outline: Checking the final price of some products added to the cart
   And the user added 2 items to the cart
   And the user clicked the cart button
   And the user clicked the checkout button
-  And the user added the details correctly
+  And the user added the details correctly "<name>" "<surname>" "<postcode>"
   When the user clicks in the continue button and goes to the checkout page
   Then it shows the total price to pay
 
   Examples:
-  | username      | password     |
-  | standard_user | secret_sauce |
+  | username      | password     | name     | surname   | postcode |
+  | standard_user | secret_sauce | Fulanito | Fulanitez | 55555    |
 
 Scenario Outline: Make an order
   And the user provides the username "<username>"
@@ -26,10 +26,11 @@ Scenario Outline: Make an order
   And the user added 2 items to the cart
   And the user clicked the cart button
   And the user clicked the checkout button
-  And the user added the details correctly
-  When the user clicks the finish checkout button
-  Then it shows the message "Your order has been dispatched, and will arrive just as fast..."
+  And the user added the details correctly "<name>" "<surname>" "<postcode>"
+  When the user clicks in the continue button and goes to the checkout page
+  And the user clicks the finish checkout button
+  Then it shows the message "<message>"
 
   Examples:
-  | username | password     |
-  | bad_user | secret_sauce |
+  | username      | password     | name     | surname   | postcode | message                                                                                 |
+  | standard_user | secret_sauce | Fulanito | Fulanitez | 55555    | Your order has been dispatched, and will arrive just as fast as the pony can get there! |
