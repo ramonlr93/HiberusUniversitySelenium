@@ -28,7 +28,4 @@ import java.util.concurrent.TimeUnit;
                 "src/test/resources/"
         }
 )
-public class CucumberRunnerTest {
-
-
-}
+public class CucumberRunnerTest {}
