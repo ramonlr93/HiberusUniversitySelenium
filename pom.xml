@@ -181,6 +181,12 @@
       <version>1.18.24</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.0.0</version>
+      <scope>test</scope>
+    </dependency>
 
   </dependencies>
 </project>
