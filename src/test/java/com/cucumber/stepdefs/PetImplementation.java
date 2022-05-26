@@ -33,7 +33,7 @@ public class PetImplementation implements Serializable {
     @Given("the following get request that brings us the pets")
     public Response getPets() {
         //Introducimos el código de la mascota que hemos creado en POSTMAN
-        Response responseGetPets = given().log().all().get("/1115555");
+        Response responseGetPets = given().log().all().get("/2206");
 
         return responseGetPets;
     }
