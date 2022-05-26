@@ -9,7 +9,10 @@ import static org.junit.Assert.assertTrue;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.io.Serializable;
@@ -29,8 +32,8 @@ public class PetImplementation implements Serializable {
 
     @Given("the following get request that brings us the pets")
     public Response getPets() {
-    //Introducimos el código de la mascota
-        Response responseGetPets = given().log().all().get("/2206");
+        //Introducimos el código de la mascota que hemos creado en POSTMAN
+        Response responseGetPets = given().log().all().get("/1115555");
 
         return responseGetPets;
     }
@@ -39,8 +42,6 @@ public class PetImplementation implements Serializable {
     public void validateResponse() {
         assertTrue("The response is not 200", getPets().statusCode() == 200);
     }
-
-
 
 
 }

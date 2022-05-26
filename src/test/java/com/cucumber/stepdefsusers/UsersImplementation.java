@@ -29,8 +29,7 @@ public class UsersImplementation implements Serializable {
 
     @Given("the following get request that brings us the users")
     public Response getUsers() {
-        Response responseGetUsers = given().log().all().get("/users");
-        //Response responseGetUsers = given().log().all().get("/erojas") ;
+        Response responseGetUsers = given().log().all().get("/erojas") ;
         return responseGetUsers;
 
     }
