@@ -1,9 +1,10 @@
+@cart
 Feature: Cart test suite
 
   Background:
     Given the user is on the home page
 
-  @cart
+  @cart-1
   Scenario Outline: Remove an item from cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
