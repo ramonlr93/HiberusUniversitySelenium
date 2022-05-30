@@ -45,5 +45,19 @@ public class UsersImplementation implements Serializable {
 
 
 
+    @When("The following get request that delete the user")
+    public Response deleteUsers() {
+        Response responseDeleteUsers = given().log().all().delete("/erojas") ;
+        return responseDeleteUsers;
+
+    }
+
+    @Then("the response for delete users is 200")
+    public void validateResponseDelete() {
+        assertTrue("The response is not 200", deleteUsers().statusCode() == 200);
+    }
+
+
+
 
 }
