@@ -5,4 +5,3 @@ Feature: (e2e) Validate users
     Given  Go to the URL
     When the following get request that brings us the users
     Then the response for users is 200
-
