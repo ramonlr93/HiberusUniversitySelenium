@@ -74,7 +74,8 @@ public class InventoryPageSteps {
 
     @Then("the user should see a three on the cart icon")
     public void theUserShouldSeeAThreeOnTheCartIcon() {
-        Assert.assertEquals("The cart number isnt 3", 3, Integer.parseInt(inventoryPage.getShoppingCartNumber()));
+        Assert.assertEquals("The cart number isnt 3", 3
+                , Integer.parseInt(inventoryPage.getShoppingCartNumber()));
     }
 
     @When("the user select the filter {string}")
@@ -89,7 +90,7 @@ public class InventoryPageSteps {
         Collections.sort(baseSortedItems);
         Assert.assertEquals("Isnt sorted alphabetically"
                 , baseSortedItems
-                , inventoryPage.sortFromAToZ());
+                , inventoryPage.getItemNames());
     }
 
     @Then("the selected filter sort by alphabetic reverse order")
@@ -98,7 +99,7 @@ public class InventoryPageSteps {
         Collections.sort(baseSortedItems, Collections.reverseOrder());
         Assert.assertEquals("Isnt sorted alphabetically reverse"
                 , baseSortedItems
-                , inventoryPage.sortFromAToZ());
+                , inventoryPage.getItemNames());
     }
 
     @Then("the selected filter sort from lower to higher")
@@ -107,7 +108,7 @@ public class InventoryPageSteps {
         Collections.sort(baseSortedItems);
         Assert.assertEquals("Isnt sorted from L to H"
                 , baseSortedItems
-                , inventoryPage.sortFromLoToHi());
+                , inventoryPage.getItemPrices());
     }
 
     @Then("the selected filter sort from higher to lower")
@@ -116,7 +117,7 @@ public class InventoryPageSteps {
         Collections.sort(baseSortedItems, Collections.reverseOrder());
         Assert.assertEquals("Isnt sorted from H to L"
                 , baseSortedItems
-                , inventoryPage.sortFromHiToLo());
+                , inventoryPage.getItemPrices());
     }
 
     @When("the user goes to checkout")

@@ -4,7 +4,7 @@ Feature: Inventory test suite
   Background:
     Given the user is on the home page
 
-  @inventory-1
+  @testcase-02
   Scenario Outline: Verify number of products
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -16,7 +16,7 @@ Feature: Inventory test suite
       | username      | password     |
       | standard_user | secret_sauce |
 
-  @inventory-2
+  @testcase-03
   Scenario Outline: Verify that Sauce "<itemName>" exist in the inventory
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -28,7 +28,7 @@ Feature: Inventory test suite
       | username      | password     | itemName                |
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
-  @inventory-3
+  @testcase-04
   Scenario Outline: Add the item Sauce "<itemName>"
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -40,7 +40,7 @@ Feature: Inventory test suite
       | username      | password     | itemName                | buttonName  |
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt | add to cart |
 
-  @inventory-4
+  @testcase-05
   Scenario Outline: Remove item from cart being in the inventory
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -53,7 +53,8 @@ Feature: Inventory test suite
       | username      | password     | itemName                | buttonName  | removeButtonName |
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt | add to cart | remove           |
 
-  @inventory-5
+  @smoke
+  @testcase-06
   Scenario Outline: Add three items to the cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -65,7 +66,7 @@ Feature: Inventory test suite
       | username      | password     |
       | standard_user | secret_sauce |
 
-  @inventory-6
+  @testcase-07
   Scenario Outline: Sort the inventory from A to Z
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -77,7 +78,7 @@ Feature: Inventory test suite
       | username      | password     | filtreName |
       | standard_user | secret_sauce | az         |
 
-  @inventory-7
+  @testcase-08
   Scenario Outline: Sort the inventory from Z to A
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -89,7 +90,7 @@ Feature: Inventory test suite
       | username      | password     | filtreName |
       | standard_user | secret_sauce | za         |
 
-  @inventory-8
+  @testcase-09
   Scenario Outline: Sort the inventory from lower to higher
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -101,7 +102,7 @@ Feature: Inventory test suite
       | username      | password     | filtreName |
       | standard_user | secret_sauce | lohi       |
 
-  @inventory-9
+  @testcase-10
   Scenario Outline: Sort the inventory from higher to low
     And the user provides the username "<username>"
     And the user provides the password "<password>"

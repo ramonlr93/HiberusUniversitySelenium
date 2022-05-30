@@ -4,7 +4,8 @@ Feature: CheckoutOverview test suite
   Background:
     Given the user is on the home page
 
-  @checkoutOverview-1
+  @smoke
+  @testcase-11
   Scenario Outline: Check the final price if multiple products
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -22,7 +23,8 @@ Feature: CheckoutOverview test suite
       | username      | password     | name   | lastname | zipcode |
       | standard_user | secret_sauce | Aketza | Garcia   | 26580   |
 
-  @checkoutOverview-2
+  @smoke
+  @testcase-12
   Scenario Outline: Do an order
     And the user provides the username "<username>"
     And the user provides the password "<password>"

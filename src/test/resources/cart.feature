@@ -4,7 +4,8 @@ Feature: Cart test suite
   Background:
     Given the user is on the home page
 
-  @cart-1
+  @smoke
+  @testcase-14
   Scenario Outline: Remove an item from cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"

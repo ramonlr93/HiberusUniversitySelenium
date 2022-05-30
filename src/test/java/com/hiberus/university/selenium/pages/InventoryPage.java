@@ -108,55 +108,7 @@ public class InventoryPage extends AbstractPage {
         return shoppingCart.getText();
     }
 
-    // MI SORT
 
-    public List<String> sortFromAToZ(){
-        List <String> namesAZ = new ArrayList<String>();
-
-        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
-
-        for (int i=0;i<itemNames.size();i++){
-            namesAZ.add(sortedItemNames.get(i).getText());
-        }
-
-        return namesAZ;
-    }
-
-    public List<String> sortFromZToA(){
-        List <String> namesZA = new ArrayList<String>();
-
-        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
-
-        for (int i=0;i<itemNames.size();i++){
-            namesZA.add(sortedItemNames.get(i).getText());
-        }
-
-        return namesZA;
-    }
-
-    public List<Double> sortFromLoToHi(){
-        List <Double> pricesLoHi = new ArrayList<Double>();
-
-        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']"));
-
-        for (int i=0;i<itemPrices.size();i++){
-            pricesLoHi.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
-        }
-
-        return pricesLoHi;
-    }
-
-    public List<Double> sortFromHiToLo(){
-        List <Double> pricesHiLo = new ArrayList<Double>();
-
-        List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']"));
-
-        for (int i=0;i<itemPrices.size();i++){
-            pricesHiLo.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
-        }
-
-        return pricesHiLo;
-    }
 
 
 }
