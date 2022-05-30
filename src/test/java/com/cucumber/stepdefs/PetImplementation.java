@@ -34,7 +34,7 @@ public class PetImplementation implements Serializable {
     @When("the following get request that brings us the pets")
     public Response getPets() {
         //Introducimos el código de la mascota que hemos creado en POSTMAN
-        Response responseGetPets = given().log().all().get("/22061985");
+        Response responseGetPets = given().log().all().get("/220685");
 
         return responseGetPets;
     }
@@ -49,7 +49,7 @@ public class PetImplementation implements Serializable {
 
     @When("The following get request that delete the pet")
     public Response deletePets() {
-        Response responseDeletePets = given().log().all().delete("/erojas") ;
+        Response responseDeletePets = given().log().all().delete("/220685") ;
         return responseDeletePets;
 
     }
