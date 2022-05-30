@@ -1,7 +1,10 @@
 package com.hiberus.university.selenium.pages;
 
+import lombok.Getter;
+import org.jsoup.Connection;
 import org.openqa.selenium.WebDriver;
 
+@Getter
 public class PagesFactory {
 
     private static PagesFactory pagesFactories;
@@ -11,6 +14,8 @@ public class PagesFactory {
     private final CartPage cartPage;
     private final CheckoutInformationPage checkoutInformationPage;
     private final CheckoutOverviewPage checkoutOverviewPage;
+    private final BasePage basePage;
+    private final CheckoutCompletePage checkoutCompletePage;
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
@@ -19,6 +24,8 @@ public class PagesFactory {
         cartPage = new CartPage(driver);
         checkoutInformationPage = new CheckoutInformationPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        basePage = new BasePage(driver);
+        checkoutCompletePage = new CheckoutCompletePage(driver);
     }
 
     public static void start(WebDriver driver) {
@@ -29,27 +36,5 @@ public class PagesFactory {
         return pagesFactories;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
 
-    public LoginPage getLoginPage() {
-        return loginPage;
-    }
-
-    public InventoryPage getInventoryPage() {
-        return inventoryPage;
-    }
-
-    public CheckoutInformationPage getCheckoutInformationPage() {
-        return checkoutInformationPage;
-    }
-
-    public CartPage getCartPage() {
-        return cartPage;
-    }
-
-    public CheckoutOverviewPage getCheckoutOverviewPage() {
-        return checkoutOverviewPage;
-    }
 }

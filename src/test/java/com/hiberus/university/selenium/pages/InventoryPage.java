@@ -2,7 +2,6 @@ package com.hiberus.university.selenium.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,6 +35,9 @@ public class InventoryPage extends AbstractPage {
     @FindBy(xpath = "//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']")
     private List <WebElement> itemPrices;
 
+    @FindBy(id = "checkout")
+    private WebElement checkoutButton;
+
     InventoryPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -43,11 +45,38 @@ public class InventoryPage extends AbstractPage {
 
     @Override
     public WebElement getPageLoadedTestElement() {
-        return null;
+        return filtre;
     }
+
 
     private String getButton(String itemName) {
         return "//div[contains(., '" + itemName + "')]/parent::a/parent::div/following-sibling::div/button";
+    }
+
+    public List<String> getItemNames(){
+        List<String> names = new ArrayList<String>();
+        for(int i=0;i<itemNames.size();i++){
+            names.add(itemNames.get(i).getText());
+        }
+        return names;
+    }
+
+    public List<Double> getItemPrices(){
+        List<Double> prices = new ArrayList<Double>();
+        for(int i=0;i<itemPrices.size();i++){
+            prices.add(Double.parseDouble(itemPrices.get(i).getText().substring(1)));
+        }
+        return prices;
+    }
+
+    public int getNumberOfItems(){
+        return itemNames.size();
+    }
+
+    public boolean findItemByName(String name){
+        String xpath = getButton(name);
+        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+        return itemElem.isDisplayed();
     }
 
     public void addItemToCartByName(String name){
@@ -60,6 +89,10 @@ public class InventoryPage extends AbstractPage {
         String xpath = getButton(name);
         WebElement itemElem = getDriver().findElement(By.xpath(xpath));
         itemElem.click();
+    }
+
+    public void clickOnCheckout(){
+        checkoutButton.click();
     }
 
     public void clickOnShoppingCart() {
@@ -77,76 +110,52 @@ public class InventoryPage extends AbstractPage {
 
     // MI SORT
 
-    public boolean sortFromAToZ(){
-        List <String> defaultNames = new ArrayList<String>();
+    public List<String> sortFromAToZ(){
         List <String> namesAZ = new ArrayList<String>();
-
-        sortOption("az");
 
         List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
 
         for (int i=0;i<itemNames.size();i++){
-            defaultNames.add(itemNames.get(i).getText());
             namesAZ.add(sortedItemNames.get(i).getText());
         }
 
-        Collections.sort(defaultNames);
-
-        return defaultNames.equals(namesAZ);
+        return namesAZ;
     }
 
-    public boolean sortFromZToA(){
-        List <String> defaultNames = new ArrayList<String>();
+    public List<String> sortFromZToA(){
         List <String> namesZA = new ArrayList<String>();
-
-        sortOption("za");
 
         List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_name']"));
 
         for (int i=0;i<itemNames.size();i++){
-            defaultNames.add(itemNames.get(i).getText());
             namesZA.add(sortedItemNames.get(i).getText());
         }
 
-        Collections.sort(defaultNames, Collections.reverseOrder());
-
-        return defaultNames.equals(namesZA);
+        return namesZA;
     }
 
-    public boolean sortFromLoToHi(){
-        List <Double> defaultNames = new ArrayList<Double>();
-        List <Double> namesLoHi = new ArrayList<Double>();
-
-        sortOption("lohi");
+    public List<Double> sortFromLoToHi(){
+        List <Double> pricesLoHi = new ArrayList<Double>();
 
         List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']"));
 
-        for (int i=0;i<itemNames.size();i++){
-            defaultNames.add(Double.parseDouble(itemPrices.get(i).getText().substring(1)));
-            namesLoHi.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
+        for (int i=0;i<itemPrices.size();i++){
+            pricesLoHi.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
         }
 
-        Collections.sort(defaultNames);
-
-        return defaultNames.equals(namesLoHi);
+        return pricesLoHi;
     }
 
-    public boolean sortFromHiToLo(){
-        List <Double> defaultNames = new ArrayList<Double>();
-        List <Double> namesHiLo = new ArrayList<Double>();
-
-        sortOption("hilo");
+    public List<Double> sortFromHiToLo(){
+        List <Double> pricesHiLo = new ArrayList<Double>();
 
         List<WebElement> sortedItemNames = getDriver().findElements(By.xpath("//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']"));
 
-        for (int i=0;i<itemNames.size();i++){
-            defaultNames.add(Double.parseDouble(itemPrices.get(i).getText().substring(1)));
-            namesHiLo.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
+        for (int i=0;i<itemPrices.size();i++){
+            pricesHiLo.add(Double.parseDouble(sortedItemNames.get(i).getText().substring(1)));
         }
 
-        Collections.sort(defaultNames, Collections.reverseOrder());
-
-        return defaultNames.equals(namesHiLo);
+        return pricesHiLo;
     }
 
 

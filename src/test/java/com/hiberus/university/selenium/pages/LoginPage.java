@@ -12,7 +12,7 @@ public class LoginPage extends AbstractPage {
 
     public static final String PAGE_URL = "https://www.saucedemo.com/";
 
-    @FindBy(xpath = "//input[@data-test='username']")
+    @FindBy(id = "user-name")
     private WebElement usernameInput;
 
     @FindBy(id = "password")
@@ -24,7 +24,6 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//h3[@data-test='error']")
     private WebElement errorMessage;
 
-
     LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -35,20 +34,20 @@ public class LoginPage extends AbstractPage {
         return loginButton;
     }
 
-    public void enterPassword(String password){
+    public void enterPassword(String password) {
         passwordInput.click();
         passwordInput.sendKeys(password);
     }
 
-    public void enterUsername(String username){
+    public void enterUsername(String username) {
         usernameInput.click();
         usernameInput.sendKeys(username);
     }
 
-    public void clickLogin(){
+    public void clickLogin() {
         log.info("logging in...");
         try {
-            loginButton.submit();
+            loginButton.click();
         } catch (TimeoutException e) {
             log.info("Timeout clicking login: " + e.getClass().getSimpleName());
         } catch (Exception e) {

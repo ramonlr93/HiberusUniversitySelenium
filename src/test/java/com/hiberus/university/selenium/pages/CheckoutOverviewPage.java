@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CheckoutOverviewPage extends AbstractPage {
@@ -26,6 +24,9 @@ public class CheckoutOverviewPage extends AbstractPage {
 
     @FindBy(id = "cancel")
     private WebElement cancelButton;
+
+    @FindBy(id = "finish")
+    private WebElement finishButton;
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -60,5 +61,9 @@ public class CheckoutOverviewPage extends AbstractPage {
 
     public void clickCancelButton(){
         cancelButton.click();
+    }
+
+    public void clickFnishButton(){
+        finishButton.click();
     }
 }

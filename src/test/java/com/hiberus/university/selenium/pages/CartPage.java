@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class CartPage extends AbstractPage {
     @FindBy(css = "#shopping_cart_container > a")
     private WebElement shoppingCartElem;
 
-    @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
+    @FindBy(className = "inventory_item_name")
     private List<WebElement> itemsList;
 
     public CartPage(WebDriver driver) {
@@ -34,6 +35,20 @@ public class CartPage extends AbstractPage {
     @Override
     public WebElement getPageLoadedTestElement() {
         return hamburgerElem;
+    }
+
+    public List<String> getItemNames(){
+        List<String> names = new ArrayList<String>();
+        for(int i=0;i<itemsList.size();i++){
+            names.add(itemsList.get(i).getText());
+        }
+        return names;
+    }
+
+    public boolean findItemByName(String name){
+        String xpath = "//div[text() = '" + name + "']";
+        WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+        return itemElem.isDisplayed();
     }
 
     public void clickCheckout() {
