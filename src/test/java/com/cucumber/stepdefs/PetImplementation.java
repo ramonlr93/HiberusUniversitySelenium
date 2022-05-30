@@ -10,6 +10,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -23,14 +24,14 @@ public class PetImplementation implements Serializable {
     private Response deletePets = null;
 
 
-    @Before
+    @Given("Go to the URL")
     public void before() {
         RestAssured.baseURI = "https://petstore.swagger.io/v2/pet";
         //Url a la que accedemos
     }
 
 
-    @Given("the following get request that brings us the pets")
+    @When("The following get request that delete the pet")
     public Response getPets() {
         //Introducimos el código de la mascota que hemos creado en POSTMAN
         Response responseGetPets = given().log().all().get("/22061985");
@@ -38,10 +39,27 @@ public class PetImplementation implements Serializable {
         return responseGetPets;
     }
 
-    @And("the response is 200")
+    @Then("the response is 200")
     public void validateResponse() {
         assertTrue("The response is not 200", getPets().statusCode() == 200);
     }
+
+
+
+
+    @When("The following get request that delete the pets")
+    public Response deletePets() {
+        Response responseDeletePets = given().log().all().delete("/erojas") ;
+        return responseDeletePets;
+
+    }
+
+    @Then("the response for delete pets is 200")
+    public void validateResponseDeletePets() {
+        assertTrue("The response is not 200", deletePets().statusCode() == 200);
+    }
+
+
 
 
 }
