@@ -3,6 +3,7 @@ package com.hiberus.university.selenium.logout;
 import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
+import io.cucumber.java.en.Then;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -35,14 +36,18 @@ public class LogoutTest {
         driver.get(LoginPage.PAGE_URL);
     }
 
-    @Test
+    @Then("the page redirects to the login page")
     public void logoutValidationTest() {
-        PagesFactory pf = PagesFactory.getInstance();
 
+        PagesFactory pf = PagesFactory.getInstance();
         LoginPage loginPage = pf.getLoginPage();
+        loginPage.navigateTo(LoginPage.PAGE_URL);
+
+        /*
         loginPage.enterUsername("standard_user");
         loginPage.enterPassword("secret_sauce");
         loginPage.clickLogin();
+        */
 
         InventoryPage inventoryPage = pf.getInventoryPage();
 
@@ -59,4 +64,6 @@ public class LogoutTest {
     public void tearDown() {
         driver.close();
     }
+
+
 }

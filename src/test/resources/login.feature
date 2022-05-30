@@ -20,5 +20,6 @@ Feature: Login test suite
     Then the user should be shown and invalid message
 
     Examples:
-      | username   | password      |
-      | bad_user   | secret_sauce  |
+      | username      | password      |
+      | bad_user      | secret_sauce  |
+      | standard_user | bad_password |

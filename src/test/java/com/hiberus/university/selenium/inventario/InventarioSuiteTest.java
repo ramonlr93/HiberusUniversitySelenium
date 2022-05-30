@@ -4,6 +4,7 @@ import com.hiberus.university.selenium.pages.CartPage;
 import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
+import io.cucumber.java.en.Then;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.*;
@@ -40,8 +41,11 @@ public class InventarioSuiteTest {
         driver.get(LoginPage.PAGE_URL);
     }
 
-    @Test
+
+
+    @Then("the user see the inventory list with items size list")
     public void validateInventoryResultsTest() {
+        /*
         // Ir a la página https://www.saucedemo.com
         driver.get("https://www.saucedemo.com/");
 
@@ -53,7 +57,7 @@ public class InventarioSuiteTest {
 
         // Pulsar en el botón del Login
         driver.findElement(By.id("login-button")).click();
-
+        */
         // Validar que el numero de productos mostrados en el inventario es igual a 6
         List<WebElement> inventoryResults = driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
 
@@ -128,6 +132,7 @@ public class InventarioSuiteTest {
 
         // Agregar al carrito el producto 'Sauce Labs Bolt T-Shirt'
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"))));
+        //driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
 
         // Eliminar del carrito el producto 'Sauce Labs Bolt T-Shirt'
@@ -152,6 +157,7 @@ public class InventarioSuiteTest {
 
         // Escribir el username standard_user
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
+
 
         // Escribir el password secret_sauce
         driver.findElement(By.id("password")).sendKeys("secret_sauce");

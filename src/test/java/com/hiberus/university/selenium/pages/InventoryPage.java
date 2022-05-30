@@ -15,10 +15,13 @@ public class InventoryPage extends BasePage {
   private WebElement shoppingCart;
 
   @FindBy(xpath = "//div[@class='inventory_item']")
-  private List<WebElement> inventoryContainer;
+  private List<WebElement> inventoryItems;
 
   @FindBy(xpath = "//select[@data-test='product_sort_container']")
   private WebElement selectOptions;
+
+  @FindBy(xpath = "//div[@class='inventory_list']")
+  private List<WebElement> inventoryPriceList;
 
   public InventoryPage(WebDriver driver) {
     super(driver);
@@ -28,9 +31,15 @@ public class InventoryPage extends BasePage {
   @FindBy(xpath = "//div[@class='inventory_item_name']")
   private List<WebElement> inventoryNameList;
 
+
+
   @Override
   public WebElement getPageLoadedTestElement() {
     return selectOptions;
+  }
+
+  public int getInventoryItemsSize(){
+    return inventoryItems.size();
   }
 
   public void addItemToCartByName(String itemName) {
@@ -59,10 +68,14 @@ public class InventoryPage extends BasePage {
   }
 
   public List<WebElement> getItemList() {
-    return inventoryContainer;
+    return inventoryItems;
   }
 
   public List<WebElement> getInventoryNameList() {
     return inventoryNameList;
+  }
+
+  public List<WebElement> getInventoryPriceList(){
+    return inventoryPriceList;
   }
 }

@@ -3,15 +3,21 @@ Feature: Validate Inventory test suite
 
   Background: Navigate to the home page
     Given the user is on the home page
-    And the user provides the username "<username>" and password "<password>"
+
+
 
   @testcase03
   Scenario Outline: validate inventory list size
-    When the user clicks the login button
-    Then the user see the inventory list with "<items>" size list
+    When the user provides the username "<username>"
+    And the user provides the password "<password>"
+    And the user clicks the login button
+    And the user is on the inventory page
+
+    Then the user see the inventory list with items size list <item>
+
     Examples:
-      | username      | password     | items |
-      | standard_user | secret_sauce | 6     |
+      |username     |password         |item |
+      |standard_user|secret_sauce     |6    |
 
   @testcase04
   Scenario Outline: validate exist "<item>" product in inventory list
