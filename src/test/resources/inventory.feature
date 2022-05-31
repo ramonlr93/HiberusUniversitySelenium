@@ -25,7 +25,6 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
   @testcase05
-  #TODO
   Scenario Outline: Add a single item in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -38,23 +37,24 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Backpack |
 
   @testcase06
- # Scenario Outline: Delete an item in the shopping cart
- #   When the user clicks the login button
- #   And the user adds a "<item>" by clicking 'Add To Cart'
- #   And the user clicks on the shopping cart
- #   Then there should be "1" items in the shopping cart
- #   Examples:
- #     | username      | password     | item                |
- #     | standard_user | secret_sauce | Sauce Labs Backpack |
+  Scenario Outline: Delete an item in the shopping cart
+    And the user provides the username "<username>"
+    And the user provides the password "<password>"
+    And the user clicks the login button
+    And the user adds a "<item>" by clicking Add To Cart
+    And the user clicks on the shopping cart
+    When the user deletes the "<item>" in the cart
+    Then there should be 0 items in the shopping cart
+    Examples:
+      | username      | password     | item                    |
+      | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
   @testcase07
   Scenario Outline: Place multiple items in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
     And the user clicks the login button
-    #TODO
     When the user selects
-      | product                 |
       | Sauce Labs Backpack     |
       | Sauce Labs Bolt T-Shirt |
       | Sauce Labs Onesie       |
@@ -85,3 +85,14 @@ Feature: Validate Inventory test suite
     Examples:
       | username      | password     | optionSort |
       | standard_user | secret_sauce | hilo       |
+
+  @testcase10
+  Scenario Outline: sort inventory by price asc order
+    And the user provides the username "<username>"
+    And the user provides the password "<password>"
+    And the user clicks the login button
+    When the user clicks select "<optionSort>"
+    Then the user see the list by price asc order
+    Examples:
+      | username      | password     | optionSort |
+      | standard_user | secret_sauce | lohi       |

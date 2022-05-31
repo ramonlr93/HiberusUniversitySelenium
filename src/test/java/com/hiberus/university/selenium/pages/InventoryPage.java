@@ -29,7 +29,7 @@ public class InventoryPage extends BasePage {
     private List<WebElement> btnAddToCart;
 
     @FindBy(xpath = "//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']")
-    private List <WebElement> itemPrices;
+    private List<WebElement> itemPrices;
 
     @FindBy(xpath = "//div[@class='cart_item']")
     List<WebElement> cartElements;
@@ -50,8 +50,8 @@ public class InventoryPage extends BasePage {
         itemElem.click();
     }
 
-    public void removeItemToCartByName(String itemName) {
-        String xpath = getButton(itemName);
+    public void removeItemFromCartByName(String itemName) {
+        String xpath = "//div[contains(., '" + itemName + "')]/parent::a/parent::div//button";
         WebElement itemElem = getDriver().findElement(By.xpath(xpath));
         itemElem.click();
     }
@@ -78,14 +78,14 @@ public class InventoryPage extends BasePage {
     }
 
     public List<String> getInventoryItemsName() {
-        List<String> names  = new ArrayList<>();
-        for (WebElement e: inventoryNameList) {
+        List<String> names = new ArrayList<>();
+        for (WebElement e : inventoryNameList) {
             names.add(e.getText());
         }
         return names;
     }
 
-    public List<Double> getItemPrices(){
+    public List<Double> getItemPrices() {
         List<Double> prices = new ArrayList<Double>();
         for (WebElement itemPrice : itemPrices) {
             prices.add(Double.parseDouble(itemPrice.getText().substring(1)));
@@ -113,8 +113,6 @@ public class InventoryPage extends BasePage {
     public int getCartListSize() {
         return cartElements.size();
     }
-
-
 
 
 }

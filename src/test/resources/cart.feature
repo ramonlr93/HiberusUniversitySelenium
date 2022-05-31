@@ -1,3 +1,4 @@
+@cart
 Feature: cart test suite
 
   Background:
@@ -10,5 +11,5 @@ Feature: cart test suite
     #....
 
     Examples:
-      | username        | password      | product |
-      | standard_user   | secret_sauce  |   ...   |
+      | username      | password     | product |
+      | standard_user | secret_sauce | ...     |

@@ -4,7 +4,6 @@ import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,7 +34,7 @@ public class LoginSuiteTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        wait = new WebDriverWait(driver, 10, 500);
+        wait = new WebDriverWait(driver, 5, 500);
         PagesFactory.start(driver);
         driver.get(LoginPage.PAGE_URL);
     }
@@ -51,7 +51,7 @@ public class LoginSuiteTest {
         inventoryList.get(0).getText();
         inventoryList.get(0).findElement(By.xpath(".//button")).click();
         Assert.assertEquals("login failed",
-          InventoryPage.PAGE_URL, driver.getCurrentUrl());
+                InventoryPage.PAGE_URL, driver.getCurrentUrl());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LoginSuiteTest {
         pf.getLoginPage().clickLogin();
 
         Assert.assertTrue("login incorrect ",
-          pf.getLoginPage().hasUsernamePasswordError());
+                pf.getLoginPage().hasUsernamePasswordError());
     }
 
     @After
