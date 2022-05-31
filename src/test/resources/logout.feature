@@ -1,8 +1,10 @@
+@logout
 Feature: Logout
 
   Background:
     Given the user is on the home page
 
+  @testcase-logout
   Scenario Outline: Verify valid user can login and can logout
     And the user provides the username "<username>"
     And the user provides the password "<password>"

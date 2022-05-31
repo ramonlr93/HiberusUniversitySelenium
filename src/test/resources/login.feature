@@ -1,8 +1,10 @@
+@login
 Feature: Login test suite
 
   Background:
     Given the user is on the home page
 
+  @testcase-login01
   Scenario Outline: Verify valid user can login
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -13,6 +15,7 @@ Feature: Login test suite
       | username        | password      |
       | standard_user   | secret_sauce  |
 
+  @testcase-login02
   Scenario Outline: Verify valid user can login
     And the user provides the username "<username>"
     And the user provides the password "<password>"

@@ -20,6 +20,8 @@ public class CartPage extends BasePage {
   @FindBy(css = "#shopping_cart_container > a")
   private WebElement shoppingCartElem;
 
+
+
   @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
   private List<WebElement> itemsList;
 
