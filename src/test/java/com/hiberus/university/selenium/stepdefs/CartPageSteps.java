@@ -26,7 +26,7 @@ public class CartPageSteps {
     public void thereShouldBeItemsInTheShoppingCart(int item) {
         int numItems = cartPage.getItemCount();
         Assert.assertEquals("EL NUMERO DE ITEMS EN EL CARRITO NO ES "+item+". ",
-                numItems, item);
+                item, numItems);
     }
 
     @Then("the user remove a {string} by clicking Remove in cart")

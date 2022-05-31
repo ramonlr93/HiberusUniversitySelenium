@@ -3,7 +3,7 @@ Feature: Login test suite
 
   Background:
     Given the user is on the home page
-
+  @smoke
   Scenario Outline: Verify valid user can login
     And the user provides the username "<username>"
     And the user provides the password "<password>"

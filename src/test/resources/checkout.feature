@@ -4,6 +4,8 @@ Feature: checkout test suite
   Background:
     Given the user is on the home page
 
+  @testcase12
+    @smoke
   Scenario Outline: Check the final price in the checkout
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -22,6 +24,8 @@ Feature: checkout test suite
       | username      | password     | firstname | lastname | zip   |
       | standard_user | secret_sauce | Santos    | Pena     | 31230 |
 
+  @testcase13
+    @smoke
   Scenario Outline: Check in the complete checkout the message is "<message>"
     And the user provides the username "<username>"
     And the user provides the password "<password>"

@@ -4,6 +4,8 @@ Feature: logOut test suite
   Background:
     Given the user is on the home page
 
+  @testcase14
+    @smoke
   Scenario Outline: Check the logout button
     And the user provides the username "<username>"
     And the user provides the password "<password>"

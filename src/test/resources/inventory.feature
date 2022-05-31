@@ -37,6 +37,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Backpack |
 
   @testcase06
+    @smoke
   Scenario Outline: Delete an item in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -50,6 +51,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
   @testcase07
+    @smoke
   Scenario Outline: Place multiple items in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -65,6 +67,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce |
 
   @testcase08
+    @sort
   Scenario Outline: sort inventory by alphabetical desc order
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -76,6 +79,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | za         |
 
   @testcase09
+    @sort
   Scenario Outline: sort inventory by price desc order
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -87,6 +91,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | hilo       |
 
   @testcase10
+    @sort
   Scenario Outline: sort inventory by price ascend order
     And the user provides the username "<username>"
     And the user provides the password "<password>"
