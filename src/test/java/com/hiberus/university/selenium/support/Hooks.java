@@ -10,6 +10,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,12 +22,28 @@ public class Hooks {
     @Before()
     public static void before(Scenario scenario){
         log.info("Starting test: " + scenario.getName());
-        WebDriverManager.chromedriver().setup();
-        driver= new ChromeDriver();
+        driver = createWebDriver();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         PagesFactory.start(driver);
+    }
+
+    private static WebDriver createWebDriver(){
+        String webdriver = System.getProperty("browser", "chrome");
+        switch(webdriver) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return new FirefoxDriver();
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                return new EdgeDriver();
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();
+            default:
+                throw new RuntimeException("Unsupported webdriver: " + webdriver);
+        }
     }
 
     @After()
