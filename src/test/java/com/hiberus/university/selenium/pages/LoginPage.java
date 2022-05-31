@@ -4,10 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class LoginPage extends AbstractPage{
-    public static final String PAGE_URL = "https://www.saucedemo.com";
+    public static final String PAGE_URL = "https://www.saucedemo.com/";
 
     @FindBy(id = "user-name")
     private WebElement usernameInput;
@@ -23,6 +24,7 @@ public class LoginPage extends AbstractPage{
 
     LoginPage(WebDriver driver){
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     @Override
@@ -43,18 +45,17 @@ public class LoginPage extends AbstractPage{
         }
     }
 
-    public void enterPassword(String password){
-        passwordInput.click();
-        passwordInput.sendKeys(password);
-    }
-
     public void enterUsername(String username){
         usernameInput.click();
         usernameInput.sendKeys(username);
     }
 
+    public void enterPassword(String password){
+        passwordInput.click();
+        passwordInput.sendKeys(password);
+    }
+
     public boolean hasUsernamePasswordError(){
         return errorMessage.isDisplayed();
     }
-
 }

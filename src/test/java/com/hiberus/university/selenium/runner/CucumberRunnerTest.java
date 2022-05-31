@@ -22,20 +22,4 @@ import java.util.concurrent.TimeUnit;
 )
 public class CucumberRunnerTest {
 
-        public static WebDriver driver;
-
-        @BeforeClass
-        public static void setup(){
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                driver = new ChromeDriver(options);
-                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-                driver.manage().window().maximize();
-                PagesFactory.start(driver);
-        }
-
-        @AfterClass
-        public static void tearDown(){
-                driver.close();
-        }
 }

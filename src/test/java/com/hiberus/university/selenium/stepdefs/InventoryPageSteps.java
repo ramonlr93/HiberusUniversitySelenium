@@ -56,7 +56,7 @@ public class InventoryPageSteps {
         InventoryPage inventoryPage = pf.getInventoryPage();
         inventoryPage.clickShoppingCart();
         CartPage cartPage = pf.getCartPage();
-        int currentCount = cartPage.getItemCount();
+        int currentCount = Integer.parseInt(cartPage.getItemCount());
 
         Assert.assertEquals("FAILED, THE PRODUCTS WAS NOT ADDED TO THE CART", 1, currentCount);
     }
@@ -82,9 +82,10 @@ public class InventoryPageSteps {
         InventoryPage inventoryPage = pf.getInventoryPage();
         inventoryPage.clickShoppingCart();
         CartPage cartPage = pf.getCartPage();
-        int currentCount = cartPage.getItemCount();
 
-        Assert.assertEquals("FAILED, THE PRODUCT WAS NOT DELETED FROM THE CART", 0, currentCount);
+
+        Assert.assertEquals("FAILED, THE PRODUCT WAS NOT DELETED FROM THE CART",
+                "", cartPage.getItemCount());
     }
 
     @When("the user adds to the cart")
@@ -124,7 +125,6 @@ public class InventoryPageSteps {
             nameInventoryResultSorted.add(webElement.getText());
         }
 
-        Collections.sort(nameInventoryResultSorted);
         Assert.assertEquals("FAILED, THE LIST IS NOT SORTED", nameInventoryResultSorted, nameInventoryResult);
     }
 
@@ -132,33 +132,38 @@ public class InventoryPageSteps {
     public void itShowsThatTheItemsAreSortedByPriceLowToHigh() {
         PagesFactory pf = PagesFactory.getInstance();
         InventoryPage inventoryPage = pf.getInventoryPage();
-        List<WebElement> inventoryList = inventoryPage.getInventoryNameList();
-        List<String> nameInventoryResult = new ArrayList<>();
-        List<String> nameInventoryResultSorted = new ArrayList<>();
+        List<WebElement> inventoryPriceList = inventoryPage.getInventoryPriceList();
+        List<Double> priceInventoryResultLohi= new ArrayList<>();
+        List<Double> priceInventoryResultLohiSorted = new ArrayList<>();
 
-        for (WebElement webElement : inventoryList) {
-            nameInventoryResult.add(webElement.getText());
-            nameInventoryResultSorted.add(webElement.getText());
+        for (WebElement webElement : inventoryPriceList) {
+            priceInventoryResultLohi.add(
+                    Double.parseDouble(webElement.getText().replace("$", "").trim()));
+            priceInventoryResultLohiSorted.add(
+                    Double.parseDouble(webElement.getText().replace("$", "").trim()));
         }
 
-        Collections.sort(nameInventoryResultSorted);
-        Assert.assertEquals("FAILED, THE LIST IS NOT SORTED", nameInventoryResultSorted, nameInventoryResult);
+        Assert.assertEquals("FAILED, THE LIST IS NOT SORTED",
+                priceInventoryResultLohiSorted, priceInventoryResultLohi);
     }
 
     @Then("it shows that the items are sorted by price - High to Low")
     public void itShowsThatTheItemsAreSortedByPriceHighToLow() {
         PagesFactory pf = PagesFactory.getInstance();
         InventoryPage inventoryPage = pf.getInventoryPage();
-        List<WebElement> inventoryList = inventoryPage.getInventoryNameList();
-        List<String> nameInventoryResult = new ArrayList<>();
-        List<String> nameInventoryResultSorted = new ArrayList<>();
+        List<WebElement> inventoryPriceList = inventoryPage.getInventoryPriceList();
+        List<Double> priceInventoryResultHilo = new ArrayList<>();
+        List<Double> priceInventoryResultHiloSorted = new ArrayList<>();
 
-        for (WebElement webElement : inventoryList) {
-            nameInventoryResult.add(webElement.getText());
-            nameInventoryResultSorted.add(webElement.getText());
+        for (WebElement webElement : inventoryPriceList) {
+            priceInventoryResultHilo.add(
+                    Double.parseDouble(webElement.getText().replace("$", "").trim()));
+            priceInventoryResultHiloSorted.add(
+                    Double.parseDouble(webElement.getText().replace("$", "").trim()));
         }
 
-        Collections.sort(nameInventoryResultSorted);
-        Assert.assertEquals("FAILED, THE LIST IS NOT SORTED", nameInventoryResultSorted, nameInventoryResult);
+        priceInventoryResultHiloSorted.sort(Collections.reverseOrder());
+        Assert.assertEquals("FAILED, THE LIST IS NOT SORTED",
+                priceInventoryResultHiloSorted, priceInventoryResultHilo);
     }
 }

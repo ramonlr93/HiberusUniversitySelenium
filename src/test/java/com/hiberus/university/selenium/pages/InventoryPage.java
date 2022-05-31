@@ -28,6 +28,9 @@ public class InventoryPage extends AbstractPage{
     @FindBy(xpath = "//div[@class='inventory_item_name']")
     private List<WebElement> inventoryNameList;
 
+    @FindBy(xpath = "//div[@class='inventory_item_price']")
+    private List<WebElement> inventoryPriceList;
+
     @FindBy(xpath = "//a[@id = 'logout_sidebar_link']")
     private WebElement logoutButton;
 
@@ -79,8 +82,8 @@ public class InventoryPage extends AbstractPage{
         selectOption.selectByValue(option);
     }
 
-    public int getInventoryCount(){
-        return inventoryContainerItem.size();
+    public String getInventoryCount(){
+        return String.valueOf(inventoryContainerItem.size());
     }
 
     public boolean isDisplayedItemByName(String itemName){
@@ -108,5 +111,9 @@ public class InventoryPage extends AbstractPage{
             numeroItemsCarrito++;
         }
         return numeroItemsCarrito;
+    }
+
+    public List<WebElement> getInventoryPriceList() {
+        return inventoryPriceList;
     }
 }

@@ -17,7 +17,7 @@ public class CartPageSteps {
         InventoryPage inventoryPage = pf.getInventoryPage();
 
         String itemName1 = "Sauce Labs Backpack";
-        String itemName2 = "Sauce Labs Bolt T Shirt";
+        String itemName2 = "Sauce Labs Bolt T-Shirt";
 
         inventoryPage.addItemToCartByName(itemName1);
         inventoryPage.addItemToCartByName(itemName2);
@@ -45,7 +45,7 @@ public class CartPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         CartPage cartPage = pf.getCartPage();
 
-        int currentCount = cartPage.getItemCount();
+        int currentCount = Integer.parseInt(cartPage.getItemCount());
         Assert.assertEquals("FAILED, THE PRODUCT WAS NOT DELETED FROM CART",1, currentCount);
     }
 }

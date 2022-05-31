@@ -18,6 +18,9 @@ public class CartPage extends AbstractPage{
     @FindBy(id = "checkout")
     private WebElement checkoutButton;
 
+    @FindBy(id = "shopping_cart_container")
+    private WebElement shoppingCart;
+
     @FindBy(id = "react-burger-menu-btn")
     private WebElement openMenuButton;
 
@@ -41,8 +44,8 @@ public class CartPage extends AbstractPage{
         checkoutButton.click();
     }
 
-    public int getItemCount(){
-        return itemsList.size();
+    public String getItemCount(){
+        return shoppingCart.getText();
     }
 
     public List<WebElement> getItemsList(){
