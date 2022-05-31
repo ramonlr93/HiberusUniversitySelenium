@@ -6,9 +6,8 @@ import org.openqa.selenium.WebDriver;
 @Getter
 public class PagesFactory {
 
-    private static PagesFactory pagesFactories;
+    private static PagesFactory instance;
     private final WebDriver driver;
-
     private final CheckOutStepOnePage checkOutStepOnePage;
     private final CheckOutStepTwoPage checkOutStepTwoPage;
     private final InventoryPage inventoryPage;
@@ -25,11 +24,11 @@ public class PagesFactory {
     }
 
     public static void start(WebDriver driver) {
-        pagesFactories = new PagesFactory(driver);
+        instance = new PagesFactory(driver);
     }
 
     public static PagesFactory getInstance() {
-        return pagesFactories;
+        return instance;
     }
 
 }

@@ -92,10 +92,12 @@ public class InventoryPage extends BasePage {
 
     public void addItemToCart(String name) {
         try {
-            for (WebElement elem : inventoryNameList) {
-                if (elem.getText().equalsIgnoreCase(name)) {
-                    elem.click();
-                }
+            for (WebElement elem : inventoryContainer) {
+                elem.findElement(By.xpath("div[@text='"+ name +"']"));
+
+
+                // click btn
+
             }
         } catch (Exception e) {
             e.printStackTrace();

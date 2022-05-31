@@ -31,13 +31,13 @@ Feature: Validate Inventory test suite
     And the user clicks the login button
     When the user adds a "<item>" by clicking Add To Cart
     And the user clicks on the shopping cart
-    Then there should be "1" items in the shopping cart
+    Then there should be 1 items in the shopping cart
     Examples:
       | username      | password     | item                |
       | standard_user | secret_sauce | Sauce Labs Backpack |
 
   @testcase06
-    @TODO
+    #TODO
  # Scenario Outline: Delete an item in the shopping cart
  #   When the user clicks the login button
  #   And the user adds a "<item>" by clicking 'Add To Cart'

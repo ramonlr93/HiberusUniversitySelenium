@@ -8,35 +8,31 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class InventoryPageSteps {
+    private static final InventoryPage inventory = PagesFactory.getInstance().getInventoryPage();
 
     @Then("the user see the inventory list with {string} size list")
     public void theUserSeeTheInventoryListWithSizeList(String arg0) {
-        InventoryPage inventario = PagesFactory.getInstance().getInventoryPage();
-        Assert.assertEquals("El numero de elementos no es 6", 6, inventario.getInventoryListSize());
+        Assert.assertEquals("El numero de elementos no es 6", 6, inventory.getInventoryListSize());
     }
 
     @Then("the user see the {string} in the inventory list")
     public void theUserSeeTheInTheInventoryList(String name) {
-        InventoryPage inventario = PagesFactory.getInstance().getInventoryPage();
-        Assert.assertTrue("El item " + name + " no se muestra", inventario.isItemVisible(name));
+        Assert.assertTrue("El item " + name + " no se muestra", inventory.isItemVisible(name));
     }
 
     @When("the user adds a {string} by clicking Add To Cart")
     public void theUserAddsAByClickingAddToCart(String name) {
-        InventoryPage inventario = PagesFactory.getInstance().getInventoryPage();
-        inventario.addItemToCart(name);
+        inventory.addItemToCart(name);
     }
 
     @And("the user clicks on the shopping cart")
     public void theUserClicksOnTheShoppingCart() {
-        InventoryPage inventario = PagesFactory.getInstance().getInventoryPage();
-        inventario.clickOnShoppingCart();
+        inventory.clickOnShoppingCart();
     }
 
-    @Then("there should be {string} items in the shopping cart")
+    @Then("there should be {int} items in the shopping cart")
     public void thereShouldBeItemsInTheShoppingCart(int cantidad) {
-        InventoryPage inventario = PagesFactory.getInstance().getInventoryPage();
-        Assert.assertEquals("Los items no se muestran", cantidad, inventario.getCartListSize());
+        Assert.assertEquals("La cantidad de items en carrito no coincide", cantidad, inventory.getCartListSize());
     }
 
     @When("the user selects")
