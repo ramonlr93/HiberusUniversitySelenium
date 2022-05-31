@@ -14,7 +14,7 @@ public class CartPage extends BasePage {
   @FindBy(xpath = "//button[text()='Open Menu']")
   private WebElement hamburgerElem;
 
-  @FindBy(css = "//button[@data-test='checkout']")
+  @FindBy(id = "checkout")
   private WebElement checkoutButton;
 
   @FindBy(css = "#shopping_cart_container > a")
