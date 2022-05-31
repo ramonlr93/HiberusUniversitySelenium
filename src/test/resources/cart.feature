@@ -1,3 +1,4 @@
+@cart
 Feature: cart test suite
 
   Background:
@@ -6,6 +7,7 @@ Feature: cart test suite
     And the user provides the password "password"
     When the user clicks the login button
 
+    @testAddToCart
   Scenario Outline: add to cart "product" product
     #....
 

@@ -4,7 +4,7 @@ Feature: Validate Inventory test suite
   Background: Navigate to the home page
     Given the user is on the home page
 
-  @testcase03
+  @testInventoryListSize
   Scenario Outline: validate inventory list size
     And the user provides the username "<username>" and password "<password>"
     When the user clicks the login button
@@ -13,7 +13,7 @@ Feature: Validate Inventory test suite
       | username      | password     | items |
       | standard_user | secret_sauce | 6     |
 
-  @testcase04
+  @testItemExists
   Scenario Outline: validate exist "<item>" product in inventory list
     And the user provides the username "<username>" and password "<password>"
     When the user clicks the login button
@@ -22,7 +22,8 @@ Feature: Validate Inventory test suite
       | username      | password     | item                    |
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
-  @testcase05
+  @testSingleItemShoppingCart
+    @smoke
   Scenario Outline: Add a single item in the shopping cart
     And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
@@ -44,7 +45,7 @@ Feature: Validate Inventory test suite
  #     | username      | password     | item                |
  #     | standard_user | secret_sauce | Sauce Labs Backpack |
 
-    @testcase07
+    @testMultipleItemsShoppingCart
   Scenario Outline: Place multiple items in the shopping cart
     And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
@@ -59,7 +60,7 @@ Feature: Validate Inventory test suite
       | username      | password     |
       | standard_user | secret_sauce |
 
-  @testcase08
+  @testSortInventoryAlphabeticalOrder
   Scenario Outline: sort inventory by alphabetical desc order
     And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button
@@ -69,7 +70,7 @@ Feature: Validate Inventory test suite
       | username      | password     | optionSort |
       | standard_user | secret_sauce | za         |
 
-  @testcase09
+  @testSortInventoryByPrice
   Scenario Outline: sort inventory by price desc order
     And the user provides the username "<username>" and password "<password>"
     And the user clicks the login button

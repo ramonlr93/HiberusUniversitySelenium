@@ -1,6 +1,8 @@
 package com.hiberus.university.selenium.pages;
 
 import java.util.List;
+
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +21,15 @@ public class InventoryPage extends BasePage {
 
   @FindBy(xpath = "//select[@data-test='product_sort_container']")
   private WebElement selectOptions;
+
+  @FindBy(className = "shopping_cart_link")
+  private WebElement cart;
+
+  @FindBy(className = "inventory_item")
+  private List<WebElement> products;
+
+  @FindBy(xpath = "//div[@class = 'inventory_item_price']")
+  private List<WebElement> inventoryPriceList;
 
   public InventoryPage(WebDriver driver) {
     super(driver);
@@ -54,8 +65,32 @@ public class InventoryPage extends BasePage {
   }
 
   public void selectOption(String option) {
-    Select selectOption = new Select(selectOptions);
+    Select selectOption = new Select(selectOptions); //El objeto Select lo usaremos para seleccionar un Select-option de la web
     selectOption.selectByValue(option);
+  }
+
+  public int getNumberProductsCart() {
+    try {
+      return Integer.parseInt(cart.findElement(By.xpath("//span")).getText());
+    } catch (Exception e) {
+      return 0;
+    }
+  }
+
+  public Boolean isItemDisplayed(String item){
+
+    boolean isProductPresent = false;
+    for(int i = 0; i < products.size(); i++) {
+      if(products.get(i).getText().equals(item)) {
+        isProductPresent = true;
+        break;
+      }
+    }
+    return isProductPresent;
+  }
+
+  public int getNumberProducts() {
+    return products.size();
   }
 
   public List<WebElement> getItemList() {
@@ -65,4 +100,10 @@ public class InventoryPage extends BasePage {
   public List<WebElement> getInventoryNameList() {
     return inventoryNameList;
   }
+
+  public List<WebElement> getInventoryPriceList(){
+    return inventoryPriceList;
+  }
 }
+
+
