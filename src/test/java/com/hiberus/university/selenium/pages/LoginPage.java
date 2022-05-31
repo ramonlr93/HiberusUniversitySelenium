@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Slf4j
 public class LoginPage extends AbstractPage {
@@ -35,27 +37,18 @@ public class LoginPage extends AbstractPage {
     }
 
     public void enterPassword(String password) {
-        passwordInput.click();
         passwordInput.sendKeys(password);
     }
 
     public void enterUsername(String username) {
-        usernameInput.click();
-        usernameInput.sendKeys(username);
+        wait.until(ExpectedConditions.visibilityOf(usernameInput)).sendKeys(username);
     }
 
     public void clickLogin() {
-        log.info("logging in...");
-        try {
-            loginButton.click();
-        } catch (TimeoutException e) {
-            log.info("Timeout clicking login: " + e.getClass().getSimpleName());
-        } catch (Exception e) {
-            log.info("Clicking login, caught exception, type: " + e.getClass().getSimpleName());
-        }
+        loginButton.click();
     }
 
-    public boolean hasMessageError(){
+    public boolean hasMessageError() {
         return errorMessage.isDisplayed();
     }
 

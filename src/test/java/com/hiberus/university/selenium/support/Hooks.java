@@ -1,19 +1,27 @@
 package com.hiberus.university.selenium.support;
 
 import com.hiberus.university.selenium.pages.PagesFactory;
+import com.hiberus.university.selenium.utils.Flags;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.an.E;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.remote.BrowserType.EDGE;
+import static org.openqa.selenium.remote.BrowserType.FIREFOX;
 
 @Slf4j
 public class Hooks {
@@ -29,20 +37,29 @@ public class Hooks {
         PagesFactory.start(driver);
     }
 
+    // mvn test -Dcucumber.filter.tags="@testcase-01" -Dbrowser=firefox -Dheadless=true
     private static WebDriver createWebDriver(){
-        String webdriver = System.getProperty("browser", "chrome");
-        switch(webdriver) {
-            case "firefox":
+        String browser = Flags.getInstance().getBrowser();
+        boolean isHeadless = Flags.getInstance().isHeadless();
+
+        switch(browser) {
+            case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
-                return new FirefoxDriver();
-            case "edge":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if(isHeadless){
+                    firefoxOptions.setHeadless(true);
+                }
+                return new FirefoxDriver(firefoxOptions);
+            case EDGE:
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
             default:
-                throw new RuntimeException("Unsupported webdriver: " + webdriver);
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if(isHeadless){
+                    chromeOptions.setHeadless(true);
+                }
+                return new ChromeDriver(chromeOptions);
         }
     }
 
