@@ -9,7 +9,7 @@ public class PagesFactory {
     private static PagesFactory instance;
     private final WebDriver driver;
     private final CheckOutStepOnePage checkOutStepOnePage;
-    private final CheckOutStepTwoPage checkOutStepTwoPage;
+    private final com.hiberus.university.selenium.pages.checkOutStepTwoPage checkOutStepTwoPage;
     private final InventoryPage inventoryPage;
     private final LoginPage loginPage;
     private final CartPage cartPage;
@@ -17,7 +17,7 @@ public class PagesFactory {
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
         checkOutStepOnePage = new CheckOutStepOnePage(driver);
-        checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
+        checkOutStepTwoPage = new com.hiberus.university.selenium.pages.checkOutStepTwoPage(driver);
         inventoryPage = new InventoryPage(driver);
         loginPage = new LoginPage(driver);
         cartPage = new CartPage(driver);

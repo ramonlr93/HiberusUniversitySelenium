@@ -73,8 +73,13 @@ public class InventoryPageSteps {
         Assert.assertEquals("Lista no esta con precios de menor a mayor", baseSortedItems, inventoryPage.getItemPrices());
     }
 
-    @And("the user deletes the {string} in the cart")
-    public void theUserDeletesTheItemInTheCart(String name) {
+    @When("the user deletes the {string} from the inventory")
+    public void theUserDeletesTheFromTheInventory(String name) {
         inventoryPage.removeItemFromCartByName(name);
+    }
+
+    @Then("there are no numbers in cart icon")
+    public void thereAreNoNumbersInCartIcon() {
+        Assert.assertEquals("No se ha eliminado elemento del carrito",0,);
     }
 }

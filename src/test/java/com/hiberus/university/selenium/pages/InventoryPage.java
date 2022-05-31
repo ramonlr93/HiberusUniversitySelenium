@@ -51,7 +51,7 @@ public class InventoryPage extends BasePage {
     }
 
     public void removeItemFromCartByName(String itemName) {
-        String xpath = "//div[contains(., '" + itemName + "')]/parent::a/parent::div//button";
+        String xpath = getButton(itemName);
         WebElement itemElem = getDriver().findElement(By.xpath(xpath));
         itemElem.click();
     }
