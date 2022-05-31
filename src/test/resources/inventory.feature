@@ -25,6 +25,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
   @testcase05
+  #TODO
   Scenario Outline: Add a single item in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -37,7 +38,6 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Backpack |
 
   @testcase06
-    #TODO
  # Scenario Outline: Delete an item in the shopping cart
  #   When the user clicks the login button
  #   And the user adds a "<item>" by clicking 'Add To Cart'
@@ -47,18 +47,19 @@ Feature: Validate Inventory test suite
  #     | username      | password     | item                |
  #     | standard_user | secret_sauce | Sauce Labs Backpack |
 
-    @testcase07
+  @testcase07
   Scenario Outline: Place multiple items in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
     And the user clicks the login button
+    #TODO
     When the user selects
       | product                 |
       | Sauce Labs Backpack     |
       | Sauce Labs Bolt T-Shirt |
       | Sauce Labs Onesie       |
     And the user clicks on the shopping cart
-    Then there should be "3" items in the shopping cart
+    Then there should be 3 items in the shopping cart
     Examples:
       | username      | password     |
       | standard_user | secret_sauce |

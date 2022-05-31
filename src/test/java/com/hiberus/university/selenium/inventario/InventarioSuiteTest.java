@@ -208,7 +208,7 @@ public class InventarioSuiteTest {
         InventoryPage inventoryPage = pf.getInventoryPage();
         inventoryPage.selectOption("az");
 
-        List<WebElement> inventoryList = inventoryPage.getInventoryNameList();
+        List<WebElement> inventoryList = inventoryPage.getInventoryItems();
         List<String> nameInventoryResult = new ArrayList<>();
         List<String> nameInventoryResultSorted = new ArrayList<>();
 

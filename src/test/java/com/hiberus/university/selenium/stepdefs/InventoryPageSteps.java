@@ -7,6 +7,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.Collections;
+import java.util.List;
+
 public class InventoryPageSteps {
     private static final InventoryPage inventory = PagesFactory.getInstance().getInventoryPage();
 
@@ -22,7 +25,7 @@ public class InventoryPageSteps {
 
     @When("the user adds a {string} by clicking Add To Cart")
     public void theUserAddsAByClickingAddToCart(String name) {
-        inventory.addItemToCart(name);
+        inventory.addItemToCartByName(name);
     }
 
     @And("the user clicks on the shopping cart")
@@ -37,19 +40,28 @@ public class InventoryPageSteps {
 
     @When("the user selects")
     public void theUserSelects() {
+
     }
 
     @When("the user clicks select {string}")
-    public void theUserClicksSelect(String arg0) {
+    public void theUserClicksSelect(String option) {
+        inventory.selectOption(option);
     }
 
     @Then("the user see the list by alphabetical desc order")
     public void theUserSeeTheListByAlphabeticalDescOrder() {
+        List<String> baseSortedItems = inventory.getInventoryItemsName();
+        Collections.sort(baseSortedItems, Collections.reverseOrder());
+        Assert.assertEquals("La lista no esta ordenada en orden inverso", baseSortedItems, inventory.getInventoryItemsName());
     }
 
     @Then("the user see the list by price desc order")
     public void theUserSeeTheListByPriceDescOrder() {
+        List<Double> baseSortedItems = inventory.getItemPrices();
+        Collections.sort(baseSortedItems, Collections.reverseOrder());
+        Assert.assertEquals("Isnt sorted from H to L", baseSortedItems, inventory.getItemPrices());
     }
+
 
 
 }

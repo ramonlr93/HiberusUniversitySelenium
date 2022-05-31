@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryPage extends BasePage {
@@ -26,6 +27,9 @@ public class InventoryPage extends BasePage {
 
     @FindBy(xpath = "//button[contains(@id, 'add-to-cart')]")
     private List<WebElement> btnAddToCart;
+
+    @FindBy(xpath = "//div[@class = 'inventory_list']/descendant::div[@class = 'inventory_item_price']")
+    private List <WebElement> itemPrices;
 
     @FindBy(xpath = "//div[@class='cart_item']")
     List<WebElement> cartElements;
@@ -69,8 +73,24 @@ public class InventoryPage extends BasePage {
         return inventoryContainer;
     }
 
-    public List<WebElement> getInventoryNameList() {
+    public List<WebElement> getInventoryItems() {
         return inventoryNameList;
+    }
+
+    public List<String> getInventoryItemsName() {
+        List<String> names  = new ArrayList<>();
+        for (WebElement e: inventoryNameList) {
+            names.add(e.getText());
+        }
+        return names;
+    }
+
+    public List<Double> getItemPrices(){
+        List<Double> prices = new ArrayList<Double>();
+        for (WebElement itemPrice : itemPrices) {
+            prices.add(Double.parseDouble(itemPrice.getText().substring(1)));
+        }
+        return prices;
     }
 
     public int getInventoryListSize() {
@@ -90,21 +110,11 @@ public class InventoryPage extends BasePage {
         return false;
     }
 
-    public void addItemToCart(String name) {
-        try {
-            for (WebElement elem : inventoryContainer) {
-                elem.findElement(By.xpath("div[@text='"+ name +"']"));
-
-
-                // click btn
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public int getCartListSize() {
         return cartElements.size();
     }
+
+
+
+
 }
