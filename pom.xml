@@ -68,25 +68,6 @@
               </configuration>
           </plugin>
 
-<<<<<<< HEAD
-        <plugin>
-          <groupId>net.masterthought</groupId>
-          <artifactId>maven-cucumber-reporting</artifactId>
-          <version>5.3.0</version>
-          <executions>
-            <execution>
-              <id>execution</id>
-              <phase>test</phase>
-              <goals>
-                <goal>generate</goal>
-              </goals>
-              <configuration>
-                <projectName>Saucedemo test project</projectName>
-                <outputDirectory>${project.build.directory}/surefire.reports</outputDirectory>
-                <jsonFiles>
-                  <param>**/*.json</param>
-                </jsonFiles>
-=======
           <plugin>
             <groupId>net.masterthought</groupId>
             <artifactId>maven-cucumber-reporting</artifactId>
@@ -104,15 +85,10 @@
                   <jsonFiles>
                     <param>**/*.json</param>
                   </jsonFiles>
->>>>>>> d2b637f7bbc4e015272d043cc4b18c19e5e025e9
               </configuration>
             </execution>
           </executions>
         </plugin>
-<<<<<<< HEAD
-=======
-
->>>>>>> d2b637f7bbc4e015272d043cc4b18c19e5e025e9
       </plugins>
   </build>
 
@@ -264,11 +240,6 @@
       <artifactId>cucumber-reporting</artifactId>
       <version>5.3.0</version>
     </dependency>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d2b637f7bbc4e015272d043cc4b18c19e5e025e9
   </dependencies>
 
 </project>
