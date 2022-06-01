@@ -1,4 +1,4 @@
-@Cart
+@cart
 Feature: Cart test
 
   Background:

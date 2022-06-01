@@ -1,4 +1,4 @@
-@Checkout
+@checkout
 Feature: Checkout test
 
   Background:

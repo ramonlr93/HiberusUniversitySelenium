@@ -1,4 +1,4 @@
-@Logout
+@logout
 Feature: Logout test suite
 
   Background:
