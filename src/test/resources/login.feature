@@ -14,6 +14,7 @@ Feature: Login test suite
     Examples:
       | username        | password      |
       | standard_user   | secret_sauce  |
+      | standard_user01 | secret_sauce  |
 
   @testcase-login02
   Scenario Outline: Verify valid user can not login

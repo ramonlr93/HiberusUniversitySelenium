@@ -12,6 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d2b637f7bbc4e015272d043cc4b18c19e5e025e9
 @Ignore
 public class CheckoutSuiteTestRuben {
 

@@ -18,7 +18,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Unit test for simple App.
+<<<<<<< HEAD
  */@Ignore
+=======
+ */
+@Ignore
+>>>>>>> d2b637f7bbc4e015272d043cc4b18c19e5e025e9
 public class InventarioSuite
 {
     public static WebDriver driver;

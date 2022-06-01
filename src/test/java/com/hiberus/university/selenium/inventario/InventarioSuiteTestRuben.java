@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+@Ignore
 public class InventarioSuiteTestRuben {
 
     public static WebDriver driver;

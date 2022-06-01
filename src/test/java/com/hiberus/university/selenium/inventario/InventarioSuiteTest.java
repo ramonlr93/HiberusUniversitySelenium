@@ -19,7 +19,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+
 @Slf4j
+@Ignore
 public class InventarioSuiteTest {
 
     public static WebDriver driver;
