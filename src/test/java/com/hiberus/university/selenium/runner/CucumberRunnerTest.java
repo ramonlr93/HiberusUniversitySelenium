@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 @CucumberOptions(
   plugin = {
     "pretty",
+    "json:target/surefire.reports/cucumber.json",
+    "html:target/cucumber-html-report"
   },
   glue = {
     "com.hiberus.university.selenium.stepdefs",
