@@ -1,22 +1,19 @@
-package com.hiberus.university.selenium.pages.pages;
+package com.hiberus.university.selenium.pages;
 
-
-import com.hiberus.university.selenium.pages.utils.MyFluentWait;
-import java.time.temporal.ChronoUnit;
+import com.hiberus.university.selenium.utils.MyFluentWait;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScriptTimeoutException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
+
+import java.time.temporal.ChronoUnit;
+
 @Slf4j
-abstract class AbstractPage {
+public abstract class AbstractPage {
 
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
@@ -25,10 +22,9 @@ abstract class AbstractPage {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)
                 .withTimeout(60, ChronoUnit.SECONDS)
-                .pollingEvery(2, ChronoUnit.SECONDS)
+                .pollingEvery(1, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
-
     public abstract WebElement getPageLoadedTestElement();
 
     protected WebDriver getDriver() {
@@ -82,5 +78,21 @@ abstract class AbstractPage {
                 log.error(e.getMessage());
             }
         }
+    }
+
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement sideBarButton;
+    @FindBy(id = "logout_sidebar_link")
+    private WebElement logOutButton;
+
+    public void clicksOnLateralPanelButton() {
+        sideBarButton.click();
+    }
+    public void clicksOnTheLogoutButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(logOutButton)).click();
+    }
+    public void logOut() {
+        clicksOnLateralPanelButton();
+        clicksOnTheLogoutButton();
     }
 }

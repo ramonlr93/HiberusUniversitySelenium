@@ -1,4 +1,6 @@
+
 package com.hiberus.university.selenium.pages;
+
 
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -6,29 +8,36 @@ import org.openqa.selenium.WebDriver;
 @Getter
 public class PagesFactory {
 
-  private static PagesFactory pagesFactories;
+  private static PagesFactory pagesFactory;
   private final WebDriver driver;
-
-  private final CheckOutStepOnePage checkOutStepOnePage;
-  private final CheckOutStepTwoPage checkOutStepTwoPage;
-  private final InventoryPage inventoryPage;
   private final LoginPage loginPage;
+  private final InventoryPage inventoryPage;
+  private final ProductDetailsPage productDetailsPage;
   private final CartPage cartPage;
+  private final CheckOutOnePage checkoutOnePage;
+  private final CheckoutTwoPage checkoutTwoPage;
+  private final CheckoutComplete checkoutComplete;
 
   public PagesFactory(WebDriver driver) {
     this.driver = driver;
-    checkOutStepOnePage = new CheckOutStepOnePage(driver);
-    checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
-    inventoryPage = new InventoryPage(driver);
     loginPage = new LoginPage(driver);
+    inventoryPage = new InventoryPage(driver);
+    productDetailsPage = new ProductDetailsPage(driver);
     cartPage = new CartPage(driver);
+    checkoutOnePage = new CheckOutOnePage(driver);
+    checkoutTwoPage = new CheckoutTwoPage(driver);
+    checkoutComplete = new CheckoutComplete(driver);
   }
-
-  public static void start(WebDriver driver) {
-    pagesFactories = new PagesFactory(driver);
-  }
-
   public static PagesFactory getInstance() {
-    return pagesFactories;
+    return pagesFactory;
   }
+  public static PagesFactory start(WebDriver driver) {
+    pagesFactory = new PagesFactory(driver);
+    return pagesFactory;
+  }
+
+  public String getCurrentUrl() {
+    return driver.getCurrentUrl();
+  }
+
 }

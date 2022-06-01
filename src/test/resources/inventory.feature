@@ -1,80 +1,39 @@
-@inventory
-Feature: Validate Inventory test suite
+Feature: Inventory
 
-  Background: Navigate to the home page
+  Background:
     Given the user is on the home page
-
-  @testcase03
-  Scenario Outline: validate inventory list size
-    And the user provides the username "<username>" and password "<password>"
-    When the user clicks the login button
-    Then the user see the inventory list with "<items>" size list
-    Examples:
-      | username      | password     | items |
-      | standard_user | secret_sauce | 6     |
-
-  @testcase04
-  Scenario Outline: validate exist "<item>" product in inventory list
-    And the user provides the username "<username>" and password "<password>"
-    When the user clicks the login button
-    Then the user see the "<item>" in the inventory list
-    Examples:
-      | username      | password     | item                    |
-      | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
-
-  @testcase05
-  Scenario Outline: Add a single item in the shopping cart
-    And the user provides the username "<username>" and password "<password>"
+    And the user provides the username "standard_user"
+    And the user provides the password "secret_sauce"
     And the user clicks the login button
-    When the user adds a "<item>" by clicking Add To Cart
-    And the user clicks on the shopping cart
-    Then there should be "1" items in the shopping cart
-    Examples:
-      | username      | password     | item                |
-      | standard_user | secret_sauce | Sauce Labs Backpack |
+    When the user is logged successfully and is into the inventory page
 
-  @testcase06
-    @TODO
- # Scenario Outline: Delete an item in the shopping cart
- #   When the user clicks the login button
- #   And the user adds a "<item>" by clicking 'Add To Cart'
- #   And the user clicks on the shopping cart
- #   Then there should be "1" items in the shopping cart
- #   Examples:
- #     | username      | password     | item                |
- #     | standard_user | secret_sauce | Sauce Labs Backpack |
+  Scenario: Verify that there are 6 items on the inventory
+    Then the page have 6 items
 
-    @testcase07
-  Scenario Outline: Place multiple items in the shopping cart
-    And the user provides the username "<username>" and password "<password>"
-    And the user clicks the login button
-    When the user selects
-      | product                 |
-      | Sauce Labs Backpack     |
-      | Sauce Labs Bolt T-Shirt |
-      | Sauce Labs Onesie       |
-    And the user clicks on the shopping cart
-    Then there should be "3" items in the shopping cart
-    Examples:
-      | username      | password     |
-      | standard_user | secret_sauce |
+  Scenario: Verify that "Sauce Labs Bolt T-Shirt" exists on the inventory
+    Then the page have the "Sauce Labs Bolt T-Shirt" is displayed
 
-  @testcase08
-  Scenario Outline: sort inventory by alphabetical desc order
-    And the user provides the username "<username>" and password "<password>"
-    And the user clicks the login button
-    When the user clicks select "<optionSort>"
-    Then the user see the list by alphabetical desc order
-    Examples:
-      | username      | password     | optionSort |
-      | standard_user | secret_sauce | za         |
+  Scenario: Add the product "Sauce Labs Bolt T-Shirt" to the cart
+    And the user adds the product "Sauce Labs Bolt T-Shirt" to the cart
+    Then the cart value increments to 1
 
-  @testcase09
-  Scenario Outline: sort inventory by price desc order
-    And the user provides the username "<username>" and password "<password>"
-    And the user clicks the login button
-    When the user clicks select "<optionSort>"
-    Then the user see the list by price desc order
-    Examples:
-      | username      | password     | optionSort |
-      | standard_user | secret_sauce | hilo       |
+  Scenario: Remove a product from the cart from the inventory
+    And the user adds the product "Sauce Labs Bolt T-Shirt" to the cart
+    And the user removes the product "Sauce Labs Bolt T-Shirt" from the cart
+    Then the cart is empty
+
+  Scenario: Add 3 products to the cart
+    And the user adds 3 random products to the cart
+    Then the cart value increments to 3
+
+  Scenario: Sort the items from Z to A
+    And the user clicks the filter to sort from Z to A
+    Then the page get sorted from Z to A
+
+  Scenario: Sort the items by price from lower to higher
+    And the user clicks the filter to sort by price from lower to higher
+    Then the page get sorted by price from lower to higher
+
+  Scenario: Sort the items by price from higher to lower
+    And the user clicks the filter to sort by price from higher to lower
+    Then the page get sorted by price from higher to lower

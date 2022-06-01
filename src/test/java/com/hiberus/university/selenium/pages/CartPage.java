@@ -1,54 +1,116 @@
+
 package com.hiberus.university.selenium.pages;
 
-import java.util.List;
+
+import com.hiberus.university.selenium.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartPage extends BasePage {
-  public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
+import java.util.ArrayList;
+import java.util.List;
 
-  @FindBy(xpath = "//button[text()='Open Menu']")
-  private WebElement hamburgerElem;
+public class CartPage extends AbstractPage {
 
-  @FindBy(css = "//button[@data-test='checkout']")
-  private WebElement checkoutButton;
+  @FindBy(className = "cart_item")
+  private List<WebElement> products;
 
-  @FindBy(css = "#shopping_cart_container > a")
-  private WebElement shoppingCartElem;
+  @FindBy(id = "continue-shopping")
+  private WebElement continueShoppingButton;
 
-  @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
-  private List<WebElement> itemsList;
+  @FindBy(id = "checkout")
+  private WebElement goCheckoutButton;
 
-  public CartPage(WebDriver driver) {
+  CartPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
   }
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return checkoutButton;
+    return null;
   }
 
-  public void clickCheckout() {
-    checkoutButton.click();
+  public WebElement getProductTitle(WebElement productContainer) {
+    return productContainer
+            .findElement(By.xpath(".//div[@class='inventory_item_desc']"));
   }
 
-  public int getItemCount() {
-    return itemsList.size();
+  public int getProductsOnCart() {
+    return products.size();
+  }
+  public WebElement getProduct(String title) throws Exception {
+    for (WebElement productContainer : products) {
+      if (getProductTitle(productContainer).getText().equals(title)) {
+        return productContainer;
+      }
+    }
+    throw new Exception("No se ha podido encontrar el producto" + title);
+  }
+  public boolean isProductDisplayed(String title) throws Exception {
+    return getProduct(title).isDisplayed();
+  }
+  private WebElement getButton(WebElement productContainer) {
+    return productContainer.findElement(By.xpath(".//button"));
   }
 
-  public List<WebElement> getItemsList() {
-    return itemsList;
+  public int getProductQuantity(WebElement product) {
+    return Integer.parseInt(product.findElement(By.xpath(".//div[@class='cart_quantity']")).getText());
   }
 
-  public void deleteCarItemtByName(String itemName) {
-    String xpathName = itemName.replace(" ", "-").toLowerCase();
-    String xpath = String.format("//button[@data-test='remove-" + xpathName + "']");
-    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-    itemElem.click();
+  public Double getProductPrice(String title) throws Exception {
+    return getProductPrice(getProduct(title));
+  }
+  public Double getProductPrice(WebElement productContainer) {
+    return Double.parseDouble(productContainer
+            .findElement(By.xpath(".//div[@class='inventory_item_price']"))
+            .getText()
+            .replace("$", ""));
+  }
+
+  public void removeProductFromCart(String title) throws Exception {
+    removeProductFromCart(getProduct(title));
+  }
+  public void removeProductFromCart(WebElement productContainer) {
+    WebElement button = getButton(productContainer);
+    if (button.getText().trim().equalsIgnoreCase("Remove"))
+      button.click();
+  }
+
+  public void continueShopping() {
+    continueShoppingButton.click();
+  }
+
+  public void goCheckout() {
+    goCheckoutButton.click();
+  }
+
+  public Double getTotalPrice() {
+    Double totalPrice = 0d;
+    for (WebElement product : products)
+      totalPrice += getProductPrice(product) * getProductQuantity(product);
+    return totalPrice;
+  }
+
+  private List<WebElement> getAllProductsButtons() {
+    List<WebElement> allButtons = new ArrayList<>();
+    for (WebElement product : products)
+      allButtons.add(getButton(product));
+    return allButtons;
+  }
+
+  public void removeRandomProducs(int numberOfProducts) {
+    List<WebElement> botonesProductos = getAllProductsButtons();
+    List<Integer> numerosRandom = new ArrayList<>();
+    for (int i = 0; i < numberOfProducts && i < botonesProductos.size(); i++) {
+      int rnd;
+      do
+        rnd = (int) Math.floor(Math.random() * (botonesProductos.size()));
+      while (numerosRandom.contains(rnd));
+      botonesProductos.get(rnd).click();
+      numerosRandom.add(rnd);
+    }
   }
 }
