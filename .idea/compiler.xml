@@ -7,8 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="HiberusUniversitySelenium" />
+        <module name="HiberusUniversitySeleniumm" />
         <module name="com.hiberus.university.iris.maven.first" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.hiberus.university" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
