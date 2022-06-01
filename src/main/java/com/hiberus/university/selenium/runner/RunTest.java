@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.run;
+package com.hiberus.university.selenium.runner;
 
 
 import com.hiberus.university.selenium.carrito.CartSuiteTest;

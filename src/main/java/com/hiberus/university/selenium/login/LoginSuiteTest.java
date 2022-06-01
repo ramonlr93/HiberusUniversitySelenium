@@ -8,12 +8,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -24,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class LoginSuiteTest {
 
     public static WebDriver driver;
-
     public static WebDriverWait wait;
 
     @Before
@@ -55,29 +50,14 @@ public class LoginSuiteTest {
 
     @Test
     public void loginIncorrectTest() {
+        driver.get(LoginPage.PAGE_URL);
+        PagesFactory pf = PagesFactory.getInstance();
+        LoginPage loginPage = pf.getLoginPage();
+        loginPage.enterUsername("standard");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLogin();
+        Assert.assertTrue("Error message isn't displayed", loginPage.hasUsernamePasswordError());
 
-        // Ir a la página https://www.saucedemo.com
-        driver.get("https://www.saucedemo.com/");
-
-        // Escribir el username standard
-        WebElement inputUserName =  driver.findElement(By.id("user-name"));
-        inputUserName.sendKeys("standard");
-
-        // Escribir el password secret_sauce
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-
-        // Pulsar en el botón del Login
-        driver.findElement(By.id("login-button")).click();
-
-        // Validar que se visualiza el elemento web del mensaje de error
-        boolean isMessageErrorVisible;
-        try {
-            isMessageErrorVisible = driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
-        } catch (NoSuchElementException n) {
-            isMessageErrorVisible = false;
-        }
-
-        Assert.assertTrue("PRUEBA FALLIDA, EL ELEMENTO DE ERROR NO APARECE. ", isMessageErrorVisible);
     }
 
     @After
