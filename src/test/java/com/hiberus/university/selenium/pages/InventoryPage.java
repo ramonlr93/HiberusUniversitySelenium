@@ -25,6 +25,12 @@ public class InventoryPage extends BasePage {
     PageFactory.initElements(driver, this);
   }
 
+  public boolean findItemToCartByName(String itemName) {
+    String xpath = getButton(itemName);
+    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
+    return itemElem.isDisplayed();
+  }
+
   @FindBy(xpath = "//div[@class='inventory_item_name']")
   private List<WebElement> inventoryNameList;
 
@@ -44,6 +50,8 @@ public class InventoryPage extends BasePage {
     WebElement itemElem = getDriver().findElement(By.xpath(xpath));
     itemElem.click();
   }
+
+
 
   private String getButton(String itemName) {
     return "//div[contains(., '" + itemName + "')]/parent::a/parent::div/following-sibling::div/button";
