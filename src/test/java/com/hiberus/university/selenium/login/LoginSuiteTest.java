@@ -5,10 +5,8 @@ import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.List;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Unit test for simple App.
  */
+@Ignore
 public class LoginSuiteTest {
     public static WebDriver driver;
 

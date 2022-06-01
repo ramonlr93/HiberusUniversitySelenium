@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Ignore
 public class CartSuiteTestRuben {
 
     public static WebDriver driver;
