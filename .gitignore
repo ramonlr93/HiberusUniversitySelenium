@@ -42,8 +42,6 @@ Desktop.ini
 # Vscode
 .vscode
 
-# Maven
-target/
 
 # Gradle
 build/

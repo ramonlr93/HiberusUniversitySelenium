@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.hiberus.university.selenium.runner.CucumberRunnerTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 41.139 s <<< FAILURE! - in com.hiberus.university.selenium.runner.CucumberRunnerTest
+Verify valid user can login(Login test suite)  Time elapsed: 2.48 s  <<< FAILURE!
+org.junit.ComparisonFailure: login failed expected:<...//www.saucedemo.com/[inventory.html]> but was:<...//www.saucedemo.com/[]>
+

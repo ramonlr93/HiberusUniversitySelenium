@@ -1,0 +1,15 @@
+com\hiberus\university\selenium\pages\InventoryPage.class
+com\hiberus\university\selenium\checkout\CheckoutSuiteTest.class
+com\hiberus\university\selenium\pages\CheckOutStepOnePage.class
+com\hiberus\university\selenium\logout\LogoutTest.class
+com\hiberus\university\selenium\runner\RunTest.class
+com\hiberus\university\selenium\inventario\InventarioSuiteTest.class
+com\hiberus\university\selenium\utils\MyFluentWait.class
+com\hiberus\university\selenium\carrito\CartSuiteTest.class
+com\hiberus\university\selenium\model\InventoryItem.class
+com\hiberus\university\selenium\pages\CheckOutStepTwoPage.class
+com\hiberus\university\selenium\login\LoginSuiteTest.class
+com\hiberus\university\selenium\pages\PagesFactory.class
+com\hiberus\university\selenium\pages\AbstractPage.class
+com\hiberus\university\selenium\pages\CartPage.class
+com\hiberus\university\selenium\pages\LoginPage.class
