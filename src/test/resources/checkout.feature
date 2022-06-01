@@ -21,6 +21,7 @@ Feature: checkout test suite
       | standard_user | secret_sauce | 3      | Katherin  | Sanabria | 04009      |
 
   @testcase12
+    @smoke
   Scenario Outline: validate checkout message
     And the user provides the username "<username>"
     And the user provides the password "<password>"

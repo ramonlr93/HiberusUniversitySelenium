@@ -28,6 +28,7 @@ Feature: Validate Inventory test suite
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
   @testcase05
+    @smoke
   Scenario Outline: Add a single item in the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"

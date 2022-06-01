@@ -5,6 +5,7 @@ Feature: Login test suite
     Given the user is on the home page
 
   @testcase01
+    @smoke
   Scenario Outline: Verify valid user can login
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -16,6 +17,7 @@ Feature: Login test suite
       | standard_user | secret_sauce |
 
   @testcase02
+    @smoke
   Scenario Outline: Verify valid user cannot login
     And the user provides the username "<username>"
     And the user provides the password "<password>"
