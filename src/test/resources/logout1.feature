@@ -1,9 +1,10 @@
+@logout
 Feature: Logout Test Suite
 
 Background:
   Given the user is on the home page
 
-
+@logout
 Scenario Outline: Verify a valid user can log out
   And the user provides the username "<username>"
   And the user provides the password "<password>"

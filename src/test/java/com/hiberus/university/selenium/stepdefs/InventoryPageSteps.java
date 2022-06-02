@@ -4,10 +4,13 @@ import com.hiberus.university.selenium.pages.CartPage;
 import com.hiberus.university.selenium.pages.InventoryPage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.sl.In;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
@@ -17,6 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@Slf4j
 public class InventoryPageSteps {
     @When("the user is in the inventory page")
     public void theUserIsInTheInventoryPage(){
@@ -89,10 +93,14 @@ public class InventoryPageSteps {
     }
 
     @When("the user adds to the cart")
-    public void theUserAddsToTheCart() {
+    public void theUserAddsToTheCart(DataTable dataTable) {
         PagesFactory pf = PagesFactory.getInstance();
         InventoryPage inventoryPage = pf.getInventoryPage();
-        inventoryPage.getThreeRandomItems();
+        List<String> dataTableItems = dataTable.asList(String.class);
+        for (String item : dataTableItems){
+            log.info("the user selected " + item);
+            inventoryPage.addItemToCartByName(item);
+        }
     }
 
     @Then("it shows in the cart icon that the three products were added")

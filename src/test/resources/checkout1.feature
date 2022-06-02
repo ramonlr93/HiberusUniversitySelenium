@@ -1,9 +1,10 @@
+@checkout
 Feature: Checkout Test Suite
 
 Background:
   Given the user is on the home page
 
-
+@checkprice
 Scenario Outline: Checking the final price of some products added to the cart
   And the user provides the username "<username>"
   And the user provides the password "<password>"
@@ -19,6 +20,8 @@ Scenario Outline: Checking the final price of some products added to the cart
   | username      | password     | name     | surname   | postcode |
   | standard_user | secret_sauce | Fulanito | Fulanitez | 55555    |
 
+  @makeanorder
+  @smoke
 Scenario Outline: Make an order
   And the user provides the username "<username>"
   And the user provides the password "<password>"

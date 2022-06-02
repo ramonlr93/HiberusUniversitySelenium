@@ -1,8 +1,10 @@
+@inventory
 Feature: Inventory Test Suite
 
 Background: Navigate to the home page
   Given the user is on the home page
 
+  @testinventorylist
 Scenario Outline: Verify the number of items in the inventory
   And the user provides the username "<username>"
   And the user provides the password "<password>"
@@ -14,6 +16,7 @@ Scenario Outline: Verify the number of items in the inventory
   | username      | password     | items |
   | standard_user | secret_sauce | 6     |
 
+  @testproductinventory
 Scenario Outline: Verify that the product is in the inventory
   And the user provides the username "<username>"
   And the user provides the password "<password>"
@@ -25,6 +28,7 @@ Scenario Outline: Verify that the product is in the inventory
   | username      | password     | product                 |
   | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
+  @testadditem
 Scenario Outline: Add an item to the cart
   And the user provides the username "<username>"
   And the user provides the password "<password>"
@@ -37,6 +41,7 @@ Scenario Outline: Add an item to the cart
   | username      | password     | product                 |
   | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
+  @testremoveitem
   Scenario Outline: Remove an item from the cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -49,23 +54,24 @@ Scenario Outline: Add an item to the cart
     | username      | password     | product                 |
     | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
+  @testmultipleitems
+  @smoke
   Scenario Outline: Add multiple items to the shopping cart
     And the user provides the username "<username>"
     And the user provides the password "<password>"
     And the clicks the login button
     And the user is in the inventory page
     When the user adds to the cart
-      | product                 |
-      | Sauce Labs Bolt T-Shirt |
-      | Sauce Labs Backpack     |
-      | Sauce Labs Onesie       |
-
+    | Sauce Labs Backpack     |
+    | Sauce Labs Bolt T-Shirt |
+    | Sauce Labs Bike Light   |
     Then it shows in the cart icon that the three products were added
 
   Examples:
   | username      | password     |
   | standard_user | secret_sauce |
 
+  @sortztoa
   Scenario Outline: Sort the inventory by alphabetical order (Z to A)
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -78,6 +84,7 @@ Scenario Outline: Add an item to the cart
       | username      | password     | optionSort |
       | standard_user | secret_sauce | za       |
 
+  @sortpricehilo
   Scenario Outline: Sort the inventory by price order (Low to High)
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -90,6 +97,7 @@ Scenario Outline: Add an item to the cart
       | username      | password     | optionSort |
       | standard_user | secret_sauce | lohi       |
 
+  @sortpricelohi
   Scenario Outline: Sort the inventory by price order (High to Low)
     And the user provides the username "<username>"
     And the user provides the password "<password>"

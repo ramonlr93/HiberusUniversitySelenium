@@ -1,8 +1,11 @@
+@login
 Feature: Login Test Suite
 
   Background: Navigate to the home page
     Given the user is on the home page
 
+  @loginok
+  @smoke
   Scenario Outline: Verify valid user can login
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -13,6 +16,7 @@ Feature: Login Test Suite
       | username      | password     |
       | standard_user | secret_sauce |
 
+  @loginko
   Scenario Outline: Verify invalid user cant login
     And the user provides the username "<username>"
     And the user provides the password "<password>"
@@ -20,5 +24,5 @@ Feature: Login Test Suite
     Then a message error should be shown
 
     Examples:
-      | username   | password     |
-      | bad_user   | secret_sauce |
+      | username | password     |
+      | bad_user | secret_sauce |
