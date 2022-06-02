@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 @Ignore
 public class CheckoutSuite {
     public static WebDriver driver;

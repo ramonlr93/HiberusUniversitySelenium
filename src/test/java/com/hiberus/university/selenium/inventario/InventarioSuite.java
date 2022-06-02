@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit;
  * Unit test for simple App.
  */
 @Ignore
-public class InventarioSuite
-{
+public class InventarioSuite {
+
     public static WebDriver driver;
     public static WebDriverWait wait;
 
