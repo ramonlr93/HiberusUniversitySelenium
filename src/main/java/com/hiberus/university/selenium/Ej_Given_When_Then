@@ -1,0 +1,107 @@
+LOGIN SUITE
+    ### Realizar Login:
+        `given` el usuario se encuentra en https://www.saucedemo.com
+        `and` el usuario introduce usuario (standar_user) y contraseña (secret_sauce)
+        `when` el usuario clickea el boton login
+        `then` el usuario se encuentra en la pagina de inventario
+
+    ### Validar mensaje de Login incorrecto:
+        `given` el usuario se encuentra en https://www.saucedemo.com
+        `and` el usuario introduce usuario (standar_user) y contraseña (secret_sauce)
+        `when` el usuario clickea el boton login
+        `then` el usuario se encuentra con un mensaje de error
+
+INVENTARIO SUITE
+    ### Validar que el numero de resultados es 6:
+        `given` el usuario entra en https://www.saucedemo.com
+        `and` el usuario introduce usuario (standar_user) y contraseña (secret_sauce)
+        `and` el usuario clickea el boton login
+        `when` el usuario se encuentra en https://www.saucedemo.com/inventory.html
+        `then` el usuario ve 6 elementos
+
+    ### Añadir el producto Sauce Labs Bolt T-Shirt al carrito:
+        `given` el usuario entra en https://www.saucedemo.com
+        `and` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `when` el usuario añade al carrito el producto Sauce Labs Bolt T-Shirt
+        `then` en el icono del carrito, se ha agregado 1 producto
+
+    ### Eliminar producto del carrito desde el inventario:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `and` el usuario añade al carrito el producto Sauce Labs Bolt T-Shirt
+        `when` el usuario clickea eliminar del carrito
+        `then` en el icono del carrito se ha eliminado el producto.
+
+    ### Agregar al carrito 3 productos:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `when` el usuario añada 3 elementos al carrito al azar
+        `then` en el carrito hay 3 elementos.
+
+    ### Ordenar el inventario por orden alfabético (Z a la A):
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `when` el usuario clickea el boton filtrar por z-a
+        `then` los productos se ordenan de z-a
+
+    ### Ordenar el inventario por precio de Menor a Mayor:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `when` el usuario clickea el boton filtrar de menor a mayor
+        `then` los productos se ordenan de menor a mayor
+
+CARRITO SUITE
+    ### Eliminar producto desde el carrito:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `and` el usuario añada 2 elementos al carrito al azar
+        `and` el usuario va al carrito
+        `when` el usuario elimina un elemento del carrito
+        `then` ese elemento es eliminado del carrito
+
+CHECKOUT SUITE
+    ### Comprobar el precio final del Checkout de varios productos:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `and` el usuario añada 3 elementos al carrito al azar
+        `and` el usuario va al carrito
+        `and` el usuario clickea checkout
+        `and` el usuario clickea continuar
+        whem el usuario clickea finalizar
+        `then` el "item total" es la suma de los productos
+
+    ### Realizar un pedido:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `and` el usuario añada 3 elementos al carrito al azar
+        `and` el usuario va al carrito
+        `and` el usuario clickea checkout
+        `and` el usuario clickea continuar
+        whem el usuario clickea finalizar
+        `then` se muestra el mensaje "Your
+        order has been dispatched, and will arrive just as fast as the pony can get there!"
+
+LOGOUT SUITE
+    ### Comprobar el Logout:
+        `given` el usuario entra en https://www.saucedemo.com
+        `then` el usuario introduce standar_user
+        `and` el usuario introduce secret_sauce
+        `and` el usuario clickea el boton login
+        `when` el usuario clickea el boton de logout
+        `then` se regresa a la pagina de login

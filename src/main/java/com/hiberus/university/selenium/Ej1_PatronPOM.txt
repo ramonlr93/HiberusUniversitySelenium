@@ -1,0 +1,132 @@
+BasePage:
+    -Elementos:
+        menuButton
+            allItemsLink
+            aboutLink
+            logoutLink
+            resetAppStateLink
+            exitButton
+        socialItem
+            twitterLink
+            facebookLink
+            linkedinLink
+        copyLabel
+        imgFooterItem
+        carritoLink
+    -Acciones:
+        clickMenu()
+        clickAllItemsByMenu()
+        clickAboutByMenu()
+        clickLogoutByMenu()
+        clickResetAppStateByMenu()
+        clickExit()
+        clickSocial()
+        clickCarrito()
+
+LoginPage:
+    -Elementos:
+        usernameInput
+        passwordImput
+        loginButton
+        errorMessage
+    -Acciones:
+        clickLogin()
+        enterUsername()
+        enterPassword()
+        hasErrorLogin()
+
+InventaryPage:
+    -Elementos:
+        imgItem
+        nameItem
+        descriptionItem
+        price
+        addToCartButton
+        removeButton
+        filtersSelect
+            AtoZOption
+            ZtoAOption
+            LowToHighOption
+            HighToLowOption
+    -Acciones:
+        addToCartItemByName()
+        removeItemByName()
+        getItemPriceByName()
+        toAccessProductImg()
+        toAccessProductName()
+        selectFilter()
+        selectOptionFilter()
+
+ElementPage:
+    -Elementos:
+       imgItem
+       nameItem
+       descriptionItem
+       price
+       addToCartButton
+       removeButton
+       backToProductsButton
+    -Acciones:
+        addToCartItemByName()
+        removeItemByName()
+        clickBackToProducts()
+
+CarritoPage:
+    -Elementos:
+        quantityItem
+        descriptionProduct
+            nameItem
+            descriptionItem
+            price
+            removeButton
+        continueShoppingButton
+        checkoutButton
+    -Acciones:
+        toAccessProductName()
+        removeItemByName()
+        clickContinueShopping()
+        clickCheckout()
+
+CheckoutStepOnePage:
+    -Elementos:
+        firstNameInput
+        lastNameImput
+        postalCodeImput
+        continueButton
+        cancelButton
+        errorMessage
+    -Acciones:
+        enterFirstName()
+        enterLastName()
+        enterPostalCode()
+        hasErrorDates()
+        clickContinue()
+        clickCancel()
+
+CheckoutStepTwoPage:
+    -Elementos:
+        quantityItem
+        descriptionProduct
+            nameItem
+            descriptionItem
+            price
+            removeButton
+        paymentInformationLabel
+        shippingInformationLabel
+        itemTotalLabel
+        taxLabel
+        totalLabel
+        cancelButton
+        finishButton
+    -Acciones:
+        getItems()
+        clickCancel()
+        clickFinish()
+
+CheckoutStepCompletePage:
+    -Elementos:
+        messageFinishOrder
+        imgFinishOrder
+        backHomeButton
+    -Acciones:
+        clickBackHome()
