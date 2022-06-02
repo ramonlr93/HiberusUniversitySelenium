@@ -1,17 +1,11 @@
 package com.hiberus.university.selenium.support;
 
-import static org.openqa.selenium.remote.BrowserType.CHROME;
-import static org.openqa.selenium.remote.BrowserType.EDGE;
-import static org.openqa.selenium.remote.BrowserType.FIREFOX;
-
 import com.hiberus.university.selenium.pages.PagesFactory;
 import com.hiberus.university.selenium.utils.Flags;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.OutputType;
@@ -23,6 +17,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.remote.BrowserType.*;
 
 @Slf4j
 public class Hooks {
