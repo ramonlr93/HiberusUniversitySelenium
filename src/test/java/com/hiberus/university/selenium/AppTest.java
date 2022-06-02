@@ -3,18 +3,11 @@ package com.hiberus.university.selenium;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+public class AppTest {
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+    private static final String URL_WEB = "http://opencart.abstracta.us/";
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void shouldAnswerWithTrue() {
+
     }
 }
