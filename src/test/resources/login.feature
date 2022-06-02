@@ -13,8 +13,8 @@ Feature: Login test suite
     Then the user is logged successfully
 
     Examples:
-      | username      | password     |
-      | stanrd_user | secret_sauce |
+      | username     | password     |
+      | standard_user | secret_sauce |
 
   @testcase02
     @smoke
