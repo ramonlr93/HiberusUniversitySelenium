@@ -5,11 +5,12 @@ Feature: Validate shopping cart test suite
     Given the user is on the home page
 
   @testcase10
+  @smoke
   Scenario Outline: Add a single item in the sopping cart
     And the user provides the username "<username>" and password "<password>"
-    When the user clicks the login button
+    And the user clicks the login button
     And the user adds a "<item>" by clicking 'Add To Cart'
-    And the user clicks on the shopping cart
+    When the user clicks on the shopping cart
     Then there should be "1" items in the shopping cart
     Examples:
       | username      | password     | item                |

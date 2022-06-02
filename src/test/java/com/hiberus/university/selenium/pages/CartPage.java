@@ -8,13 +8,13 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartPage extends AbstractPage {
+public class CartPage extends BasePage {
   public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
 
   @FindBy(xpath = "//button[text()='Open Menu']")
   private WebElement hamburgerElem;
 
-  @FindBy(css = "//button[@data-test='checkout']")
+  @FindBy(xpath = "//button[@data-test='checkout']")
   private WebElement checkoutButton;
 
   @FindBy(css = "#shopping_cart_container > a")

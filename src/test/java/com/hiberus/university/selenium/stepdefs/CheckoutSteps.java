@@ -50,6 +50,7 @@ public class CheckoutSteps {
       value += pricesProduct;
     }
     String totalValueActual = page.getItemTotal();
-    Assert.assertEquals("the total price is not correct", String.valueOf(value), totalValueActual);
+    Assert.assertTrue("the total price is not correct",
+      totalValueActual.contains(String.valueOf(value)));
   }
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
-public class LoginPage extends AbstractPage {
+public class LoginPage extends BasePage {
   public static final String PAGE_URL = "https://www.saucedemo.com";
 
   @FindBy(id = "user-name")

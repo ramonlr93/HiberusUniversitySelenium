@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.util;
+package com.hiberus.university.selenium.utils;
 
 public class Flags {
 

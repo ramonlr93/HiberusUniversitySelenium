@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CheckOutStepTwoPage extends AbstractPage {
+public class CheckOutStepTwoPage extends BasePage {
   public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-two.html";
 
   @FindBy(css = "div.summary_subtotal_label")

@@ -6,6 +6,7 @@ public class PagesFactory {
   private static PagesFactory pagesFactories;
   private final WebDriver driver;
 
+  private final CheckOutCompletePage checkOutCompletePage;
   private final CheckOutStepOnePage checkOutStepOnePage;
   private final CheckOutStepTwoPage checkOutStepTwoPage;
   private final InventoryPage inventoryPage;
@@ -15,6 +16,7 @@ public class PagesFactory {
   private PagesFactory(WebDriver driver) {
     this.driver = driver;
     checkOutStepOnePage = new CheckOutStepOnePage(driver);
+    checkOutCompletePage = new CheckOutCompletePage(driver);
     checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
     inventoryPage = new InventoryPage(driver);
     loginPage = new LoginPage(driver);
@@ -31,6 +33,10 @@ public class PagesFactory {
 
   public WebDriver getDriver() {
     return driver;
+  }
+
+  public CheckOutCompletePage getCheckOutCompletePage() {
+    return checkOutCompletePage;
   }
 
   public CheckOutStepOnePage getCheckOutStepOnePage() {
