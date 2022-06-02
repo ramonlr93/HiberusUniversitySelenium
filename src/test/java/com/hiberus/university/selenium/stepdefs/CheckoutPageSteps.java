@@ -10,4 +10,5 @@ public class CheckoutPageSteps {
             inventoryPage.addItemToCartByName(item);
         }
     }
+
 }

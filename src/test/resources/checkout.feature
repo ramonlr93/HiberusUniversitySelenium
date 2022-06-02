@@ -17,7 +17,6 @@ Feature: Checkout
     And the user fills the checkout form with the values "<test first name>", "<test last name>", "<test postal code>"
     When the user continues to the second step
     Then the total price of the order is the correct
-
     Examples:
       | test first name | test last name | test postal code |
       | javier          | cuadrado       | 47400            |

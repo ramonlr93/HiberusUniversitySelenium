@@ -19,7 +19,6 @@ public class CartPageSteps {
 
     @Then("the user remove {int} item by clicking Remove Button cart")
     public void theUserRemoveItemByClickingRemoveButtonCart(int num) {
-
         try {
             for (int i = 0; i < num; i++) {
                 cartPage.deleteCarItemtByName(cartPage.getItemsListName().get(i).getText());

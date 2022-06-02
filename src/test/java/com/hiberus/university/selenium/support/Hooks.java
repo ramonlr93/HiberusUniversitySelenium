@@ -63,6 +63,18 @@ public class Hooks {
     @After()
     public static void after(Scenario scenario) {
         log.info("ending test" + scenario.getName());
-        driver.close();
+
+        if (scenario.isFailed()) {
+            try {
+                log.info(scenario.getName() + " is Failed");
+                final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", "Taking Screen Shot");
+                log.info("This is an Info");
+
+            } catch (WebDriverException e) {
+                e.printStackTrace();
+            }
+        }
+        driver.quit();
     }
 }
