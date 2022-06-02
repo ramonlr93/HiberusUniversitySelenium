@@ -23,7 +23,6 @@ tmp/
 *.bak
 *.swp
 .settings/
-.project
 .classpath
 .tern-project
 
@@ -38,6 +37,9 @@ Desktop.ini
 # IntelliJ
 *.iml
 .idea/
+target
+
+
 
 # Vscode
 .vscode
