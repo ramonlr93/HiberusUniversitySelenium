@@ -11,29 +11,26 @@ import org.junit.Assert;
 @Slf4j
 public class CartPageSteps {
 
-  @Then("there should be {string} items in the shopping cart")
-  public void thereShouldBeItemsInTheShoppingCart(String count) {
-    log.info("there should be " + count + " items in the shopping cart");
-    PagesFactory pf = PagesFactory.getInstance();
-    CartPage cartPage = pf.getCartPage();
-    int actualCount = cartPage.getItemCount();
-    int expectedCount = Integer.parseInt(count);
-    Assert.assertEquals(actualCount, expectedCount);
-  }
+    @Then("there should be {string} items in the shopping cart")
+    public void thereShouldBeItemsInTheShoppingCart(String count) {
+        log.info("there should be " + count + " items in the shopping cart");
+        CartPage cartPage = PagesFactory.getInstance().getCartPage();
+        int actualCount = cartPage.getItemCount();
+        int expectedCount = Integer.parseInt(count);
+        Assert.assertEquals(actualCount, expectedCount);
+    }
 
-  @When("the user deletes a {string} item from shopping cart")
-  public void theUserDeletesAItemFromShoppingCart(String item) {
-    log.info("the user deletes the item: " + item);
-    PagesFactory pf = PagesFactory.getInstance();
-    CartPage cartPage = pf.getCartPage();
-    cartPage.deleteCarItemtByName(item);
-  }
+    @When("the user deletes a {string} item from shopping cart")
+    public void theUserDeletesAItemFromShoppingCart(String item) {
+        log.info("the user deletes the item: " + item);
+        CartPage cartPage = PagesFactory.getInstance().getCartPage();
+        cartPage.deleteCarItemtByName(item);
+    }
 
-  @And("the user clicks checkout")
-  public void theUserClicksCheckout() {
-    log.info("the user clicks in checkout button");
-    PagesFactory pf = PagesFactory.getInstance();
-    CartPage cartPage = pf.getCartPage();
-    cartPage.clickCheckout();
-  }
+    @And("the user clicks checkout")
+    public void theUserClicksCheckout() {
+        log.info("the user clicks in checkout button");
+        CartPage cartPage = PagesFactory.getInstance().getCartPage();
+        cartPage.clickCheckout();
+    }
 }

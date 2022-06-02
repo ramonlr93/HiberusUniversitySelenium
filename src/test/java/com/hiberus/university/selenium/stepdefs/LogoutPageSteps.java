@@ -11,14 +11,12 @@ public class LogoutPageSteps {
 
     @And("the user clicks option menu")
     public void theUserClicksOptionMenu() {
-
         BasePage.openMenu();
     }
 
 
     @And("the user clicks logout button")
     public void theUserClicksLogoutButton() {
-
         BasePage.clickLogout();
     }
 }
