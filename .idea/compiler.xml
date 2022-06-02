@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="HiberusUniversitySelenium" />
         <module name="com.hiberus.university.iris.maven.first" />
+        <module name="FinalProjectQAhiberus" />
       </profile>
     </annotationProcessing>
   </component>
