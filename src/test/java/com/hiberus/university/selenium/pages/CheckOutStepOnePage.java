@@ -32,26 +32,17 @@ public class CheckOutStepOnePage extends BasePage {
 
   public void enterFirstName(String firstName) {
     firstNameInput.clear();
-    firstNameInput.click();
     firstNameInput.sendKeys(firstName);
   }
 
   public void enterLastName(String lastName) {
     lastNameInput.clear();
-    lastNameInput.click();
     lastNameInput.sendKeys(lastName);
   }
 
   public void enterPostalCode(String postalCode) {
     postalCodeInput.clear();
-    postalCodeInput.click();
     postalCodeInput.sendKeys(postalCode);
-  }
-
-  public void fillInformation(String firstName, String lastName, String postalCode) {
-    enterFirstName(firstName);
-    enterLastName(lastName);
-    enterPostalCode(postalCode);
   }
 
   public void clickContinue() {

@@ -14,13 +14,11 @@ public class CartPage extends BasePage {
   @FindBy(xpath = "//button[text()='Open Menu']")
   private WebElement hamburgerElem;
 
-  @FindBy(css = "//button[@data-test='checkout']")
+  @FindBy(xpath = "//button[@data-test='checkout']")
   private WebElement checkoutButton;
 
   @FindBy(css = "#shopping_cart_container > a")
   private WebElement shoppingCartElem;
-
-
 
   @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
   private List<WebElement> itemsList;
@@ -32,7 +30,7 @@ public class CartPage extends BasePage {
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return checkoutButton;
+    return hamburgerElem;
   }
 
   public void clickCheckout() {
