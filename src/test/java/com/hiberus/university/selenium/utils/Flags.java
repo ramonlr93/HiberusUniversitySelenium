@@ -1,7 +1,4 @@
 package com.hiberus.university.selenium.utils;
-
-
-
 public class Flags {
     private static final String BROWSER = "browser";
 

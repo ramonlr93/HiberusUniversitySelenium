@@ -77,17 +77,15 @@ public class InventoryPage extends BasePage {
     }
 
     public Boolean isItemDisplayed(String item) {
-
         boolean isProductPresent = false;
         for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getText().equals(item)) {
+            if (products.get(i).getText().contains(item)) {
                 isProductPresent = true;
                 break;
             }
         }
         return isProductPresent;
     }
-
     public int getNumberProducts() {
         return products.size();
     }
