@@ -4,34 +4,36 @@ import com.hiberus.university.selenium.pages.CartPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 
 @Slf4j
 public class CartPageSteps {
-    private static CartPage cartPage = PagesFactory.getInstance().getCartPage();
 
-    @Then("there should be {int} items in the shopping cart")
-    public void thereShouldBeItemsInTheShoppingCart(int num) {
+  @Then("there should be {string} items in the shopping cart")
+  public void thereShouldBeItemsInTheShoppingCart(String count) {
+    log.info("there should be " + count + " items in the shopping cart");
+    PagesFactory pf = PagesFactory.getInstance();
+    CartPage cartPage = pf.getCartPage();
+    int actualCount = cartPage.getItemCount();
+    int expectedCount = Integer.parseInt(count);
+    Assert.assertEquals(actualCount, expectedCount);
+  }
 
-        Assert.assertEquals("El nÃºmero de elementos en el carrito no es: " + num, num, cartPage.getItemCount());
-    }
+  @When("the user deletes a {string} item from shopping cart")
+  public void theUserDeletesAItemFromShoppingCart(String item) {
+    log.info("the user deletes the item: " + item);
+    PagesFactory pf = PagesFactory.getInstance();
+    CartPage cartPage = pf.getCartPage();
+    cartPage.deleteCarItemtByName(item);
+  }
 
-    @Then("the user remove {int} item by clicking Remove Button cart")
-    public void theUserRemoveItemByClickingRemoveButtonCart(int num) {
-        try {
-            for (int i = 0; i < num; i++) {
-                cartPage.deleteCarItemtByName(cartPage.getItemsListName().get(i).getText());
-            }
-        } catch (Exception e) {
-            log.info(e.toString());
-        }
-
-    }
-
-    @And("the user does the checkout of the products")
-    public void theUserDoesTheCheckoutOfTheProducts() {
-
-        cartPage.clickCheckout();
-    }
+  @And("the user clicks checkout")
+  public void theUserClicksCheckout() {
+    log.info("the user clicks in checkout button");
+    PagesFactory pf = PagesFactory.getInstance();
+    CartPage cartPage = pf.getCartPage();
+    cartPage.clickCheckout();
+  }
 }

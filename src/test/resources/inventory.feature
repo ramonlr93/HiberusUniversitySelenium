@@ -3,75 +3,79 @@ Feature: Validate Inventory test suite
 
   Background: Navigate to the home page
     Given the user is on the home page
-    And the user provides the username "standard_user"
-    And the user provides the password "secret_sauce"
-    When the user clicks the login button
 
   @testcase03
   Scenario Outline: validate inventory list size
+    And the user provides the username "<username>" and password "<password>"
+    When the user clicks the login button
     Then the user see the inventory list with "<items>" size list
     Examples:
-      | items |
-      | 6     |
+      | username      | password     | items |
+      | standard_user | secret_sauce | 6     |
 
   @testcase04
   Scenario Outline: validate exist "<item>" product in inventory list
+    And the user provides the username "<username>" and password "<password>"
+    When the user clicks the login button
     Then the user see the "<item>" in the inventory list
     Examples:
-      | item                    |
-      | Sauce Labs Bolt T-Shirt |
+      | username      | password     | item                    |
+      | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
   @testcase05
+  @smoke
   Scenario Outline: Add a single item in the shopping cart
-    When the user adds a "<item>" by clicking Add To Cart
+    And the user provides the username "<username>" and password "<password>"
+    And the user clicks the login button
+    When the user adds a "<item>" by clicking 'Add To Cart'
     And the user clicks on the shopping cart
-    Then there should be 1 items in the shopping cart
+    Then there should be "1" items in the shopping cart
     Examples:
-      | item                |
-      | Sauce Labs Backpack |
+      | username      | password     | item                |
+      | standard_user | secret_sauce | Sauce Labs Backpack |
 
-  @testcase06
-  Scenario Outline: Delete an item in the shopping cart
-    And the user adds a "<item>" by clicking Add To Cart
-    And the user clicks on the shopping cart
-    When the user deletes the "<item>" from the inventory
-    Then there are no numbers in cart icon
-    Examples:
-      | item                    |
-      | Sauce Labs Bolt T-Shirt |
-
+ #@testcase06
+ #@TODO
+ # Scenario Outline: Delete an item in the shopping cart
+ #   And the user provides the username "<username>" and password "<password>"
+ #   When the user clicks the login button
+ #   And the user adds a "<item>" by clicking 'Add To Cart'
+ #   And the user clicks on the shopping cart
+ #   Then there should be "1" items in the shopping cart
+ #   Examples:
+ #     | username      | password     | item                |
+ #     | standard_user | secret_sauce | Sauce Labs Backpack |
 
   @testcase07
-  Scenario: Place multiple items in the shopping cart
+  Scenario Outline: Place multiple items in the shopping cart
+    And the user provides the username "<username>" and password "<password>"
+    And the user clicks the login button
     When the user selects
       | Sauce Labs Backpack     |
       | Sauce Labs Bolt T-Shirt |
       | Sauce Labs Onesie       |
     And the user clicks on the shopping cart
-    Then there should be 3 items in the shopping cart
-
+    Then there should be "3" items in the shopping cart
+    Examples:
+      | username      | password     |
+      | standard_user | secret_sauce |
 
   @testcase08
   Scenario Outline: sort inventory by alphabetical desc order
+    And the user provides the username "<username>" and password "<password>"
+    And the user clicks the login button
     When the user clicks select "<optionSort>"
     Then the user see the list by alphabetical desc order
     Examples:
-      | optionSort |
-      | za         |
+      | username      | password     | optionSort |
+      | standard_user | secret_sauce | za         |
 
   @testcase09
   Scenario Outline: sort inventory by price desc order
+    And the user provides the username "<username>" and password "<password>"
+    And the user clicks the login button
     When the user clicks select "<optionSort>"
     Then the user see the list by price desc order
     Examples:
-      | optionSort |
-      | hilo       |
-
-  @testcase10
-  Scenario Outline: sort inventory by price asc order
-    When the user clicks select "<optionSort>"
-    Then the user see the list by price asc order
-    Examples:
-      | optionSort |
-      | lohi       |
-
+      | username      | password     | optionSort |
+      | standard_user | secret_sauce | hilo       |

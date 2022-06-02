@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
+import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,13 +10,19 @@ public class CheckOutStepTwoPage extends BasePage {
   public static final String PAGE_URL = "https://www.saucedemo.com/checkout-step-two.html";
 
   @FindBy(css = "div.summary_subtotal_label")
-  private WebElement itemTotal;
+  private WebElement itemTotalElem;
 
   @FindBy(css = "div.summary_tax_label")
-  private WebElement tax;
+  private WebElement taxElem;
 
   @FindBy(css = "div.summary_total_label")
-  private WebElement total;
+  private WebElement totalElem;
+
+  @FindBy(xpath = "//button[@data-test='finish']")
+  private WebElement finishButton;
+
+  @FindBy(xpath = "//div[@class='inventory_item_price']")
+  private List<WebElement> checkoutItemPriceList;
 
   public CheckOutStepTwoPage(WebDriver driver) {
     super(driver);
@@ -24,19 +31,23 @@ public class CheckOutStepTwoPage extends BasePage {
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return itemTotal;
+    return itemTotalElem;
   }
 
   public String getItemTotal() {
-    return itemTotal.getText();
+    return itemTotalElem.getText();
   }
 
   public String getTax() {
-    return tax.getText();
+    return taxElem.getText();
   }
 
   public String getTotal() {
-    return total.getText();
+    return totalElem.getText();
+  }
+
+  public List<WebElement> getCheckoutItemPriceList() {
+    return checkoutItemPriceList;
   }
 }
 

@@ -1,7 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class LoginPage extends BasePage {
-  public static final String PAGE_URL = "https://www.saucedemo.com/";
+  public static final String PAGE_URL = "https://www.saucedemo.com";
 
   @FindBy(id = "user-name")
   private WebElement usernameInput;
@@ -23,7 +22,8 @@ public class LoginPage extends BasePage {
   @FindBy(xpath = "//h3[@data-test='error']")
   private WebElement errorMessage;
 
-  LoginPage(WebDriver driver) {
+
+  public LoginPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
   }
@@ -31,6 +31,18 @@ public class LoginPage extends BasePage {
   @Override
   public WebElement getPageLoadedTestElement() {
     return loginButton;
+  }
+
+  public void clickLogin() {
+    log.info("Logging in...");
+    try {
+      loginButton.click();
+    } catch (org.openqa.selenium.TimeoutException e) {
+      log.info("Timeout clicking login: " + e.getClass().getSimpleName());
+
+    } catch (Exception e) {
+      log.info("Clicking login, caught exception, type=" + e.getClass().getSimpleName());
+    }
   }
 
   public void enterPassword(String password) {
@@ -41,17 +53,6 @@ public class LoginPage extends BasePage {
   public void enterUsername(String username) {
     usernameInput.click();
     usernameInput.sendKeys(username);
-  }
-
-  public void clickLogin() {
-    log.info("logging in...");
-    try {
-      loginButton.click();
-    } catch (TimeoutException e) {
-      log.info("Timeout clicking login: " + e.getClass().getSimpleName());
-    } catch (Exception e) {
-      log.info("Clicking login, caught exception, type: " + e.getClass().getSimpleName());
-    }
   }
 
   public boolean hasUsernamePasswordError() {
