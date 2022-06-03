@@ -15,7 +15,7 @@ Feature: Login test suite
       | username        | password      |
       | standard_user   | secret_sauce  |
 
-  Scenario Outline: Verify valid user can login
+  Scenario Outline: Verify valid user can not login
     And the user provides the username "<username>"
     And the user provides the password "<password>"
     When the user clicks the login button
