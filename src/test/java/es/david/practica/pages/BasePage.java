@@ -15,6 +15,8 @@ public class BasePage extends AbstractPage {
     @FindBy(xpath = "//a[text() = 'Login']")
     private WebElement login;
 
+    @FindBy(xpath = "//a[text() = 'Register']")
+    private WebElement register;
 
     BasePage(WebDriver driver) {
         super(driver);
@@ -33,5 +35,10 @@ public class BasePage extends AbstractPage {
     public void clickLogin(){
         wait.until(ExpectedConditions.visibilityOf(login)).click();
     }
+
+    public void clickRegister(){
+        wait.until(ExpectedConditions.visibilityOf(register)).click();
+    }
+
 
 }
