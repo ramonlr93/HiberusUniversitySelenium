@@ -1,8 +1,29 @@
 @inventory
-Feature: Validate Inventory test suite
+Feature: Validate home test suite
 
-  Background: Navigate to the home page
-    Given the user is on the home page
+  Background: Navigate to the Home page
+    Given the user is on the Home page
+
+  @testcase05
+    @smoke
+  Scenario Outline: Add a single item in the shopping cart
+    And the user provides the username "<username>" and password "<password>"
+    And the user clicks the login button
+    When the user adds a "<item>" by clicking 'Add To Cart'
+    And the user clicks on the shopping cart
+    Then there should be "1" items in the shopping cart
+    Examples:
+      | username      | password     | item                |
+      | standard_user | secret_sauce | Sauce Labs Backpack |
+
+
+
+
+
+
+
+
+
 
   @testcase03
   Scenario Outline: validate inventory list size
@@ -22,17 +43,7 @@ Feature: Validate Inventory test suite
       | username      | password     | item                    |
       | standard_user | secret_sauce | Sauce Labs Bolt T-Shirt |
 
-  @testcase05
-  @smoke
-  Scenario Outline: Add a single item in the shopping cart
-    And the user provides the username "<username>" and password "<password>"
-    And the user clicks the login button
-    When the user adds a "<item>" by clicking 'Add To Cart'
-    And the user clicks on the shopping cart
-    Then there should be "1" items in the shopping cart
-    Examples:
-      | username      | password     | item                |
-      | standard_user | secret_sauce | Sauce Labs Backpack |
+
 
  #@testcase06
  #@TODO

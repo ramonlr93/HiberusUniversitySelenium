@@ -8,8 +8,6 @@ import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,7 +16,6 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.remote.BrowserType.*;
@@ -70,13 +67,13 @@ public class Hooks {
    */
   @After()
   public void after(Scenario scenario) {
-    log.info("ending " + scenario.getName());
-    if (scenario.isFailed()) {
-      final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-      long time = new Date().getTime();
-      String outputName = "screenshot_" + time + ".png";
-      scenario.attach(screenshot, "image/png", outputName);
-    }
+   log.info("ending " + scenario.getName());
+//    if (scenario.isFailed()) {
+//      final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+//      long time = new Date().getTime();
+//      String outputName = "screenshot_" + time + ".png";
+//      scenario.attach(screenshot, "image/png", outputName);
+//    }
     driver.close();
   }
 }
