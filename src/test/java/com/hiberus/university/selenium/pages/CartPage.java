@@ -14,7 +14,7 @@ public class CartPage extends BasePage {
   @FindBy(xpath = "//button[text()='Open Menu']")
   private WebElement hamburgerElem;
 
-  @FindBy(css = "//button[@data-test='checkout']")
+  @FindBy(xpath = "//button[@data-test='checkout']")
   private WebElement checkoutButton;
 
   @FindBy(css = "#shopping_cart_container > a")
@@ -30,7 +30,7 @@ public class CartPage extends BasePage {
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return checkoutButton;
+    return hamburgerElem;
   }
 
   public void clickCheckout() {

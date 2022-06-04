@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
   plugin = {
     "pretty",
+    "json:target/surefire-reports/cucumber.json",
+    "html:target/cucumber-html-report.html",
   },
   glue = {
     "com.hiberus.university.selenium.stepdefs",
@@ -17,4 +19,5 @@ import org.junit.runner.RunWith;
     "src/test/resources/"
   }
 )
-public class CucumberRunnerTest {}
+public class CucumberRunnerTest {
+}

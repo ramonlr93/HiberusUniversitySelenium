@@ -30,7 +30,7 @@ public abstract class BasePage {
   BasePage(WebDriver driver) {
     this.driver = driver;
     wait = new MyFluentWait<>(driver)
-      .withTimeout(60, ChronoUnit.SECONDS)
+      .withTimeout(10, ChronoUnit.SECONDS)
       .pollingEvery(2, ChronoUnit.SECONDS)
       .ignoring(NoSuchElementException.class);
   }
