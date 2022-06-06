@@ -1,6 +1,5 @@
 package com.hiberus.university.selenium.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,18 +8,17 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage extends BasePage {
   public static final String HOME_PAGE_URL = "http://opencart.abstracta.us/index.php?route=common/home";
 
-  @FindBy(xpath = "//button[@onclick='cart.add('40');']")
-  private WebElement iphoneElement;
+  @FindBy(xpath = "//div[@id='content']")
+  private WebElement containerYourStore;
 
-  private WebElement pageLoadedTestElement;
+  @FindBy(xpath = "//button[contains(@onclick, 'cart.add') and contains(@onclick, '40')]")
+  private WebElement iphoneProduct;
 
-  public WebElement GetPageLoadedTestElement() {
-    return this.pageLoadedTestElement;
-  }
+  @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']/child::a[1]")
+  private WebElement successAddToCartMessage;
 
-  public void SetPageLoadedTestElement(WebElement testElement) {
-    this.pageLoadedTestElement = testElement;
-  }
+  @FindBy(xpath = "//span[@id='cart-total']")
+  private WebElement shoppingCartElement;
 
   public HomePage(WebDriver driver) {
     super(driver);
@@ -29,16 +27,24 @@ public class HomePage extends BasePage {
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return GetPageLoadedTestElement();
+    return containerYourStore;
   }
 
-  public void addItemToCartByName(String itemName) {
-    String xpath =
-      String.format("//div[contains(., '%s')]/parent::a/parent::div/following-sibling::div/button",
-        itemName);
-    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-
-    itemElem.click();
+  public void clickIphoneProductButton() {
+    iphoneProduct.click();
   }
 
+  public boolean successAddToCartMessageIsDisplayed() {
+    return successAddToCartMessage.isDisplayed();
+  }
+
+  public String shoppingCartInfo() {
+    return shoppingCartElement.getText();
+  }
 }
+
+
+
+
+
+

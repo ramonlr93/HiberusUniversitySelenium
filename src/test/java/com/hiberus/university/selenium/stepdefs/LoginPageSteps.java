@@ -56,6 +56,7 @@ public class LoginPageSteps {
     loginPage.enterEmail(email);
     loginPage.enterPassword(password);
   }
+
   @Then("The user should be shown an invalid message")
   public void theUserShouldBeShownAnInvalidMessage() {
     PagesFactory pf = PagesFactory.getInstance();

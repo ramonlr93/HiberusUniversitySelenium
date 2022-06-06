@@ -110,7 +110,6 @@ public class RegisterPageSteps {
         RegisterPage registerPage = pf.getRegisterPage();
         Assert.assertEquals("All the message ar not shown ", 5, registerPage.getDangerTextMessageListCount());
         Assert.assertTrue("All Messages are not shown", registerPage.AllMessageMandatoryAreDisplayed());
-
     }
 }
 

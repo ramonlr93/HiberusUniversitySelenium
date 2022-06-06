@@ -38,7 +38,7 @@ Feature: validate registration test suite
       |    Jack   |  Sparrow | 123456789 | nubrokakattoi-8879@yopmail.com | hiberusfinal |   hiberusfinal  |
 
   @testcase04
-  Scenario: Verify that the user cannot register because they don't fill all required fields
+  Scenario: Verify that the user cannot register because don't fill all required fields
     When the user clicks the Continue button
     Then The user should be shown all mandatory warnings messages
 

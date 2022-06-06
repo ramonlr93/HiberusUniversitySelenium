@@ -2,8 +2,12 @@ package com.hiberus.university.selenium.stepdefs;
 
 import com.hiberus.university.selenium.pages.HomePage;
 import com.hiberus.university.selenium.pages.PagesFactory;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 
 @Slf4j
 public class HomePageSteps {
@@ -16,21 +20,48 @@ public class HomePageSteps {
     homePage.navigateTo(HomePage.HOME_PAGE_URL);
   }
 
-//  @And("the user adds a {string} by clicking 'Add To Cart'")
-//  public void theUserAddsAByClickingAddToCart(String itemName) {
-//    log.info("the user adds " + itemName + " by 'Add To Cart'");
+  @When("the user adds a single product by clicking AddToCart")
+  public void theUserAddsASingleProductByClickingAddToCart() {
+    log.info("The user adds a item by clicking AddToCart");
+    PagesFactory pf = PagesFactory.getInstance();
+    HomePage homePage = pf.getHomePage();
+    homePage.clickIphoneProductButton();
+  }
+
+  @And("the user should be shown a success_added_product message")
+  public void theUserShouldBeShownASuccessAddedItemMessage() {
+    log.info("The user should be shown a success added product message");
+    PagesFactory pf = PagesFactory.getInstance();
+    HomePage homePage = pf.getHomePage();
+    Assert.assertTrue(homePage.successAddToCartMessageIsDisplayed());
+  }
+
+  @Then("the user verify that the product info appear in the shopping cart")
+  public void theUserVerifyThatTheProductInfoAppearInTheShoppingCart() {
+     log.info("The user verify that the product info appear in the shopping cart");
+     PagesFactory pf = PagesFactory.getInstance();
+     HomePage homePage = pf.getHomePage();
+     //Assert.assertTrue();
+     Assert.assertEquals("The Product info is shown","1 item(s) - $123.20", homePage.shoppingCartInfo());
+  }
+
+
+
+
+
+
+
+
+//  @Then("there should be {string} items in the shopping cart")
+//  public void thereShouldBeItemsInTheShoppingCart(String count) {
+//    log.info("there should be " + count + " items in the shopping cart");
 //    PagesFactory pf = PagesFactory.getInstance();
-//    AccountPage accountPage = pf.getAccountPage();
-//    accountPage.addItemToCartByName(itemName);
+//    HomePage homePage = pf.getHomePage();
+//    int actualCount = homePage.getItemCount();
+//    int expectedCount = Integer.parseInt(count);
+//    Assert.assertEquals(actualCount, expectedCount);
 //  }
-//  @And("the user clicks on the shopping cart")
-//  public void theUserClicksOnTheShoppingCart() {
-//    log.info("the user clicks on the shopping cart");
-//    PagesFactory pf = PagesFactory.getInstance();
-//    AccountPage accountPage = pf.getAccountPage();
-//   // accountPage.clickOnShoppingCart();
-//  }
-//
+
 //  @Then("the user see the inventory list with {string} size list")
 //  public void theUserSeeTheInventoryListWith(String itemSize) {
 //    log.info("the user see the item list");
