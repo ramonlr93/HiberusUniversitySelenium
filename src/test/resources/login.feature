@@ -1,5 +1,5 @@
 @login
-Feature: validate login test suite
+Feature: validate login in OpenCart
 
   Background: Navigate to the home page
     Given the user is on the home page
