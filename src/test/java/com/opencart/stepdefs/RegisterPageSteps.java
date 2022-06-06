@@ -1,12 +1,13 @@
 package com.opencart.stepdefs;
 
-import com.opencart.pages.LoginPage;
 import com.opencart.pages.PagesFactory;
 import com.opencart.pages.RegisterPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 
 @Slf4j
 public class RegisterPageSteps {
@@ -49,7 +50,25 @@ public class RegisterPageSteps {
         registerPage.setPassword(passw);
     }
 
+    @And("the user accepts privacy policy")
+    public void theUserAcceptsPrivacyPolicy() {
+        registerPage.acceptPrivacyPolicy();
+    }
+
     @When("the user clicks the continue button")
     public void theUserClicksTheContinueButton() {
+        registerPage.clickContinue();
+    }
+
+    @Then("the user account is created")
+    public void theUserAccountIsCreated() {
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        Assert.assertEquals("Account wasnt created", "http://opencart.abstracta.us/index.php?route=account/success", currentUrl);
+    }
+
+    @Then("the user account is not created")
+    public void theUserAccountIsNotCreated() {
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        Assert.assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
     }
 }

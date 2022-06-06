@@ -23,12 +23,15 @@ public class RegisterPage extends BasePage {
 
     @FindBy(id = "input-confirm")
     private WebElement passwordInput2;
-    
+
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement continueButton;
 
     @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
     private WebElement errorMessage;
+
+    @FindBy(xpath = "//input[@type='checkbox' and @name='agree']")
+    private WebElement privacyPolicyCheckbox;
 
 
     public RegisterPage(WebDriver driver) {
@@ -49,6 +52,7 @@ public class RegisterPage extends BasePage {
     public void setLastName(String lastname) {
         lastNameInput.sendKeys(lastname);
     }
+
     public void setEmail(String email) {
         emailInput.sendKeys(email);
     }
@@ -63,8 +67,12 @@ public class RegisterPage extends BasePage {
     }
 
     // METODOS
-    public void clickLogin() {
+    public void clickContinue() {
         continueButton.click();
+    }
+
+    public void acceptPrivacyPolicy() {
+        privacyPolicyCheckbox.click();
     }
 
     public boolean isErrorMessageDisplayed() {
