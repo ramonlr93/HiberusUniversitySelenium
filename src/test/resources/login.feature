@@ -20,4 +20,4 @@ Feature: validate login in OpenCart
     Then the error message is shown
     Examples:
       | email          | password |
-      | mario@mail.com | wrong     |
+      | mario@mail.com | 1311     |

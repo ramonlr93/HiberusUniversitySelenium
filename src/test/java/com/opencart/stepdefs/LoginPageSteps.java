@@ -26,8 +26,8 @@ public class LoginPageSteps {
 
     @And("the user enters the {string} and {string}")
     public void theUserEntersTheAnd(String name, String password) {
-        loginPage.enterEmail(name);
-        loginPage.enterPassword(password);
+        loginPage.setEmail(name);
+        loginPage.setPassword(password);
     }
 
     @When("the user clicks the login button")
@@ -45,4 +45,6 @@ public class LoginPageSteps {
     public void theErrorMessageIsShown() {
         Assert.assertTrue("Error mesagge is NOT shown", loginPage.isErrorMessageDisplayed());
     }
+
+
 }

@@ -21,27 +21,27 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
     private WebElement errorMessage;
 
-
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
+    // GETTERS & SETTERS
     @Override
     public WebElement getPageLoadedTestElement() {
-        return null;
+        return loginButton;
     }
 
-    public boolean isErrorMessageDisplayed() {
-        return errorMessage.isDisplayed();
-    }
-
-
-    public void enterEmail(String email) {
+    public void setEmail(String email) {
         emailInput.sendKeys(email);
     }
-    public void enterPassword(String passw) {
+    public void setPassword(String passw) {
         passwordInput.sendKeys(passw);
+    }
+
+    // METODOS
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed();
     }
 
     public void clickLogin() {
