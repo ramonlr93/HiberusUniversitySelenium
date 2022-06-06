@@ -32,6 +32,12 @@ public class RegisterPage extends AbstractPage{
     @FindBy(xpath = "//input[contains(@value, 'Continue')]")
     private WebElement registerButton;
 
+    @FindBy(className = "text-danger")
+    private WebElement messageError;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible']")
+    private WebElement privacyMessageError;
+
     RegisterPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -50,7 +56,9 @@ public class RegisterPage extends AbstractPage{
         wait.until(ExpectedConditions.visibilityOf(lastnameInput)).sendKeys(lastname);
     }
 
-    public void enterEmail(String email){
+    public void enterEmail(){
+        double fiveDigits = 10000 + Math.random() * 90000;
+        String email = fiveDigits + "@gmail.com";
         wait.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
     }
 
@@ -73,4 +81,13 @@ public class RegisterPage extends AbstractPage{
     public void clickRegister(){
         wait.until(ExpectedConditions.elementToBeClickable(registerButton)).click();
     }
+
+    public String getMessageError(){
+        return wait.until(ExpectedConditions.visibilityOf(messageError)).getText();
+    }
+
+    public String getPolicyMessageError(){
+        return wait.until(ExpectedConditions.visibilityOf(privacyMessageError)).getText();
+    }
+
 }

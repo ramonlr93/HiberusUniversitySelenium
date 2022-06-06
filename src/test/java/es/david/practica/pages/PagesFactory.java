@@ -1,5 +1,6 @@
 package es.david.practica.pages;
 
+import io.cucumber.java.bs.A;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -14,7 +15,7 @@ public class PagesFactory {
     private final HomePage homePage;
     private final AccountPage accountPage;
     private final RegisterPage registerPage;
-
+    private final AccountSuccessPage accountSuccessPage;
 
 
     public PagesFactory(WebDriver driver) {
@@ -25,6 +26,7 @@ public class PagesFactory {
         basePage = new BasePage(driver);
         accountPage = new AccountPage(driver);
         registerPage = new RegisterPage(driver);
+        accountSuccessPage = new AccountSuccessPage(driver);
     }
 
     public static void start(WebDriver driver) {

@@ -1,12 +1,11 @@
 package es.david.practica.stepdefs;
 
-import es.david.practica.pages.BasePage;
-import es.david.practica.pages.HomePage;
-import es.david.practica.pages.PagesFactory;
-import es.david.practica.pages.RegisterPage;
+import es.david.practica.pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class RegisterPageSteps {
     PagesFactory pf = PagesFactory.getInstance();
@@ -46,9 +45,9 @@ public class RegisterPageSteps {
         rp.enterPassword(password);
     }
 
-    @And("the user provides the register mail {string}")
-    public void theUserProvidesTheRegisterMail(String email) {
-        rp.enterEmail(email);
+    @And("the user provides the register mail")
+    public void theUserProvidesTheRegisterMail() {
+        rp.enterEmail();
     }
 
     @And("the user accept the policy check")
@@ -60,4 +59,26 @@ public class RegisterPageSteps {
     public void theUserClicksTheRegisterButton() {
         rp.clickRegister();
     }
+
+    @Then("the user is registered successfully")
+    public void theUserIsRegisteredSuccessfully() {
+        Assert.assertEquals("The url isn't correct"
+                , AccountSuccessPage.PAGE_URL
+                , pf.getDriver().getCurrentUrl());
+    }
+
+    @Then("the user can see the error {string}")
+    public void checkError(String message) {
+        Assert.assertEquals("The message isn't correct"
+                , rp.getMessageError()
+                , message);
+    }
+
+    @Then("the user can see the policy error {string}")
+    public void checkPolicyError(String message) {
+        Assert.assertEquals("The policy message isn't correct"
+                , rp.getPolicyMessageError()
+                , message);
+    }
+
 }
