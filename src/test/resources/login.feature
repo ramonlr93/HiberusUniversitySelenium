@@ -2,11 +2,12 @@
 Feature: validate login test suite
 
   Background: Navigate to the home page
-    Given the user is on the home page
+    Given the user is on the home page actual
 
   @testcase01
   @smoke
   Scenario Outline: Verify valid user can login
+    And Pulso sobre MyAccount
     And the user provides the username "<username>" and password "<password>"
     When the user clicks the login button
     Then the user is logged successfully and is into the inventory page

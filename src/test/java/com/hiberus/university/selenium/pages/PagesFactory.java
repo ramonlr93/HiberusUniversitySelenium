@@ -11,6 +11,8 @@ public class PagesFactory {
   private final CheckOutStepTwoPage checkOutStepTwoPage;
   private final InventoryPage inventoryPage;
   private final LoginPage loginPage;
+
+  private final HomePage homePage;
   private final CartPage cartPage;
 
   private PagesFactory(WebDriver driver) {
@@ -19,6 +21,7 @@ public class PagesFactory {
     checkOutCompletePage = new CheckOutCompletePage(driver);
     checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
     inventoryPage = new InventoryPage(driver);
+    homePage = new HomePage(driver);
     loginPage = new LoginPage(driver);
     cartPage = new CartPage(driver);
   }
@@ -53,6 +56,10 @@ public class PagesFactory {
 
   public LoginPage getLoginPage() {
     return loginPage;
+  }
+
+  public HomePage getHomePage() {
+    return homePage;
   }
 
   public CartPage getCartPage() {
