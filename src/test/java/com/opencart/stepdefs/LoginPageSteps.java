@@ -1,6 +1,7 @@
 package com.opencart.stepdefs;
 
 import com.opencart.pages.LoginPage;
+import com.opencart.pages.PagesFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,51 +12,37 @@ import org.junit.Assert;
 @Slf4j
 public class LoginPageSteps {
 
-  @Given("the user is on the home page")
-  public void theUserIsOnTheHomePage() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user is on the Home Page");
-    LoginPage loginPage = pf.getLoginPage();
-    loginPage.navigateTo(LoginPage.PAGE_URL);
-  }
+    private LoginPage loginPage;
 
-  @And("the user provides the username {string} and password {string}")
-  public void theUserProvidesTheUsernameAndPassword(String username, String password) {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user provides the username and password");
+    public LoginPageSteps() {
+        loginPage = PagesFactory.getInstance().getLoginPage();
+    }
 
-    LoginPage loginPage = pf.getLoginPage();
-    loginPage.enterUsername(username);
-    loginPage.enterPassword(password);
-  }
+    @Given("the user is on the login page")
+    public void theUserIsOnTheHomePage() {
+        log.info("The user is on the Home Page");
+        loginPage.navigateTo(LoginPage.PAGE_URL);
+    }
 
-  @When("the user clicks the login button")
-  public void theUserClicksTheLoginButton() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user clicks the 'Login' button");
+    @And("the user enters the {string} and {string}")
+    public void theUserEntersTheAnd(String name, String password) {
+        loginPage.enterEmail(name);
+        loginPage.enterPassword(password);
+    }
 
-    LoginPage loginPage = pf.getLoginPage();
-    loginPage.clickLogin();
-  }
+    @When("the user clicks the login button")
+    public void theUserClicksTheLoginButton() {
+        loginPage.clickLogin();
+    }
 
-  @Then("the user is logged successfully and is into the inventory page")
-  public void theUserIsLoggedSuccessfullyAndIsIntoTheInventoryPage() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user should login successfully and is brought to the inventory page");
+    @Then("the user is logged successfully")
+    public void theUserIsLoggedSuccessfully() {
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        Assert.assertEquals("The user is not logged in", "https://opencart.abstracta.us/index.php?route=account/account", currentUrl);
+    }
 
-    InventoryPage inventoryPage = pf.getInventoryPage();
-    inventoryPage.waitForPageLoad();
-
-    String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
-    Assert.assertEquals("the URL is not inventory Page", InventoryPage.PAGE_URL, currentUrl);
-  }
-
-  @Then("The user should be shown an invalid message")
-  public void theUserShouldBeShownAnInvalidMessage() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user should be shown an invalid username/password message");
-
-    LoginPage loginPage = pf.getLoginPage();
-    Assert.assertTrue(loginPage.hasUsernamePasswordError());
-  }
+    @Then("the error message is shown")
+    public void theErrorMessageIsShown() {
+        Assert.assertTrue("Error mesagge is NOT shown", loginPage.isErrorMessageDisplayed());
+    }
 }

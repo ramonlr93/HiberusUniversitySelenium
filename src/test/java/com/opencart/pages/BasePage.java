@@ -27,7 +27,13 @@ public abstract class BasePage {
     private WebElement myAccountDropdown;
 
     @FindBy(xpath = "//div[@id='top-links']/ul/li[3]")
-    private WebElement contactUs;
+    private WebElement wishList;
+
+    @FindBy(xpath = "//div[@id='top-links']/ul/li[4]")
+    private WebElement shoppingCart;
+
+    @FindBy(xpath = "//div[@id='top-links']/ul/li[5]")
+    private WebElement checkOut;
 
     BasePage(WebDriver driver) {
         this.driver = driver;
@@ -91,16 +97,40 @@ public abstract class BasePage {
         }
     }
 
-    public void clickGoToLogin() {
+    public void changeCurrency(String currency) {
+        choseCurrency.click();
+        choseCurrency.findElement(By.xpath("./ancestor::div//button[text()='"+ currency +"']")).click();
+    }
+
+    public void goToLogin() {
         myAccountDropdown.click();
         myAccountDropdown.findElement(By.xpath(".//a[text()='Register']")).click();
 
     }
-    public void clickGoToRegister() {
+    public void oToRegister() {
         myAccountDropdown.click();
         myAccountDropdown.findElement(By.xpath(".//a[text()='Login']")).click();
 
     }
+
+    public void goToContactUs() {
+        contactUs.click();
+    }
+
+    public void goToWishList() {
+        wishList.click();
+    }
+
+    public void goToShoppingCart() {
+        shoppingCart.click();
+    }
+
+    public void goToCheckout() {
+        checkOut.click();
+    }
+
+
+
 
 
 

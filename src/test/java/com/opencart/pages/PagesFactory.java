@@ -12,7 +12,6 @@ public class PagesFactory {
   private PagesFactory(WebDriver driver) {
     this.driver = driver;
     loginPage = new LoginPage(driver);
-
   }
 
   public static void start(WebDriver driver) {
@@ -27,27 +26,9 @@ public class PagesFactory {
     return driver;
   }
 
-  public CheckOutCompletePage getCheckOutCompletePage() {
-    return checkOutCompletePage;
-  }
-
-  public CheckOutStepOnePage getCheckOutStepOnePage() {
-    return checkOutStepOnePage;
-  }
-
-  public CheckOutStepTwoPage getCheckOutStepTwoPage() {
-    return checkOutStepTwoPage;
-  }
-
-  public InventoryPage getInventoryPage() {
-    return inventoryPage;
-  }
-
   public LoginPage getLoginPage() {
     return loginPage;
   }
 
-  public CartPage getCartPage() {
-    return cartPage;
-  }
+
 }
