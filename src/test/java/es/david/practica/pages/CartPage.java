@@ -1,5 +1,6 @@
 package es.david.practica.pages;
 
+import jdk.internal.util.xml.impl.Input;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,9 @@ public class CartPage extends AbstractPage {
 
     @FindBy(xpath = "//strong[(text() = 'Total:')]//parent::td//following::td")
     private WebElement totalPrice;
+
+    @FindBy(xpath = "//input[contains(@name, 'quantity')]")
+    private List<WebElement> productQuantities;
 
     CartPage(WebDriver driver) {
         super(driver);
@@ -52,6 +56,14 @@ public class CartPage extends AbstractPage {
 
     public Double getTotalPrice(){
         return Double.parseDouble(totalPrice.getText().substring(1).trim());
+    }
+
+    public Double getTotalCalculatedPricePerProduct() {
+        return (Double.parseDouble(itemTotalPrices.get(0).getText().substring(1).trim())) * Integer.parseInt(productQuantities.get(0).getAttribute("value"));
+    }
+
+    public Double getTotalPricePerProduct(){
+        return Double.parseDouble(itemTotalPrices.get(0).getText().substring(1).trim());
     }
 
 }
