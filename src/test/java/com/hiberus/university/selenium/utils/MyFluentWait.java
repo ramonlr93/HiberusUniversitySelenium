@@ -17,11 +17,14 @@ package com.hiberus.university.selenium.utils;
 // specific language governing permissions and limitations
 // under the License.
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.Wait;
+
 import java.time.Clock;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -30,10 +33,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.ui.Sleeper;
-import org.openqa.selenium.support.ui.Wait;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An implementation of the {@link Wait} interface that may have its timeout and polling interval

@@ -9,18 +9,18 @@ import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class LoginPage extends BasePage {
-    public static final String PAGE_URL = "https://www.saucedemo.com/";
+    public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/login";
 
-    @FindBy(id = "user-name") //WebElement usernameImput = driver.findElement(driver.findElement(By.id("user-name"))
-    private WebElement usernameInput;
+    @FindBy(id = "input-email")
+    private WebElement emailInput;
 
-    @FindBy(xpath = "//input[@data-test='password']")
+    @FindBy(id = "input-password")
     private WebElement passwordImput;
 
-    @FindBy(id = "login-button")
+    @FindBy(xpath = "//h3[@type='submit']")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//h3[@data-test='error']")
+    @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
     private WebElement errorMessage;
 
     LoginPage(WebDriver driver) {
@@ -30,14 +30,13 @@ public class LoginPage extends BasePage {
 
     @Override
 
-    //Metodo de apoyo, se coge un elemento clave de la pagina para validar si estamos en la pagina correcta y cargada al 100%
     public WebElement getPageLoadedTestElement() {
         return loginButton;
     }
 
     public void enterUsername(String username){
-        usernameInput.click();  //Algunas paginas necesita clicar en el recuadro para poder escribir
-        usernameInput.sendKeys(username);
+        emailInput.click();
+        emailInput.sendKeys(username);
     }
 
     public void enterPassword(String password){

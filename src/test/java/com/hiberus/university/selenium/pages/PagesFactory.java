@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
+
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
@@ -11,24 +12,12 @@ public class PagesFactory {
     private final WebDriver driver;
 
     private final LoginPage loginPage;
-    private final InventoryPage inventoryPage;
-    //private final InventoryItemPage inventoryItemPage;
-    private final CartPage cartPage;
-    private final CheckOutStepOnePage checkOutStepOnePage;
-    private final CheckOutStepTwoPage checkOutStepTwoPage;
-    private final CheckOutCompletePage checkOutCompletePage;
 
 
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
         loginPage = new LoginPage(driver);
-        inventoryPage = new InventoryPage(driver);
-        //inventoryItemPage = new InventoryItemPage(driver);
-        cartPage = new CartPage(driver);
-        checkOutStepOnePage = new CheckOutStepOnePage(driver);
-        checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
-        checkOutCompletePage = new CheckOutCompletePage(driver);
 
     }
 

@@ -1,22 +1,19 @@
 package com.hiberus.university.selenium.pages;
 
-import com.hiberus.university.selenium.utils.MyFluentWait;
-import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScriptTimeoutException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import SaucedemoComlete.saucedemo.utils.MyFluentWait;
+
+import java.time.temporal.ChronoUnit;
 
 @Slf4j
 public abstract class BasePage {
+    public static final String PAGE_URL = "https://opencart.abstracta.us/";
 
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
@@ -67,7 +64,7 @@ public abstract class BasePage {
 
         try {
             isLoaded = elem.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
         return isLoaded;
@@ -78,7 +75,7 @@ public abstract class BasePage {
 
         try {
             driver.navigate().to(url);
-        } catch (java.lang.Exception e) {
+        } catch (Exception e) {
             if (e instanceof TimeoutException) {
                 log.info("Timeout loading home page");
             } else if (e instanceof ScriptTimeoutException) {
