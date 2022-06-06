@@ -2,7 +2,6 @@ package es.david.practica.stepdefs;
 
 import es.david.practica.pages.*;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -15,53 +14,53 @@ public class RegisterPageSteps {
 
 
     @And("the user goes to register")
-    public void theUserGoesToRegister() {
+    public void goToRegister() {
         bp.clickMyAccount();
         bp.clickRegister();
     }
 
     @And("the user provides the firstname {string}")
-    public void theUserProvidesTheFirstname(String firstname) {
+    public void enterFirstName(String firstname) {
         rp.enterName(firstname);
     }
 
     @And("the user provides the lastname {string}")
-    public void theUserProvidesTheLastname(String lastname) {
+    public void enterLastname(String lastname) {
         rp.enterLastname(lastname);
     }
 
     @And("the user provides the phone {string}")
-    public void theUserProvidesThePhone(String phone) {
+    public void enterPhone(String phone) {
         rp.enterPhone(phone);
     }
 
     @And("the user provides the register password again {string}")
-    public void theUserProvidesThePasswordAgain(String password) {
+    public void enterPasswordAgain(String password) {
         rp.enterConfirmPassword(password);
     }
 
     @And("the user provides the register password {string}")
-    public void theUserProvidesTheRegisterPassword(String password) {
+    public void enterPassword(String password) {
         rp.enterPassword(password);
     }
 
     @And("the user provides the register mail")
-    public void theUserProvidesTheRegisterMail() {
+    public void enterEmail() {
         rp.enterEmail();
     }
 
     @And("the user accept the policy check")
-    public void theUserAcceptThePolicyCheck() {
+    public void acceptPolicy() {
         rp.acceptPoticy();
     }
 
     @When("the user clicks the register button")
-    public void theUserClicksTheRegisterButton() {
+    public void clickRegister() {
         rp.clickRegister();
     }
 
     @Then("the user is registered successfully")
-    public void theUserIsRegisteredSuccessfully() {
+    public void checkRegister() {
         Assert.assertEquals("The url isn't correct"
                 , AccountSuccessPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());

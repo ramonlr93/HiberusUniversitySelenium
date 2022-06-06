@@ -9,7 +9,6 @@ import org.junit.Assert;
 
 public class LoginPageSteps {
 
-    // Creamos una instancia de pages factory
     PagesFactory pf = PagesFactory.getInstance();
     BasePage bp = pf.getBasePage();
     LoginPage lp = pf.getLoginPage();
@@ -21,35 +20,35 @@ public class LoginPageSteps {
     }
 
     @And("the user goes to login")
-    public void theUserGoesToLogin() {
+    public void goToLogin() {
         bp.clickMyAccount();
         bp.clickLogin();
     }
 
     @And("the user provides the mail {string}")
-    public void theUserProvidesTheMail(String mail) {
+    public void enterEmail(String mail) {
         lp.enterEmail(mail);
     }
 
     @And("the user provides the password {string}")
-    public void theUserProvidesThePassword(String password) {
+    public void enterPassword(String password) {
         lp.enterPassword(password);
     }
 
     @When("the user clicks the login button")
-    public void theUserClicksTheLoginButton() {
+    public void clickLogin() {
         lp.clickLogin();
     }
 
     @Then("the user is logged successfully")
-    public void theUserIsLoggedSuccessfully() {
+    public void checkLogin() {
         Assert.assertEquals("Isn't the correct URL"
                 , AccountPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());
     }
 
     @Then("the user can see the error message")
-    public void theUserCanSeeTheErrorMessage() {
+    public void checkMessageError() {
         Assert.assertTrue("Error message isn't visible", lp.isAlertVisible());
     }
 }

@@ -1,5 +1,5 @@
-@login
-Feature: Login test suite
+@register
+Feature: Register test suite
 
   Background:
     Given the user is in the main page

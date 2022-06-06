@@ -16,7 +16,7 @@ public class PagesFactory {
     private final AccountPage accountPage;
     private final RegisterPage registerPage;
     private final AccountSuccessPage accountSuccessPage;
-
+    private final CartPage cartPage;
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
@@ -27,6 +27,7 @@ public class PagesFactory {
         accountPage = new AccountPage(driver);
         registerPage = new RegisterPage(driver);
         accountSuccessPage = new AccountSuccessPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     public static void start(WebDriver driver) {

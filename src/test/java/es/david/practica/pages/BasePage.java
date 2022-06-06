@@ -12,6 +12,9 @@ public class BasePage extends AbstractPage {
     @FindBy(xpath = "//a[contains(@title, 'My Account')]")
     private WebElement myAccount;
 
+    @FindBy(xpath = "//a[contains(@title, 'Shopping Cart')]")
+    private WebElement shoppingCart;
+
     @FindBy(xpath = "//a[text() = 'Login']")
     private WebElement login;
 
@@ -29,16 +32,19 @@ public class BasePage extends AbstractPage {
     }
 
     public void clickMyAccount(){
-        wait.until(ExpectedConditions.visibilityOf(myAccount)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(myAccount)).click();
     }
 
     public void clickLogin(){
-        wait.until(ExpectedConditions.visibilityOf(login)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(login)).click();
     }
 
     public void clickRegister(){
-        wait.until(ExpectedConditions.visibilityOf(register)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(register)).click();
     }
 
+    public void clickShoppingCart(){
+        wait.until(ExpectedConditions.elementToBeClickable(shoppingCart)).click();
+    }
 
 }
