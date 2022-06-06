@@ -1,24 +1,21 @@
 @login
-Feature: validate login test suite
-
-  Background: Navigate to the home page
+Feature: Login Test Cases
+  Background:
     Given the user is on the home page
+    And the user clicks on the my account button
+    And the user clicks on the login option
 
-  @testcase01
+  @pr-01
   @smoke
-  Scenario Outline: Verify valid user can login
-    And the user provides the username "<username>" and password "<password>"
-    When the user clicks the login button
-    Then the user is logged successfully and is into the inventory page
-    Examples:
-      | username      | password     |
-      | standard_user | secret_sauce |
+  Scenario: Validate that the user can login correctly
+    When the user introduces "usuariopruebasam@qa.com" as email
+    And the user introduces "usuariopruebas" as password
+    And the user clicks the login button
+    Then the user sees on the menu, on my account, all the logged in options
 
-  @testcase02
-  Scenario Outline: Verify invalid user cannot login
-    And the user provides the username "<username>" and password "<password>"
-    When the user clicks the login button
-    Then The user should be shown an invalid message
-    Examples:
-      | username | password     |
-      | bad_user | secret_sauce |
+  @pr-02
+  Scenario: Validate that the page show an error message if the user does a login with incorrect credentials
+    When the user introduces "bademailam@qa.com" as email
+    And the user introduces "badpassword" as password
+    And the user clicks the login button
+    Then the user sees an error message that says "Warning: No match for E-Mail Address and/or Password."

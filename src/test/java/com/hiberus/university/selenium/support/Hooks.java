@@ -61,7 +61,7 @@ public class Hooks {
         driver = new ChromeDriver(chromeOptions);
     }
     driver.manage().deleteAllCookies();
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     driver.manage().window().maximize();
     PagesFactory.start(driver);
   }

@@ -1,14 +1,15 @@
 package com.hiberus.university.selenium.pages;
 
+
+import com.hiberus.university.selenium.utils.AccountOptionsClass.*;
 import com.hiberus.university.selenium.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.hiberus.university.selenium.utils.NavBar;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScriptTimeoutException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -18,14 +19,43 @@ import org.openqa.selenium.support.ui.Wait;
 @Slf4j
 public abstract class BasePage {
 
+  @FindBy(id = "top")
+  private WebElement topNavBar;
+
+  @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu')]//li//a")
+  private List<WebElement> myAccountOptions;
+
+  @FindBy(xpath = "//div[contains(@class, 'alert')]")
+  private WebElement errorMessageDiv;
+
+  public void clickTopNavBarOption(NavBar navBarOption) {
+    topNavBar.findElement(By.xpath(".//i[contains(@class, '" + navBarOption.value + "')]")).click();
+  }
+
+  public void clickAccountOption(AccountOptions option) {
+    myAccountOptions.stream()
+            .filter(e -> e.getText().equals(option.value()))
+            .findFirst()
+            .orElse(null)
+            .click();
+  }
+
+  public List<String> getMyAccountOptions() {
+    return myAccountOptions
+            .stream()
+            .map(WebElement::getText)
+            .collect(Collectors.toList());
+  }
+
+  public String getErrorMessage() {
+    try {
+      return errorMessageDiv.getText();
+    } catch (Exception e) { }
+    return null;
+  }
+
   protected Wait<WebDriver> wait;
   private final WebDriver driver;
-
-  @FindBy(id = "react-burger-menu-btn")
-  private WebElement menuButton;
-
-  @FindBy(id = "logout_sidebar_link")
-  private WebElement logoutButton;
 
   BasePage(WebDriver driver) {
     this.driver = driver;
@@ -87,13 +117,5 @@ public abstract class BasePage {
         log.error(e.getMessage());
       }
     }
-  }
-
-  public void openMenu() {
-    menuButton.click();
-  }
-
-  public void clickLogout() {
-    logoutButton.click();
   }
 }
