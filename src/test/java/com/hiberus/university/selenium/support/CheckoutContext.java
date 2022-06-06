@@ -5,13 +5,13 @@ import java.util.List;
 
 public class CheckoutContext {
 
-  private static final List<InventoryItem> inventoryItemList = new ArrayList<>();
+  //private static final List<InventoryItem> inventoryItemList = new ArrayList<>();
 
-  public static void addItem(InventoryItem item) {
+  /*public static void addItem(InventoryItem item) {
     inventoryItemList.add(item);
   }
 
   public static List<InventoryItem> getInventoryItemList() {
     return inventoryItemList;
-  }
+  }*/
 }
