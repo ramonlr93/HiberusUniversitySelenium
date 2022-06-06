@@ -7,18 +7,20 @@ Feature: validate login test suite
   @testcase01
   @smoke
   Scenario Outline: Verify valid user can login
-    And the user provides the username "<username>" and password "<password>"
+    And the user provides the username "<username>"
+    And the user provides the password "<password>"
     When the user clicks the login button
-    Then the user is logged successfully and is into the inventory page
+    Then the user is logged successfully
     Examples:
       | username      | password     |
       | standard_user | secret_sauce |
 
   @testcase02
   Scenario Outline: Verify invalid user cannot login
-    And the user provides the username "<username>" and password "<password>"
+    And the user provides the username "<username>"
+    And the user provides the password "<password>"
     When the user clicks the login button
-    Then The user should be shown an invalid message
+    Then the user should be shown and invalid message
     Examples:
       | username | password     |
       | bad_user | secret_sauce |
