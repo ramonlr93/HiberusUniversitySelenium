@@ -5,20 +5,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends BasePage{
+public class ForgottenPasswordPage extends BasePage{
 
-    public static final String PAGE_URL = "https://opencart.abstracta.us/";
+    public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/forgotten";
 
-    @FindBy(id = "slideshow0")
-    private WebElement mobileDiv;
+    @FindBy(id = "input-email")
+    private WebElement inputEmail;
 
-    public HomePage(WebDriver driver) {
+    public ForgottenPasswordPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
     @Override
     public WebElement getPageLoadedTestElement() {
-        return mobileDiv;
+        return inputEmail;
     }
 }
