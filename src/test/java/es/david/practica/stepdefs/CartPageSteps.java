@@ -11,7 +11,7 @@ public class CartPageSteps {
     PagesFactory pf = PagesFactory.getInstance();
     CartPage cp = pf.getCartPage();
 
-    @Then("the total price should be the sum of all product prices")
+    @Then("the total price should be the sum of the total of each product")
     public void checkTotalPrice() {
         Assert.assertEquals("Total price isnt the sum of all product prices", cp.getTotalPrice(), cp.getTotalCalculatedPrice());
     }

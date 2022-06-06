@@ -18,6 +18,9 @@ public class CartPage extends AbstractPage {
     @FindBy(xpath = "//form//descendant::td[contains(text(), '$')][1]")
     private List<WebElement> itemPrices;
 
+    @FindBy(xpath = "//form//descendant::td[contains(text(), '$')][2]")
+    private List<WebElement> itemTotalPrices;
+
     @FindBy(xpath = "//strong[(text() = 'Total:')]//parent::td//following::td")
     private WebElement totalPrice;
 
@@ -41,8 +44,8 @@ public class CartPage extends AbstractPage {
 
     public Double getTotalCalculatedPrice() {
         double sum = 0.0;
-        for (int i = 0; i < itemPrices.size(); i++) {
-            sum += (Double.parseDouble(itemPrices.get(i).getText().substring(1).trim()));
+        for (int i = 0; i < itemTotalPrices.size(); i++) {
+            sum += (Double.parseDouble(itemTotalPrices.get(i).getText().substring(1).trim()));
         }
         return sum;
     }

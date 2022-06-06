@@ -9,5 +9,5 @@ Feature: Cart test suite
   Scenario: Verify total price is correct
     When the user adds all items to the cart
     And the user goes to cart
-    Then the total price should be the sum of all product prices
+    Then the total price should be the sum of the total of each product
 
