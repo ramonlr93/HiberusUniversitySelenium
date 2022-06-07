@@ -121,3 +121,5 @@ Feature: validate login in OpenCart
       | first_name | last_name | email           | phone                             | password | message                                        |
       | marco      | ruiz      | marco2@mail.com | 22                                | 1311     | Telephone must be between 3 and 32 characters! |
       | marco      | ruiz      | marco2@mail.com | 123251568792856215623687987845321 | 1311     | Telephone must be between 3 and 32 characters! |
+
+    # TODO telephone ha de ser numerico (9 chars??)
