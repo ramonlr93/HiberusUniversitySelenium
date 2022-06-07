@@ -13,7 +13,7 @@ Feature: validate login in OpenCart
       | email          | password |
       | mario@mail.com | 1311     |
 
-  @OC-1
+  @OC-2
   Scenario Outline: Verify invalid user canot login
     And the user enters the "<email>" and "<password>"
     When the user clicks the login button

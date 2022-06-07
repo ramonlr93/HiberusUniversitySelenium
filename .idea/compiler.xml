@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="OpenCart" />
+        <module name="com.hiberus.university" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="com.hiberus.university" target="8" />
       <module name="OpenCart" target="1.8" />
     </bytecodeTargetLevel>
   </component>

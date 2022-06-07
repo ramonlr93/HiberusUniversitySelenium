@@ -23,31 +23,35 @@ public class RegisterPageSteps {
         log.info("The user is on the Home Page");
         registerPage.navigateTo(RegisterPage.PAGE_URL);
     }
-
-
+    
     @And("the user enters the name {string}")
-    public void theUserEntersTheName(String name) {
-        registerPage.setName(name);
+    public void theUserEntersTheName(String value) {
+        if (value.isEmpty()) value = "";
+        registerPage.setName(value);
     }
 
     @And("the user enters the last name {string}")
-    public void theUserEntersTheLastName(String lastname) {
-        registerPage.setLastName(lastname);
+    public void theUserEntersTheLastName(String value) {
+        if (value.isEmpty()) value = "";
+        registerPage.setLastName(value);
     }
 
     @And("the user enters the email {string}")
-    public void theUserEntersTheEmail(String mail) {
-        registerPage.setEmail(mail);
+    public void theUserEntersTheEmail(String value) {
+        if (value.isEmpty()) value = "";
+        registerPage.setEmail(value);
     }
 
     @And("the user enters the phone number {string}")
-    public void theUserEntersThePhneNumber(String number) {
-        registerPage.setTelephone(number);
+    public void theUserEntersThePhneNumber(String value) {
+        if (value.isEmpty()) value = "";
+        registerPage.setTelephone(value);
     }
 
     @And("the user enters the password {string}")
-    public void theUserEntersThePassword(String passw) {
-        registerPage.setPassword(passw);
+    public void theUserEntersThePassword(String value) {
+        if (value.isEmpty()) value = "";
+        registerPage.setPassword(value);
     }
 
     @And("the user accepts privacy policy")
@@ -70,5 +74,21 @@ public class RegisterPageSteps {
     public void theUserAccountIsNotCreated() {
         String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
         Assert.assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
+    }
+
+    @Then("the error message shows {string}")
+    public void theErrorMessageShows(String errMsg) {
+        //Assert.assertEquals("Error message is not shown", errMsg,registerPage.isProperErrorMessageDisplayed(field, error));
+    }
+
+    @Then("the alert message shows up")
+    public void theAlertMessageShowsUp() {
+        Assert.assertTrue("Alert message is not shown", registerPage.isAlertMessageDisplayed());
+    }
+
+
+    @Then("the {string} error message shows {string}")
+    public void theErrorMessageShows(String field, String error) {
+        Assert.assertTrue("Error message for " + field + " is not shown", registerPage.isProperErrorMessageDisplayed(field, error));
     }
 }

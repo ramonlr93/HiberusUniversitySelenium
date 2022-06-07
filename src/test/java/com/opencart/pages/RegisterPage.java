@@ -1,17 +1,22 @@
 package com.opencart.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class RegisterPage extends BasePage {
     public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/register";
 
     @FindBy(id = "input-firstname")
     private WebElement nameInput;
+
     @FindBy(id = "input-email")
     private WebElement lastNameInput;
+
     @FindBy(id = "input-lastname")
     private WebElement emailInput;
 
@@ -27,12 +32,16 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement continueButton;
 
+    // alerta de mail repetido
     @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
-    private WebElement errorMessage;
+    private WebElement usedMailAlert;
+
+    // alertas de los campos
+    @FindBy(xpath = "//div[@class='col-sm-10']")
+    private List<WebElement> inputFields;
 
     @FindBy(xpath = "//input[@type='checkbox' and @name='agree']")
     private WebElement privacyPolicyCheckbox;
-
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -75,7 +84,16 @@ public class RegisterPage extends BasePage {
         privacyPolicyCheckbox.click();
     }
 
-    public boolean isErrorMessageDisplayed() {
-        return errorMessage.isDisplayed();
+    public boolean isProperErrorMessageDisplayed(String field, String error) {
+        for (WebElement elem: inputFields) {
+            WebElement errorMsg = elem.findElement(By.xpath(".//div[@class='text-danger' and contains(text(), '"+field+"')]"));
+            if (errorMsg.getText().equalsIgnoreCase(error))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isAlertMessageDisplayed() {
+        return usedMailAlert.isDisplayed();
     }
 }
