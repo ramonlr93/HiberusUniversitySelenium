@@ -16,7 +16,7 @@ public class RegisterPageSteps {
     PagesFactory pf = PagesFactory.getInstance();
     RegisterPage registerPage = pf.getRegisterPage();
 
-    @Given("the user is on the register pag")
+    @Given("the user is on the register page")
     public void userInTheRegisterPage() {
         log.info("The user is on the home register page");
         registerPage.navigateTo(RegisterPage.PAGE_URL);
@@ -71,7 +71,11 @@ public class RegisterPageSteps {
         log.info("The user should be shown an invalid message");
         Assert.assertTrue(ERROR_MESSAGE_ISNT_DISPLAYED, registerPage.hasRegisterEmailAlert());
     }
-
+    @Then("the user should be shown a message that e-Mail address does not appear to be valid!")
+    public void errorEmailInvalidDisplayed() {
+        log.info("The user should be shown an invalid message");
+        Assert.assertTrue(ERROR_MESSAGE_ISNT_DISPLAYED, registerPage.hasRegisterEmailError());
+    }
     @And("the user provides the password {string}")
     public void enterPassword(String password) {
         registerPage.enterPassword(password);

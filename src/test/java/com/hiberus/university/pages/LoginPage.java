@@ -1,5 +1,6 @@
 package com.hiberus.university.pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,9 @@ public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@type='submit']")
     WebElement loginButton;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+    WebElement errorMessage;
 
     LoginPage(WebDriver driver) {
         super(driver);
@@ -46,5 +50,13 @@ public class LoginPage extends AbstractPage {
 
     public void clickLoginButton() {
         loginButton.submit();
+    }
+    public boolean hasLoginError() {
+        try {
+            return errorMessage.isDisplayed();
+        } catch (NoSuchElementException e) {
+            System.out.println("No error message in the first name input");
+        }
+        return false;
     }
 }

@@ -37,7 +37,22 @@ Feature: Register test suite
       | email           |
       | kat@yopmail.com |
 
+
   @testcase04
+  Scenario Outline: Verify alert when Email is incorrect written
+    And the user provides the email "<email>"
+    And the user clicks agree to the privacy policy
+    When the user clicks the continue button
+    Then the user should be shown a message that e-Mail address does not appear to be valid!
+    Examples:
+      | email            |
+      | kat              |
+      | kat@             |
+      | kat@kat@yopmail  |
+      | kat@kat@yopmail. |
+
+
+  @testcase05
   Scenario Outline: Verify the alert if password doesnt match with the password confirmation
     And the user provides the password "<password>"
     And the user provides the passwordConfirmation "<passwordConfirm>"
@@ -48,7 +63,7 @@ Feature: Register test suite
       | password  | passwordConfirm |
       | HolaTodos | HolaTodo        |
 
-  @testcase03
+  @testcase06
   Scenario: Verify the warning when the user must agree to the privacy policy
     And the user clicks the continue button
     Then the user should be shown an warning message

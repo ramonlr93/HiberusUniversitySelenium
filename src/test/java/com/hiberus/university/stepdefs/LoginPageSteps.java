@@ -26,10 +26,15 @@ public class LoginPageSteps {
 
     @Then("the user is logged successfully")
     public void theUserIsLogged() {
-        String myAccountPageURL ="https://opencart.abstracta.us/index.php?route=account/account";
+        String myAccountPageURL = "https://opencart.abstracta.us/index.php?route=account/account";
         Assert.assertEquals("login failed",
                 myAccountPageURL, pf.getDriver().getCurrentUrl());
     }
 
+    @Then("the user should be shown and invalid message")
+    public void ErrorMessageDisplayed() {
+        log.info("The user should be shown an invalid message");
+        Assert.assertTrue("Error message isn't displayed", loginPage.hasLoginError());
+    }
 
 }

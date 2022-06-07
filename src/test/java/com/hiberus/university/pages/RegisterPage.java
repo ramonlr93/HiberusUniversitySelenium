@@ -2,10 +2,7 @@ package com.hiberus.university.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -124,7 +121,7 @@ public class RegisterPage extends AbstractPage {
         enterPasswordConfirmation(passwordConfirm);
     }
 
-    public void fillInformation(String firstName, String lastName,String email, String telephone, String password, String passwordConfirm) {
+    public void fillInformation(String firstName, String lastName, String email, String telephone, String password, String passwordConfirm) {
         enterFirstName(firstName);
         enterLastName(lastName);
         enterEmail(email);
@@ -145,67 +142,42 @@ public class RegisterPage extends AbstractPage {
         continueButton.submit();
     }
 
-    public boolean hasRegisterFirstNameError() {
+    private boolean hasRegisterError(WebElement webElement, String messageError) {
         try {
-            return errorFirstNameMessage.isDisplayed();
+            return webElement.isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.println("No error message in the first name input");
+            System.out.println(messageError);
         }
         return false;
+    }
+       public boolean hasRegisterFirstNameError() {
+        return hasRegisterError(errorFirstNameMessage, "No error message in the first name input");
     }
 
     public boolean hasRegisterLastNameError() {
-        try {
-            return errorLastNameMessage.isDisplayed();
-        } catch (NoSuchElementException e) {
-            System.out.println("No error message in the last name input");
-        }
-        return false;
+        return hasRegisterError(errorLastNameMessage, "No error message in the last name input");
     }
 
     public boolean hasRegisterEmailError() {
-        try {
-            return errorEmailMessage.isDisplayed();
-        } catch (NoSuchElementException e) {
-            System.out.println("No error message in the last name input");
-        }
-        return false;
+        return hasRegisterError(errorEmailMessage, "No error message in the email input");
     }
 
     public boolean hasRegisterEmailAlert() {
-        try {
-            return alreadyEmailMessage.isDisplayed();
-        } catch (NoSuchElementException e) {
-            System.out.println("No error message in the last name input");
-        }
-        return false;
+        return hasRegisterError(alreadyEmailMessage, "No error message that the email is already used");
     }
 
     public boolean hasRegisterPasswordError() {
-        try {
-            return errorPasswordMessage.isDisplayed();
-        } catch (NoSuchElementException e) {
-            System.out.println("No error message in the last name input");
-        }
-        return false;
+        return hasRegisterError(errorPasswordMessage, "No error message in the password input");
     }
 
     public boolean hasRegisterPasswordUnmatchError() {
-        try {
-            return errorMatchPasswordMessage.isDisplayed();
-        } catch (NoSuchElementException e) {
-            System.out.println("No error message in the last name input");
-        }
-        return false;
+        return hasRegisterError(errorMatchPasswordMessage, "No error message that password and password confirmation are unmatched");
     }
 
     public boolean hasRegisterPolicyWarning() {
-        try {
-            return warningAgreePolicy.isDisplayed();
-        } catch (NoSuchElementException e) {
-            System.out.println("No warning message in the last name input");
-        }
-        return false;
+        return hasRegisterError(warningAgreePolicy, "No warning message in the last name input");
     }
+
+
 }
 
