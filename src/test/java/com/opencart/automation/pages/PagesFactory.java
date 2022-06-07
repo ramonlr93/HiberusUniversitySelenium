@@ -7,11 +7,13 @@ public class PagesFactory {
   private final WebDriver driver;
 
   private final LoginPage loginPage;
+  private final RegisterPage registerPage;
 
 
   private PagesFactory(WebDriver driver) {
     this.driver = driver;
     loginPage = new LoginPage(driver);
+    registerPage = new RegisterPage(driver);
 
   }
 
@@ -32,4 +34,7 @@ public class PagesFactory {
   }
 
 
+  public RegisterPage getRegisterPage() {
+    return registerPage;
+  }
 }
