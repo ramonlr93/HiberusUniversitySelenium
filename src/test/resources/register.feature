@@ -40,17 +40,6 @@ Feature: Register test suite
     When the user click the button Continue
     Then the user can see 6 the error messages
 
-  @register03
-  Scenario: Validate that all error messages appear
-    And the user write in the input FirstName ""
-    And the user write in the input LastName ""
-    And the user write in the input E-Mail ""
-    And the user write in the input Telephone ""
-    And the user write in the input Password ""
-    And the user write in the input Password Confirm "h"
-    When the user click the button Continue
-    Then the user can see 6 the error messages
-
   @register04
   Scenario: Validate that the warning messages of Privacy Policy appear
     When the user click the button Continue
