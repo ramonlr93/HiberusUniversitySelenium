@@ -34,8 +34,8 @@ public class Flags {
     }
 
     public String getBrowser(){
+
         return this.browser;
     }
 
 }
-

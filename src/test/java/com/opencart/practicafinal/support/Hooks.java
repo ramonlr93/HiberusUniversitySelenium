@@ -37,8 +37,7 @@ public class Hooks {
         PagesFactory.start(driver);
     }
 
-    // comando para ejecutar un tag específico en firefox y headless
-    // mvn clean test -Dcucumber.filter.tags="@testcase-01" -Dbrowser=firefox -Dheadless=true
+
     private static WebDriver createWebDriver() {
         String browser = Flags.getInstance().getBrowser();
         boolean isHeadless = Flags.getInstance().isHeadless();

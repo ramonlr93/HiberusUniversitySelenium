@@ -3,7 +3,7 @@ Feature: Login test suite
 
   Background:
     Given the user is in the landing page
-    And the user click on login button
+    And the user clicks the login button
   @smoke
     @testcase-1
   Scenario Outline: Verify valid user can login
@@ -26,5 +26,3 @@ Feature: Login test suite
     Examples:
       | mail                  | password  |
       | manape798@hotmail.com | Manape195 |
-
-

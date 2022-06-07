@@ -20,38 +20,7 @@ import java.util.function.Supplier;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * An implementation of the {@link Wait} interface that may have its timeout and polling interval
- * configured on the fly.
- * <p>
- * <p>
- * Each FluentWait instance defines the maximum amount of time to wait for a condition, as well as
- * the frequency with which to check the condition. Furthermore, the user may configure the wait to
- * ignore specific types of exceptions whilst waiting, such as
- * {@link org.openqa.selenium.NoSuchElementException NoSuchElementExceptions} when searching for an
- * element on the page.
- * <p>
- * <p>
- * Sample usage: <pre>
- *   // Waiting 30 seconds for an element to be present on the page, checking
- *   // for its presence once every 5 seconds.
- *   Wait&lt;WebDriver&gt; wait = new FluentWait&lt;WebDriver&gt;(driver)
- *       .withTimeout(30, SECONDS)
- *       .pollingEvery(5, SECONDS)
- *       .ignoring(NoSuchElementException.class);
- * <p>
- *   WebElement foo = wait.until(new Function&lt;WebDriver, WebElement&gt;() {
- *     public WebElement apply(WebDriver driver) {
- *       return driver.findElement(By.id("foo"));
- *     }
- *   });
- * </pre>
- * <p>
- * <p>
- * <em>This class makes no thread safety guarantees.</em>
- *
- * @param <T> The input type for each condition used with this instance.
- */
+
 public class MyFluentWait<T> implements Wait<T>
 {
 

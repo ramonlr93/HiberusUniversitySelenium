@@ -1,6 +1,7 @@
 package com.opencart.practicafinal.pages;
 
 
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -54,4 +55,5 @@ public class LoginPage extends AbstractPage{
     }
 
 }
+
 

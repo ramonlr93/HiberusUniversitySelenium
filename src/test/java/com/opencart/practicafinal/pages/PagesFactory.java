@@ -8,12 +8,11 @@ public class PagesFactory {
 
     private static PagesFactory pagesFactories;
     private final WebDriver driver;
-
     private final LoginPage loginPage;
     private final BasePage basePage;
     private final HomePage homePage;
     private final AccountPage accountPage;
-
+    private final RegisterPage registerPage;
 
 
     public PagesFactory(WebDriver driver) {
@@ -23,7 +22,7 @@ public class PagesFactory {
         loginPage = new LoginPage(driver);
         basePage = new BasePage(driver);
         accountPage = new AccountPage(driver);
-
+        registerPage = new RegisterPage(driver);
     }
 
     public static void start(WebDriver driver) {

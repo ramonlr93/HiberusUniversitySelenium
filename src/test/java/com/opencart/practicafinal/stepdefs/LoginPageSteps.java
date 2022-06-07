@@ -1,7 +1,6 @@
 package com.opencart.practicafinal.stepdefs;
 
 
-
 import com.opencart.practicafinal.pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -9,32 +8,32 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class LoginSteps {
+public class LoginPageSteps {
 
-
+    // Creamos una instancia de pages factory
     PagesFactory pf = PagesFactory.getInstance();
     BasePage bp = pf.getBasePage();
     LoginPage lp = pf.getLoginPage();
     HomePage hp = pf.getHomePage();
 
     @Given("the user is in the landing page")
-    public void userInLandingPage() {
+    public void userInHomePage() {
         hp.navigateTo(HomePage.PAGE_URL);
     }
 
-    @And("the user click on login button")
-    public void theUserClickOnLoginButton() {
+    @And("the user clicks the login button")
+    public void theUserGoesToLogin() {
         bp.clickMyAccount();
         bp.clickLogin();
     }
 
     @And("the user fills the mail {string}")
-    public void theUserFillsTheMail(String mail) {
+    public void theUserProvidesTheMail(String mail) {
         lp.enterEmail(mail);
     }
 
     @And("the user fills the password {string}")
-    public void theUserFillsThePassword(String password) {
+    public void theUserProvidesThePassword(String password) {
         lp.enterPassword(password);
     }
 
@@ -45,13 +44,14 @@ public class LoginSteps {
 
     @Then("the user is logged")
     public void theUserIsLoggedSuccessfully() {
-        Assert.assertEquals("It is not the correct URL"
+        Assert.assertEquals("Isn't the correct URL"
                 , AccountPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());
     }
 
     @Then("the error message is shown")
     public void theUserCanSeeTheErrorMessage() {
-        Assert.assertTrue("Error message is not visible", lp.isAlertVisible());
+        Assert.assertTrue("Error message isn't visible", lp.isAlertVisible());
     }
 }
+
