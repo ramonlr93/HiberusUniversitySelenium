@@ -26,23 +26,23 @@ public class RegisterPageSteps {
         hp.navigateTo(RegisterPage.PAGE_URL);
     }
 
-    @And("the user fills the firstname {string}")
-    public void theUserFillsTheFirstname(String firstname) { registerPage.enterFirstname(firstname);
+    @And("the user provides the firstname {string}")
+    public void theUserProvidesTheFirstname(String firstname) { registerPage.enterFirstname(firstname);
     }
 
-    @And("the user fills the lastname {string}")
-    public void theUserFillsTheLastname(String lastname) { registerPage.enterLastname(lastname);
+    @And("the user provides the lastname {string}")
+    public void theUserProvidesTheLastname(String lastname) { registerPage.enterLastname(lastname);
     }
 
-    @And("the user fills the telephone {string}")
-    public void theUserFillsTheTelephone(String telephone) { registerPage.enterTelephone(telephone);
+    @And("the user provides the telephone {string}")
+    public void theUserProvidesTheTelephone(String telephone) { registerPage.enterTelephone(telephone);
     }
-    @And("the user fills the pass {string}")
-    public void theUserFillsThePass(String password) { registerPage.enterPassword(password);
+    @And("the user provides the pass {string}")
+    public void theUserProvidesThePass(String password) { registerPage.enterPassword(password);
     }
 
-    @And("the user fills the confirm {string}")
-    public void theUserFillsTheConfirm(String confirm) { registerPage.enterConfirm(confirm);
+    @And("the user provides the confirm {string}")
+    public void theUserProvidesTheConfirm(String confirm) { registerPage.enterConfirm(confirm);
     }
 
     @And("the user clicks on privacy button")
@@ -55,8 +55,8 @@ public class RegisterPageSteps {
         registerPage.clickContinue();
     }
 
-    @And("the user fills the email {string}")
-    public void theUserFillsTheEmail(String email) {
+    @And("the user provides the email {string}")
+    public void theProvidesFillsTheEmail(String email) {
         registerPage.enterEmail(email);
     }
 

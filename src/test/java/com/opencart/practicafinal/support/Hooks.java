@@ -65,7 +65,7 @@ public class Hooks {
 
     @After()
     public static void after(Scenario scenario) throws IOException {
-        log.info("Ending test: " + scenario.getName());
+        log.info("Error test: " + scenario.getName());
 
         if(scenario.isFailed()){
             log.info(scenario.getName() + " is Fail");
@@ -75,6 +75,7 @@ public class Hooks {
 
         driver.close();
     }
+
 
 }
 

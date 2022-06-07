@@ -10,7 +10,7 @@ import org.junit.Assert;
 
 public class LoginPageSteps {
 
-    // Creamos una instancia de pages factory
+    // Creamos una instancia de las pages
     PagesFactory pf = PagesFactory.getInstance();
     BasePage bp = pf.getBasePage();
     LoginPage lp = pf.getLoginPage();

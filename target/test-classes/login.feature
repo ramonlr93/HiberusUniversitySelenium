@@ -29,7 +29,7 @@ Feature: Login test suite
       | mail                  | password  |
       | manape7@hotmail.com   | Manape195 |
 
-  @testcase-2
+  @testcase-3
   Scenario Outline: Verify invalid login
     And the user fills the mail "<mail>"
     And the user fills the password "<password>"
