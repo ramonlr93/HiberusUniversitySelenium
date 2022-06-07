@@ -77,14 +77,47 @@ public class CheckoutPage extends BasePage {
     @FindBy(id = "button-confirm")
     private WebElement confirmOrderButton;
 
+    @FindBy(xpath = "//h1[text() = 'Your order has been placed!']")
+    private WebElement orderHasBeenPlaced;
+
     @FindBy(xpath = "//*[@id='input-payment-country']/option[209]")
     private WebElement spainCountryOption;
 
     @FindBy(xpath = "//*[@id='input-payment-zone']/option[6]")
     private WebElement almeriaRegionStateOption;
 
-    
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'E-Mail')]")
+    private WebElement emailIncorrectFormat;
 
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'Address')]")
+    private WebElement addressIncorrectLength;
+
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'First Name')]")
+    private WebElement alertFirstname;
+
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'Last Name')]")
+    private WebElement alertLastName;
+
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'Telephone')]")
+    private WebElement alertTelephone;
+
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'City')]")
+    private WebElement alertCity;
+
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'country')]")
+    private WebElement alertCountry;
+
+    @FindBy(xpath = "//div[@class = 'text-danger' and contains(text(), 'region')]")
+    private WebElement alertRegionState;
+
+    @FindBy(xpath = "//select[@id = 'input-payment-country']/option[1]")
+    private WebElement pleaseSelectCountry;
+
+    @FindBy(xpath = "//select[@id = 'input-payment-zone']/option[1]")
+    private WebElement pleaseSelectRegionState;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible']")
+    private WebElement warningPermissionsStep5;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -109,10 +142,10 @@ public class CheckoutPage extends BasePage {
                 js.executeScript("window.scrollBy(0,1000)");
                 continueButtonSecondStep.click();
                 break;
-            case 3:
+            case 4:
                 continueButtonThirdStep.click();
                 break;
-            case 4:
+            case 5:
                 continueButtonfourthStep.click();
                 break;
             default:
@@ -121,7 +154,7 @@ public class CheckoutPage extends BasePage {
         }
     }
 
-    public void completeSecondStepForm(String name, String lastname, String email, String telephone, String address1, String city, String postCode){
+    public void completeSecondStepForm(String name, String lastname, String email, String telephone, String address1, String city, String postCode, JavascriptExecutor js){
         firstNameText.sendKeys(name);
         lastNameText.sendKeys(lastname);
         emailText.sendKeys(email);
@@ -132,6 +165,7 @@ public class CheckoutPage extends BasePage {
 
         countryOption.click();
         spainCountryOption.click();
+        js.executeScript("window.scrollBy(0,20)");
         regionStateOption.click();
         almeriaRegionStateOption.click();
     }
@@ -161,6 +195,66 @@ public class CheckoutPage extends BasePage {
     }
 
     public void waitSuccessPage(){
-        wait.until(ExpectedConditions.visibilityOf(orderHasBeenPlacedText));
+        wait.until(ExpectedConditions.visibilityOf(orderHasBeenPlaced));
+    }
+
+    public boolean orderHasBeenPlacedVisible(){
+        if(wait.until(ExpectedConditions.visibilityOf(orderHasBeenPlaced)).isDisplayed()) return true;
+        else return false;
+    }
+
+    public boolean isAlertVisible(String alert){
+        boolean bool = false;
+        switch (alert){
+            case "email":
+                if(wait.until(ExpectedConditions.visibilityOf(emailIncorrectFormat)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "address":
+                if(wait.until(ExpectedConditions.visibilityOf(addressIncorrectLength)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "firstName":
+                if(wait.until(ExpectedConditions.visibilityOf(alertFirstname)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "lastName":
+                if(wait.until(ExpectedConditions.visibilityOf(alertLastName)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "telephone":
+                if(wait.until(ExpectedConditions.visibilityOf(alertTelephone)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "city":
+                if(wait.until(ExpectedConditions.visibilityOf(alertCity)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "country":
+                if(wait.until(ExpectedConditions.visibilityOf(alertCountry)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            case "regionState":
+                if(wait.until(ExpectedConditions.visibilityOf(alertRegionState)).isDisplayed()) bool = true;
+                else bool = false;
+                break;
+            default:
+                bool = false;
+                break;
+        }
+        return bool;
+    }
+
+    public void pleaseSelectCountryAndRegionState(JavascriptExecutor js){
+        countryOption.click();
+        pleaseSelectCountry.click();
+        js.executeScript("window.scrollBy(0,20)");
+        regionStateOption.click();
+        pleaseSelectRegionState.click();
+    }
+
+    public boolean isWarningPermissionsStep5Visible(){
+        if(wait.until(ExpectedConditions.visibilityOf(warningPermissionsStep5)).isDisplayed()) return true;
+        else return false;
     }
 }
