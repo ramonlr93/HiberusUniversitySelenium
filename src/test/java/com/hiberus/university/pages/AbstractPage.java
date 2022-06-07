@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.pages;
+package com.hiberus.university.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
@@ -6,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
-import com.hiberus.university.selenium.utils.MyFluentWait;
+import com.hiberus.university.utils.MyFluentWait;
 
 import java.time.temporal.ChronoUnit;
 

@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.pages;
+package com.hiberus.university.pages;
 
 import org.openqa.selenium.WebDriver;
 
@@ -6,16 +6,16 @@ public class PagesFactory {
 
     private static PagesFactory pagesFactories;
     private final WebDriver driver;
+    private final RegisterPage registerPage;
 
-
-    private final LoginPage loginPage;
 
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
 
-        loginPage = new LoginPage(driver);
-        ;
+
+        registerPage = new RegisterPage(driver);
+
     }
 
     public static void start(WebDriver driver) {
@@ -30,9 +30,9 @@ public class PagesFactory {
         return driver;
     }
 
-        public LoginPage getLoginPage() {
-        return loginPage;
-    }
 
+    public RegisterPage getRegisterPage() {
+        return registerPage;
+    }
 
 }

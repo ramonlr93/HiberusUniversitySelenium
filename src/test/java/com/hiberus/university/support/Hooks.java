@@ -1,11 +1,11 @@
-package com.hiberus.university.selenium.support;
+package com.hiberus.university.support;
 
 import static org.openqa.selenium.remote.BrowserType.CHROME;
 import static org.openqa.selenium.remote.BrowserType.EDGE;
 import static org.openqa.selenium.remote.BrowserType.FIREFOX;
 
-import com.hiberus.university.selenium.pages.PagesFactory;
-import com.hiberus.university.selenium.utils.Flags;
+import com.hiberus.university.pages.PagesFactory;
+import com.hiberus.university.utils.Flags;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
