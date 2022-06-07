@@ -72,6 +72,10 @@ public class RegisterPage extends BasePage {
     public void setPassword(String value) {
         if (value.isEmpty()) value = "";
         passwordInput.sendKeys(value);
+    }
+
+    public void setConfirmPassword(String value) {
+        if (value.isEmpty()) value = "";
         passwordInput2.sendKeys(value);
     }
 
@@ -90,15 +94,15 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isProperErrorMessageDisplayed(String field, String error) {
-        for (WebElement elem: inputFields) {
-            WebElement errorMsg = elem.findElement(By.xpath(".//div[@class='text-danger' and contains(text(), '"+field+"')]"));
-            if (errorMsg.getText().equalsIgnoreCase(error))
+        for (WebElement elem : inputFields) {
+            WebElement errorMsg = elem.findElement(By.xpath(".//div[@class='text-danger' and contains(text(), '" + field + "')]"));
+            if (errorMsg.getText().equals(error))
                 return true;
         }
         return false;
     }
 
-    public boolean isAlertMessageDisplayed() {
+    public boolean isUsedMailAlertDisplayed() {
         return usedMailAlert.isDisplayed();
     }
 }

@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 
+import java.util.UUID;
+
 @Slf4j
 public class RegisterPageSteps {
 
@@ -23,7 +25,7 @@ public class RegisterPageSteps {
         log.info("The user is on the Home Page");
         registerPage.navigateTo(RegisterPage.PAGE_URL);
     }
-    
+
     @And("the user enters the name {string}")
     public void theUserEntersTheName(String value) {
         registerPage.setName(value);
@@ -39,14 +41,26 @@ public class RegisterPageSteps {
         registerPage.setEmail(value);
     }
 
+    @And("the user enters the email")
+    public void theUserEntersGeneratedEmail() {
+        //aseguramos que no coincida nunca con un mail ya creada
+        String mail = "mario" + UUID.randomUUID() + "@mail.com";
+        registerPage.setEmail(mail);
+    }
+
     @And("the user enters the phone number {string}")
-    public void theUserEntersThePhneNumber(String value) {
+    public void theUserEntersThePhoneNumber(String value) {
         registerPage.setTelephone(value);
     }
 
     @And("the user enters the password {string}")
     public void theUserEntersThePassword(String value) {
         registerPage.setPassword(value);
+    }
+
+    @And("the user enter the confirm password {string}")
+    public void theUserEnterTheConfirmPassword(String value) {
+        registerPage.setConfirmPassword(value);
     }
 
     @And("the user accepts privacy policy")
@@ -76,14 +90,14 @@ public class RegisterPageSteps {
         //Assert.assertEquals("Error message is not shown", errMsg,registerPage.isProperErrorMessageDisplayed(field, error));
     }
 
-    @Then("the alert message shows up")
+    @Then("the alert message telling that there's already an account with that email shows up")
     public void theAlertMessageShowsUp() {
-        Assert.assertTrue("Alert message is not shown", registerPage.isAlertMessageDisplayed());
+        Assert.assertTrue("Alert message is not shown", registerPage.isUsedMailAlertDisplayed());
     }
 
 
     @Then("the {string} error message shows {string}")
     public void theErrorMessageShows(String field, String error) {
-        Assert.assertTrue("Error message for " + field + " is not shown", registerPage.isProperErrorMessageDisplayed(field, error));
+        Assert.assertTrue("Error message in " + field + " is not shown", registerPage.isProperErrorMessageDisplayed(field, error));
     }
 }
