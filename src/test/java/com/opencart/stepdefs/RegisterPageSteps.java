@@ -26,31 +26,26 @@ public class RegisterPageSteps {
     
     @And("the user enters the name {string}")
     public void theUserEntersTheName(String value) {
-        if (value.isEmpty()) value = "";
         registerPage.setName(value);
     }
 
     @And("the user enters the last name {string}")
     public void theUserEntersTheLastName(String value) {
-        if (value.isEmpty()) value = "";
         registerPage.setLastName(value);
     }
 
     @And("the user enters the email {string}")
     public void theUserEntersTheEmail(String value) {
-        if (value.isEmpty()) value = "";
         registerPage.setEmail(value);
     }
 
     @And("the user enters the phone number {string}")
     public void theUserEntersThePhneNumber(String value) {
-        if (value.isEmpty()) value = "";
         registerPage.setTelephone(value);
     }
 
     @And("the user enters the password {string}")
     public void theUserEntersThePassword(String value) {
-        if (value.isEmpty()) value = "";
         registerPage.setPassword(value);
     }
 

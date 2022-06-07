@@ -54,25 +54,30 @@ public class RegisterPage extends BasePage {
         return continueButton;
     }
 
-    public void setName(String name) {
-        nameInput.sendKeys(name);
+    public void setName(String value) {
+        if (value.isEmpty()) value = "";
+        nameInput.sendKeys(value);
     }
 
-    public void setLastName(String lastname) {
-        lastNameInput.sendKeys(lastname);
+    public void setLastName(String value) {
+        if (value.isEmpty()) value = "";
+        lastNameInput.sendKeys(value);
     }
 
-    public void setEmail(String email) {
-        emailInput.sendKeys(email);
+    public void setEmail(String value) {
+        if (value.isEmpty()) value = "";
+        emailInput.sendKeys(value);
     }
 
-    public void setPassword(String passw) {
-        passwordInput.sendKeys(passw);
-        passwordInput2.sendKeys(passw);
+    public void setPassword(String value) {
+        if (value.isEmpty()) value = "";
+        passwordInput.sendKeys(value);
+        passwordInput2.sendKeys(value);
     }
 
-    public void setTelephone(String number) {
-        telephoneInput.sendKeys(number);
+    public void setTelephone(String value) {
+        if (value.isEmpty()) value = "";
+        telephoneInput.sendKeys(value);
     }
 
     // METODOS
