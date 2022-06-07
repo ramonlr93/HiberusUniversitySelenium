@@ -15,6 +15,8 @@ public class PagesFactory {
   private final LoginPage loginPage;
   private final CartPage cartPage;
   private final CheckOutCompletePage checkOutCompletePage;
+  private final RegisterPage registerPage;
+  private final RegisterSuccessPage registerSuccessPage;
   public PagesFactory(WebDriver driver) {
     this.driver = driver;
     checkOutStepOnePage = new CheckOutStepOnePage(driver);
@@ -23,6 +25,9 @@ public class PagesFactory {
     inventoryPage = new InventoryPage(driver);
     loginPage = new LoginPage(driver);
     cartPage = new CartPage(driver);
+
+    registerPage = new RegisterPage(driver);
+    registerSuccessPage = new RegisterSuccessPage(driver);
   }
 
   public static void start(WebDriver driver) {

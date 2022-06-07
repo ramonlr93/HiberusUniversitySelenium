@@ -5,6 +5,7 @@ import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
@@ -99,15 +100,5 @@ public class InventoryPageSteps {
         for (int i =0 ;i < product.asList(String.class).size();i++) {
             inventoryPage.addItemToCartByName(product.asList().get(i));
         }
-    }
-
-    @And("the user clicks on the menu")
-    public void theUserClicksOnTheMenu() {
-        inventoryPage.openMenu();
-    }
-
-    @When("the user clicks on logOut button")
-    public void theUserClicksOnLogOutButton() {
-        inventoryPage.clickLogout();
     }
 }
