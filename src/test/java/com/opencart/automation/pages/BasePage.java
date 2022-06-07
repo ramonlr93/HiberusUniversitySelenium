@@ -1,7 +1,8 @@
-package com.hiberus.university.selenium.pages;
+package com.opencart.automation.pages;
 
-import com.hiberus.university.selenium.utils.MyFluentWait;
+import com.opencart.automation.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
+
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,11 +22,25 @@ public abstract class BasePage {
   protected Wait<WebDriver> wait;
   private final WebDriver driver;
 
-  @FindBy(id = "react-burger-menu-btn")
-  private WebElement menuButton;
+  @FindBy(xpath = "//nav[@id='top']/descendant::button[1]")
+    private WebElement currency;
 
-  @FindBy(id = "logout_sidebar_link")
-  private WebElement logoutButton;
+  @FindBy(xpath = "//div[@id='top-links']/ul/li[1]")
+    private WebElement contactUs;
+
+  @FindBy(xpath = "//div[@id='top-links']/ul/li[2]")
+    private WebElement myAccount;
+
+  @FindBy(xpath = "//div[@id='top-links']/ul/li[3]")
+          private WebElement wishList;
+
+  @FindBy(xpath = "//dic[@id='top-links']/ul/li[4]")
+          private WebElement shoppingCart;
+
+  @FindBy(xpath = "//dic[@id='top-links']/ul/li[5]")
+  private WebElement checkOut;
+
+
 
   BasePage(WebDriver driver) {
     this.driver = driver;
@@ -89,11 +104,4 @@ public abstract class BasePage {
     }
   }
 
-  public void openMenu() {
-    menuButton.click();
-  }
-
-  public void clickLogout() {
-    logoutButton.click();
-  }
 }

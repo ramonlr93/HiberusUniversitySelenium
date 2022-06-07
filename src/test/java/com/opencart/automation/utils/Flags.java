@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.utils;
+package com.opencart.automation.utils;
 
 public class Flags {
 

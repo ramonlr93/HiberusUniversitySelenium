@@ -1,8 +1,7 @@
-package com.hiberus.university.selenium.stepdefs;
+package com.opencart.automation.stepdefs;
 
-import com.hiberus.university.selenium.pages.InventoryPage;
-import com.hiberus.university.selenium.pages.LoginPage;
-import com.hiberus.university.selenium.pages.PagesFactory;
+import com.opencart.automation.pages.LoginPage;
+import com.opencart.automation.pages.PagesFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -27,8 +26,8 @@ public class LoginPageSteps {
     log.info("The user provides the username and password");
 
     LoginPage loginPage = pf.getLoginPage();
-    loginPage.enterUsername(username);
-    loginPage.enterPassword(password);
+    loginPage.enterData(String email, String password);
+    loginPage.clickLogin();
   }
 
   @When("the user clicks the login button")

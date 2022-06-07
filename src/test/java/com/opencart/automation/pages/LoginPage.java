@@ -1,30 +1,32 @@
-package com.hiberus.university.selenium.pages;
+package com.opencart.automation.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Slf4j
 public class LoginPage extends BasePage {
-  public static final String PAGE_URL = "https://www.saucedemo.com";
+  public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/login";
 
-  @FindBy(id = "user-name")
-  private WebElement usernameInput;
+  @FindBy(id = "input-email")
+  private WebElement inputEmail;
 
-  @FindBy(id = "password")
-  private WebElement passwordInput;
+  @FindBy(id = "input-password")
+  private WebElement inputPassword;
 
-  @FindBy(id = "login-button")
+  @FindBy(xpath = "//input[@value='Login']")
   private WebElement loginButton;
 
-  @FindBy(xpath = "//h3[@data-test='error']")
+  @FindBy(className = "alert-dismissible")
   private WebElement errorMessage;
 
 
   public LoginPage(WebDriver driver) {
-    super(driver);
+    this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 
@@ -45,15 +47,22 @@ public class LoginPage extends BasePage {
     }
   }
 
-  public void enterPassword(String password) {
-    passwordInput.click();
-    passwordInput.sendKeys(password);
+  public void waitForVisibility(WebElement element) {
+    wait = new WebDriverWait(driver, TIMEOUT);
+    wait.until(ExpectedConditions.visibilityOf(element));
   }
 
-  public void enterUsername(String username) {
-    usernameInput.click();
-    usernameInput.sendKeys(username);
+  public void sendText(WebElement element, String text) {
+    waitForVisibility(element);
+    element.sendKeys(text);
   }
+
+  public void enterData(String email, String password) {
+    sendText(inputEmail, email);
+    sendText(inputPassword, password);
+  }
+
+
 
   public boolean hasUsernamePasswordError() {
     return errorMessage.isDisplayed();

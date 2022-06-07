@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.runner;
+package com.opencart.automation.runner;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

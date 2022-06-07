@@ -1,4 +1,4 @@
-package com.hiberus.university.selenium.utils;
+package com.opencart.automation.utils;
 
 // Licensed to the Software Freedom Conservancy (SFC) under one
 // or more contributor license agreements.  See the NOTICE file
