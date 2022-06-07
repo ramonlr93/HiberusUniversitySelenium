@@ -5,6 +5,7 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Slf4j
 public class RegisterPage extends AbstractPage {

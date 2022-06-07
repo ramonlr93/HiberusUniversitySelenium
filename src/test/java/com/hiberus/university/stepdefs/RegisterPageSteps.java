@@ -48,10 +48,12 @@ public class RegisterPageSteps {
         Assert.assertEquals("Register failed",
                 AccountSuccessURL, pf.getDriver().getCurrentUrl());
     }
+
     @And("the user provides the register information {string},{string},{string},{string},{string} and {string}")
-    public void fillRegisterInformationEmail(String firstName, String lastName,String email, String telephone, String password, String passwordConfirm) {
-        registerPage.fillInformation(firstName, lastName,email,telephone, password, passwordConfirm);
+    public void fillRegisterInformationEmail(String firstName, String lastName, String email, String telephone, String password, String passwordConfirm) {
+        registerPage.fillInformation(firstName, lastName, email, telephone, password, passwordConfirm);
     }
+
     @Then("the user should be shown an invalid message")
     public void ErrorMessageDisplayed() {
         log.info("The user should be shown an invalid message");
@@ -71,11 +73,7 @@ public class RegisterPageSteps {
         log.info("The user should be shown an invalid message");
         Assert.assertTrue(ERROR_MESSAGE_ISNT_DISPLAYED, registerPage.hasRegisterEmailAlert());
     }
-    @Then("the user should be shown a message that e-Mail address does not appear to be valid!")
-    public void errorEmailInvalidDisplayed() {
-        log.info("The user should be shown an invalid message");
-        Assert.assertTrue(ERROR_MESSAGE_ISNT_DISPLAYED, registerPage.hasRegisterEmailError());
-    }
+
     @And("the user provides the password {string}")
     public void enterPassword(String password) {
         registerPage.enterPassword(password);
@@ -91,7 +89,11 @@ public class RegisterPageSteps {
         log.info("The user should be shown an invalid message");
         Assert.assertTrue(ERROR_MESSAGE_ISNT_DISPLAYED, registerPage.hasRegisterPasswordUnmatchError());
     }
-
+    @Then("the user should be shown a message that e-Mail address does not appear to be valid!")
+    public void errorEmailInvalidDisplayed() {
+        log.info("The user should be shown an invalid message");
+        Assert.assertTrue(ERROR_MESSAGE_ISNT_DISPLAYED, registerPage.hasRegisterEmailError());
+    }
     @Then("the user should be shown an warning message")
     public void warningAgreePolicyDisplayed() {
         log.info("The user should be shown an invalid message");
