@@ -27,7 +27,6 @@ public class LoginPage extends BasePage {
     PageFactory.initElements(driver, this);
   }
 
-
   @Override
   public WebElement getPageLoadedTestElement() {
     return loginButton;
