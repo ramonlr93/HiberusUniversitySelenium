@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+        publish = true,
         plugin = {"pretty",
                 "json:target/surefire-reports/cucumber.json",
                 "html:target/cucumber-html-report.html"},

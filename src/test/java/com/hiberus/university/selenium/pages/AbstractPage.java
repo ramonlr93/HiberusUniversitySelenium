@@ -21,12 +21,6 @@ abstract class AbstractPage {
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
 
-    //@FindBy(id = "react-burger-menu-btn")
-    //private WebElement openMenuButton;
-
-    //@FindBy(id = "logout_sidebar_link")
-    //private WebElement logoutButton;
-
     AbstractPage(WebDriver driver) {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)

@@ -1,28 +1,30 @@
 @login
 Feature: Login Test Suite
 
-  Background: Navigate to the home page
-    Given the user is on the home page
+  Background: Navigate to the login page
+  Given the user is in the home page
+  And the user clicks to go to the login page
+  And the user is in the login page
 
-  @loginok
-  @smoke
-  Scenario Outline: Verify valid user can login
-    And the user provides the username "<username>"
-    And the user provides the password "<password>"
-    When the clicks the login button
-    Then the user logged in succesfully
+    @loginok
+    @smoke
+    Scenario Outline: Verify a valid user can login
+      And the user provides the username "<email>"
+      And the user provides the password "<password>"
+      When the user clicks the login button
+      Then the user log in succesfully
 
-    Examples:
-      | username      | password     |
-      | standard_user | secret_sauce |
+      Examples:
+        |         email           | password     |
+        | robertoch1985@gmail.com | 12345        |
 
-  @loginko
-  Scenario Outline: Verify invalid user cant login
-    And the user provides the username "<username>"
-    And the user provides the password "<password>"
-    When the clicks the login button
-    Then a message error should be shown
+      @loginko
+    Scenario Outline: Verify a no valid user cant login
+      And the user provides the username "<email>"
+      And the user provides the password "<password>"
+      When the user clicks the login button
+      Then the user cant login
 
-    Examples:
-      | username | password     |
-      | bad_user | secret_sauce |
+      Examples:
+        |         email           | password     |
+        | robertoch1985@gmail.com | 55555        |
