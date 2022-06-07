@@ -73,6 +73,7 @@ public class HomePage extends AbstractPage {
         }
     }
 
+    // Este método no me gusta, quiero hacerlo mejor
     public void addItemsToCart() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(addToCartButtons.get(0)));
         for (int i = 0; i < addToCartButtons.size(); i++) {

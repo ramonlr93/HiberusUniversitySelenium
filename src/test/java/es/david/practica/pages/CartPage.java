@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,9 @@ public class CartPage extends AbstractPage {
 
     @FindBy(xpath = "//input[contains(@name, 'quantity')]")
     private List<WebElement> productQuantities;
+
+    @FindBy(xpath = "//a[contains(text(), 'Checkout')]")
+    private WebElement checkout;
 
     CartPage(WebDriver driver) {
         super(driver);
@@ -64,6 +68,10 @@ public class CartPage extends AbstractPage {
 
     public Double getTotalPricePerProduct(){
         return Double.parseDouble(itemTotalPrices.get(0).getText().substring(1).trim());
+    }
+
+    public void clickCheckoutButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(checkout)).click();
     }
 
 }

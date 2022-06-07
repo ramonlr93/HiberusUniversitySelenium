@@ -2,7 +2,9 @@ package es.david.practica.stepdefs;
 
 import es.david.practica.pages.CartPage;
 import es.david.practica.pages.PagesFactory;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 
@@ -22,4 +24,12 @@ public class CartPageSteps {
                 , cp.getTotalPricePerProduct()
                 , cp.getTotalCalculatedPricePerProduct());
     }
+
+    @When("the user clicks the checkout button")
+    public void clickCheckoutButton() {
+        cp.clickCheckoutButton();
+    }
+
+
+
 }

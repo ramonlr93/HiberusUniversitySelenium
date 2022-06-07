@@ -64,4 +64,9 @@ public class HomePageSteps {
                 , cartProducts.toArray());
 
     }
+
+    @And("the user goes to home")
+    public void theUserGoesToHome() {
+        bp.clickYourStoreButton();
+    }
 }

@@ -18,8 +18,14 @@ public class BasePage extends AbstractPage {
     @FindBy(xpath = "//a[text() = 'Login']")
     private WebElement login;
 
+    @FindBy(xpath = "//a[text() = 'Logout']")
+    private WebElement logout;
+
     @FindBy(xpath = "//a[text() = 'Register']")
     private WebElement register;
+
+    @FindBy(xpath = "//a[contains(text(), 'Your Store')]")
+    private WebElement yourStoreButton;
 
     BasePage(WebDriver driver) {
         super(driver);
@@ -45,6 +51,14 @@ public class BasePage extends AbstractPage {
 
     public void clickShoppingCart(){
         wait.until(ExpectedConditions.elementToBeClickable(shoppingCart)).click();
+    }
+
+    public void clickYourStoreButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(yourStoreButton)).click();
+    }
+
+    public void clickLogoutButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(logout)).click();
     }
 
 }
