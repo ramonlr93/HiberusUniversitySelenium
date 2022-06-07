@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
+
 
 @Slf4j
 public class RegisterPageSteps {

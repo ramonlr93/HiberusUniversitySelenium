@@ -2,7 +2,7 @@
 Feature: Register test suite
 
   Background:
-    Given the user is on the register pag
+    Given the user is on the register page
 
   @testcase01
     @smoke
