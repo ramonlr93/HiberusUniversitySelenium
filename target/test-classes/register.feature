@@ -18,5 +18,5 @@ Feature: Register test suite
     Then the user is registered
 
     Examples:
-      | firstname | lastname | email                     | telephone | password  | confirm   |
-      | User      | Test     | testtres@hiberus.com      | 66666666  | 191919    | 191919    |
+      | firstname | lastname | email                    | telephone | password  | confirm   |
+      | User      | Test     | testdos@hiberus.com      | 66666666  | 191919    | 191919    |

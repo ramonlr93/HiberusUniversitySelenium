@@ -1,12 +1,11 @@
 package com.opencart.practicafinal.pages;
 
 
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 public class RegisterPage extends AbstractPage{
 
@@ -14,33 +13,24 @@ public class RegisterPage extends AbstractPage{
 
     @FindBy(id = "input-firstname")
     private WebElement firstnameInput;
-
     @FindBy(id = "input-lastname")
     private WebElement lastnameInput;
-
     @FindBy(id = "input-email")
     private WebElement emailInput;
-
     @FindBy(id = "input-telephone")
-    private WebElement phoneInput;
+    private WebElement telephoneInput;
 
     @FindBy(id = "input-password")
     private WebElement passwordInput;
-
     @FindBy(id = "input-confirm")
     private WebElement confirmInput;
-
     @FindBy(xpath = "//input[contains(@name, 'agree')]")
-    private WebElement policyCheck;
-
+    private WebElement privacyButton;
     @FindBy(xpath = "//input[contains(@value, 'Continue')]")
-    private WebElement registerButton;
+    private WebElement continueButton;
 
-    @FindBy(className = "text-danger")
-    private WebElement messageError;
-
-    @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible']")
-    private WebElement privacyMessageError;
+    @FindBy(className = "alert")
+    private WebElement alert;
 
     RegisterPage(WebDriver driver) {
         super(driver);
@@ -52,45 +42,35 @@ public class RegisterPage extends AbstractPage{
         return null;
     }
 
-    public void enterName(String name){
-        wait.until(ExpectedConditions.visibilityOf(firstnameInput)).sendKeys(name);
+    public void enterEmail(String mail){
+        wait.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(mail);
     }
 
-    public void enterLastname(String lastname){
-        wait.until(ExpectedConditions.visibilityOf(lastnameInput)).sendKeys(lastname);
+    public void enterPassword(String password){
+        wait.until(ExpectedConditions.visibilityOf(passwordInput)).sendKeys(password);
     }
 
-    public void enterEmail(){
-
-        wait.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
+    public void enterFirstname(String firstname) {
+        firstnameInput.sendKeys(firstname);
     }
 
-    public void enterPhone(String phone){
-        wait.until(ExpectedConditions.visibilityOf(phoneInput)).sendKeys(phone);
+    public void enterLastname(String lastname) {
+        lastnameInput.sendKeys(lastname);
     }
 
-    public void enterPassword(String pass){
-        wait.until(ExpectedConditions.visibilityOf(passwordInput)).sendKeys(pass);
+    public void enterTelephone(String telephone) {
+        telephoneInput.sendKeys(telephone);
     }
 
-    public void enterConfirmPassword(String pass){
-        wait.until(ExpectedConditions.visibilityOf(confirmInput)).sendKeys(pass);
+    public void enterConfirm(String confirm) {
+        confirmInput.sendKeys(confirm);
     }
 
-    public void acceptPoticy(){
-        wait.until(ExpectedConditions.visibilityOf(policyCheck)).click();
+    public void clickPrivacy() {
+        privacyButton.click();
     }
 
-    public void clickRegister(){
-        wait.until(ExpectedConditions.elementToBeClickable(registerButton)).click();
+    public void clickContinue() {
+        continueButton.click();
     }
-
-    public String getMessageError(){
-        return wait.until(ExpectedConditions.visibilityOf(messageError)).getText();
-    }
-
-    public String getPolicyMessageError(){
-        return wait.until(ExpectedConditions.visibilityOf(privacyMessageError)).getText();
-    }
-
 }

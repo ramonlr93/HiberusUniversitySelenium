@@ -1,14 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.opencart.practicafinal.runner.CucumberRunnerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 2.239 s <<< FAILURE! - in com.opencart.practicafinal.runner.CucumberRunnerTest
-Verify valid user can login(Login test suite)  Time elapsed: 0.087 s  <<< ERROR!
-io.cucumber.core.runner.DuplicateStepDefinitionException: Duplicate step definitions in com.opencart.practicafinal.stepdefs.LoginPageSteps.theUserClickOnLoginButton() and com.opencart.practicafinal.stepdefs.LoginPageSteps.theUserClicksOnLoginButton()
-
-com.opencart.practicafinal.runner.CucumberRunnerTest  Time elapsed: 0.206 s  <<< ERROR!
-org.junit.runner.notification.StoppedByUserException
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159)
-
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.512 s - in com.opencart.practicafinal.runner.CucumberRunnerTest

@@ -1,86 +1,70 @@
 package com.opencart.practicafinal.stepdefs;
 
-import com.opencart.practicafinal.pages.AccountPage;
+
+
 import com.opencart.practicafinal.pages.BasePage;
+import com.opencart.practicafinal.pages.HomePage;
 import com.opencart.practicafinal.pages.PagesFactory;
 import com.opencart.practicafinal.pages.RegisterPage;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class RegisterPageSteps {
+
+
     PagesFactory pf = PagesFactory.getInstance();
-    BasePage bp = PagesFactory.getInstance().getBasePage();
-    RegisterPage rp = pf.getRegisterPage();
+    BasePage bp = pf.getBasePage();
+    RegisterPage registerPage = pf.getRegisterPage();
+    HomePage hp = pf.getHomePage();
 
 
-
-    @And("the user goes to register")
-    public void goToRegister() {
-        bp.clickMyAccount();
-        bp.clickRegister();
+    @Given("the user is in the register page")
+    public void userInLandingPage() {
+        hp.navigateTo(RegisterPage.PAGE_URL);
     }
 
-    @And("the user provides the firstname {string}")
-    public void enterFirstName(String firstname) {
-        rp.enterName(firstname);
+    @And("the user fills the firstname {string}")
+    public void theUserFillsTheFirstname(String firstname) { registerPage.enterFirstname(firstname);
     }
 
-    @And("the user provides the lastname {string}")
-    public void enterLastname(String lastname) {
-        rp.enterLastname(lastname);
+    @And("the user fills the lastname {string}")
+    public void theUserFillsTheLastname(String lastname) { registerPage.enterLastname(lastname);
     }
 
-    @And("the user provides the phone {string}")
-    public void enterPhone(String phone) {
-        rp.enterPhone(phone);
+    @And("the user fills the telephone {string}")
+    public void theUserFillsTheTelephone(String telephone) { registerPage.enterTelephone(telephone);
+    }
+    @And("the user fills the pass {string}")
+    public void theUserFillsThePass(String password) { registerPage.enterPassword(password);
     }
 
-    @And("the user provides the register password again {string}")
-    public void enterPasswordAgain(String password) {
-        rp.enterConfirmPassword(password);
+    @And("the user fills the confirm {string}")
+    public void theUserFillsTheConfirm(String confirm) { registerPage.enterConfirm(confirm);
     }
 
-    @And("the user provides the register password {string}")
-    public void enterPassword(String password) {
-        rp.enterPassword(password);
+    @And("the user clicks on privacy button")
+    public void theUserClicksOnPrivacyButton() {
+        registerPage.clickPrivacy();
     }
 
-    @And("the user provides the register mail")
-    public void enterEmail() {
-        rp.enterEmail();
+    @When("the user clicks on continue button")
+    public void theUserClicksOnContinueButton() {
+        registerPage.clickContinue();
     }
 
-    @And("the user accept the policy check")
-    public void acceptPolicy() {
-        rp.acceptPoticy();
+    @And("the user fills the email {string}")
+    public void theUserFillsTheEmail(String email) {
+        registerPage.enterEmail(email);
     }
 
-    @When("the user clicks the register button")
-    public void clickRegister() {
-        rp.clickRegister();
-    }
-
-    @Then("the user is registered successfully")
-    public void checkRegister() {
-        Assert.assertEquals("The url isn't correct"
-                , AccountPage.PAGE_URL
+    @Then("the user is registered")
+    public void theUserIsRegistered() {
+        Assert.assertEquals("It is not the correct URL"
+                , RegisterPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());
-    }
-
-    @Then("the user can see the error {string}")
-    public void checkError(String message) {
-        Assert.assertEquals("The message isn't correct"
-                , rp.getMessageError()
-                , message);
-    }
-
-    @Then("the user can see the policy error {string}")
-    public void checkPolicyError(String message) {
-        Assert.assertEquals("The policy message isn't correct"
-                , rp.getPolicyMessageError()
-                , message);
     }
 
 }
