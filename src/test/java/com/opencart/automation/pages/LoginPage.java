@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Slf4j
 public class LoginPage extends BasePage {
@@ -24,47 +22,31 @@ public class LoginPage extends BasePage {
   @FindBy(className = "alert-dismissible")
   private WebElement errorMessage;
 
-
   public LoginPage(WebDriver driver) {
-    this.driver = driver;
+    super(driver);
     PageFactory.initElements(driver, this);
   }
+
 
   @Override
   public WebElement getPageLoadedTestElement() {
     return loginButton;
   }
 
+  public void enterEmail(String email) {
+    inputEmail.click();
+    inputEmail.sendKeys(email);
+  }
+  public void enterPassword(String password) {
+    inputPassword.click();
+    inputPassword.sendKeys(password);
+  }
+
   public void clickLogin() {
-    log.info("Logging in...");
-    try {
-      loginButton.click();
-    } catch (org.openqa.selenium.TimeoutException e) {
-      log.info("Timeout clicking login: " + e.getClass().getSimpleName());
-
-    } catch (Exception e) {
-      log.info("Clicking login, caught exception, type=" + e.getClass().getSimpleName());
-    }
+    loginButton.click();
   }
 
-  public void waitForVisibility(WebElement element) {
-    wait = new WebDriverWait(driver, TIMEOUT);
-    wait.until(ExpectedConditions.visibilityOf(element));
-  }
-
-  public void sendText(WebElement element, String text) {
-    waitForVisibility(element);
-    element.sendKeys(text);
-  }
-
-  public void enterData(String email, String password) {
-    sendText(inputEmail, email);
-    sendText(inputPassword, password);
-  }
-
-
-
-  public boolean hasUsernamePasswordError() {
+  public boolean hasEmailPasswordError() {
     return errorMessage.isDisplayed();
   }
 }

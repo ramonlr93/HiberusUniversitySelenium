@@ -12,51 +12,36 @@ import org.junit.Assert;
 @Slf4j
 public class LoginPageSteps {
 
-  @Given("the user is on the home page")
-  public void theUserIsOnTheHomePage() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user is on the Home Page");
-    LoginPage loginPage = pf.getLoginPage();
+  private final LoginPage loginPage;
+
+  public LoginPageSteps() {
+    loginPage = PagesFactory.getInstance().getLoginPage();
+  }
+
+  @Given("the user is on the login page")
+  public void theUserLoggedIn() {
     loginPage.navigateTo(LoginPage.PAGE_URL);
   }
 
-  @And("the user provides the username {string} and password {string}")
-  public void theUserProvidesTheUsernameAndPassword(String username, String password) {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user provides the username and password");
-
-    LoginPage loginPage = pf.getLoginPage();
-    loginPage.enterData(String email, String password);
-    loginPage.clickLogin();
+  @And("the user enter the email {string} and password {string}")
+  public void theUserEnterData(String email, String password) {
+    loginPage.enterEmail(email);
+    loginPage.enterPassword(password);
   }
 
   @When("the user clicks the login button")
   public void theUserClicksTheLoginButton() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user clicks the 'Login' button");
-
-    LoginPage loginPage = pf.getLoginPage();
     loginPage.clickLogin();
   }
 
-  @Then("the user is logged successfully and is into the inventory page")
-  public void theUserIsLoggedSuccessfullyAndIsIntoTheInventoryPage() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user should login successfully and is brought to the inventory page");
-
-    InventoryPage inventoryPage = pf.getInventoryPage();
-    inventoryPage.waitForPageLoad();
-
+  @Then("the user is logged successfully")
+  public void theUserIsLoggedSuccessfully() {
     String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
-    Assert.assertEquals("the URL is not inventory Page", InventoryPage.PAGE_URL, currentUrl);
+    Assert.assertEquals("The user is not logged in", "https://opencart.abstracta.us/index.php?route=account/account", currentUrl);
   }
 
-  @Then("The user should be shown an invalid message")
+  @Then("an error message appears")
   public void theUserShouldBeShownAnInvalidMessage() {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user should be shown an invalid username/password message");
-
-    LoginPage loginPage = pf.getLoginPage();
-    Assert.assertTrue(loginPage.hasUsernamePasswordError());
+   Assert.assertTrue("No error message is displayed",loginPage.hasEmailPasswordError());
   }
 }

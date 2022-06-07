@@ -1,24 +1,24 @@
 @login
-Feature: validate login test suite
+Feature: validate login in OpenCart
 
   Background: Navigate to the home page
-    Given the user is on the home page
+    Given the user is on the login page
 
   @testcase01
-  @smoke
+    @smoke
   Scenario Outline: Verify valid user can login
-    And the user provides the username "<username>" and password "<password>"
+    And the user enter the email "<email>" and password "<password>"
     When the user clicks the login button
-    Then the user is logged successfully and is into the inventory page
+    Then the user is logged successfully
     Examples:
-      | username      | password     |
-      | standard_user | secret_sauce |
+      | email                  | password       |
+      | tapihaw117@game4hr.com | tapihawGame4hr |
 
   @testcase02
   Scenario Outline: Verify invalid user cannot login
-    And the user provides the username "<username>" and password "<password>"
+    And the user enter the email "<email>" and password "<password>"
     When the user clicks the login button
-    Then The user should be shown an invalid message
+    Then an error message appears
     Examples:
-      | username | password     |
-      | bad_user | secret_sauce |
+      | email        | password       |
+      | hulu@hulu.es | tapihawGame4hr |
