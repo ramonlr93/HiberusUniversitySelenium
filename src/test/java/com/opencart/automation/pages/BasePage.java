@@ -104,4 +104,13 @@ public abstract class BasePage {
     }
   }
 
+  public void sendText (WebElement element, String text) {
+    element.click();
+    element.sendKeys(text);
+  }
+
+  public void click (WebElement element) {
+    element.click();
+  }
+
 }

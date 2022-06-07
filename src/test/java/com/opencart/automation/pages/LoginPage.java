@@ -33,16 +33,14 @@ public class LoginPage extends BasePage {
   }
 
   public void enterEmail(String email) {
-    inputEmail.click();
-    inputEmail.sendKeys(email);
+    sendText(inputEmail, email);
   }
   public void enterPassword(String password) {
-    inputPassword.click();
-    inputPassword.sendKeys(password);
-  }
+    sendText(inputPassword, password);
+    }
 
   public void clickLogin() {
-    loginButton.click();
+    click(loginButton);
   }
 
   public boolean hasEmailPasswordError() {
