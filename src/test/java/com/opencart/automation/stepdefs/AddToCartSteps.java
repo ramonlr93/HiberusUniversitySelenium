@@ -1,6 +1,7 @@
 package com.opencart.automation.stepdefs;
 
 import com.opencart.automation.pages.HomePage;
+import com.opencart.automation.pages.MyAccountPage;
 import com.opencart.automation.pages.PagesFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -16,9 +17,11 @@ public class AddToCartSteps {
 
     private final PagesFactory pf = PagesFactory.getInstance();
     private static HomePage homePage;
+    private MyAccountPage myAccountPage;
     private final WebDriver driver = pf.getDriver();
 
     public AddToCartSteps() {
+
         homePage = PagesFactory.getInstance().getHomePage();
     }
 
@@ -49,4 +52,8 @@ public class AddToCartSteps {
     }
 
 
+    @And("the user go to the home page")
+    public void theUserToTheHomePage() {
+        myAccountPage.clickOnHomeButton();
+    }
 }

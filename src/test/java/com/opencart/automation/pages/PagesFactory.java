@@ -10,6 +10,7 @@ public class PagesFactory {
   private final RegisterPage registerPage;
   
   private final HomePage homePage;
+  private final MyAccountPage myAccountPage;
 
 
   private PagesFactory(WebDriver driver) {
@@ -17,6 +18,7 @@ public class PagesFactory {
     loginPage = new LoginPage(driver);
     registerPage = new RegisterPage(driver);
     homePage = new HomePage(driver);
+    myAccountPage = new MyAccountPage(driver);
   }
 
   public static void start(WebDriver driver) {
