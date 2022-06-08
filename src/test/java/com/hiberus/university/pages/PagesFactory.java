@@ -8,6 +8,8 @@ public class PagesFactory {
     private final WebDriver driver;
     private final RegisterPage registerPage;
     private final LoginPage loginPage;
+    private final AccountPage accountPage;
+    private final LaptopsInventoryPage homePage;
 
 
 
@@ -17,6 +19,8 @@ public class PagesFactory {
 
         registerPage = new RegisterPage(driver);
         loginPage = new LoginPage(driver);
+        accountPage = new AccountPage(driver);
+        homePage = new LaptopsInventoryPage(driver);
 
     }
 
@@ -34,5 +38,11 @@ public class PagesFactory {
     }
     public LoginPage getLoginPage() {
         return loginPage;
+    }
+    public AccountPage getAccountPage() {
+        return accountPage;
+    }
+    public LaptopsInventoryPage getLaptopsInventoryPage() {
+        return homePage;
     }
 }

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import com.hiberus.university.utils.MyFluentWait;
@@ -23,6 +24,18 @@ abstract class AbstractPage {
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
+    @FindBy(xpath = "//div[@class='container']")
+    WebElement headConteiner;
+
+    @FindBy(xpath = "//ul[@class='nav navbar-nav']")
+    WebElement inventoryConteiner;
+
+    @FindBy(xpath = "//input[@class='form-control input-lg']")
+    WebElement searchBox;
+
+    @FindBy(xpath = "//button[@class='btn btn-inverse btn-block btn-lg dropdown-toggle']")
+    WebElement shoppingCart;
+
     public abstract WebElement getPageLoadedTestElement();
 
     protected WebDriver getDriver() {
@@ -76,5 +89,8 @@ abstract class AbstractPage {
                 log.error(e.getMessage());
             }
         }
+    }
+    public void clickShoppinCart(){
+        shoppingCart.click();
     }
 }

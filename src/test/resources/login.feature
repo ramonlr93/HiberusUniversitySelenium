@@ -1,5 +1,5 @@
 @login
-Feature: Register test suite
+Feature: Login test suite
 
   Background:
     Given the user is on the login page
@@ -36,5 +36,5 @@ Feature: Register test suite
     Then the user should be shown the message "An email with a confirmation link has been sent your email address."
 
     Examples:
-      | email                  | password |
-      | ksanabriad@yopmail.com | katherin |
+      | email                  |
+      | ksanabriad@yopmail.com |

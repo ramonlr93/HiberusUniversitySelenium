@@ -1,5 +1,6 @@
 package com.hiberus.university.stepdefs;
 
+import com.hiberus.university.pages.AccountPage;
 import com.hiberus.university.pages.LoginPage;
 import com.hiberus.university.pages.PagesFactory;
 import io.cucumber.java.en.And;
@@ -13,6 +14,7 @@ import org.junit.Assert;
 public class LoginPageSteps {
     PagesFactory pf = PagesFactory.getInstance();
     LoginPage loginPage = pf.getLoginPage();
+    AccountPage accountPagePage = pf.getAccountPage();
 
     @Given("the user is on the login page")
     public void userInTheLogin() {
@@ -27,9 +29,8 @@ public class LoginPageSteps {
 
     @Then("the user is logged successfully")
     public void theUserIsLogged() {
-        String myAccountPageURL = "https://opencart.abstracta.us/index.php?route=account/account";
-        Assert.assertEquals("login failed",
-                myAccountPageURL, pf.getDriver().getCurrentUrl());
+       Assert.assertEquals("login failed",
+                AccountPage.PAGE_URL, pf.getDriver().getCurrentUrl());
     }
 
     @Then("the user should be shown an invalid message \"login failed\"")
