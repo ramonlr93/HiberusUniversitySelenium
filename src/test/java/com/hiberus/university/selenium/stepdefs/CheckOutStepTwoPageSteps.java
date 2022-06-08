@@ -19,13 +19,5 @@ public class CheckOutStepTwoPageSteps {
 
     private CheckOutStepTwoPage checkOutStepTwoPage = pf.getCheckOutStepTwoPage();
 
-    @Then("the user can see the item total price")
-    public void theUserCanSeeTheItemTotalPrice() {
-        Assert.assertEquals("EL PRECIO NO ES EL MISMO.", String.valueOf(pf.getInventoryPage().finalPrice), checkOutStepTwoPage.getItemTotal().replace("Item total: $",""));
-    }
 
-    @When("the user clicks on the finish button")
-    public void theUserClicksOnTheFinishButton() {
-        checkOutStepTwoPage.clickFinishButton();
-    }
 }

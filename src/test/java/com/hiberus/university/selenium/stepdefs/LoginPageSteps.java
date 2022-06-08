@@ -22,4 +22,60 @@ public class LoginPageSteps {
   public void theUserIsInTheLoginPage() {
     Assert.assertEquals("The user is not in the login page", loginPage.PAGE_URL, driver.getCurrentUrl());
   }
+
+  @Given("the user navigates to the login page")
+  public void theUserNavigatesToTheLoginPage() {
+    driver.get(loginPage.PAGE_URL);
+  }
+
+    @Then("the user can see the E-Mail login input")
+    public void existInputEmail() {
+      loginPage.existInputEmail();
+    }
+
+  @And("the user can see the Password login input")
+  public void existInputPassword() {
+    loginPage.existInputPassword();
+  }
+
+  @And("the user can see the ForgottenPassword link")
+  public void existLinkForgottenPassword() {
+    loginPage.existLinkForgottenPassword();
+  }
+
+  @And("the user can see the Login button")
+  public void existButtonLogin() {
+    loginPage.existButtonLogin();
+  }
+
+  @And("the user can see the ContinueRegister button")
+  public void existButtonContinueRegister() {
+    loginPage.existButtonContinueRegister();
+  }
+
+
+  @And("the user write in the E-Mail {string} login input")
+  public void theUserWriteEMailLoginInput(String text) {
+    loginPage.writeInputEmail(text);
+  }
+
+  @And("the user write in the Password {string} login input")
+  public void theUserWritePasswordLoginInput(String text) {
+    loginPage.writeInputPassword(text);
+  }
+
+  @When("the user click in the link Button Login")
+  public void clickButtonLogin() {
+    loginPage.clickButtonLogin();
+  }
+
+  @When("the user click in the Forgotten Password link")
+  public void theUserClickForgottenPasswordLink() {
+    loginPage.clickLinkForgottenPassword();
+  }
+
+  @Then("the user can see the warning messages appear")
+  public void theUserCanSeeTheWarningMessages() {
+    loginPage.existDivWarning();
+  }
 }
