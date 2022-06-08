@@ -55,6 +55,11 @@ public class RegisterPageSteps {
 
     }
 
+    @Then("user should see error message, account already registered")
+    public void aAccountAlreadyRegistered() {
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
+    }
 }
 
 
