@@ -1,0 +1,23 @@
+# Java
+.class
+.jar
+.war
+.ear
+hs_err_pid*
+
+# OSX
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IntelliJ
+*.iml
+.idea/
+
+# Maven
+target/
+
+*derby.log
