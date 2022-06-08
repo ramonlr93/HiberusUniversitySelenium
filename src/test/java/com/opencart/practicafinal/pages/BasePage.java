@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BasePage extends AbstractPage {
 
+
     @FindBy(xpath = "//a[contains(@title, 'My Account')]")
     private WebElement myAccount;
 
@@ -16,6 +17,9 @@ public class BasePage extends AbstractPage {
 
     @FindBy(xpath = "//a[text() = 'Register']")
     private WebElement register;
+
+    @FindBy(xpath = "//a[text() = 'Logout']")
+    private WebElement logout;
 
     BasePage(WebDriver driver) {
         super(driver);
@@ -39,6 +43,9 @@ public class BasePage extends AbstractPage {
         wait.until(ExpectedConditions.visibilityOf(register)).click();
     }
 
+    public void clickLogout() {
+        wait.until(ExpectedConditions.elementToBeClickable(logout)).click();
+    }
 
 }
 

@@ -19,7 +19,7 @@ Feature: Register test suite
 
     Examples:
       | firstname | lastname | email                     | telephone | password  | confirm   |
-      | User      | Test     | testonce@hiberus.com      | 66666666  | 181818    | 181818    |
+      | User      | Test     | testtrece-hiberus.com     | 66666666  | 181818    | 181818    |
 
   @testcase-5
   Scenario Outline: Verify invalid user registers
@@ -35,4 +35,4 @@ Feature: Register test suite
 
     Examples:
       | firstname | lastname | email                     | telephone | password  | confirm   |
-      | User      | Test     | testnueve-hiberus.com     | 66666666  | 181819    | 181819    |
+      | User      | Test     | testdoce-hiberu           | 6         | 181819    | 181819    |

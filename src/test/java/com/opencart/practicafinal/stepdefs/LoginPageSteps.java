@@ -22,35 +22,31 @@ public class LoginPageSteps {
     }
 
     @And("the user clicks the login button")
-    public void theUserGoesToLogin() {
+    public void theUserClicksTheLogin() {
         bp.clickMyAccount();
         bp.clickLogin();
     }
 
     @And("the user fills the mail {string}")
-    public void theUserProvidesTheMail(String mail) {
+    public void theUserFillsTheMail(String mail) {
         lp.enterEmail(mail);
     }
 
     @And("the user fills the password {string}")
-    public void theUserProvidesThePassword(String password) {
-        lp.enterPassword(password);
-    }
+    public void theUserFillsThePassword(String password) { lp.enterPassword(password);}
 
     @When("the user clicks on login button")
-    public void theUserClicksTheLoginButton() {
-        lp.clickLogin();
-    }
+    public void theUserClicksTheLoginButton() { lp.clickLogin(); }
 
     @Then("the user is logged")
-    public void theUserIsLoggedSuccessfully() {
+    public void theUserIsLogged() {
         Assert.assertEquals("Isn't the correct URL"
                 , AccountPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());
     }
 
     @Then("the error message is shown")
-    public void theUserCanSeeTheErrorMessage() {
+    public void theErrorIsShown() {
         Assert.assertTrue("Error message isn't visible", lp.isAlertVisible());
     }
 }

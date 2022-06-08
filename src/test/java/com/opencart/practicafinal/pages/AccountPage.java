@@ -9,6 +9,8 @@ public class AccountPage extends AbstractPage {
 
     public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/account";
 
+
+
     AccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
