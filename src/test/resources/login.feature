@@ -1,5 +1,6 @@
 @login
 Feature: Login Test Cases
+
   Background:
     Given the user is on the home page
     And the user clicks on the my account button

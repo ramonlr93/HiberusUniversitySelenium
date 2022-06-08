@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.stepdefs;
 
+import com.hiberus.university.selenium.model.InventoryProduct;
 import com.hiberus.university.selenium.pages.HomePage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import com.hiberus.university.selenium.utils.AccountOptionsClass.*;
@@ -48,5 +49,20 @@ public class HomePageSteps {
     @And("the user clicks on the register option")
     public void theUserClicksOnTheRegisterOption() {
         homePage.clickAccountOption(UnLoggedAccount.REGISTER);
+    }
+
+    InventoryProduct actualProduct;
+    double totalPrice = 0;
+    @When("the user adds the {string} product")
+    public void theUserAddsTheProduct(String productName) {
+        actualProduct = homePage.getInventoryProduct(productName);
+        actualProduct.addCart();
+        totalPrice += actualProduct.getPrice();
+    }
+
+    @Then("the cart is with {int} product and the correct price")
+    public void theCartIsWithNumberProductsProductAndTheCorrectPrice(int numberProducts) {
+        Assert.assertEquals("El número de productos no es el correcto", numberProducts, homePage.numberCartItems());
+        Assert.assertEquals("El precio no es el correcto", totalPrice + "", homePage.totalPriceCart() + "");
     }
 }

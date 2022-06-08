@@ -4,6 +4,7 @@ import static org.openqa.selenium.remote.BrowserType.CHROME;
 import static org.openqa.selenium.remote.BrowserType.EDGE;
 import static org.openqa.selenium.remote.BrowserType.FIREFOX;
 
+import com.hiberus.university.selenium.model.CartProduct;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import com.hiberus.university.selenium.utils.Flags;
 import io.cucumber.java.After;
@@ -23,6 +24,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class Hooks {
@@ -70,8 +72,11 @@ public class Hooks {
    * @param scenario to execute
    */
   @After()
-  public void after(Scenario scenario) {
+  public void after(Scenario scenario) throws InterruptedException {
     log.info("ending " + scenario.getName());
+
+    PagesFactory.getInstance().getHomePage().cleanCartProducts();
+
     if (scenario.isFailed()) {
       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
       long time = new Date().getTime();
