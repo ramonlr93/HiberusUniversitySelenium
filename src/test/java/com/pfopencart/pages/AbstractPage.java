@@ -1,6 +1,6 @@
 package com.pfopencart.pages;
 
-//import com.pfopencart.MyFluentWait;
+
 import com.pfopencart.utils.MyFluentWait;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
