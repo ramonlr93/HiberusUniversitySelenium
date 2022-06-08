@@ -21,6 +21,7 @@ public class LaptopsInventoryPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
     private WebElement successMessage;
 
+
     LaptopsInventoryPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -57,10 +58,14 @@ public class LaptopsInventoryPage extends AbstractPage {
     }
 
     public void clickOnRandomLaptop(int number) {
-        if (number > 0 && number <= laptopsInventory.size()) {
+        if (number > 0) {
             List<WebElement> randList = new ArrayList<>();
             for (WebElement elementLaptopsContainer : laptopsInventory) {
-                randList.add(elementLaptopsContainer.findElement(By.xpath("./descendant::button[contains(@onclick,'cart.add')]")));
+                try {
+                    WebElement item = elementLaptopsContainer.findElement(By.xpath("./descendant::button[contains(@onclick,'cart.add('47', '1');')]"));
+                } catch (NoSuchElementException ex) {
+                    randList.add(elementLaptopsContainer.findElement(By.xpath("./descendant::button[contains(@onclick,'cart.add')]")));
+                }
             }
             Collections.shuffle(randList);
             List<WebElement> subRandList = randList.subList(0, number);
@@ -79,6 +84,14 @@ public class LaptopsInventoryPage extends AbstractPage {
             System.out.println("The success message isnt displayed");
         }
         return false;
+    }
+
+    public void clickShoppingCart() {
+        shoppingCart.findElement(By.xpath("./descendant::button[@type='button']")).click();
+    }
+
+    public void viewCart() {
+        shoppingCart.findElement(By.xpath("./descendant::a[@href='http://opencart.abstracta.us:80/index.php?route=checkout/cart']")).click();
     }
 }
 

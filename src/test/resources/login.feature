@@ -1,7 +1,7 @@
 @login
 Feature: Login test suite
 
-  Background:
+  Background:the user is on the login page
     Given the user is on the login page
 
   @testcase07

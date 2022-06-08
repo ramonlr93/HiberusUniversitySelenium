@@ -24,6 +24,7 @@ abstract class AbstractPage {
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
+
     @FindBy(xpath = "//div[@class='container']")
     WebElement headConteiner;
 
@@ -33,7 +34,7 @@ abstract class AbstractPage {
     @FindBy(xpath = "//input[@class='form-control input-lg']")
     WebElement searchBox;
 
-    @FindBy(xpath = "//button[@class='btn btn-inverse btn-block btn-lg dropdown-toggle']")
+    @FindBy(xpath ="//div[@class='col-sm-3']")
     WebElement shoppingCart;
 
     public abstract WebElement getPageLoadedTestElement();
@@ -90,7 +91,5 @@ abstract class AbstractPage {
             }
         }
     }
-    public void clickShoppinCart(){
-        shoppingCart.click();
-    }
 }
+

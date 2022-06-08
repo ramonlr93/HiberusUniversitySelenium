@@ -28,20 +28,10 @@ public class LaptopsInventoryPageSteps {
     public void inventoryItemContains(String laptopName) {
         Assert.assertTrue("This laptop isnt in the inventory list ", laptopsInventoryPage.isLaptopContains(laptopName));
     }
-
-    @When("the user adds a {string} by clicking the button Add To Cart")
-
-
-
-
-
-
-
     @When("the user add {int} random laptops")
     public void addRandomLaptopsToTheCart(int number) {
         laptopsInventoryPage.clickOnRandomLaptop(number);
     }
-
     @Then("the user see a success message")
     public void successMessageDisplayed() {
         log.info("The user should be shown an success message");

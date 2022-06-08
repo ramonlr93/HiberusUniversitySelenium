@@ -1,7 +1,7 @@
 @register
 Feature: Register test suite
 
-  Background:
+  Background: the user is on the register page
     Given the user is on the register page
 
   @testcase01

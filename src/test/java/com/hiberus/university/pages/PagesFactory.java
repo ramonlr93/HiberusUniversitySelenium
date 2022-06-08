@@ -10,8 +10,8 @@ public class PagesFactory {
     private final LoginPage loginPage;
     private final AccountPage accountPage;
     private final LaptopsInventoryPage homePage;
-
-
+    private final CartPage cartPage;
+    private final CheckoutPage checkoutPage;
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
@@ -21,28 +21,43 @@ public class PagesFactory {
         loginPage = new LoginPage(driver);
         accountPage = new AccountPage(driver);
         homePage = new LaptopsInventoryPage(driver);
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
 
     }
 
     public static void start(WebDriver driver) {
         pagesFactories = new PagesFactory(driver);
     }
+
     public static PagesFactory getInstance() {
         return pagesFactories;
     }
+
     public WebDriver getDriver() {
         return driver;
     }
+
     public RegisterPage getRegisterPage() {
         return registerPage;
     }
+
     public LoginPage getLoginPage() {
         return loginPage;
     }
+
     public AccountPage getAccountPage() {
         return accountPage;
     }
+
     public LaptopsInventoryPage getLaptopsInventoryPage() {
         return homePage;
+    }
+
+    public CartPage getCartPage() {
+        return cartPage;
+    }
+    public CheckoutPage getCheckoutPage() {
+        return checkoutPage;
     }
 }
