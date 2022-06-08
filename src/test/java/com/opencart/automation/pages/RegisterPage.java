@@ -40,11 +40,6 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//input[@value='Continue']")
     WebElement continueButton;
 
-    @FindBy(xpath = "//div[@class='text-danger'][1]")
-    WebElement errorMessage;
-
-    @FindBy(xpath = "//h1[text()='Account']")
-    WebElement successMessage;
 
 
     @Override
@@ -73,7 +68,5 @@ public class RegisterPage extends BasePage{
         click(continueButton);
     }
 
-    public boolean getMessageError() {
-        return errorMessage.isDisplayed();
-    }
+
 }

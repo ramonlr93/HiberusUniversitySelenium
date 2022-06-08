@@ -27,3 +27,14 @@ Feature: validate register test suite
       | firstName | lastName | email                  | telephone | password  |
       | Jodie     | Foster   | jooodiE604@game4hr.com | 999999999 | Caviko609 |
 
+  @testcase03
+  Scenario Outline: validate already registered account
+    And user enter "<firstName>", "<lastName>", "<email>", "<telephone>", "<password>"
+    And choose if he wants to accept newsletter
+    And agree with privacy policy
+    When clicks on continue button
+    Then user should see error message, account already registered
+    Examples:
+      | firstName | lastName | email                  | telephone | password  |
+      | Jodie     | Foster   | jooodiE604@game4hr.com | 999999999 | Caviko609 |
+
