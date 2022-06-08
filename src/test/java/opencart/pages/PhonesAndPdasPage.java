@@ -1,5 +1,6 @@
 package opencart.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -82,7 +83,8 @@ public class PhonesAndPdasPage extends BasePage{
     }
 
     public void clickCartButton(){
-        wait.until(ExpectedConditions.elementToBeClickable(cartButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(cartButton));
+        cartButton.sendKeys(Keys.ENTER);
     }
 
     public boolean getSameFirstProducts(int number){
@@ -95,7 +97,8 @@ public class PhonesAndPdasPage extends BasePage{
     }
 
     public void clickCheckout(){
-        wait.until(ExpectedConditions.elementToBeClickable(checkoutOption)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutOption));
+        checkoutOption.click();
     }
 
 }

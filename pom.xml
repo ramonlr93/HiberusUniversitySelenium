@@ -73,7 +73,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <projectName>saucedemo test project</projectName>
+              <projectName>Opencart test project</projectName>
               <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
               <jsonFiles>
                 <param>**/*.json</param>

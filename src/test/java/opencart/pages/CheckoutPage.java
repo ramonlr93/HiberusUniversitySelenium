@@ -175,11 +175,11 @@ public class CheckoutPage extends BasePage {
     }
 
     public void clickFlatShippingRateRadioButton(){
-        flatShippingRateRadioButton.click();
+        if(!flatShippingRateRadioButton.isSelected()) flatShippingRateRadioButton.click();
     }
 
     public void clickCashOnDeliveryRadioButton(){
-        cashOnDeliveryRadioButton.click();
+        if(!cashOnDeliveryRadioButton.isSelected()) cashOnDeliveryRadioButton.click();
     }
 
     public void clickTermsAndConditionsCheck(){

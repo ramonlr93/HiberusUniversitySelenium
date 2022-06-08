@@ -17,7 +17,7 @@ Feature: Validate Registration test suite
     Then The user has successfully registered and can see the congratulations message
     Examples:
       | firstName | lastName | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy |
-      | prueba    | prueba   | prueba3024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           |
+      | prueba    | prueba   | prueba30247788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           |
 
 
   @testcase02
