@@ -2,6 +2,7 @@ package com.opencart.automation.stepdefs;
 
 import com.opencart.automation.pages.HomePage;
 import com.opencart.automation.pages.PagesFactory;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -39,4 +40,13 @@ public class AddToCartSteps {
         String empty = " 0 item(s) - $0.00";
         assertNotEquals("The product is not in the cart", cartText, empty);
     }
+
+
+    @And("the user go to My Account to login")
+    public void theUserGoToMyAccountToLogin() {
+        homePage.clickOnMyAccount();
+        homePage.clickOnLogin();
+    }
+
+
 }

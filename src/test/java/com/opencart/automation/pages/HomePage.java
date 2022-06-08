@@ -18,6 +18,12 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@id='common-home']")
     private WebElement slider;
 
+    @FindBy (xpath = "//a[@title='My Account']")
+    private WebElement myAccountButton;
+
+    @FindBy (xpath = "//a[normalize-space()='Login']")
+    private WebElement loginButton;
+
     @FindBy(xpath = "//button[contains(@onclick, 'cart.add') and contains(@onclick, '43')]")
     private WebElement macBook;
 
@@ -29,10 +35,17 @@ public class HomePage extends BasePage {
         return slider;
     }
 
+    public void clickOnMyAccount(){
+        super.click(myAccountButton);
+    }
+
+    public void clickOnLogin(){
+        super.click(loginButton);
+    }
+
     public void clickAddToCart() {
         super.click(macBook);
     }
-
 
     public String getTextCart() {
         return cartTotal.getText();
