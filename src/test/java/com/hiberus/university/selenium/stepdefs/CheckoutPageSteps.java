@@ -11,7 +11,7 @@ import org.junit.Assert;
 public class CheckoutPageSteps {
 
   @And("the user access to MyAccountNavBarButton and access LoginMenu")
-  public void theUserAccessToMyAccountNavBarButtonAndAccessToLoginMenu() {
+  public void theUserAccessToMyAccountNavBarButtonAndAccessToLoginMenu() throws InterruptedException {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user access to MyAccountMenu and access to LoginMenu");
     HomePage homePage = pf.getHomePage();
@@ -21,7 +21,7 @@ public class CheckoutPageSteps {
   }
 
   @And("the user is logged in with {string}, {string}")
-  public void theUserIsLoggedInWith(String email, String password) {
+  public void theUserIsLoggedInWith(String email, String password) throws InterruptedException {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user is logged in");
     LoginPage loginPage = pf.getLoginPage();
@@ -36,7 +36,7 @@ public class CheckoutPageSteps {
   }
 
   @And("the user clicks the HomeItemHouse")
-  public void theUserAccessToHomeItemHouse() {
+  public void theUserAccessToHomeItemHouse() throws InterruptedException {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user clicks the HomeItemHouse");
     AccountPage accountPage = pf.getAccountPage();
@@ -45,7 +45,7 @@ public class CheckoutPageSteps {
   }
 
   @And("the user adds a product to the shopping cart")
-  public void theUserAddsAProductToTheShoppingCart() {
+  public void theUserAddsAProductToTheShoppingCart() throws InterruptedException {
     log.info("The user adds a product to the shopping cart by clicking AddToCart");
     PagesFactory pf = PagesFactory.getInstance();
     HomePage homePage = pf.getHomePage();
@@ -55,7 +55,7 @@ public class CheckoutPageSteps {
   }
 
   @And("the user clicks the CheckoutNavBarButton and navigates to the CheckoutPage")
-  public void theUserClicksTheCheckoutNavBarButtonAndNavigatesToTheCheckoutPage() {
+  public void theUserClicksTheCheckoutNavBarButtonAndNavigatesToTheCheckoutPage() throws InterruptedException {
     log.info("The user clicks checkout button and navigates to CheckoutPage");
     PagesFactory pf = PagesFactory.getInstance();
     HomePage homePage = pf.getHomePage();
@@ -67,7 +67,7 @@ public class CheckoutPageSteps {
 
   //Billing Details
   @And("the user complete the Billing Details with {string}, {string}, {string}, {string}, {string}, {string}")
-  public void theUserCompleteTheBillingDetailsWith(String firstname, String lastname, String address, String city, String country, String region_state) {
+  public void theUserCompleteTheBillingDetailsWith(String firstname, String lastname, String address, String city, String country, String region_state) throws InterruptedException {
     log.info("The user provides the Billing Details");
     PagesFactory pf = PagesFactory.getInstance();
     CheckoutPage checkoutPage = pf.getCheckOutPage();
@@ -97,7 +97,7 @@ public class CheckoutPageSteps {
 
   //Payment Method
   @And("the user complete the Payment Method step")
-  public void theUserCompleteThePaymentMethodStep() {
+  public void theUserCompleteThePaymentMethodStep() throws InterruptedException {
     log.info("The user complete the Payment Method");
     PagesFactory pf = PagesFactory.getInstance();
     CheckoutPage checkoutPage = pf.getCheckOutPage();
@@ -108,7 +108,7 @@ public class CheckoutPageSteps {
 
   //Confirm Order
   @When("the user Confirm the Order and checkout successfully")
-  public void theUserConfirmTheOrderAndCheckoutSuccessfully() {
+  public void theUserConfirmTheOrderAndCheckoutSuccessfully() throws InterruptedException {
     log.info("The user Confirm the Order and checkout successfully");
     PagesFactory pf = PagesFactory.getInstance();
     CheckoutPage checkoutPage = pf.getCheckOutPage();
@@ -121,7 +121,7 @@ public class CheckoutPageSteps {
   }
 
   @Then("the user Logout successfully")
-  public void theUserLogoutSuccessfully() {
+  public void theUserLogoutSuccessfully() throws InterruptedException {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user Logout successfully");
     CheckoutSuccessPage checkoutSuccessPage = pf.getCheckoutSuccessPage();

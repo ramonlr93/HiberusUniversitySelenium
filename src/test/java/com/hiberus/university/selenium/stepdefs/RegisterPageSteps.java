@@ -79,7 +79,7 @@ public class RegisterPageSteps {
     }
 
     @Then("the user register successfully")
-    public void theUserIsRegisterSuccessfully() {
+    public void theUserIsRegisterSuccessfully() throws InterruptedException {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("The user should register successfully and is brought to 'Account Success Page' page");
         AccountSuccessPage accountSuccessPage = pf.getAccountSuccessPage();

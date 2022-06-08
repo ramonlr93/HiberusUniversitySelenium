@@ -4,8 +4,7 @@ Feature: validate login test suite
   Background: Navigate to the Home page
     Given the user is on the Home page
 
-  @testcase05
-  @smoke
+  @testcase05 @smoke
   Scenario Outline: Verify the user can login successfully
     And the user access to MyAccountNavBarButton and access to LoginMenu
     And the user is on the Login page

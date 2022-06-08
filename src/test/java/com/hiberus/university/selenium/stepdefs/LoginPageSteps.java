@@ -51,7 +51,7 @@ public class LoginPageSteps {
   }
 
   @Then("the user is logged successfully")
-  public void theUserIsLoggedSuccessfully() {
+  public void theUserIsLoggedSuccessfully() throws InterruptedException {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user should login successfully and is brought to 'Account Page' page");
     AccountPage accountPage = pf.getAccountPage();

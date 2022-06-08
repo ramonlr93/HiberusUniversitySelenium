@@ -4,8 +4,7 @@ Feature: validate registration test suite
   Background: Navigate to the Home page
     Given the user is on the home page
 
-  @testcase01
-    @smoke
+  @testcase01 @smoke
   Scenario Outline: Verify that the user can register successfully
     And the user access to MyAccountNavBarButton and access to RegisterMenu
     And the user is on the register page
@@ -44,7 +43,7 @@ Feature: validate registration test suite
       |    Jack   |  Sparrow | 123456789 | nubrokakattoi-8879@yopmail.com | hiberusfinal |   hiberusfinal  |
 
   @testcase04
-  Scenario: Verify that the user cannot register because don't fill all required fields
+  Scenario: Verify that the user cannot register because the required fields were not filled out
     And the user access to MyAccountNavBarButton and access to RegisterMenu
     And the user is on the register page
     When the user clicks the Continue button

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class CheckoutPage extends BasePage {
@@ -31,7 +32,7 @@ public class CheckoutPage extends BasePage {
   private WebElement shippingAddressContinueButton;
 
   //Delivery Method WeBElements
-  @FindBy(xpath = "//input[@id='button-shipping-method']")
+  @FindBy(id = "button-shipping-method")
   private WebElement shippingMethodContinueButton;
 
   //Payment Method WeBElements
@@ -41,11 +42,11 @@ public class CheckoutPage extends BasePage {
   @FindBy(xpath = "//input[@name='agree']")
   private WebElement agreeContinueButton;
 
-  @FindBy(xpath = "//input[@id='button-payment-method']")
+  @FindBy( id = "button-payment-method")
   private WebElement paymentMethodContinueButton;
 
   //Confirm Order WeBElements
-  @FindBy(xpath = "//input[@id='button-confirm']")
+  @FindBy(id = "button-confirm")
   private WebElement confirmOrderButton;
 
   public CheckoutPage(WebDriver driver) {
@@ -90,17 +91,17 @@ public class CheckoutPage extends BasePage {
   }
 
   public void clickBillingDetailsContinueButton() {
-    paymentAddressContinueButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(paymentAddressContinueButton)).click();
   }
 
   //Delivery Details
    public void clickDeliveryDetailsContinueButton() {
-    shippingAddressContinueButton.click();
+     wait.until(ExpectedConditions.elementToBeClickable(shippingAddressContinueButton)).click();
   }
 
   //Delivery Method WeBElements
   public void clickDeliveryMethodContinueButton() {
-    shippingMethodContinueButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinueButton)).click();
   }
 
   //Payment Method WeBElements
@@ -109,15 +110,15 @@ public class CheckoutPage extends BasePage {
   }
 
   public void clickAgreeTermsCondButton() {
-    agreeContinueButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(agreeContinueButton)).click();
   }
 
   public void clickPaymentMethodContinueButton() {
-    paymentMethodContinueButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(paymentMethodContinueButton)).click();
   }
 
   //Confirm Order
   public void clickConfirmOrderButton() {
-    confirmOrderButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(confirmOrderButton)).click();
   }
 }

@@ -9,7 +9,7 @@ public class CheckoutSuccessPage extends BasePage {
 
   public static final String CHECKOUT_SUCCESS_PAGE_URL = "http://opencart.abstracta.us/index.php?route=checkout/success";
 
-  @FindBy(xpath = "//div[@id='content']")
+  @FindBy(id = "content")
   private WebElement checkoutSuccessContainer;
 
 

@@ -4,9 +4,7 @@ Feature: Validate checkout test suite
   Background: Navigate to the home page
     Given the user is on the Home page
 
-
-  @testcase12
-  @smoke
+  @testcase08 @smoke
   Scenario Outline: validate checkout
     And the user access to MyAccountNavBarButton and access to LoginMenu
     And the user is logged in with "<email>", "<password>"

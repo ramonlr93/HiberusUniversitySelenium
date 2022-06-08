@@ -26,6 +26,7 @@ public abstract class BasePage {
 
   @FindBy(xpath = "//ul[@class='breadcrumb']//a[contains(@href, 'http://opencart.abstracta.us:80/index.php?route=common/home')]")
   private WebElement homeButton;
+
   @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href, 'https://opencart.abstracta.us:443/index.php?route=account/register')]")
   private WebElement registerButton;
 
@@ -38,8 +39,6 @@ public abstract class BasePage {
   @FindBy(xpath = "//ul[@class='list-inline']/descendant::a[contains(@href, 'https://opencart.abstracta.us:443/index.php?route=checkout/checkout')]")
   private WebElement checkoutButton;
 
-//<div id="top-links" class="nav pull-right">
-
   BasePage(WebDriver driver) {
     this.driver = driver;
     wait = new MyFluentWait<>(driver)
@@ -47,6 +46,7 @@ public abstract class BasePage {
       .pollingEvery(2, ChronoUnit.SECONDS)
       .ignoring(NoSuchElementException.class);
   }
+
   public abstract WebElement getPageLoadedTestElement();
 
   protected WebDriver getDriver() {
@@ -61,9 +61,10 @@ public abstract class BasePage {
     this.wait = wait;
   }
 
-  public void waitForPageLoad() {
+  public void waitForPageLoad() throws InterruptedException {
     WebElement testElement = getPageLoadedTestElement();
     wait.until(ExpectedConditions.visibilityOf(testElement));
+    Thread.sleep(2000);
   }
 
   protected void moveTo(WebElement elem) {
@@ -103,25 +104,30 @@ public abstract class BasePage {
   }
 
   public void clickMyAccount() {
-    myAccountDropdown.click();
+    wait.until(ExpectedConditions.elementToBeClickable(myAccountDropdown)).click();
   }
 
   public void clickMyAccountFromMenu() {
-    myAccountDropdownMenu.click();
+    wait.until(ExpectedConditions.elementToBeClickable(myAccountDropdownMenu)).click();
   }
+
   public void clickHomeButton() {
-    homeButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(homeButton)).click();
   }
+
   public void clickRegisterFromMenu() {
-    registerButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(registerButton)).click();
   }
+
   public void clickLoginFromMenu() {
-    loginButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
   }
+
   public void clickCheckoutFromMenu() {
-    checkoutButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(checkoutButton)).click();
   }
+
   public void clickLogoutFromMenu() {
-    logoutButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
   }
 }
