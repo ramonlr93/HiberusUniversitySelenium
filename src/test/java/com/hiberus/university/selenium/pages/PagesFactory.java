@@ -10,10 +10,10 @@ public class PagesFactory {
   private final HomePage homePage;
   private final AccountSuccessPage accountSuccessPage;
   private final AccountPage accountPage;
-  private final CheckOutCompletePage checkOutCompletePage;
-  private final CheckOutStepOnePage checkOutStepOnePage;
-  private final CheckOutStepTwoPage checkOutStepTwoPage;
-  private final CartPage cartPage;
+  private final CheckoutPage checkOutPage;
+  private final LogoutPage logoutPage;
+
+  private final CheckoutSuccessPage checkoutSuccessPage;
 
   private PagesFactory(WebDriver driver) {
     this.driver = driver;
@@ -22,10 +22,9 @@ public class PagesFactory {
     homePage = new HomePage(driver);
     accountSuccessPage = new AccountSuccessPage(driver);
     accountPage = new AccountPage(driver);
-    checkOutStepOnePage = new CheckOutStepOnePage(driver);
-    checkOutCompletePage = new CheckOutCompletePage(driver);
-    checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
-    cartPage = new CartPage(driver);
+    checkOutPage = new CheckoutPage(driver);
+    logoutPage = new LogoutPage(driver);
+    checkoutSuccessPage = new CheckoutSuccessPage(driver);
   }
   public static void start(WebDriver driver) {
     pagesFactories = new PagesFactory(driver);
@@ -50,19 +49,14 @@ public class PagesFactory {
   public HomePage getHomePage(){
     return homePage;
   }
-
-  public CheckOutCompletePage getCheckOutCompletePage() {
-    return checkOutCompletePage;
+  public CheckoutPage getCheckOutPage() {
+    return checkOutPage;
   }
-  public CheckOutStepOnePage getCheckOutStepOnePage() {
-    return checkOutStepOnePage;
-  }
-  public CheckOutStepTwoPage getCheckOutStepTwoPage() {
-    return checkOutStepTwoPage;
-  }
-  public CartPage getCartPage() {
-    return cartPage;
+  public LogoutPage getLogoutPage() {
+    return logoutPage;
   }
 
-
+  public CheckoutSuccessPage getCheckoutSuccessPage(){
+    return checkoutSuccessPage;
+  }
 }

@@ -5,7 +5,6 @@ import com.hiberus.university.selenium.pages.PagesFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 
@@ -20,7 +19,7 @@ public class HomePageSteps {
     homePage.navigateTo(HomePage.HOME_PAGE_URL);
   }
 
-  @When("the user adds a single product by clicking AddToCart")
+  @And("the user adds a single product by clicking AddToCart")
   public void theUserAddsASingleProductByClickingAddToCart() {
     log.info("The user adds a item by clicking AddToCart");
     PagesFactory pf = PagesFactory.getInstance();
@@ -41,7 +40,6 @@ public class HomePageSteps {
      log.info("The user verify that the product info appear in the shopping cart");
      PagesFactory pf = PagesFactory.getInstance();
      HomePage homePage = pf.getHomePage();
-     //Assert.assertTrue();
      Assert.assertEquals("The Product info is shown","1 item(s) - $123.20", homePage.shoppingCartInfo());
   }
 

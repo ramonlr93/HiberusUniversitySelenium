@@ -13,14 +13,32 @@ import java.time.temporal.ChronoUnit;
 
 @Slf4j
 public abstract class BasePage {
+
   protected Wait<WebDriver> wait;
+
   private final WebDriver driver;
 
-  @FindBy(id = "react-burger-menu-btn")
-  private WebElement menuButton;
+  @FindBy(xpath = "//a[contains(@title, 'My Account') and contains(@class, 'dropdown-toggle')]")
+  private WebElement myAccountDropdown;
 
-  @FindBy(id = "logout_sidebar_link")
+  @FindBy(xpath = "//li[@class='dropdown']")
+  private WebElement myAccountDropdownMenu;
+
+  @FindBy(xpath = "//ul[@class='breadcrumb']//a[contains(@href, 'http://opencart.abstracta.us:80/index.php?route=common/home')]")
+  private WebElement homeButton;
+  @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href, 'https://opencart.abstracta.us:443/index.php?route=account/register')]")
+  private WebElement registerButton;
+
+  @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right']/descendant::a[contains(@href, 'https://opencart.abstracta.us:443/index.php?route=account/login')]")
+  private WebElement loginButton;
+
+  @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right']/descendant::a[contains(@href, 'https://opencart.abstracta.us:443/index.php?route=account/logout')]")
   private WebElement logoutButton;
+
+  @FindBy(xpath = "//ul[@class='list-inline']/descendant::a[contains(@href, 'https://opencart.abstracta.us:443/index.php?route=checkout/checkout')]")
+  private WebElement checkoutButton;
+
+//<div id="top-links" class="nav pull-right">
 
   BasePage(WebDriver driver) {
     this.driver = driver;
@@ -84,11 +102,26 @@ public abstract class BasePage {
     }
   }
 
-  public void openMenu() {
-    menuButton.click();
+  public void clickMyAccount() {
+    myAccountDropdown.click();
   }
 
-  public void clickLogout() {
+  public void clickMyAccountFromMenu() {
+    myAccountDropdownMenu.click();
+  }
+  public void clickHomeButton() {
+    homeButton.click();
+  }
+  public void clickRegisterFromMenu() {
+    registerButton.click();
+  }
+  public void clickLoginFromMenu() {
+    loginButton.click();
+  }
+  public void clickCheckoutFromMenu() {
+    checkoutButton.click();
+  }
+  public void clickLogoutFromMenu() {
     logoutButton.click();
   }
 }

@@ -53,7 +53,7 @@ public class RegisterPage extends BasePage {
     }
 
     public void clickContinueButton() {
-        log.info("Logging in...");
+        log.info("Register in...");
         try {
             continueButton.click();
         } catch (org.openqa.selenium.TimeoutException e) {
@@ -65,7 +65,7 @@ public class RegisterPage extends BasePage {
     }
 
     public void clickPrivacyPolicyButton() {
-        log.info("Logging in...");
+        log.info("Register in...");
         try {
             privacyPolicyButton.click();
         } catch (org.openqa.selenium.TimeoutException e) {
@@ -119,8 +119,8 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean AllMessageMandatoryAreDisplayed() {
-        for (int i = 0; i <= dangerTextMessageList.size(); i++) {
-            if (!dangerTextMessageList.get(i).isDisplayed()){
+        for (WebElement webElement : dangerTextMessageList) {
+            if (!webElement.isDisplayed()) {
                 return false;
             }
         }

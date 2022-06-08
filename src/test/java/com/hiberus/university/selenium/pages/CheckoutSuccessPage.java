@@ -1,26 +1,29 @@
 package com.hiberus.university.selenium.pages;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-@Slf4j
-public class CheckOutCompletePage extends BasePage {
-  public static final String PAGE_URL = "https://www.saucedemo.com/checkout-complete.html";
+public class CheckoutSuccessPage extends BasePage {
 
-  @FindBy(xpath = "//span[@class='title']")
-  private WebElement title;
+  public static final String CHECKOUT_SUCCESS_PAGE_URL = "http://opencart.abstracta.us/index.php?route=checkout/success";
+
+  @FindBy(xpath = "//div[@id='content']")
+  private WebElement checkoutSuccessContainer;
 
 
-  public CheckOutCompletePage(WebDriver driver) {
+  public CheckoutSuccessPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
   }
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return title;
+    return checkoutSuccessContainer;
   }
 }
+
+
+
+

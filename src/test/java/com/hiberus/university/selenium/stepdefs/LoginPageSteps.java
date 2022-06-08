@@ -1,10 +1,10 @@
 package com.hiberus.university.selenium.stepdefs;
 
+import com.hiberus.university.selenium.pages.AccountPage;
+import com.hiberus.university.selenium.pages.HomePage;
 import com.hiberus.university.selenium.pages.LoginPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
-import com.hiberus.university.selenium.pages.AccountPage;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +13,24 @@ import org.junit.Assert;
 @Slf4j
 public class LoginPageSteps {
 
-  @Given("the user is on the login page")
+  @And("the user access to MyAccountNavBarButton and access to LoginMenu")
+  public void theUserAccessToMyAccountNavBarButtonAndAccessToLoginMenu() {
+    PagesFactory pf = PagesFactory.getInstance();
+    log.info("The user access to MyAccountNavBarButton and access to LoginMenu");
+    HomePage homePage = pf.getHomePage();
+    homePage.clickMyAccountFromMenu();
+    homePage.clickLoginFromMenu();
+  }
+
+  @And("the user is on the Login page")
   public void theUserIsOnTheLoginPage() {
     PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user is on the Home Page");
+    log.info("The user is on the Login Page");
     LoginPage loginPage = pf.getLoginPage();
-    loginPage.navigateTo(LoginPage.PAGE_URL);
+    loginPage.navigateTo(LoginPage.LOGIN_PAGE_URL);
+    String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+    Assert.assertEquals("the URL is not 'Login Page' page", LoginPage.LOGIN_PAGE_URL, currentUrl);
+
   }
 
   @And("the user provides the email {string} and password {string}")
@@ -64,4 +76,7 @@ public class LoginPageSteps {
     LoginPage loginPage = pf.getLoginPage();
     Assert.assertTrue(loginPage.warningMessageError());
   }
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.hiberus.university.selenium.stepdefs;
 
 import com.hiberus.university.selenium.pages.AccountSuccessPage;
+import com.hiberus.university.selenium.pages.HomePage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import com.hiberus.university.selenium.pages.RegisterPage;
 import io.cucumber.java.en.And;
@@ -14,12 +15,31 @@ import org.junit.Assert;
 @Slf4j
 public class RegisterPageSteps {
 
-    @Given("the user is on the register page")
+    @Given("the user is on the home page")
+    public void theUserIsOnTheHomePage() {
+        PagesFactory pf = PagesFactory.getInstance();
+        log.info("The user is on the Home Page");
+        HomePage homePage = pf.getHomePage();
+        homePage.navigateTo(HomePage.HOME_PAGE_URL);
+    }
+
+    @And("the user access to MyAccountNavBarButton and access to RegisterMenu")
+    public void theUserAccessToMyAccountNavBarButtonAndAccessToRegisterMenu() {
+        PagesFactory pf = PagesFactory.getInstance();
+        log.info("The user access to MyAccountNavBarButton and access to RegisterMenu");
+        HomePage homePage = pf.getHomePage();
+        homePage.clickMyAccountFromMenu();
+        homePage.clickRegisterFromMenu();
+    }
+
+    @And("the user is on the register page")
     public void theUserIsOnTheRegisterPage() {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("The user is on the Register Page");
         RegisterPage registerPage = pf.getRegisterPage();
         registerPage.navigateTo(RegisterPage.REGISTER_PAGE_URL);
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        Assert.assertEquals("the URL is not 'RegisterPage' page", RegisterPage.REGISTER_PAGE_URL, currentUrl);
     }
 
     @And("the user provides new Personal Details {string}, {string}, {string} and {string}")
@@ -108,8 +128,8 @@ public class RegisterPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("The user should be shown all mandatory warnings messages");
         RegisterPage registerPage = pf.getRegisterPage();
-        Assert.assertEquals("All the message ar not shown ", 5, registerPage.getDangerTextMessageListCount());
-        Assert.assertTrue("All Messages are not shown", registerPage.AllMessageMandatoryAreDisplayed());
+        Assert.assertEquals("All 5 Messages are not shown ", 5, registerPage.getDangerTextMessageListCount());
+        Assert.assertTrue("Messages are not shown", registerPage.AllMessageMandatoryAreDisplayed());
     }
 }
 

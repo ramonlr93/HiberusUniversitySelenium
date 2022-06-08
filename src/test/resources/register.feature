@@ -1,12 +1,14 @@
 @register
 Feature: validate registration test suite
 
-  Background: Navigate to the register page
-    Given the user is on the register page
+  Background: Navigate to the Home page
+    Given the user is on the home page
 
   @testcase01
     @smoke
   Scenario Outline: Verify that the user can register successfully
+    And the user access to MyAccountNavBarButton and access to RegisterMenu
+    And the user is on the register page
     And the user provides new Personal Details "<firstname>", "<lastname>", "<email>" and "<telephone>"
     And the user provides and confirm the password "<password>", "<passwordConfirm>"
     And the user clicks the Privacy Policy checkButton
@@ -18,6 +20,8 @@ Feature: validate registration test suite
 
   @testcase02
   Scenario Outline: Verify that user cannot register because do not agree the privacy policy
+    And the user access to MyAccountNavBarButton and access to RegisterMenu
+    And the user is on the register page
     And the user provides new Personal Details "<firstname>", "<lastname>", "<email>" and "<telephone>"
     And the user provides and confirm the password "<password>", "<passwordConfirm>"
     When the user clicks the Continue button
@@ -28,6 +32,8 @@ Feature: validate registration test suite
 
   @testcase03
   Scenario Outline: Verify that the user cannot register because the user already exits
+    And the user access to MyAccountNavBarButton and access to RegisterMenu
+    And the user is on the register page
     And the user provides Personal Details "<firstname>", "<lastname>", "<email>" and "<telephone>"
     And the user provides and confirm the password "<password>", "<passwordConfirm>"
     And the user clicks the Privacy Policy checkButton
@@ -39,6 +45,8 @@ Feature: validate registration test suite
 
   @testcase04
   Scenario: Verify that the user cannot register because don't fill all required fields
+    And the user access to MyAccountNavBarButton and access to RegisterMenu
+    And the user is on the register page
     When the user clicks the Continue button
     Then The user should be shown all mandatory warnings messages
 

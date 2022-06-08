@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
 public class LoginPage extends BasePage {
-  public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/login";
+  public static final String LOGIN_PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/login";
 
   @FindBy(id = "input-email")
   private WebElement emailInput;
