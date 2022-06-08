@@ -10,10 +10,9 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 
 public class RegisterPageSteps {
-
 
     WebDriver driver;
     private final RegisterPage registerPage;
@@ -37,12 +36,10 @@ public class RegisterPageSteps {
         registerPage.acceptingNewsletter();
     }
 
-
     @And("agree with privacy policy")
     public void agreeWithPrivacyPolicy() {
         registerPage.acceptingPrivacyPolicy();
     }
-
 
     @When("clicks on continue button")
     public void clicksOnContinueButton() {
@@ -53,8 +50,8 @@ public class RegisterPageSteps {
     public void userShouldSeeTheSuccessMessage() {
         String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
         assertEquals("The account not has been created", "http://opencart.abstracta.us/index.php?route=account/success", currentUrl);
-
     }
+
 
     @Then("user should see error message, account already registered")
     public void aAccountAlreadyRegistered() {
@@ -62,12 +59,11 @@ public class RegisterPageSteps {
         assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
     }
 
+
     @Then("user should see error message, E-Mail Address does not appear to be valid!")
     public void userShouldSeeErrorMessageEMailAddressDoesNotAppearToBeValid() {
         assertEquals("E-Mail Address does not appear to be valid!", registerPage.getTextDanger());
     }
-
-
 }
 
 
