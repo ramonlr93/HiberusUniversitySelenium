@@ -13,7 +13,7 @@ Feature: validate register test suite
     When clicks on continue button
     Then user should see the success message
     Examples:
-      | firstName | lastName | email                  | telephone | password  |
+      | firstName | lastName | email                    | telephone | password  |
       | Jodie     | Foster   | joooddieE604@game4hr.com | 999999999 | Caviko609 |
 
   @testcase02
@@ -28,13 +28,13 @@ Feature: validate register test suite
       | Jodie     | Foster   | jooodiE604@game4hr.com | 999999999 | Caviko609 |
 
   @testcase03
-  Scenario Outline: validate already registered account
+  Scenario Outline: validate E-Mail Address does not appear to be valid!
     And user enter "<firstName>", "<lastName>", "<email>", "<telephone>", "<password>"
     And choose if he wants to accept newsletter
     And agree with privacy policy
     When clicks on continue button
-    Then user should see error message, account already registered
+    Then user should see error message, E-Mail Address does not appear to be valid!
     Examples:
-      | firstName | lastName | email                  | telephone | password  |
-      | Jodie     | Foster   | jooodiE604@game4hr.com | 999999999 | Caviko609 |
+      | firstName | lastName | email |telephone | password  |
+      | Jodie     | Foster   |       |999999999 | Caviko609 |
 

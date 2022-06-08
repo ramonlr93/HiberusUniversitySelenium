@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RegisterPageSteps {
 
@@ -60,6 +61,13 @@ public class RegisterPageSteps {
         String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
         assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
     }
+
+    @Then("user should see error message, E-Mail Address does not appear to be valid!")
+    public void userShouldSeeErrorMessageEMailAddressDoesNotAppearToBeValid() {
+        assertEquals("E-Mail Address does not appear to be valid!", registerPage.getTextDanger());
+    }
+
+
 }
 
 

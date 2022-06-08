@@ -40,6 +40,9 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//input[@value='Continue']")
     WebElement continueButton;
 
+    @FindBy(xpath = "//div[@class='text-danger']")
+    WebElement textDanger;
+
 
 
     @Override
@@ -67,6 +70,12 @@ public class RegisterPage extends BasePage{
     public void clickContinue(){
         click(continueButton);
     }
+
+    public String getTextDanger() {
+        return textDanger.getText();
+    }
+
+
 
 
 }
