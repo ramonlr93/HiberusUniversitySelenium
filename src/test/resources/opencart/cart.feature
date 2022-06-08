@@ -19,9 +19,6 @@ Feature: Cart test suite
 
   @testcase-16
   Scenario: Verify can go to checkout with products added
-    And the user clicks the login button
-    And the user is logged successfully
-    And the user goes to home
     And the user adds all items to the cart
     And the user goes to cart
     When the user clicks the checkout button

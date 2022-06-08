@@ -77,7 +77,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>demoblaze test project</projectName>
+                            <projectName>opencart test project</projectName>
                             <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
                             <jsonFiles>
                                 <param>**/*.json</param>

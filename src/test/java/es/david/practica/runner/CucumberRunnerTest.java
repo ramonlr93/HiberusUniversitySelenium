@@ -13,10 +13,8 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-html-report.html"
         },
         glue = {
-                "es.demoblaze.prueba.demoblaze.prueba.stepdefs",
-                "es.demoblaze.prueba.demoblaze.prueba.support"
-                // Así es como estaba antes, hay que cambiar a la carpeta que se tenga en este momento
-                //"com.hiberus.university.selenium.es.demoblaze.prueba.support"
+                "es.david.practica.stepdefs",
+                "es.david.practica.support"
         },
         features = {
                 "src/test/resources/"

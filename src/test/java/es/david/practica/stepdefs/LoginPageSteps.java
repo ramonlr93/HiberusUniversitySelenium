@@ -41,7 +41,8 @@ public class LoginPageSteps {
     }
 
     @Then("the user is logged successfully")
-    public void checkLogin() {
+    public void checkLogin() throws InterruptedException {
+        Thread.sleep(2000);
         Assert.assertEquals("Isn't the correct URL"
                 , AccountPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());

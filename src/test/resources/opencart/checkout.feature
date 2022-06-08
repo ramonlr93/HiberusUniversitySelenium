@@ -5,7 +5,8 @@ Feature: Checkout test suite
     Given the user is in the main page
     And the user goes to login
 
-  @testcase-16
+  @smoke
+    @testcase-17
   Scenario Outline: Verify can checkout with logged account
     And the user provides the mail "<mail>"
     And the user provides the password "<password>"

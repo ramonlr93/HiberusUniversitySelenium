@@ -31,7 +31,7 @@ public class Hooks {
         log.info("Starting test: " + scenario.getName());
         driver = createWebDriver();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         PagesFactory.start(driver);
     }
