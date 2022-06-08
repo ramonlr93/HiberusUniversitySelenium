@@ -7,9 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 @Slf4j
@@ -23,7 +21,6 @@ public class AddToCartSteps {
         homePage = PagesFactory.getInstance().getHomePage();
     }
 
-
     @Given("the user is on the home page")
     public void isOnHomePage(){
         homePage.navigateTo(HomePage.PAGE_URL);
@@ -34,7 +31,6 @@ public class AddToCartSteps {
         homePage.clickAddToCart();
         Thread.sleep(1000);
     }
-
 
     @Then("Item is successfully added to the cart")
     public void itemIsSuccessfullyAddedToTheCart() {

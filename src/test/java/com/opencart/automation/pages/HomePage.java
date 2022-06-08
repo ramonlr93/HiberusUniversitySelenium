@@ -24,9 +24,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath="//span[@id='cart-total']")
     private WebElement cartTotal;
 
-
-
-
     @Override
     public WebElement getPageLoadedTestElement() {
         return slider;
