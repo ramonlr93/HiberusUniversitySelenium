@@ -1,9 +1,11 @@
 @shopping
-
-  @testcase 06
-  @smoke
 Feature: Add product to cart
-  Scenario: User is able to add product to the cart
-    Given User is at the product details
-    When User click on Add to Cart button
+
+  Background:
+    Given the user is on the home page
+
+  @testcase06
+  @smoke
+  Scenario: a user unknown add product to cart
+    When the user adds a MacBook from the home page to the cart
     Then Item is successfully added to the cart

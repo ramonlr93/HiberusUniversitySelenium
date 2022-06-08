@@ -1,7 +1,7 @@
 @login
 Feature: validate login in OpenCart
 
-  Background: Navigate to the home page
+  Background: Navigate to the login page
     Given the user is on the login page
 
   @testcase04
