@@ -3,44 +3,50 @@ package com.opencart.automation.pages;
 import org.openqa.selenium.WebDriver;
 
 public class PagesFactory {
-  private static PagesFactory pagesFactories;
-  private final WebDriver driver;
+    private static PagesFactory pagesFactories;
+    private final WebDriver driver;
 
-  private final LoginPage loginPage;
-  private final RegisterPage registerPage;
-  
-  private final HomePage homePage;
-  private final MyAccountPage myAccountPage;
+    private final LoginPage loginPage;
+    private final RegisterPage registerPage;
 
-
-  private PagesFactory(WebDriver driver) {
-    this.driver = driver;
-    loginPage = new LoginPage(driver);
-    registerPage = new RegisterPage(driver);
-    homePage = new HomePage(driver);
-    myAccountPage = new MyAccountPage(driver);
-  }
-
-  public static void start(WebDriver driver) {
-    pagesFactories = new PagesFactory(driver);
-  }
-
-  public static PagesFactory getInstance() {
-    return pagesFactories;
-  }
-
-  public WebDriver getDriver() {
-    return driver;
-  }
-
-  public LoginPage getLoginPage() {
-    return loginPage;
-  }
+    private final HomePage homePage;
+    private final MyAccountPage myAccountPage;
 
 
-  public RegisterPage getRegisterPage() {
-    return registerPage;
-  }
+    private PagesFactory(WebDriver driver) {
+        this.driver = driver;
+        loginPage = new LoginPage(driver);
+        registerPage = new RegisterPage(driver);
+        homePage = new HomePage(driver);
+        myAccountPage = new MyAccountPage(driver);
+    }
 
-    public HomePage getHomePage() { return homePage;}
+    public static void start(WebDriver driver) {
+        pagesFactories = new PagesFactory(driver);
+    }
+
+    public static PagesFactory getInstance() {
+        return pagesFactories;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public LoginPage getLoginPage() {
+        return loginPage;
+    }
+
+
+    public RegisterPage getRegisterPage() {
+        return registerPage;
+    }
+
+    public HomePage getHomePage() {
+        return homePage;
+    }
+
+    public MyAccountPage getMyAccountPage() {
+        return myAccountPage;
+    }
 }
