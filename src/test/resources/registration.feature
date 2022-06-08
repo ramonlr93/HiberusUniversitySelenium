@@ -17,7 +17,7 @@ Feature: Validate Registration test suite
     Then The user has successfully registered and can see the congratulations message
     Examples:
       | firstName | lastName | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy |
-      | prueba    | prueba   | prueba30247788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           |
+      | prueba    | prueba   | prueba33580247788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           |
 
 
   @testcase02
@@ -38,7 +38,7 @@ Feature: Validate Registration test suite
     Then The user can see the error "<errorType>"
     Examples:
       | firstName                            | lastName | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
-      | aaasssdddaaasssdddaaasssdddaaasssddd | prueba   | prueba8024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | firstname |
+      | aaasssdddaaasssdddaaasssdddaaasssddd | prueba   | prueb6a8024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | firstname |
 
 
   @testcase04
@@ -49,7 +49,7 @@ Feature: Validate Registration test suite
     Then The user can see the error "<errorType>"
     Examples:
       | firstName | lastName                             | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType  |
-      | prueba    | aaasssdddaaasssdddaaasssdddaaasssddd | prueba8024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | secondname |
+      | prueba    | aaasssdddaaasssdddaaasssdddaaasssddd | preueba8024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | secondname |
 
   @testcase05
   Scenario Outline: Validate that the user cannot register with an invalid email
@@ -59,7 +59,7 @@ Feature: Validate Registration test suite
     Then The user can see the error "<errorType>"
     Examples:
       | firstName | lastName | email   | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
-      | prueba    | prueba   | asd@asd | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | email     |
+      | prueba    | prueba   | asdaqt@asd | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | email     |
 
   @testcase06
   Scenario Outline: Validate that the user cannot register with a phone less than 3 digits
@@ -69,7 +69,7 @@ Feature: Validate Registration test suite
     Then The user can see the error "<errorType>"
     Examples:
       | firstName | lastName | email                     | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
-      | prueba    | prueba   | prueba87638763@prueba.com | 01        | 1.Prueba | 1.Prueba        | No       | Yes           | telephone |
+      | prueba    | prueba   | prueba877638763@prueba.com | 01        | 1.Prueba | 1.Prueba        | No       | Yes           | telephone |
 
 
   @testcase07
