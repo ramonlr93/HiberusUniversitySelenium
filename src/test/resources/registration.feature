@@ -12,7 +12,7 @@ Feature: validate register test suite
     Then user should see the success message
     Examples:
       | firstName | lastName | email                  | telephone | password  |
-      | Jodie     | Foster   | jodieE604@game4hr.com | 999999999 | Caviko609 |
+      | Jodie     | Foster   | joddddieE604@game4hr.com | 999999999 | Caviko609 |
 
 
 

@@ -54,7 +54,9 @@ public class RegisterPageSteps {
 
     @Then("user should see the success message")
     public void userShouldSeeTheSuccessMessage() {
-        assertTrue("The account not has been created", registerPage.getMessageError());
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        assertEquals("The account not has been created", "http://opencart.abstracta.us/index.php?route=account/success", currentUrl);
+
     }
 
 }
