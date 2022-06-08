@@ -4,23 +4,21 @@ import com.opencart.pages.HomePage;
 import com.opencart.pages.PagesFactory;
 import com.opencart.utils.Enums;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class HomePageSteps {
 
-    private HomePage homePage;
+    private final HomePage homePage;
 
     public HomePageSteps() {
         homePage = PagesFactory.getInstance().getHomePage();
     }
 
-   @And("the user clicks go home button")
+    @And("the user clicks go home button")
     public void theUserClicksGoHomeButton() {
         homePage.goHome();
-   }
+    }
 
 
     @And("the user adds one item to the chart")

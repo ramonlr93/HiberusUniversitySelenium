@@ -17,11 +17,14 @@ package com.opencart.utils;
 // specific language governing permissions and limitations
 // under the License.
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.Wait;
+
 import java.time.Clock;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -30,10 +33,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.ui.Sleeper;
-import org.openqa.selenium.support.ui.Wait;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An implementation of the {@link Wait} interface that may have its timeout and polling interval
@@ -67,10 +68,9 @@ import org.openqa.selenium.support.ui.Wait;
  *
  * @param <T> The input type for each condition used with this instance.
  */
-public class MyFluentWait<T> implements Wait<T>
-{
+public class MyFluentWait<T> implements Wait<T> {
 
-    public static final Duration FIVE_HUNDRED_MILLIS = Duration.of(500, ChronoUnit.MILLIS);
+    public static final Duration FIVE_HUNDRED_MILLIS = Duration.of(400, ChronoUnit.MILLIS);
 
     private final T input;
     private final Clock clock;
@@ -85,8 +85,7 @@ public class MyFluentWait<T> implements Wait<T>
     /**
      * @param input The input value to pass to the evaluated conditions.
      */
-    public MyFluentWait(T input)
-    {
+    public MyFluentWait(T input) {
         this(input, Clock.systemDefaultZone(), Sleeper.SYSTEM_SLEEPER);
     }
 
@@ -95,8 +94,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @param clock   The clock to use when measuring the timeout.
      * @param sleeper Used to put the thread to sleep between evaluation loops.
      */
-    public MyFluentWait(T input, Clock clock, Sleeper sleeper)
-    {
+    public MyFluentWait(T input, Clock clock, Sleeper sleeper) {
         this.input = checkNotNull(input);
         this.clock = checkNotNull(clock);
         this.sleeper = checkNotNull(sleeper);
@@ -110,8 +108,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @param unit     The unit of time.
      * @return A self reference.
      */
-    public MyFluentWait<T> withTimeout(long duration, TemporalUnit unit)
-    {
+    public MyFluentWait<T> withTimeout(long duration, TemporalUnit unit) {
         this.timeout = Duration.of(duration, unit);
         return this;
     }
@@ -122,8 +119,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @param message to be appended to default.
      * @return A self reference.
      */
-    public MyFluentWait<T> withMessage(final String message)
-    {
+    public MyFluentWait<T> withMessage(final String message) {
         this.messageSupplier = () -> message;
         return this;
     }
@@ -134,8 +130,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @param messageSupplier to be evaluated on failure and appended to default.
      * @return A self reference.
      */
-    public MyFluentWait<T> withMessage(Supplier<String> messageSupplier)
-    {
+    public MyFluentWait<T> withMessage(Supplier<String> messageSupplier) {
         this.messageSupplier = messageSupplier;
         return this;
     }
@@ -151,8 +146,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @param unit     The unit of time.
      * @return A self reference.
      */
-    public MyFluentWait<T> pollingEvery(long duration, TemporalUnit unit)
-    {
+    public MyFluentWait<T> pollingEvery(long duration, TemporalUnit unit) {
         this.interval = Duration.of(duration, unit);
         return this;
     }
@@ -165,8 +159,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @param <K>   an Exception that extends Throwable
      * @return A self reference.
      */
-    public <K extends Throwable> MyFluentWait<T> ignoreAll(Collection<Class<? extends K>> types)
-    {
+    public <K extends Throwable> MyFluentWait<T> ignoreAll(Collection<Class<? extends K>> types) {
         ignoredExceptions.addAll(types);
         return this;
     }
@@ -176,8 +169,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @return a self reference
      * @see #ignoreAll(Collection)
      */
-    public MyFluentWait<T> ignoring(Class<? extends Throwable> exceptionType)
-    {
+    public MyFluentWait<T> ignoring(Class<? extends Throwable> exceptionType) {
         return this.ignoreAll(ImmutableList.<Class<? extends Throwable>>of(exceptionType));
     }
 
@@ -187,8 +179,7 @@ public class MyFluentWait<T> implements Wait<T>
      * @return a self reference
      * @see #ignoreAll(Collection)
      */
-    public MyFluentWait<T> ignoring(Class<? extends Throwable> firstType, Class<? extends Throwable> secondType)
-    {
+    public MyFluentWait<T> ignoring(Class<? extends Throwable> firstType, Class<? extends Throwable> secondType) {
 
         return this.ignoreAll(ImmutableList.of(firstType, secondType));
     }
@@ -210,21 +201,17 @@ public class MyFluentWait<T> implements Wait<T>
      * @throws TimeoutException If the timeout expires.
      */
     @Override
-    public <V> V until(Function<? super T, V> isTrue)
-    {
+    public <V> V until(Function<? super T, V> isTrue) {
         long end = Clock.offset(clock, timeout).millis();
 //        long end = clock.laterBy(timeout.in(MILLISECONDS));
 
         Throwable lastException;
-        while (true)
-        {
+        while (true) {
 //            System.out.printf(">>> MFW trying...\n");
 
-            try
-            {
+            try {
                 V value = isTrue.apply(input);
-                if (value != null && (Boolean.class != value.getClass() || Boolean.TRUE.equals(value)))
-                {
+                if (value != null && (Boolean.class != value.getClass() || Boolean.TRUE.equals(value))) {
 //                    System.out.printf(">>> MFW returning value: %s\n", value.toString());
                     return value;
                 }
@@ -233,17 +220,14 @@ public class MyFluentWait<T> implements Wait<T>
                 // be caused by a false or null value, the last exception is not the
                 // cause of the timeout.
                 lastException = null;
-            }
-            catch (Throwable e)
-            {
+            } catch (Throwable e) {
                 lastException = propagateIfNotIgnored(e);
             }
 
             // Check the timeout after evaluating the function to ensure conditions
             // with a zero timeout can succeed.
 //            if (!clock.isNowBefore(end))
-            if (!(System.currentTimeMillis() < end))
-            {
+            if (!(System.currentTimeMillis() < end)) {
                 String message = messageSupplier != null ? messageSupplier.get() : null;
 
                 String timeoutMessage = String.format("Expected condition failed: %s (tried for %d second(s) with %s interval)",
@@ -253,25 +237,19 @@ public class MyFluentWait<T> implements Wait<T>
                 throw timeoutException(timeoutMessage, lastException);
             }
 
-            try
-            {
+            try {
 //                System.out.printf(">>> MFW sleeping...\n");
                 sleeper.sleep(interval);
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new WebDriverException(e);
             }
         }
     }
 
-    private Throwable propagateIfNotIgnored(Throwable e)
-    {
-        for (Class<? extends Throwable> ignoredException : ignoredExceptions)
-        {
-            if (ignoredException.isInstance(e))
-            {
+    private Throwable propagateIfNotIgnored(Throwable e) {
+        for (Class<? extends Throwable> ignoredException : ignoredExceptions) {
+            if (ignoredException.isInstance(e)) {
                 return e;
             }
         }
@@ -288,8 +266,7 @@ public class MyFluentWait<T> implements Wait<T>
      *                      on a function.
      * @return Nothing will ever be returned; this return type is only specified as a convenience.
      */
-    protected RuntimeException timeoutException(String message, Throwable lastException)
-    {
+    protected RuntimeException timeoutException(String message, Throwable lastException) {
         throw new TimeoutException(message, lastException);
     }
 }

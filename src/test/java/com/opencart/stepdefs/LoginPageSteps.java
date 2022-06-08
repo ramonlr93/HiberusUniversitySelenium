@@ -12,7 +12,7 @@ import org.junit.Assert;
 @Slf4j
 public class LoginPageSteps {
 
-    private LoginPage loginPage;
+    private final LoginPage loginPage;
 
     public LoginPageSteps() {
         loginPage = PagesFactory.getInstance().getLoginPage();

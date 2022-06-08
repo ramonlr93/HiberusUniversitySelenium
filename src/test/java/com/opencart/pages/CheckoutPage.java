@@ -1,13 +1,15 @@
 package com.opencart.pages;
 
-import org.jsoup.Connection;
+import com.opencart.utils.MyFluentWait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutPage extends BasePage {
     public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=checkout/checkout";
+    private final MyFluentWait<WebDriver> wait = new MyFluentWait<>(PagesFactory.getInstance().getDriver());
 
     @FindBy(id = "button-account")
     private WebElement continueWithoutAccountButton;
@@ -27,21 +29,63 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//input[@name='agree']")
     private WebElement acceptTerms;
 
+    @FindBy(xpath = "//input[@name='payment_method' and @value='bank_transfer']")
+    private WebElement paymentTransfer;
+
+    @FindBy(xpath = "//input[@name='payment_method' and @value='cod']")
+    private WebElement paymentCash;
+
     @FindBy(id = "button-payment-method")
     private WebElement paymentButton;
 
     @FindBy(id = "button-confirm")
     private WebElement confirmOrderButton;
 
+    @FindBy(xpath = "//div[@id='content']/h1")
+    private WebElement orderStatus;
+
+    @FindBy(xpath = "//input[@value='register']")
+    private WebElement registerAccount;
+
+    @FindBy(xpath = "//input[@value='guest']")
+    private WebElement guestAccount;
+
+    @FindBy(id = "button-account")
+    private WebElement continueWithAccount;
+
+    @FindBy(id = "button-login")
+    private WebElement continueWithLogin;
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
     // GETTERS & SETTERS
+
     @Override
     public WebElement getPageLoadedTestElement() {
         return continuePaymentButton;
+    }
+
+    public String getOrderStatus() {
+        wait.until(ExpectedConditions.visibilityOf(orderStatus));
+        return orderStatus.getText();
+    }
+
+
+    // register account on checkout
+    public void clickRegisterAccount() {
+        registerAccount.click();
+    }
+
+
+    // guest account on checkout
+    public void clickGuestAccount() {
+        guestAccount.click();
+    }
+
+    public void fillAccountAndBilling() {
+        
     }
 
 
@@ -54,28 +98,35 @@ public class CheckoutPage extends BasePage {
         loginAccountButton.click();
     }
 
-    public void clickContinueButton() {
+    public void clickBillingDetaillsButton() {
         continuePaymentButton.click();
     }
 
-    public void clickShippingAddressButton() {
+    public void clickDeliveryDetailsButton() {
         shippingAddressButton.click();
     }
 
-    public void clickShippingMethodButton() {
+    public void clickDeliveryMethodButton() {
         shippingMethodButton.click();
+    }
+
+    public void clickPaymentMethodButton() {
+        paymentButton.click();
     }
 
     public void clickAcceptTerms() {
         acceptTerms.click();
     }
 
-    public void clickPaymentButton() {
-        paymentButton.click();
-    }
-
     public void clickConfirmOrderButton() {
         confirmOrderButton.click();
+    }
+
+    public void selectPaymentOption(String optSelected) {
+        if (optSelected.equals("Bank Transfer"))
+            paymentTransfer.click();
+        else
+            paymentCash.click();
     }
 
 
