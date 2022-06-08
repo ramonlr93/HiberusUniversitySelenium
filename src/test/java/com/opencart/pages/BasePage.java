@@ -38,6 +38,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//h1/a[text()='Your Store']")
     private WebElement goHome;
 
+    @FindBy(xpath = "//div[@id='cart']/button")
+    private WebElement shoppingCartResumeButton;
+
     BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)

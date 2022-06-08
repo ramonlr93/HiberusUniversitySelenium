@@ -7,6 +7,8 @@ Feature: validate the inventory functionality in OpenCart
     And the user clicks the login button
     And the user clicks go home button
 
+
+    @smoke
     Scenario: The user adds items to the chart
 
 
