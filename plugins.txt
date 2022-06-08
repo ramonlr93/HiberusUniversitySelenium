@@ -1,0 +1,5 @@
+checkstyle:latest // pull the latest version of checkstyle
+cucumber:0.0.2 // pull a specific version
+cucumber-report:3.16.0
+configuration-as-code:latest
+configuration-as-code-support:latest

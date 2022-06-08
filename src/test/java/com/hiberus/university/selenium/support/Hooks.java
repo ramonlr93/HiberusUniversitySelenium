@@ -56,11 +56,17 @@ public class Hooks {
         break;
       default:
         WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        if (isHeadless) {
-          chromeOptions.addArguments("--headless");
+        ChromeOptions options = new ChromeOptions();
+        if (!isHeadless) {
+          options.addArguments("--headless");
         }
-        driver = new ChromeDriver(chromeOptions);
+        options.addArguments("start-maximized");  // open maximized browser
+        options.addArguments("disable-infobars");  // disabling info-bars
+        options.addArguments("--disable-extensions");  // disabling extensions
+        options.addArguments("--disable-gpu");  // applicable for windows OS only
+        options.addArguments("--disable-dev-shm-usage");  // fix limited rsc issues
+        options.addArguments("--no-sandbox"); // pass OS security model
+        driver = new ChromeDriver(options);
     }
     driver.manage().deleteAllCookies();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
