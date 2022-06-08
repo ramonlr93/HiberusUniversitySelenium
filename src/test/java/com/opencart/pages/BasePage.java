@@ -35,6 +35,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//div[@id='top-links']/ul/li[5]")
     private WebElement checkOut;
 
+    @FindBy(xpath = "//h1/a[text()='Your Store']")
+    private WebElement goHome;
+
     BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)
@@ -129,9 +132,7 @@ public abstract class BasePage {
         checkOut.click();
     }
 
-
-
-
-
-
+    public void goHome() {
+        goHome.click();
+    }
 }

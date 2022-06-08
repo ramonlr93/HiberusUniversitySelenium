@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-
 import java.util.UUID;
 
 @Slf4j
@@ -85,10 +84,6 @@ public class RegisterPageSteps {
         Assert.assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
     }
 
-    @Then("the error message shows {string}")
-    public void theErrorMessageShows(String errMsg) {
-        //Assert.assertEquals("Error message is not shown", errMsg,registerPage.isProperErrorMessageDisplayed(field, error));
-    }
 
     @Then("the alert message telling that there's already an account with that email shows up")
     public void theAlertMessageShowsUp() {
@@ -98,6 +93,7 @@ public class RegisterPageSteps {
 
     @Then("the {string} error message shows {string}")
     public void theErrorMessageShows(String field, String error) {
+        registerPage.waitForPageLoad();
         Assert.assertTrue("Error message in " + field + " is not shown", registerPage.isProperErrorMessageDisplayed(field, error));
     }
 }

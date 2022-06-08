@@ -1,5 +1,6 @@
 package com.opencart.pages;
 
+import com.opencart.stepdefs.HomePageSteps;
 import org.openqa.selenium.WebDriver;
 
 public class PagesFactory {
@@ -8,12 +9,14 @@ public class PagesFactory {
 
     private final LoginPage loginPage;
     private final RegisterPage registerPage;
+    private final HomePage homePage;
 
 
     private PagesFactory(WebDriver driver) {
         this.driver = driver;
         loginPage = new LoginPage(driver);
         registerPage = new RegisterPage(driver);
+        homePage = new HomePage(driver);
     }
 
     public static void start(WebDriver driver) {
@@ -34,5 +37,9 @@ public class PagesFactory {
 
     public RegisterPage getRegisterPage() {
         return registerPage;
+    }
+
+    public HomePage getHomePage() {
+        return homePage;
     }
 }

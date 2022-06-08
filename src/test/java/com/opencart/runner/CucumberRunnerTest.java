@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
     "html:target/cucumber-html-report.html",
   },
   glue = {
-    "com.hiberus.university.selenium.stepdefs",
-    "com.hiberus.university.selenium.support"
+    "com.opencart.stepdefs",
+    "com.opencart.support"
   },
   features = {
     "src/test/resources/"

@@ -1,6 +1,7 @@
 package com.opencart.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,10 +16,10 @@ public class RegisterPage extends BasePage {
     private WebElement nameInput;
 
     @FindBy(id = "input-email")
-    private WebElement lastNameInput;
+    private WebElement emailInput;
 
     @FindBy(id = "input-lastname")
-    private WebElement emailInput;
+    private WebElement lastNameInput;
 
     @FindBy(id = "input-telephone")
     private WebElement telephoneInput;
@@ -55,32 +56,26 @@ public class RegisterPage extends BasePage {
     }
 
     public void setName(String value) {
-        if (value.isEmpty()) value = "";
         nameInput.sendKeys(value);
     }
 
     public void setLastName(String value) {
-        if (value.isEmpty()) value = "";
         lastNameInput.sendKeys(value);
     }
 
     public void setEmail(String value) {
-        if (value.isEmpty()) value = "";
         emailInput.sendKeys(value);
     }
 
     public void setPassword(String value) {
-        if (value.isEmpty()) value = "";
         passwordInput.sendKeys(value);
     }
 
     public void setConfirmPassword(String value) {
-        if (value.isEmpty()) value = "";
         passwordInput2.sendKeys(value);
     }
 
     public void setTelephone(String value) {
-        if (value.isEmpty()) value = "";
         telephoneInput.sendKeys(value);
     }
 
@@ -95,9 +90,13 @@ public class RegisterPage extends BasePage {
 
     public boolean isProperErrorMessageDisplayed(String field, String error) {
         for (WebElement elem : inputFields) {
-            WebElement errorMsg = elem.findElement(By.xpath(".//div[@class='text-danger' and contains(text(), '" + field + "')]"));
-            if (errorMsg.getText().equals(error))
-                return true;
+            try {
+                String fieldErrorMsg = elem.findElement(By.xpath("//div[@class='text-danger' and contains(text(), '" + field + "')]")).getText();
+                if (fieldErrorMsg.contains(error))
+                    return true;
+
+            } catch (Exception ignored) {
+            }
         }
         return false;
     }

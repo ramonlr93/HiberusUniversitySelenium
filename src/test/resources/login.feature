@@ -1,4 +1,4 @@
-@login
+@login_test_suite
 Feature: validate login in OpenCart
 
   Background: Navigate to the home page
@@ -14,10 +14,10 @@ Feature: validate login in OpenCart
       | mario@mail.com | 1311     |
 
   @OC-2
-  Scenario Outline: Verify invalid user canot login
+  Scenario Outline: Verify a non created user cannot login
     And the user enters the "<email>" and "<password>"
     When the user clicks the login button
     Then the error message is shown
     Examples:
-      | email          | password |
-      | mario@mail.com | 1311     |
+      | email                | password |
+      | non_created@mail.com | 1311     |

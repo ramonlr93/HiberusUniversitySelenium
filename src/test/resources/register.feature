@@ -1,7 +1,7 @@
-@register
-Feature: validate login in OpenCart
+@register_test_suite
+Feature: validate register in OpenCart
 
-  Background: Navigate to the register
+  Background: Navigate to the register page
     Given the user is on the register page
 
   @OC-3
@@ -68,7 +68,6 @@ Feature: validate login in OpenCart
     Examples:
       | first_name | last_name | email         | phone     | password | message                                     |
       | mario      | ruiz      |               | 355154895 | 1311     | E-Mail Address does not appear to be valid! |
-      | mario      | ruiz      | mariomail.com | 355154895 | 1311     | E-Mail Address does not appear to be valid! |
 
 #  @OC-11
 #  Scenario Outline: Creating an account with invalid email is not allowed
@@ -122,15 +121,16 @@ Feature: validate login in OpenCart
   Scenario Outline: Creating an account with different passwords is not allowed
     And the user enters the name "<first_name>"
     And the user enters the last name "<last_name>"
+    And the user enters the email
     And the user enters the phone number "<phone>"
     And the user enters the password "<password>"
-    And the user enter the confirm password "<password2>"
+    And the user enter the confirm password "<different_password>"
     And the user accepts privacy policy
     When the user clicks the continue button
     Then the "Password" error message shows "<message>"
     Examples:
-      | first_name | last_name | phone     | password | password2 | message                                        |
-      | mario      | ruiz      | 355154895 | 1311     | 1312      | Password confirmation does not match password!
+      | first_name | last_name | phone     | password | different_password | message                                        |
+      | mario      | ruiz      | 355154895 | 1311     | 1312               | Password confirmation does not match password! |
 
   @OC-10
   Scenario Outline: Creating an account with invalid length telephone
