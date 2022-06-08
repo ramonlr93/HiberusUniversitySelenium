@@ -11,7 +11,6 @@ public class LoginPage extends BasePage {
   public static final String PAGE_URL = "http://opencart.abstracta.us/";
   public static final String LOGIN_URL = "https://opencart.abstracta.us/index.php?route=account/login";
   public static final String LOGGED_URL = "https://opencart.abstracta.us/index.php?route=account/account";
-
   public static final String FORGOTTENPASSWORD_URL = "https://opencart.abstracta.us/index.php?route=account/forgotten";
   @FindBy(xpath = "//*[@id=\"top-links\"]/ul/li[2]/a/span[1]")
   private WebElement accountLink;
@@ -39,6 +38,8 @@ public class LoginPage extends BasePage {
   @FindBy(xpath = "//*[@id=\"account-login\"]/div[1]")
   private WebElement confirmationMessage;
 
+  @FindBy(xpath = "//*[@id=\"logo\"]/h1/a")
+  private WebElement yourStoreLink;
 
 
   public LoginPage(WebDriver driver) {
@@ -117,12 +118,21 @@ public class LoginPage extends BasePage {
     usernameInput.click();
     usernameInput.sendKeys(username);
   }
+
+  public void clicOnYourStoreLink(){
+    yourStoreLink.click();
+  }
   public boolean hasUsernamePasswordError() {
     return errorMessage.isDisplayed();
   }
 
   public boolean confirmationForgottenPasswordMessage() {
-    return confirmationMessage.isDisplayed();
+
+    try {
+      return confirmationMessage.isDisplayed();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    }
+    return false;
   }
 
 }

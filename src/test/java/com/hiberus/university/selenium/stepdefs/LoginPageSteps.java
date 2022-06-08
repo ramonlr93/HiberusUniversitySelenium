@@ -49,7 +49,6 @@ public class LoginPageSteps {
     Assert.assertTrue("The user isn't shown an error message",loginPage.hasUsernamePasswordError());
   }
 
-// A PARTIR DE AQUÍ ES LO NUEVO **************************************************************
   @And("the user clicks My account link")
   public void theUserClicksMyAccountLink() {
     PagesFactory pf = PagesFactory.getInstance();
@@ -92,7 +91,6 @@ public class LoginPageSteps {
     //inventoryPage.waitForPageLoad();
 
     String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
-    System.out.println("LA URL ACTUAL ES: " + currentUrl);
     Assert.assertEquals("the URL is not inventory Page", LoginPage.LOGGED_URL, currentUrl);
   }
 
@@ -131,8 +129,14 @@ public class LoginPageSteps {
   @Then("The user should be shown a confirmation message")
   public void theUserShouldBeShownAConfirmationMessage() {
     PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user should be shown an invalid username/password message");
     LoginPage loginPage = pf.getLoginPage();
     Assert.assertTrue("The user isn't shown a confirmation message", loginPage.confirmationForgottenPasswordMessage());
+  }
+
+  @And("the user clicks on Your Store")
+  public void theUserClicksOnYourStore() {
+    PagesFactory pf = PagesFactory.getInstance();
+    LoginPage loginPage = pf.getLoginPage();
+
   }
 }

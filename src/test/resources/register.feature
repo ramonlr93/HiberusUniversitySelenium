@@ -24,3 +24,36 @@ Feature: validate register test suite
       | firstName | lastName | email |  telephone  |  password  | passwordConfirm |
       |           |          |       |             |            |                 |
 
+  @testcase06
+  Scenario Outline: Verify password and confirm password must match
+    And the user provides the mail "<firstName>" and lastName "<lastName>" and email "<email>" and telephone "<telephone>" and password "<password>" and passwordConfirm "<passwordConfirm>"
+    And the user accepts Privacy Policy terms
+    When the user clicks the continue register button
+    Then the user should be shown a password not match error message
+    Examples:
+      | firstName | lastName | email                 |  telephone  |  password  | passwordConfirm |
+      | Laura     |  Del Rio | pruebas22@hotmail.com | 555555555   |  123456    | 111111          |
+
+  @testcase07
+  Scenario Outline: Verify an email already in use can not be registered
+    And the user provides the mail "<firstName>" and lastName "<lastName>" and email "<email>" and telephone "<telephone>" and password "<password>" and passwordConfirm "<passwordConfirm>"
+    And the user accepts Privacy Policy terms
+    When the user clicks the continue register button
+    Then the user should be shown an email already registered error message
+    Examples:
+      | firstName | lastName | email               |  telephone  |  password  | passwordConfirm |
+      | Laura     |  Del Rio | pruebas@hotmail.com | 555555555   |  123456    | 111111          |
+
+  @testcase08
+  Scenario Outline: Verify a user can not register without agreeing privacy policy terms
+    And the user provides the mail "<firstName>" and lastName "<lastName>" and email "<email>" and telephone "<telephone>" and password "<password>" and passwordConfirm "<passwordConfirm>"
+    When the user clicks the continue register button
+    Then the user should be shown a you must agree privacy policy error message
+    Examples:
+      | firstName | lastName | email               |  telephone  |  password  | passwordConfirm |
+      | Laura     |  Del Rio | pruebas@hotmail.com | 555555555   |  123456    | 111111          |
+
+  @testcase09
+  Scenario: Verify the user can clic on already account link
+    When the user clicks the login page link
+    Then the user should go to login page

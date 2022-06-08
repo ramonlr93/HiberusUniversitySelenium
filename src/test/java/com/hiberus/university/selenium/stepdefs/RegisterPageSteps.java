@@ -65,5 +65,42 @@ public class RegisterPageSteps {
         // Aquçi hay mucho código igual es mejor esto validarlo en el otro lado
 
     }
+
+    @Then("the user should be shown a password not match error message")
+    public void theUserShouldBeShownAPasswordNotMatchErrorMessage() {
+        PagesFactory pf = PagesFactory.getInstance();
+        RegisterPage registerPage = pf.getRegisterPage();
+        Assert.assertTrue("The user isn't shown a password not match error", registerPage.hasPasswordNotMatchError());
+     }
+
+
+    @Then("the user should be shown an email already registered error message")
+    public void theUserShouldBeShownAnEmailAlreadyRegisteredErrorMessage() {
+        PagesFactory pf = PagesFactory.getInstance();
+        RegisterPage registerPage = pf.getRegisterPage();
+        Assert.assertTrue("The user isn't shown an E-Mail already registered error message", registerPage.hasEmailAlreadyRegisteredError());
+    }
+
+    @Then("the user should be shown a you must agree privacy policy error message")
+    public void theUserShouldBeShownAYouMustAgreePrivacyPolicyErrorMessage() {
+        PagesFactory pf = PagesFactory.getInstance();
+        RegisterPage registerPage = pf.getRegisterPage();
+        Assert.assertTrue("The user is not shown a Privacy Policy not agreed error message", registerPage.hasPrivacyPolicyNotAgreedError());
+    }
+
+    @When("the user clicks the login page link")
+    public void theUserClicksTheLoginPageLink() {
+        PagesFactory pf = PagesFactory.getInstance();
+        RegisterPage registerPage = pf.getRegisterPage();
+        registerPage.clickOnLoginPageLink();
+    }
+
+    @Then("the user should go to login page")
+    public void theUserShouldGoToLoginPage() {
+        PagesFactory pf = PagesFactory.getInstance();
+        LoginPage loginPage = pf.getLoginPage(); // eSTA NO LA QUITES CUANDOBORRES LAS DOS PRIMERAS ÍNEAS
+        String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
+        Assert.assertEquals("the URL is not inventory Page", LoginPage.LOGIN_URL, currentUrl);
+    }
 }
 
