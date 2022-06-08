@@ -29,6 +29,22 @@ Feature: Validate Inventory test suite
       | ksanabriad@yopmail.com | katherinQA | Sony VAIO  |
 
   @testcase12
+  Scenario Outline: Add a single item in the shopping cart
+    And the user provides the email "<email>"
+    And the user provides the password "<password>"
+    And the user clicks the login button
+    And the user is logged successfully
+    And the user clicks the laptops inventory
+    And the user see the "<laptopName>" in the inventory list
+    When the user adds a "<laptopName>" by clicking the button Add To Cart
+    Then the user see a success message
+    Examples:
+      | email                  | password   | laptopName |
+      | ksanabriad@yopmail.com | katherinQA | Sony VAIO  |
+
+
+  @testcase13
+    @smoke
   Scenario Outline: Add a random laptop in the shopping cart
     And the user provides the email "<email>"
     And the user provides the password "<password>"
@@ -40,3 +56,4 @@ Feature: Validate Inventory test suite
     Examples:
       | email                  | password   | number |
       | ksanabriad@yopmail.com | katherinQA | 1      |
+

@@ -29,6 +29,14 @@ public class LaptopsInventoryPageSteps {
         Assert.assertTrue("This laptop isnt in the inventory list ", laptopsInventoryPage.isLaptopContains(laptopName));
     }
 
+    @When("the user adds a {string} by clicking the button Add To Cart")
+
+
+
+
+
+
+
     @When("the user add {int} random laptops")
     public void addRandomLaptopsToTheCart(int number) {
         laptopsInventoryPage.clickOnRandomLaptop(number);

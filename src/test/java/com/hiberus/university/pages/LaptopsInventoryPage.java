@@ -21,7 +21,6 @@ public class LaptopsInventoryPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
     private WebElement successMessage;
 
-
     LaptopsInventoryPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
