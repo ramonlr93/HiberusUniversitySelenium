@@ -179,7 +179,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public void clickCashOnDeliveryRadioButton(){
-        if(!cashOnDeliveryRadioButton.isSelected()) cashOnDeliveryRadioButton.click();
+        cashOnDeliveryRadioButton.click();
     }
 
     public void clickTermsAndConditionsCheck(){
