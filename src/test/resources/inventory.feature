@@ -1,4 +1,4 @@
-@inventory_test_suite
+@home_test_suite
 Feature: validate the inventory functionality in OpenCart
 
   Background: The user is logged in
@@ -7,8 +7,11 @@ Feature: validate the inventory functionality in OpenCart
     And the user clicks the login button
     And the user clicks go home button
 
+  @OC-13
+  Scenario: the user empties the shipping cart
+    And the user clicks the chart summary button
+    When the user clicks the remove button
+    Then the cart is emptied
 
-    @smoke
-    Scenario: The user adds items to the chart
 
 

@@ -53,7 +53,6 @@ Feature: validate register in OpenCart
       | mario      | a_very_long_and_useless_last_name | 355154895 | 1311     | Last Name must be between 1 and 32 characters! |
 
 
-    # TODO separar en 2 casos de prueba o no
   @OC-6
   Scenario Outline: Creating an account with empty email is not allowed
     And the user enters the name "<first_name>"
@@ -66,23 +65,23 @@ Feature: validate register in OpenCart
     When the user clicks the continue button
     Then the "E-Mail" error message shows "<message>"
     Examples:
-      | first_name | last_name | email         | phone     | password | message                                     |
-      | mario      | ruiz      |               | 355154895 | 1311     | E-Mail Address does not appear to be valid! |
+      | first_name | last_name | email | phone     | password | message                                     |
+      | mario      | ruiz      |       | 355154895 | 1311     | E-Mail Address does not appear to be valid! |
 
-#  @OC-11
-#  Scenario Outline: Creating an account with invalid email is not allowed
-#    And the user enters the name "<first_name>"
-#    And the user enters the last name "<last_name>"
-#    And the user enters the email "<email>"
-#    And the user enters the phone number "<phone>"
-#    And the user enters the password "<password>"
-#    And the user enter the confirm password "<password>"
-#    And the user accepts privacy policy
-#    When the user clicks the continue button
-#    Then the "E-Mail" error message shows "<message>"
-#    Examples:
-#      | first_name | last_name | email         | phone     | password | message                                     |
-#      | mario      | ruiz      | mariomail.com | 355154895 | 1311     | E-Mail Address does not appear to be valid! |
+  @OC-11
+  Scenario Outline: Creating an account with invalid email is not allowed
+    And the user enters the name "<first_name>"
+    And the user enters the last name "<last_name>"
+    And the user enters the email "<email>"
+    And the user enters the phone number "<phone>"
+    And the user enters the password "<password>"
+    And the user enter the confirm password "<password>"
+    And the user accepts privacy policy
+    When the user clicks the continue button
+    Then the "E-Mail" error message shows "<message>"
+    Examples:
+      | first_name | last_name | email         | phone     | password | message                                     |
+      | mario      | ruiz      | mariomail.com | 355154895 | 1311     | E-Mail Address does not appear to be valid! |
 
 
   @OC-7

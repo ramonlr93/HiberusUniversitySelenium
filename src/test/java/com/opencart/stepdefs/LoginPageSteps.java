@@ -43,8 +43,6 @@ public class LoginPageSteps {
 
     @Then("the error message is shown")
     public void theErrorMessageIsShown() {
-        Assert.assertTrue("Error mesagge is NOT shown", loginPage.isErrorMessageDisplayed());
+        Assert.assertTrue("Error message is NOT shown", loginPage.isErrorMessageDisplayed());
     }
-
-
 }

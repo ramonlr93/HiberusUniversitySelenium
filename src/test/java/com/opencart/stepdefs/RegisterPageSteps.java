@@ -85,12 +85,10 @@ public class RegisterPageSteps {
         Assert.assertEquals("Account was created", RegisterPage.PAGE_URL, currentUrl);
     }
 
-
     @Then("the alert message telling that there's already an account with that email shows up")
     public void theAlertMessageShowsUp() {
         Assert.assertTrue("Alert message is not shown", registerPage.isUsedMailAlertDisplayed());
     }
-
 
     @Then("the {string} error message shows {string}")
     public void theErrorMessageShows(String field, String error) {

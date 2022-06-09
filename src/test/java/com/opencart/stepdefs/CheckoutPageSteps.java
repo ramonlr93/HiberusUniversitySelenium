@@ -57,9 +57,9 @@ public class CheckoutPageSteps {
         checkoutPage.clickConfirmOrderButton();
     }
 
-    @Then("the user sees the {string} window")
+    @Then("the user sees the {string} message")
     public void theUserSeesTheWindow(String msg) {
-        Assert.assertEquals("Some errror happened", msg, checkoutPage.getOrderStatus());
+        Assert.assertEquals("Some error happened", msg, checkoutPage.getOrderStatus());
     }
 
 

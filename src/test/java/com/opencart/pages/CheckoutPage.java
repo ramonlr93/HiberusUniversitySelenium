@@ -1,15 +1,12 @@
 package com.opencart.pages;
 
-import com.opencart.utils.MyFluentWait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutPage extends BasePage {
     public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=checkout/checkout";
-    private final MyFluentWait<WebDriver> wait = new MyFluentWait<>(PagesFactory.getInstance().getDriver());
 
     @FindBy(id = "button-account")
     private WebElement continueWithoutAccountButton;
@@ -60,18 +57,21 @@ public class CheckoutPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    // GETTERS & SETTERS
 
+    // GETTERS & SETTERS
     @Override
     public WebElement getPageLoadedTestElement() {
         return continuePaymentButton;
     }
 
     public String getOrderStatus() {
-        wait.until(ExpectedConditions.visibilityOf(orderStatus));
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return orderStatus.getText();
     }
-
 
     // register account on checkout
     public void clickRegisterAccount() {
@@ -82,10 +82,6 @@ public class CheckoutPage extends BasePage {
     // guest account on checkout
     public void clickGuestAccount() {
         guestAccount.click();
-    }
-
-    public void fillAccountAndBilling() {
-        
     }
 
 
@@ -123,11 +119,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public void selectPaymentOption(String optSelected) {
-        if (optSelected.equals("Bank Transfer"))
-            paymentTransfer.click();
-        else
-            paymentCash.click();
+        if (optSelected.equals("Bank Transfer")) paymentTransfer.click();
+        else paymentCash.click();
     }
-
-
 }

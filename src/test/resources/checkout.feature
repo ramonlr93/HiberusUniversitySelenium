@@ -19,7 +19,7 @@ Feature: validate the checkout functionality in OpenCart
     And the user clicks continue to payment
     And the user clicks continue to confirm
     And the user clicks confirm order
-    Then the user sees the "Your order has been placed!" window
+    Then the user sees the "Your order has been placed!" message
     Examples:
       | payment_option   |
       | Cash On Delivery |

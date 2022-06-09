@@ -46,4 +46,5 @@ public class PagesFactory {
     public CheckoutPage getCheckoutPage() {
         return checkoutPage;
     }
+
 }
