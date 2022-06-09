@@ -6,18 +6,19 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-  plugin = {
-    "pretty",
-    "json:target/surefire-reports/cucumber.json",
-    "html:target/cucumber-html-report.html",
-  },
-  glue = {
-    "com.opencart.stepdefs",
-    "com.opencart.support"
-  },
-  features = {
-    "src/test/resources/"
-  }
+        plugin = {
+                "pretty",
+                "html:target/cucumber-reports",
+                "json:target/surefire-reports/cucumber.json",
+                "html:target/cucumber-html-report.html",
+        },
+        glue = {
+                "com.opencart.stepdefs",
+                "com.opencart.support"
+        },
+        features = {
+                "src/test/resources/"
+        }
 )
 public class CucumberRunnerTest {
 }

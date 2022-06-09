@@ -24,8 +24,8 @@ public class HomePageSteps {
     }
 
 
-    @And("the user adds one item to the chart")
-    public void theUserAddsOneItemToTheChart() {
+    @And("the user adds one item to the cart")
+    public void theUserAddsOneItemToTheCart() {
         homePage.addItemToCart(Enums.HomePageItems.product_40);
     }
 
@@ -34,8 +34,8 @@ public class HomePageSteps {
         homePage.goToCheckout();
     }
 
-    @And("the user clicks the chart summary button")
-    public void theUserClicksTheChartSummaryButton() {
+    @And("the user clicks the cart summary button")
+    public void theUserClicksTheCartSummaryButton() {
         homePage.clickDropDownCartButton();
     }
 

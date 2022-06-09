@@ -1,7 +1,6 @@
 package com.opencart.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -89,14 +88,12 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isProperErrorMessageDisplayed(String field, String error) {
-        for (WebElement elem : inputFields) {
-            try {
+        try {
+            for (WebElement elem : inputFields) {
                 String fieldErrorMsg = elem.findElement(By.xpath("//div[@class='text-danger' and contains(text(), '" + field + "')]")).getText();
-                if (fieldErrorMsg.contains(error))
-                    return true;
-
-            } catch (Exception ignored) {
+                if (fieldErrorMsg.contains(error)) return true;
             }
+        } catch (Exception ignored) {
         }
         return false;
     }

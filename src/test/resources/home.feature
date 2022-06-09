@@ -9,7 +9,8 @@ Feature: validate the inventory functionality in OpenCart
 
   @OC-13
   Scenario: the user empties the shopping cart
-    And the user clicks the chart summary button
+    And the user adds one item to the cart
+    And the user clicks the cart summary button
     When the user clicks each of the remove items button
     Then the cart is emptied
 

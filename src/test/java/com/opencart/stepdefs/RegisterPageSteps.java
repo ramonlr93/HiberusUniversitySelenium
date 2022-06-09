@@ -92,7 +92,7 @@ public class RegisterPageSteps {
 
     @Then("the {string} error message shows {string}")
     public void theErrorMessageShows(String field, String error) {
-        registerPage.waitForPageLoad();
+//        registerPage.waitForPageLoad();
         Assert.assertTrue("Error message in " + field + " is not shown", registerPage.isProperErrorMessageDisplayed(field, error));
     }
 }

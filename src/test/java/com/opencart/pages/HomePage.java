@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class HomePage extends BasePage {
     }
 
     public int getNumberOfItemsInCart() {
-        String items = dropDownCartButton.findElement(By.xpath("./descendant::i")).getText();
+        String items = dropDownCartButton.findElement(By.xpath("./descendant::span")).getText();
         return Integer.parseInt(items.substring(0, 1));
     }
 
@@ -52,15 +53,14 @@ public class HomePage extends BasePage {
     }
 
     public void clickDropDownCartButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(dropDownCartButton));
         dropDownCartButton.click();
     }
 
     public void removeElementsFromCart() {
-        try {
-            for (WebElement item : removeFromCart) {
-                item.click();
-            }
-        } catch (Exception ignore) {
+        for (WebElement item : removeFromCart) {
+            item.click();
         }
+
     }
 }
