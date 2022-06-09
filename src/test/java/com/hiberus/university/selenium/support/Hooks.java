@@ -60,13 +60,14 @@ public class Hooks {
         if (!isHeadless) {
           options.addArguments("--headless");
         }
-//        options.addArguments("start-maximized");  // open maximized browser
-//        options.addArguments("disable-infobars");  // disabling info-bars
-//        options.addArguments("--disable-extensions");  // disabling extensions
-//        options.addArguments("--disable-gpu");  // applicable for windows OS only
-//        options.addArguments("--disable-dev-shm-usage");  // fix limited rsc issues
-//        options.addArguments("--no-sandbox"); // pass OS security model
-        options.addArguments("--whitelisted-ips");
+        options.addArguments(
+                "start-maximized", // open maximized browser
+                "disable-infobars", // disabling info-bars
+                "--disable-extensions", // disabling extensions
+                "--disable-dev-shm-usage", // fix limited rsc issues
+                "--no-sandbox", // pass OS security model
+                "--whitelisted-ips"
+        );
         driver = new ChromeDriver(options);
     }
     driver.manage().deleteAllCookies();
