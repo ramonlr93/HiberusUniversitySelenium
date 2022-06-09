@@ -66,6 +66,7 @@ public class Hooks {
         options.addArguments("--disable-gpu");  // applicable for windows OS only
         options.addArguments("--disable-dev-shm-usage");  // fix limited rsc issues
         options.addArguments("--no-sandbox"); // pass OS security model
+        options.addArguments("--whitelisted-ips");
         driver = new ChromeDriver(options);
     }
     driver.manage().deleteAllCookies();
