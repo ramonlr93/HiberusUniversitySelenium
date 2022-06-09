@@ -9,15 +9,17 @@ import org.junit.runner.RunWith;
   publish = true,
   plugin = {
     "pretty",
+    "html:target/cucumber-reports",
     "json:target/surefire-reports/cucumber.json",
     "html:target/cucumber-html-report.html",
   },
   glue = {
-    "com.hiberus.university.selenium.stepdefs",
-    "com.hiberus.university.selenium.support"
+    "com.opencart.stepdefs",
+    "com.opencart.support"
   },
+  tags = "@smoke",
   features = {
-    "src/test/resources/"
+          "src/test/resources/"
   }
 )
 public class CucumberRunnerTest {

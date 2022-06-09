@@ -4,68 +4,54 @@ Feature: Validate home test suite
   Background: Navigate to the Home page
     Given the user is on the Home page
 
-  @testcase07 @smoke
-  Scenario: Add item to the shopping cart
+  @testcase07
+  Scenario: Validate that the user changes the currency from Dollar ($) to Euro (€)
+    And the user visualizes that the currency displayed in the shopping cart is Dollar
+    And the user clicks the Currency button
+    When the user clicks the Euro button
+    Then the user validate that the currency in the shopping cart button is Euro
+
+  @testcase08 @smoke
+  Scenario Outline: Validate that the user adds item to the shopping cart
+    And the user access to MyAccountNavBarButton
+    And the user access to LoginMenu
+    And the user login with "<email>", "<password>"
+    And the user clicks the HomeItemHouse
     And the user adds a single product by clicking AddToCart
     And the user should be shown a success_added_product message
-    Then the user verify that the product info appear in the shopping cart
+    Then the user verify that the product info appear in the shopping cart button
+     Examples:
+      |            email               |   password   |
+      | nubrokakattoi-8879@yopmail.com | hiberusfinal |
 
+  @testcase09
+  Scenario Outline: Validate that the shopping cart information panel is displayed
+    And the user access to MyAccountNavBarButton
+    And the user access to LoginMenu
+    And the user login with "<email>", "<password>"
+    And the user clicks the HomeItemHouse
+    And the user adds a single product by clicking AddToCart
+    And the user should be shown a success_added_product message
+    And the user verify that the product info appear in the shopping cart button
+    When the user clicks on the Shopping Cart button
+    Then the user should be shown a view panel with the info of the product added to the shopping cart
+     Examples:
+      |            email               |   password   |
+      | nubrokakattoi-8879@yopmail.com | hiberusfinal |
 
-#  @testcase07
-#  Scenario: Place multiple items in the shopping cart
-#    And the user adds a "<item>" by clicking 'Add To Cart'
-#    And the user selects
-#      |         item            |
-#      |         Iphone     |
-#      | Macbook |
-#      | Sauce Labs Onesie       |
-#    And the user clicks on the shopping cart
-#    Then there should be "3" items in the shopping cart
-
-
-
-#  @testcase
-#  Scenario Outline: Delete a single item in the sopping cart
-#    And the user provides the username "<username>" and password "<password>"
-#    And the user clicks the login button
-#    And the user adds a "<item>" by clicking 'Add To Cart'
-#    And the user clicks on the shopping cart
-#    And there should be "1" items in the shopping cart
-#    When the user deletes a "<item>" item from shopping cart
-#    Then there should be "0" items in the shopping cart
-#    Examples:
-#      | username      | password     | item                |
-#      | standard_user | secret_sauce | Sauce Labs Backpack |
-
-
-
-# #@testcase06
-# #@TODO
-# # Scenario Outline: Delete an item in the shopping cart
-# #   And the user provides the username "<username>" and password "<password>"
-# #   When the user clicks the login button
-# #   And the user adds a "<item>" by clicking 'Add To Cart'
-# #   And the user clicks on the shopping cart
-# #   Then there should be "1" items in the shopping cart
-# #   Examples:
-# #     | username      | password     | item                |
-# #     | standard_user | secret_sauce | Sauce Labs Backpack |
-#
-
-#
-#
-#
-#
-#
-#
-#
-#
-#  @testcase03
-#  Scenario Outline: validate inventory list size
-#    And the user provides the email "<email>" and password "<password>"
-#    When the user clicks the login button
-#    Then the user see the inventory list with "<items>" size list
-#    Examples:
-#      | username      | password     | items |
-#      | standard_user | secret_sauce | 6     |
-#      Then there should be "1" items in the shopping cart
+  @testcase10 @smoke
+  Scenario Outline: Validate that the user delete item from the shopping cart
+    And the user access to MyAccountNavBarButton
+    And the user access to LoginMenu
+    And the user login with "<email>", "<password>"
+    And the user clicks the HomeItemHouse
+    And the user adds a single product by clicking AddToCart
+    And the user should be shown a success_added_product message
+    And the user verify that the product info appear in the shopping cart button
+    And the user clicks on the Shopping Cart button
+    And the user should be shown a view panel with the info of the product added to the shopping cart
+    When the user clicks on the Delete button
+    Then the user deletes the product from the shopping cart
+     Examples:
+      |            email               |   password   |
+      | nubrokakattoi-8879@yopmail.com | hiberusfinal |

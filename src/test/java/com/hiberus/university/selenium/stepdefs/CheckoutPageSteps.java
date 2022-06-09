@@ -10,17 +10,7 @@ import org.junit.Assert;
 @Slf4j
 public class CheckoutPageSteps {
 
-  @And("the user access to MyAccountNavBarButton and access LoginMenu")
-  public void theUserAccessToMyAccountNavBarButtonAndAccessToLoginMenu() throws InterruptedException {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user access to MyAccountMenu and access to LoginMenu");
-    HomePage homePage = pf.getHomePage();
-    homePage.waitForPageLoad();
-    homePage.clickMyAccountFromMenu();
-    homePage.clickLoginFromMenu();
-  }
-
-  @And("the user is logged in with {string}, {string}")
+  @And("the user login with {string}, {string}")
   public void theUserIsLoggedInWith(String email, String password) throws InterruptedException {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user is logged in");
@@ -54,13 +44,18 @@ public class CheckoutPageSteps {
     Assert.assertTrue(homePage.successAddToCartMessageIsDisplayed());
   }
 
-  @And("the user clicks the CheckoutNavBarButton and navigates to the CheckoutPage")
-  public void theUserClicksTheCheckoutNavBarButtonAndNavigatesToTheCheckoutPage() throws InterruptedException {
-    log.info("The user clicks checkout button and navigates to CheckoutPage");
+  @And("the user clicks the CheckoutNavBarButton")
+  public void theUserClicksTheCheckoutNavBarButton() throws InterruptedException {
+    log.info("The user clicks checkout button");
     PagesFactory pf = PagesFactory.getInstance();
     HomePage homePage = pf.getHomePage();
     homePage.waitForPageLoad();
     homePage.clickCheckoutFromMenu();
+  }
+
+  @And("navigates to the CheckoutPage")
+  public void navigatesToTheCheckoutPage() {
+    log.info("The user navigates to CheckoutPage");
     String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
     Assert.assertEquals("the URL is not 'CheckoutPage' page", CheckoutPage.CHECKOUT_PAGE_URL, currentUrl);
   }
@@ -85,7 +80,7 @@ public class CheckoutPageSteps {
     CheckoutPage checkoutPage = pf.getCheckOutPage();
     checkoutPage.clickDeliveryDetailsContinueButton();
   }
-  
+
   //Delivery Method
   @And("the user complete the Delivery Methods step")
   public void theUserCompleteTheDeliveryMethodsStep() {
@@ -107,31 +102,27 @@ public class CheckoutPageSteps {
   }
 
   //Confirm Order
-  @When("the user Confirm the Order and checkout successfully")
-  public void theUserConfirmTheOrderAndCheckoutSuccessfully() throws InterruptedException {
-    log.info("The user Confirm the Order and checkout successfully");
+  @When("the user Confirm the order")
+  public void theUserConfirmTheOrder() throws InterruptedException {
+    log.info("The user Confirm the Order");
     PagesFactory pf = PagesFactory.getInstance();
     CheckoutPage checkoutPage = pf.getCheckOutPage();
     checkoutPage.waitForPageLoad();
     checkoutPage.clickConfirmOrderButton();
+  }
+
+  @Then("the user Checkout successfully")
+  public void theUserCheckoutSuccessfully() throws InterruptedException {
+    log.info("The user Checkout successfully");
+    PagesFactory pf = PagesFactory.getInstance();
     CheckoutSuccessPage checkoutSuccessPage = pf.getCheckoutSuccessPage();
     checkoutSuccessPage.waitForPageLoad();
     String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
     Assert.assertEquals("the URL is not 'CheckoutSuccessPage' page", CheckoutSuccessPage.CHECKOUT_SUCCESS_PAGE_URL, currentUrl);
   }
-
-  @Then("the user Logout successfully")
-  public void theUserLogoutSuccessfully() throws InterruptedException {
-    PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user Logout successfully");
-    CheckoutSuccessPage checkoutSuccessPage = pf.getCheckoutSuccessPage();
-    checkoutSuccessPage.waitForPageLoad();
-    checkoutSuccessPage.clickMyAccountFromMenu();
-    checkoutSuccessPage.clickLogoutFromMenu();
-    String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
-    Assert.assertEquals("the URL is not 'LogoutPage' page", LogoutPage.LOGOUT_PAGE_URL, currentUrl);
-  }
 }
+
+
 
 
 

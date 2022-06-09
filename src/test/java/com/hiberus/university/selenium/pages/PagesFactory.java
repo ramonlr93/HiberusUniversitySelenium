@@ -12,7 +12,6 @@ public class PagesFactory {
   private final AccountPage accountPage;
   private final CheckoutPage checkOutPage;
   private final LogoutPage logoutPage;
-
   private final CheckoutSuccessPage checkoutSuccessPage;
 
   private PagesFactory(WebDriver driver) {
@@ -55,7 +54,6 @@ public class PagesFactory {
   public LogoutPage getLogoutPage() {
     return logoutPage;
   }
-
   public CheckoutSuccessPage getCheckoutSuccessPage(){
     return checkoutSuccessPage;
   }

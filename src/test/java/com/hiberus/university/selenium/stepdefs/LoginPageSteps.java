@@ -13,12 +13,19 @@ import org.junit.Assert;
 @Slf4j
 public class LoginPageSteps {
 
-  @And("the user access to MyAccountNavBarButton and access to LoginMenu")
-  public void theUserAccessToMyAccountNavBarButtonAndAccessToLoginMenu() {
+  @And("the user access to MyAccountNavBarButton")
+  public void theUserAccessToMyAccountNavBarButton() {
     PagesFactory pf = PagesFactory.getInstance();
-    log.info("The user access to MyAccountNavBarButton and access to LoginMenu");
+    log.info("The user access to MyAccountNavBarButton");
     HomePage homePage = pf.getHomePage();
     homePage.clickMyAccountFromMenu();
+  }
+
+  @And("the user access to LoginMenu")
+  public void theUserAccessToLoginMenu() {
+    PagesFactory pf = PagesFactory.getInstance();
+    log.info("The user  access to LoginMenu");
+    HomePage homePage = pf.getHomePage();
     homePage.clickLoginFromMenu();
   }
 
@@ -76,7 +83,4 @@ public class LoginPageSteps {
     LoginPage loginPage = pf.getLoginPage();
     Assert.assertTrue(loginPage.warningMessageError());
   }
-
-
-
 }

@@ -104,10 +104,10 @@ public class CheckoutPage extends BasePage {
     wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinueButton)).click();
   }
 
-  //Payment Method WeBElements
-  public void paymentMethodCheck() {
-    paymentMethodCheck.click();
-  }
+//  //Payment Method WeBElements
+//  public void paymentMethodCheck() {
+//    paymentMethodCheck.click();
+//  }
 
   public void clickAgreeTermsCondButton() {
     wait.until(ExpectedConditions.elementToBeClickable(agreeContinueButton)).click();

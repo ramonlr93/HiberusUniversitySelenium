@@ -12,7 +12,6 @@ public class CheckoutSuccessPage extends BasePage {
   @FindBy(id = "content")
   private WebElement checkoutSuccessContainer;
 
-
   public CheckoutSuccessPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);

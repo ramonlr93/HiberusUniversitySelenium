@@ -13,7 +13,7 @@ Feature: validate registration test suite
     And the user clicks the Privacy Policy checkButton
     When the user clicks the Continue button
     Then the user register successfully
-    Examples:
+     Examples:
       | firstname | lastname | telephone |     email    |   password   | passwordConfirm |
       |    Jack   |  Sparrow | 123456789 | @yopmail.com | hiberusfinal |   hiberusfinal  |
 
@@ -25,7 +25,7 @@ Feature: validate registration test suite
     And the user provides and confirm the password "<password>", "<passwordConfirm>"
     When the user clicks the Continue button
     Then The user should be shown a Privacy Policy warning message
-    Examples:
+     Examples:
       | firstname | lastname | telephone |     email    |   password   | passwordConfirm |
       |    Jack   |  Sparrow | 123456789 | @yopmail.com | hiberusfinal |   hiberusfinal  |
 
@@ -38,7 +38,7 @@ Feature: validate registration test suite
     And the user clicks the Privacy Policy checkButton
     When the user clicks the Continue button
     Then The user should be shown a Email Address is already registered warning message
-    Examples:
+     Examples:
       | firstname | lastname | telephone |             email              |   password   | passwordConfirm |
       |    Jack   |  Sparrow | 123456789 | nubrokakattoi-8879@yopmail.com | hiberusfinal |   hiberusfinal  |
 
