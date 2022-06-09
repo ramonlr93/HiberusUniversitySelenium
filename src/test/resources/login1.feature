@@ -16,7 +16,7 @@ Feature: Login Test Suite
 
       Examples:
         |         email           | password     |
-        | robertoch1985@gmail.com | 12345        |
+        | robertoch1985@gmail.com | 12345       |
 
       @loginko
     Scenario Outline: Verify a no valid user cant login

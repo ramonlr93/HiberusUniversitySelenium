@@ -6,6 +6,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -68,7 +70,9 @@ public class Hooks {
         log.info("ending test" + scenario.getName());
         if(scenario.isFailed()){
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", scenario.getId());
+            long time = new Date().getTime();
+            String outputName = "screenshot_" + time + ".png";
+            scenario.attach(screenshot, "image/png", outputName);
         }
         driver.close();
     }

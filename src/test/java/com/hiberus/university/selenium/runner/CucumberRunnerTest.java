@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
         glue = {"com.hiberus.university.selenium.stepdefs",
                 "com.hiberus.university.selenium.support"},
         features = {"src/test/resources/"}
+        //tags = "@loginok"
 )
 public class CucumberRunnerTest {
 

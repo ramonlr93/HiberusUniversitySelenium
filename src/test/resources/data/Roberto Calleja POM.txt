@@ -1,0 +1,85 @@
+LoginPage
+	ELEMENTOS
+		usernameInput
+		passwordInput
+		loginButton
+	METODOS
+		clickLogin()
+		enterUsername()
+		enterPassword()
+		messageErrorLogin()
+
+
+RegisterPage
+	ELEMENTOS
+		firstNameInput
+		lastNameInput
+		emailInput
+		telephoneInput
+		passwordInput
+		passwordConfirmInput
+		privacyPolicyButton
+		registerButton
+	METODOS
+		enterFirstName()
+		enterLastName()
+		enterEmail()
+		enterTelephone()
+		enterPassword()
+		enterPasswordConfirm()
+		clickPrivacyPolicy()
+		clickRegister()
+
+
+
+InventoryPage
+	ELEMENTOS
+		addToCartButtonList
+		cartButton
+		deleteItemButton
+		addedItemMessage
+		getCartCount
+	METODOS
+		addItemToCart()
+		clickOnCart()
+		removeItemFromCart()
+		addedItemMessage()
+		getCartCount()
+
+
+
+CartPage
+	ELEMENTOS
+		checkoutButton
+		continueShoppingButton
+		removeFromCartItemButton
+		updateItemCartButton
+		itemQuantityInput
+	METODOS
+		clickChechout()
+		clickContinueShopping()
+		removeItemFromCart()
+		updateItemFromCart()
+		updatedCartMessage()
+
+
+
+CheckoutPage
+	ELEMENTOS
+		firstNameInput
+		lastNameInput
+		addressInput
+		cityInput
+		postcodeInput
+		countrySelectOptions
+		stateSelectOptions
+		continuebutton
+	METODOS
+		enterFirstName()
+		enterLastName()
+		enterAddress()
+		enterCity()
+		enterPostcode()
+		enterCountrySelect()
+		enterStateSelect()
+		clickContinue()
