@@ -33,14 +33,18 @@ public class LoginPageSteps {
     }
 
     @And("the user fills the password {string}")
-    public void theUserFillsThePassword(String password) { lp.enterPassword(password);}
+    public void theUserFillsThePassword(String password) {
+        lp.enterPassword(password);
+    }
 
     @When("the user clicks on login button")
-    public void theUserClicksTheLoginButton() { lp.clickLogin(); }
+    public void theUserClicksTheLoginButton() {
+        lp.clickLogin();
+    }
 
     @Then("the user is logged")
     public void theUserIsLogged() {
-        Assert.assertEquals("Isn't the correct URL"
+        Assert.assertEquals("Is not the correct URL"
                 , AccountPage.PAGE_URL
                 , pf.getDriver().getCurrentUrl());
     }

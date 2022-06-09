@@ -17,9 +17,9 @@ import org.junit.runner.RunWith;
                 "com.opencart.practicafinal.stepdefs",
                 "com.opencart.practicafinal.support"
         },
-        features = {
-                "src/test/resources/"
-        }
+        features = {"src/test/resources/"},
+
+        tags = "@smoke"
 )
 public class CucumberRunnerTest {
 }

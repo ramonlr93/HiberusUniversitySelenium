@@ -1,7 +1,6 @@
 package com.opencart.practicafinal.pages;
 
 
-
 import com.opencart.practicafinal.utils.MyFluentWait;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
@@ -25,6 +24,7 @@ abstract class AbstractPage {
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
+
     public abstract WebElement getPageLoadedTestElement();
 
     protected WebDriver getDriver() {

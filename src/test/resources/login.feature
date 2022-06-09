@@ -18,24 +18,25 @@ Feature: Login test suite
       | mail                 | password  |
       | manape79@hotmail.com | Manape195 |
 
+   @smoke
   @testcase-2
-  Scenario Outline: Verify invalid login
+  Scenario Outline: Verify invalid mail
     And the user fills the mail "<mail>"
     And the user fills the password "<password>"
     When the user clicks on login button
     Then the error message is shown
 
     Examples:
-      | mail                  | password  |
-      | manape7@hotmail.com   | Manape195 |
+      | mail                | password  |
+      | manape7@hotmail.com | Manape195 |
 
   @testcase-3
-  Scenario Outline: Verify invalid login
+  Scenario Outline: Verify invalid password
     And the user fills the mail "<mail>"
     And the user fills the password "<password>"
     When the user clicks on login button
     Then the error message is shown
 
     Examples:
-      | mail                  | password  |
-      | manape79@hotmail.com  | Manape19 |
+      | mail                 | password |
+      | manape79@hotmail.com | Manape19 |

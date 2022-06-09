@@ -41,7 +41,7 @@ public class RegisterPageSteps {
     public void theUserProvidesThePass(String password) { registerPage.enterPassword(password);
     }
 
-    @And("the user provides the confirm {string}")
+    @And("the user clicks the confirm {string}")
     public void theUserProvidesTheConfirm(String confirm) { registerPage.enterConfirm(confirm);
     }
 

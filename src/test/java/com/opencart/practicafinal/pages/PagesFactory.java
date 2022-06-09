@@ -20,9 +20,9 @@ public class PagesFactory {
         this.driver = driver;
 
         homePage = new HomePage(driver);
-        loginPage = new LoginPage(driver);
         basePage = new BasePage(driver);
         accountPage = new AccountPage(driver);
+        loginPage = new LoginPage(driver);
         registerPage = new RegisterPage(driver);
         logoutPage = new LogoutPage(driver);
     }
