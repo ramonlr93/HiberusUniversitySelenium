@@ -7,7 +7,7 @@ pipeline {
         }
 
     stages {
-        stage ('Running Tests') {
+        stage ('Directory') {
             steps {
                sh "ls -la"
             }
@@ -20,7 +20,7 @@ pipeline {
 //                          sortingMethod: 'ALPHABETICAL'
 //             }
 //         }
-        stage ('stage 1') {
+        stage ('Running All tests') {
             steps{
                 sh "mvn clean"
             }
