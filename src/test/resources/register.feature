@@ -13,7 +13,7 @@ Feature: validate register test suite
     Then the user is registered successfully
     Examples:
       | firstName | lastName | email                 |  telephone  |  password  | passwordConfirm |
-      | Laura     |  Del Rio | pruebas17@hotmail.com | 555555555   |  123456    | 123456          |
+      | Laura     |  Del Rio | pruebas19@hotmail.com | 555555555   |  123456    | 123456          |
 
   @testcase02
   Scenario Outline: Verify invalid data cannot register
