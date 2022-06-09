@@ -53,6 +53,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//input[contains(@name, 'agree')]")
     private WebElement termsAndConditions;
 
+    @FindBy(id = "button-payment-method")
+    private WebElement paymentMethodButton;
+
     @FindBy(id = "button-confirm")
     private WebElement confirm;
 
@@ -81,10 +84,6 @@ public class CheckoutPage extends BasePage {
         selectOption.selectByValue(region);
     }
 
-    public void regionSelection(){
-        click(regionSelect);
-    }
-
     public void clickAddressContinueButton(){
         click(addressContinueButton);
     }
@@ -101,6 +100,9 @@ public class CheckoutPage extends BasePage {
         click(addressContinueButton);
     }
 
+    public void clickPaymentMethodButton() {
+        click(paymentMethodButton);
+    }
     public void clickConfirm() {
         click(confirm);
     }
