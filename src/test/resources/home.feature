@@ -14,5 +14,9 @@ Feature: validate the inventory functionality in OpenCart
     When the user clicks each of the remove items button
     Then the cart is emptied
 
+  @OC-14
+  Scenario: the user adds one item to the shopping cart
+    When the user adds one item to the cart
+    Then the cart has 1 item in it
 
 

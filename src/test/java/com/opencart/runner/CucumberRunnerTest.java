@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
                 "com.opencart.stepdefs",
                 "com.opencart.support"
         },
-        tags = "@smoke",
+//        tags = "@smoke",
         features = {
                 "src/test/resources/"
         }

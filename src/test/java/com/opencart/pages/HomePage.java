@@ -61,6 +61,7 @@ public class HomePage extends BasePage {
         for (WebElement item : removeFromCart) {
             item.click();
         }
-
     }
+
+
 }

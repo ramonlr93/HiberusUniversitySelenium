@@ -49,5 +49,8 @@ public class HomePageSteps {
         Assert.assertEquals("Error some items weren't removed", 0, homePage.getNumberOfItemsInCart());
     }
 
-
+    @Then("the cart has {int} item in it")
+    public void theCartHasItemInIt(int nItems) {
+        Assert.assertEquals("Error some items weren't removed", nItems, homePage.getNumberOfItemsInCart());
+    }
 }

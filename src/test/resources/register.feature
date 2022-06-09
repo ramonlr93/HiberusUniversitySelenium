@@ -35,7 +35,6 @@ Feature: validate register in OpenCart
       |                                   | ruiz      | 355154895 | 1311     | First Name must be between 1 and 32 characters! |
       | a_very_long_and_useless_user_name | ruiz      | 355154895 | 1311     | First Name must be between 1 and 32 characters! |
 
-
   @OC-5
   Scenario Outline: Creating an account with invalid lenght last name is not allowed
     And the user enters the name "<first_name>"
@@ -51,7 +50,6 @@ Feature: validate register in OpenCart
       | first_name | last_name                         | phone     | password | message                                        |
       | mario      |                                   | 355154895 | 1311     | Last Name must be between 1 and 32 characters! |
       | mario      | a_very_long_and_useless_last_name | 355154895 | 1311     | Last Name must be between 1 and 32 characters! |
-
 
   @OC-6
   Scenario Outline: Creating an account with empty email is not allowed
@@ -83,7 +81,6 @@ Feature: validate register in OpenCart
     Examples:
       | first_name | last_name | email          | phone     | password |
       | mario      | ruiz      | mario@mail.com | 355154895 | 1311     |
-
 
   @OC-8
   Scenario Outline: Creating an account with invalid length password is not allowed
