@@ -61,6 +61,7 @@ public class Hooks {
           options.addArguments("--headless");
         }
         options.addArguments(
+                "--window-size=1920,1200",
                 "start-maximized", // open maximized browser
                 "disable-infobars", // disabling info-bars
                 "--disable-extensions", // disabling extensions
