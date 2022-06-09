@@ -83,16 +83,15 @@ public class Hooks {
   @After()
   public void after(Scenario scenario) {
     log.info("ending " + scenario.getName());
-    try {
-      PagesFactory.getInstance().getHomePage().cleanCartProducts();
-    } catch (Exception ignored) { }
 
     if (scenario.isFailed()) {
       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-      long time = new Date().getTime();
-      String outputName = "screenshot_" + time + ".png";
-      scenario.attach(screenshot, "image/png", outputName);
+      scenario.attach(screenshot, "image/png", "SCREENSHOT");
     }
+
+    try {
+      PagesFactory.getInstance().getHomePage().cleanCartProducts();
+    } catch (Exception ignored) { }
     driver.close();
   }
 }
