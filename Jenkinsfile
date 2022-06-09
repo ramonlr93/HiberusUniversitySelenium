@@ -22,7 +22,7 @@ pipeline {
 //         }
         stage ('Running All tests') {
             steps{
-                sh "mvn clean test"
+                sh "mvn clean test -Dcucumber.filter.tags=\"@pr-01\""
             }
         }
     }
