@@ -133,19 +133,22 @@ public class HomePage extends BasePage {
             wait.until(ExpectedConditions.visibilityOf(cartProducts.get(0)));
     }
 
-    public void cleanCartProducts() throws InterruptedException {
+    public void cleanCartProducts() {
         displayCart();
         // CLEANING THE PRODUCTS FROM CART
-        for (int i = 0; i < cartProducts.size(); i++) {
-            Thread.sleep(200);
-            CartProduct cartProduct = getCartProduct(getCartProductName(cartProducts.get(0)).getText());
-            cartProduct.deleteFromCart();
+
+        while (numberCartItems() > 0) {
+            try {
+                CartProduct cartProduct = getCartProduct(getCartProductName(cartProducts.get(0)).getText());
+                cartProduct.deleteFromCart();
+            } catch (Exception ignored) { }
+
             displayCart();
         }
     }
 
     public int numberCartItems()  {
-        return Integer.parseInt(cart.getText().split(" ")[0]);
+        return Integer.parseInt(wait.until(ExpectedConditions.visibilityOf(cart)).getText().split(" ")[0]);
     }
 
     public double totalPriceCart()  {
