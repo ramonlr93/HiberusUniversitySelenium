@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.hiberus.university.runner.CucumberRunnerTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 76.445 s <<< FAILURE! - in com.hiberus.university.runner.CucumberRunnerTest
+The user have a success order(Validate checkout test suite)  Time elapsed: 13.721 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null
+

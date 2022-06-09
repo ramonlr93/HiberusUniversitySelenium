@@ -70,7 +70,7 @@ public class RegisterPage extends AbstractPage {
         return continueButton;
     }
 
-    public void enterFirstName(String firstName) {
+       public void enterFirstName(String firstName) {
         firstNameInput.clear();
         firstNameInput.click();
         firstNameInput.sendKeys(firstName);

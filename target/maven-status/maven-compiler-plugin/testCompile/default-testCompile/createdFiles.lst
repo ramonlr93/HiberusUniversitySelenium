@@ -1,0 +1,15 @@
+com\hiberus\university\support\Hooks.class
+com\hiberus\university\pages\LaptopsInventoryPage.class
+com\hiberus\university\runner\CucumberRunnerTest.class
+com\hiberus\university\utils\MyFluentWait.class
+com\hiberus\university\utils\Flags.class
+com\hiberus\university\pages\AbstractPage.class
+com\hiberus\university\stepdefs\LaptopsInventoryPageSteps.class
+com\hiberus\university\pages\AccountPage.class
+com\hiberus\university\pages\RegisterPage.class
+com\hiberus\university\pages\PagesFactory.class
+com\hiberus\university\pages\CheckoutPage.class
+com\hiberus\university\stepdefs\LoginPageSteps.class
+com\hiberus\university\pages\LoginPage.class
+com\hiberus\university\stepdefs\CheckoutPageSteps.class
+com\hiberus\university\stepdefs\RegisterPageSteps.class

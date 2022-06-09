@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports (no 1) - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+        <th>Number</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Final test project</td>
+        <td>1</td>
+      <td>09 Jun 2022, 21:21</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.clickAgreeTerms()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.clickBillingContinueButton()</td>
+              <td>1</td>
+              <td class="duration" data-value="16058100">0.016</td>
+              <td class="duration" data-value="16058100">0.016</td>
+              <td class="duration" data-value="16058100">0.016</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.clickConfirmOrderContinueButton()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.clickDeliveryDetailsContinueButton()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.clickDeliveryMethodContinueButton()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.clickPaymentContinueButton()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.CheckoutPageSteps.successOrderMessageDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.addRandomLaptopsToTheCart(int)</td>
+              <td>3</td>
+              <td class="duration" data-value="89017700">0.089</td>
+              <td class="duration" data-value="89017700">0.093</td>
+              <td class="duration" data-value="267053100">0.267</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.clickCheckoutButton()</td>
+              <td>2</td>
+              <td class="duration" data-value="3684969300">3.684</td>
+              <td class="duration" data-value="3684969300">3.686</td>
+              <td class="duration" data-value="7369938600">7.369</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.clickLaptopsInventory()</td>
+              <td>5</td>
+              <td class="duration" data-value="1931630240">1.931</td>
+              <td class="duration" data-value="1931630240">2.085</td>
+              <td class="duration" data-value="9658151200">9.658</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.clicksShoppingCart()</td>
+              <td>2</td>
+              <td class="duration" data-value="2074473050">2.074</td>
+              <td class="duration" data-value="2074473050">2.077</td>
+              <td class="duration" data-value="4148946100">4.148</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.inventoryItemContains(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="105327000">0.105</td>
+              <td class="duration" data-value="105327000">0.105</td>
+              <td class="duration" data-value="105327000">0.105</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.inventoryLaptopsNumber()</td>
+              <td>1</td>
+              <td class="duration" data-value="13333200">0.013</td>
+              <td class="duration" data-value="13333200">0.013</td>
+              <td class="duration" data-value="13333200">0.013</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.successMessageDisplayed()</td>
+              <td>3</td>
+              <td class="duration" data-value="270477200">0.270</td>
+              <td class="duration" data-value="270477200">0.280</td>
+              <td class="duration" data-value="811431600">0.811</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LaptopsInventoryPageSteps.theUserInCheckoutPage()</td>
+              <td>2</td>
+              <td class="duration" data-value="2002420700">2.002</td>
+              <td class="duration" data-value="2002420700">2.002</td>
+              <td class="duration" data-value="4004841400">4.004</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.AlertConfirmationLinkDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="30313900">0.030</td>
+              <td class="duration" data-value="30313900">0.030</td>
+              <td class="duration" data-value="30313900">0.030</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.ErrorMessageDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="32835400">0.032</td>
+              <td class="duration" data-value="32835400">0.032</td>
+              <td class="duration" data-value="32835400">0.032</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.theUserClickContinueButton()</td>
+              <td>1</td>
+              <td class="duration" data-value="505966500">0.505</td>
+              <td class="duration" data-value="505966500">0.505</td>
+              <td class="duration" data-value="505966500">0.505</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.theUserClickLink()</td>
+              <td>1</td>
+              <td class="duration" data-value="313807600">0.313</td>
+              <td class="duration" data-value="313807600">0.313</td>
+              <td class="duration" data-value="313807600">0.313</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.theUserClickLoginButton()</td>
+              <td>7</td>
+              <td class="duration" data-value="586861657">0.586</td>
+              <td class="duration" data-value="586861657">0.697</td>
+              <td class="duration" data-value="4108031600">4.108</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.theUserIsLogged()</td>
+              <td>6</td>
+              <td class="duration" data-value="4325716">0.004</td>
+              <td class="duration" data-value="4325716">0.005</td>
+              <td class="duration" data-value="25954300">0.025</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.LoginPageSteps.userInTheLogin()</td>
+              <td>8</td>
+              <td class="duration" data-value="1796682012">1.796</td>
+              <td class="duration" data-value="1796682012">1.816</td>
+              <td class="duration" data-value="14373456100">14.373</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.ErrorMessageDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="95829700">0.095</td>
+              <td class="duration" data-value="95829700">0.095</td>
+              <td class="duration" data-value="95829700">0.095</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.alertEmailAlreadyUsedDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="31963600">0.031</td>
+              <td class="duration" data-value="31963600">0.031</td>
+              <td class="duration" data-value="31963600">0.031</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.alertPasswordUnmatchPasswordConf()</td>
+              <td>1</td>
+              <td class="duration" data-value="30170300">0.030</td>
+              <td class="duration" data-value="30170300">0.030</td>
+              <td class="duration" data-value="30170300">0.030</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.clickContinueButton()</td>
+              <td>6</td>
+              <td class="duration" data-value="562523483">0.562</td>
+              <td class="duration" data-value="562523483">1.832</td>
+              <td class="duration" data-value="3375140900">3.375</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.clickPrivacyPolicy()</td>
+              <td>5</td>
+              <td class="duration" data-value="38873660">0.038</td>
+              <td class="duration" data-value="38873660">0.042</td>
+              <td class="duration" data-value="194368300">0.194</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.enterEmail(java.lang.String)</td>
+              <td>11</td>
+              <td class="duration" data-value="107880927">0.107</td>
+              <td class="duration" data-value="107880927">0.115</td>
+              <td class="duration" data-value="1186690200">1.186</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.enterPassword(java.lang.String)</td>
+              <td>8</td>
+              <td class="duration" data-value="96423662">0.096</td>
+              <td class="duration" data-value="96423662">0.101</td>
+              <td class="duration" data-value="771389300">0.771</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.enterPasswordConfirm(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="92647000">0.092</td>
+              <td class="duration" data-value="92647000">0.092</td>
+              <td class="duration" data-value="92647000">0.092</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.errorEmailInvalidDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="31934600">0.031</td>
+              <td class="duration" data-value="31934600">0.031</td>
+              <td class="duration" data-value="31934600">0.031</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.fillInformationEmailRand(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="581442900">0.581</td>
+              <td class="duration" data-value="581442900">0.581</td>
+              <td class="duration" data-value="581442900">0.581</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.fillRegisterInformationEmail(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="533593500">0.533</td>
+              <td class="duration" data-value="533593500">0.533</td>
+              <td class="duration" data-value="533593500">0.533</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.subNewsletter()</td>
+              <td>1</td>
+              <td class="duration" data-value="47681700">0.047</td>
+              <td class="duration" data-value="47681700">0.047</td>
+              <td class="duration" data-value="47681700">0.047</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.theUserIsRegistered()</td>
+              <td>1</td>
+              <td class="duration" data-value="6836600">0.006</td>
+              <td class="duration" data-value="6836600">0.006</td>
+              <td class="duration" data-value="6836600">0.006</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.userInTheRegisterPage()</td>
+              <td>6</td>
+              <td class="duration" data-value="1910677100">1.910</td>
+              <td class="duration" data-value="1910677100">2.274</td>
+              <td class="duration" data-value="11464062600">11.464</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.stepdefs.RegisterPageSteps.warningAgreePolicyDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="25536200">0.025</td>
+              <td class="duration" data-value="25536200">0.025</td>
+              <td class="duration" data-value="25536200">0.025</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.support.Hooks.after(io.cucumber.java.Scenario)</td>
+              <td>14</td>
+              <td class="duration" data-value="116149285">0.116</td>
+              <td class="duration" data-value="116149285">0.283</td>
+              <td class="duration" data-value="1626090000">1.626</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.hiberus.university.support.Hooks.before(io.cucumber.java.Scenario)</td>
+              <td>14</td>
+              <td class="duration" data-value="708226014">0.708</td>
+              <td class="duration" data-value="708226014">1.188</td>
+              <td class="duration" data-value="9915164200">9.915</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>39</td>
+            <td>125</td>
+            <td class="duration">0.606</td>
+            <td class="duration">14.373</td>
+            <td class="duration">1:15.795</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>

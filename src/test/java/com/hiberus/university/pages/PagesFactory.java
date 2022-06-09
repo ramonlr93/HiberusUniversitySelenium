@@ -10,7 +10,6 @@ public class PagesFactory {
     private final LoginPage loginPage;
     private final AccountPage accountPage;
     private final LaptopsInventoryPage homePage;
-    private final CartPage cartPage;
     private final CheckoutPage checkoutPage;
 
     public PagesFactory(WebDriver driver) {
@@ -21,7 +20,6 @@ public class PagesFactory {
         loginPage = new LoginPage(driver);
         accountPage = new AccountPage(driver);
         homePage = new LaptopsInventoryPage(driver);
-        cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
 
     }
@@ -54,9 +52,6 @@ public class PagesFactory {
         return homePage;
     }
 
-    public CartPage getCartPage() {
-        return cartPage;
-    }
     public CheckoutPage getCheckoutPage() {
         return checkoutPage;
     }
