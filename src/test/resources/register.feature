@@ -18,8 +18,9 @@ Feature: Login test suite
     Then the user should be shown and invalid message
 
     Examples:
-      | firstName | lastName | email               | telephone | password |
-      | flor      | qa       | flor.qa@yopmail.com | 612345678 | 123456   |
+      | firstName | lastName | email                | telephone | password |
+      | flor      | qa       | flor.qa1@yopmail.com | 612345678 | 123456   |
+      | flor      | qa       | flor.qa@yopmail.com  | 612345678 | 123456   |
 
   @testcase02
   Scenario Outline: Verify valid user can not register, missing checked checkbox
