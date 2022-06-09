@@ -30,8 +30,14 @@ pipeline {
     post {
         always {
             cucumber buildStatus: 'UNSTABLE',
-                         fileIncludePattern: "**/cucumber.json",
-                         jsonReportDirectory: 'target'
+                    failedFeaturesNumber: 100,
+                    failedScenariosNumber: 100,
+                    skippedStepsNumber: 100,
+                    failedStepsNumber: 100,
+                    reportTitle: 'My report',
+                    fileIncludePattern: '**/cucumber.json',
+                    sortingMethod: 'ALPHABETICAL',
+                    trendsLimit: 100
         }
     }
 }
