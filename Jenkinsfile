@@ -16,7 +16,7 @@ pipeline {
 //             steps {
 //                 cucumber jsonReportDirectory: 'alayans-server/build',
 //                          reportTitle: 'Alayans report',
-//                          fileIncludePattern: "**/cucumber.json",
+//                          fileIncludePattern: "**/cucumber-report.json",
 //                          sortingMethod: 'ALPHABETICAL'
 //             }
 //         }
@@ -25,13 +25,13 @@ pipeline {
                 sh "mvn clean test -Dcucumber.filter.tags=\"@smoke\""
             }
         }
+    }
 
-        stage ('Cucumber Report') {
-            steps {
-                cucumber buildStatus: 'UNSTABLE',
-                            fileIncludePattern: "**/cucumber.json",
-                            jsonReportDirectory: 'target'
-            }
+    post {
+        always {
+            cucumber buildStatus: 'UNSTABLE',
+                         fileIncludePattern: "**/cucumber.json",
+                         jsonReportDirectory: 'target'
         }
     }
 }
