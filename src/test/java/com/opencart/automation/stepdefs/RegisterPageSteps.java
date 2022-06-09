@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class RegisterPageSteps {
 
     WebDriver driver;

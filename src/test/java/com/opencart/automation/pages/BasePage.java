@@ -19,11 +19,8 @@ import org.openqa.selenium.support.ui.Wait;
 
 @Slf4j
 public abstract class BasePage {
-
-
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
-
 
     BasePage(WebDriver driver) {
         this.driver = driver;

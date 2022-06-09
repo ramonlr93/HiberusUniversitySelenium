@@ -14,7 +14,7 @@ Feature: validate register test suite
     Then user should see the success message
     Examples:
       | firstName | lastName | email                     | telephone | password  |
-      | Jodie     | Foster   | jjooddiieE604@game4hr.com | 999999999 | Caviko609 |
+      | Jodie     | Foster   | jodie10804@game4hr.com | 999999999 | Caviko609 |
 
   @testcase02
   Scenario Outline: validate already registered account
