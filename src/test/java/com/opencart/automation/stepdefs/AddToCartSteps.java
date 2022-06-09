@@ -17,11 +17,11 @@ public class AddToCartSteps {
 
     private final PagesFactory pf = PagesFactory.getInstance();
     private static HomePage homePage;
-    private MyAccountPage myAccountPage;
+    private final MyAccountPage myAccountPage;
     private final WebDriver driver = pf.getDriver();
 
     public AddToCartSteps() {
-
+        myAccountPage = PagesFactory.getInstance().getMyAccountPage();
         homePage = PagesFactory.getInstance().getHomePage();
     }
 
