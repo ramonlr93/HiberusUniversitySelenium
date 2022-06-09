@@ -1,27 +1,16 @@
 package com.hiberus.university.selenium.utils;
 
-// Licensed to the Software Freedom Conservancy (SFC) under one
-// or more contributor license agreements.  See the NOTICE file
-// distributed with this work for additional information
-// regarding copyright ownership.  The SFC licenses this file
-// to you under the Apache License, Version 2.0 (the
-// "License"); you may not use this file except in compliance
-// with the License.  You may obtain a copy of the License at
-//
-//   http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-// KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations
-// under the License.
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.Wait;
+
 import java.time.Clock;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -30,43 +19,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.ui.Sleeper;
-import org.openqa.selenium.support.ui.Wait;
 
-/**
- * An implementation of the {@link Wait} interface that may have its timeout and polling interval
- * configured on the fly.
- * <p>
- * <p>
- * Each FluentWait instance defines the maximum amount of time to wait for a condition, as well as
- * the frequency with which to check the condition. Furthermore, the user may configure the wait to
- * ignore specific types of exceptions whilst waiting, such as
- * {@link org.openqa.selenium.NoSuchElementException NoSuchElementExceptions} when searching for an
- * element on the page.
- * <p>
- * <p>
- * Sample usage: <pre>
- *   // Waiting 30 seconds for an element to be present on the page, checking
- *   // for its presence once every 5 seconds.
- *   Wait&lt;WebDriver&gt; wait = new FluentWait&lt;WebDriver&gt;(driver)
- *       .withTimeout(30, SECONDS)
- *       .pollingEvery(5, SECONDS)
- *       .ignoring(NoSuchElementException.class);
- * <p>
- *   WebElement foo = wait.until(new Function&lt;WebDriver, WebElement&gt;() {
- *     public WebElement apply(WebDriver driver) {
- *       return driver.findElement(By.id("foo"));
- *     }
- *   });
- * </pre>
- * <p>
- * <p>
- * <em>This class makes no thread safety guarantees.</em>
- *
- * @param <T> The input type for each condition used with this instance.
- */
+import static com.google.common.base.Preconditions.checkNotNull;
+
+
 public class MyFluentWait<T> implements Wait<T>
 {
 
@@ -293,3 +249,5 @@ public class MyFluentWait<T> implements Wait<T>
         throw new TimeoutException(message, lastException);
     }
 }
+
+

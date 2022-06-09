@@ -1,11 +1,16 @@
 package com.hiberus.university.selenium.utils;
 
+
+import static org.openqa.selenium.remote.BrowserType.CHROME;
+
 public class Flags {
 
   private static final String BROWSER = "browser";
   private static final String HEADLESS = "headless";
-  private final String browser = System.getProperty(BROWSER);
+  private static final String DEFAULTBROWSER = CHROME;
+  private final String browser = System.getProperty(BROWSER, DEFAULTBROWSER);
   private final boolean isHeadless = this.parseBoolean(System.getProperty(HEADLESS));
+
   private static Flags instance;
 
   private boolean parseBoolean(String string) {
@@ -14,7 +19,8 @@ public class Flags {
     return (result.equals("true") || result.equals("false")) && Boolean.parseBoolean(result);
   }
 
-  private Flags() {
+  private Flags(){
+
   }
 
   public static Flags getInstance() {
@@ -24,11 +30,13 @@ public class Flags {
     return instance;
   }
 
-  public boolean isHeadless() {
+  public boolean isHeadless(){
     return this.isHeadless;
   }
 
-  public String getBrowser() {
+  public String getBrowser(){
     return this.browser;
   }
+
 }
+

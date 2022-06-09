@@ -1,60 +1,56 @@
 package com.hiberus.university.selenium.pages;
 
-import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-@Slf4j
-public class LoginPage extends BasePage {
+
+public class LoginPage extends AbstractPage{
+
   public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/login";
 
   @FindBy(id = "input-email")
-  private WebElement emailInput;
+  private WebElement mailInput;
 
   @FindBy(id = "input-password")
   private WebElement passwordInput;
 
-  @FindBy(xpath = "//input[@class='btn btn-primary']")
-  private WebElement loginInput;
+  @FindBy(xpath = "//input[contains(@value, 'Login')]")
+  private WebElement loginButton;
 
-  @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
-  private WebElement errorMessage;
+  @FindBy(className = "alert")
+  private WebElement alert;
 
-
-  public LoginPage(WebDriver driver) {
+  LoginPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
   }
 
   @Override
   public WebElement getPageLoadedTestElement() {
-    return loginInput;
+    return null;
   }
 
-  public void clickLogin() {
-    log.info("Logging in...");
-    try {
-      loginInput.click();
-    } catch (org.openqa.selenium.TimeoutException e) {
-      log.info("Timeout clicking login: " + e.getClass().getSimpleName());
+  public void enterEmail(String mail){
+    wait.until(ExpectedConditions.visibilityOf(mailInput)).sendKeys(mail);
+  }
 
-    } catch (Exception e) {
-      log.info("Clicking login, caught exception, type=" + e.getClass().getSimpleName());
+  public void enterPassword(String password){
+    wait.until(ExpectedConditions.visibilityOf(passwordInput)).sendKeys(password);
+  }
+
+  public void clickLogin(){
+    wait.until(ExpectedConditions.elementToBeClickable(loginButton)).submit();
+  }
+
+  public boolean isAlertVisible(){
+    try{
+      return wait.until(ExpectedConditions.visibilityOf(alert)).isDisplayed();
+    } catch (NoSuchElementException ns){
+      return false;
     }
   }
 
-  public void enterEmail(String email) {
-    emailInput.click();
-    emailInput.sendKeys(email);
-  }
-  public void enterPassword(String password) {
-    passwordInput.click();
-    passwordInput.sendKeys(password);
-  }
-
-  public boolean hasUsernamePasswordError() {
-    return errorMessage.isDisplayed();
-  }
 }

@@ -2,26 +2,41 @@
 Feature: Login test suite
 
   Background:
-    Given the user is on the home page
-@loginok
+    Given the user is in the landing page
+    And the user click on login button
+
+
+  @LoginOK
   @smoke
   Scenario Outline: Verify valid user can login
-    And the user provides the email "<email>"
-    And the user provides the password "<password>"
-    When the user clicks the login button
-    Then the user is logged successfully
+    And the user fills the mail "<mail>"
+    And the user fills the password "<password>"
+    When the user clicks on login button
+    Then the user is logged
 
     Examples:
-      | email        | password      |
-      | sanzporro@gmail.com   | porro  |
+      | mail                 | password |
+      | silvia1383@gmail.com | 1383     |
 
-  @loginko
-  Scenario Outline: Verify valid user cannot login
-    And the user provides the email "<email>"
-    And the user provides the password "<password>"
-    When the user clicks the login button
-    Then the user should be shown and invalid message
+  @WrongMail
+  Scenario Outline: Verify invalid login (wrong mail)
+    And the user fills the mail "<mail>"
+    And the user fills the password "<password>"
+    When the user clicks on login button
+    Then the error message is shown
 
     Examples:
-      | email   | password      |
-      | FAKEsanzporro@gmail.com   | porro  |
+      | mail                | password  |
+      | FAKEsilvia1383@gmail.com | 1383 |
+
+
+  @WrongPassword
+  Scenario Outline: Verify invalid login (wrong password)
+    And the user fills the mail "<mail>"
+    And the user fills the password "<password>"
+    When the user clicks on login button
+    Then the error message is shown
+
+    Examples:
+      | mail                 | password |
+      | silvia1383@gmail.com | FAKE1383 |

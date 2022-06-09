@@ -1,26 +1,31 @@
 package com.hiberus.university.selenium.pages;
 
+
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
+@Getter
 public class PagesFactory {
+
   private static PagesFactory pagesFactories;
   private final WebDriver driver;
-
-  private final CheckOutCompletePage checkOutCompletePage;
-  private final CheckOutStepOnePage checkOutStepOnePage;
-  private final CheckOutStepTwoPage checkOutStepTwoPage;
-  private final InventoryPage inventoryPage;
   private final LoginPage loginPage;
-  private final CartPage cartPage;
+  private final BasePage basePage;
+  private final HomePage homePage;
+  private final AccountPage accountPage;
+  private final RegisterPage registerPage;
 
-  private PagesFactory(WebDriver driver) {
+  private final LogoutPage logoutPage;
+
+  public PagesFactory(WebDriver driver) {
     this.driver = driver;
-    checkOutStepOnePage = new CheckOutStepOnePage(driver);
-    checkOutCompletePage = new CheckOutCompletePage(driver);
-    checkOutStepTwoPage = new CheckOutStepTwoPage(driver);
-    inventoryPage = new InventoryPage(driver);
+
+    homePage = new HomePage(driver);
     loginPage = new LoginPage(driver);
-    cartPage = new CartPage(driver);
+    basePage = new BasePage(driver);
+    accountPage = new AccountPage(driver);
+    registerPage= new RegisterPage(driver);
+    logoutPage= new LogoutPage(driver);
   }
 
   public static void start(WebDriver driver) {
@@ -31,31 +36,5 @@ public class PagesFactory {
     return pagesFactories;
   }
 
-  public WebDriver getDriver() {
-    return driver;
-  }
 
-  public CheckOutCompletePage getCheckOutCompletePage() {
-    return checkOutCompletePage;
-  }
-
-  public CheckOutStepOnePage getCheckOutStepOnePage() {
-    return checkOutStepOnePage;
-  }
-
-  public CheckOutStepTwoPage getCheckOutStepTwoPage() {
-    return checkOutStepTwoPage;
-  }
-
-  public InventoryPage getInventoryPage() {
-    return inventoryPage;
-  }
-
-  public LoginPage getLoginPage() {
-    return loginPage;
-  }
-
-  public CartPage getCartPage() {
-    return cartPage;
-  }
 }
