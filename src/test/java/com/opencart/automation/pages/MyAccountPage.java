@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MyAccountPage extends BasePage {
+    public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/account";
     public MyAccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -20,7 +21,7 @@ public class MyAccountPage extends BasePage {
     @FindBy (xpath = "//a[@class='list-group-item'][normalize-space()='Logout']")
     private WebElement logoutButton;
 
-   @Override
+    @Override
     public WebElement getPageLoadedTestElement() {
         return homeButton;
     }
