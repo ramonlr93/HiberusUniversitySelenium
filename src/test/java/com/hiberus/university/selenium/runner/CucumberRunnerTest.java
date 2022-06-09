@@ -17,9 +17,7 @@ import org.junit.runner.RunWith;
                 "com.hiberus.university.selenium.support"
         },
         features = {
-                "src/test/resources/"
-        },
-        tags = "@smoke"
+                "src/test/resources/"}
 
 )
 public class CucumberRunnerTest {

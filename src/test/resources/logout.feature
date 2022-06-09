@@ -5,8 +5,8 @@ Feature: Logout test suite
     Given the user is on the home page
     And the user click on home login button
 
-  @LogoutOK
   @smoke
+  @LogoutOK
   Scenario Outline: Check the logout
     And the user provides the mail "<mail>"
     And the user provides the password "<password>"

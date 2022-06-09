@@ -72,4 +72,11 @@ public class RegisterPage extends AbstractPage{
     public void clickContinue() {
         continueButton.click();
     }
+    public boolean isAlertVisible(){
+        try{
+            return wait.until(ExpectedConditions.visibilityOf(alert)).isDisplayed();
+        } catch (NoSuchElementException ns){
+            return false;
+        }
+    }
 }

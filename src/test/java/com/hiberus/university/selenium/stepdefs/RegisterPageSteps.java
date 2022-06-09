@@ -69,10 +69,8 @@ public class RegisterPageSteps {
                 , pf.getDriver().getCurrentUrl());
     }
 
-    @Then("the user is not registered")
-    public void theUserisNotRegistered() {
-        Assert.assertEquals("It is not the correct URL"
-                , RegisterPage.PAGE_URL
-                , pf.getDriver().getCurrentUrl());
+    @Then("the register error message is shown")
+    public void theUserSeeTheRegisterErrorMessage() {
+        Assert.assertTrue("Error message is visible", registerPage.isAlertVisible());
     }
 }

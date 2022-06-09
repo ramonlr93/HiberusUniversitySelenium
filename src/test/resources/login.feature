@@ -5,9 +5,8 @@ Feature: Login test suite
     Given the user is in the landing page
     And the user click on login button
 
-
-  @LoginOK
   @smoke
+  @LoginOK
   Scenario Outline: Verify valid user can login
     And the user fills the mail "<mail>"
     And the user fills the password "<password>"

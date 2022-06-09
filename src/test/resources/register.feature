@@ -4,9 +4,8 @@ Feature: Register test suite
   Background:
     Given the user is in the register page
 
-
-  @RegisterOK
   @smoke
+  @RegisterOK
   Scenario Outline: Verify valid user can register
     And the user fills the firstname "<firstname>"
     And the user fills the lastname "<lastname>"
@@ -32,7 +31,7 @@ Feature: Register test suite
     And the user fills the confirm "<confirm>"
     And the user clicks on privacy button
     When the user clicks on continue button
-    Then the user is not registered
+    Then the register error message is shown
 
     Examples:
       | firstname | lastname | email                 | telephone | password | confirm |
