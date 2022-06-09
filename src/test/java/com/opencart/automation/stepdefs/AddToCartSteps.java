@@ -1,5 +1,6 @@
 package com.opencart.automation.stepdefs;
 
+import com.opencart.automation.pages.CamerasPage;
 import com.opencart.automation.pages.HomePage;
 import com.opencart.automation.pages.MyAccountPage;
 import com.opencart.automation.pages.PagesFactory;
@@ -19,10 +20,12 @@ public class AddToCartSteps {
     private static HomePage homePage;
     private final MyAccountPage myAccountPage;
     private final WebDriver driver = pf.getDriver();
+    private final CamerasPage camerasPage;
 
     public AddToCartSteps() {
         myAccountPage = PagesFactory.getInstance().getMyAccountPage();
         homePage = PagesFactory.getInstance().getHomePage();
+        camerasPage = PagesFactory.getInstance().getCameraPage();
     }
 
     @Given("the user is on the home page")
@@ -58,6 +61,6 @@ public class AddToCartSteps {
 
     @When("the user add to cart a camera")
     public void theUserACameraAddToCart() {
-
+        camerasPage.clickAddToCartCameraNikkon();
     }
 }

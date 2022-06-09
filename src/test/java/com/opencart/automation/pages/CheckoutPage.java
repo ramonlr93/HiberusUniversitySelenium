@@ -14,6 +14,8 @@ public class CheckoutPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(xpath = "//*[@id='collapse-payment-address']/div/form/div[3]/label/input")
+    private WebElement newAddress;
     @FindBy(xpath = "//input[contains(@name, 'firstname')]")
     private WebElement firstNameField;
 
@@ -65,6 +67,9 @@ public class CheckoutPage extends BasePage {
         return null;
     }
 
+    public void selectNewAddress(){
+        newAddress.click();
+    }
     public void enterDataBillingDetailst(String firstName, String lastName, String company, String address, String city, String postCode){
         sendText(firstNameField, firstName);
         sendText(lastNameField, lastName);
@@ -97,7 +102,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public void clickAcceptTermsAndConditions() {
-        click(addressContinueButton);
+        click(termsAndConditions);
     }
 
     public void clickPaymentMethodButton() {

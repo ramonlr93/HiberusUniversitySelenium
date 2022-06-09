@@ -14,12 +14,14 @@ Feature: Validate checkout test suite
     And the user add to cart a camera
     And the user go checkout
     And the user inside checkout
+    And the user select new address
     And the user enter "<firstname>", "<lastname>", "<company>", "<address_1>", "<city>", "<postalcode>"
     And the user select "<country>" and "<state>"
     And the user clicks the payment button, the shipping button and the shipping method button
     And the user accepts the conditions
     And the user clicks the payment method button
-    #And the user clicks the confirm button
+    When the user clicks the confirm button
+    Then the order has been placed!
 
     Examples:
       | email                  | password       | firstname | lastname | company | address_1   | city     | postalcode | country | state |

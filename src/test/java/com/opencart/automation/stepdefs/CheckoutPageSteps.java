@@ -4,22 +4,19 @@ import com.opencart.automation.pages.CheckoutPage;
 import com.opencart.automation.pages.MyAccountPage;
 import com.opencart.automation.pages.PagesFactory;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
 
-import org.openqa.selenium.WebDriver;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 @Slf4j
 public class CheckoutPageSteps {
     private final PagesFactory pf = PagesFactory.getInstance();
-    private final MyAccountPage myAccountPage;
-    private final WebDriver driver = pf.getDriver();
-    CheckoutPage checkoutPage = pf.getCheckoutPage();
+    private final MyAccountPage myAccountPage = PagesFactory.getInstance().getMyAccountPage();
 
-    public CheckoutPageSteps() {
-        myAccountPage = PagesFactory.getInstance().getMyAccountPage();
-    }
+    CheckoutPage checkoutPage = pf.getCheckoutPage();
 
     @And("the user go checkout")
     public void theUserGoToCheckout(){
@@ -29,6 +26,10 @@ public class CheckoutPageSteps {
     @And("the user inside checkout")
     public void theUserIsInTheCheckout() {
      assertEquals("The is not inside checkout page", CheckoutPage.PAGE_URL, pf.getDriver().getCurrentUrl());
+    }
+    @And("the user select new address")
+    public void theUserSelectNewAddress() {
+        checkoutPage.selectNewAddress();
     }
 
     @And("the user enter {string}, {string}, {string}, {string}, {string}, {string}")
@@ -58,5 +59,17 @@ public class CheckoutPageSteps {
     public void theUserClicksThePaymentMethodButton() {
         checkoutPage.clickPaymentMethodButton();
     }
+
+    @When("the user clicks the confirm button")
+    public void theUserClicksTheConfirmButton() {
+        checkoutPage.clickConfirm();
+    }
+
+    @Then("the order has been placed!")
+    public void theOrderHasBeenPlaced() {
+        String successCheckout = "http://opencart.abstracta.us/index.php?route=checkout/success";
+        assertNotEquals("The order NOT has been placed", successCheckout, pf.getDriver().getCurrentUrl());
+    }
+
 }
 

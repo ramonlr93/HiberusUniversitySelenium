@@ -13,6 +13,8 @@ public class PagesFactory {
     private final MyAccountPage myAccountPage;
     private final CheckoutPage checkoutPage;
 
+    private final CamerasPage camerasPage;
+
 
     private PagesFactory(WebDriver driver) {
         this.driver = driver;
@@ -21,6 +23,7 @@ public class PagesFactory {
         homePage = new HomePage(driver);
         myAccountPage = new MyAccountPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        camerasPage = new CamerasPage(driver);
     }
 
     public static void start(WebDriver driver) {
@@ -54,5 +57,10 @@ public class PagesFactory {
 
     public CheckoutPage getCheckoutPage() {
         return checkoutPage;
+    }
+
+    public CamerasPage getCameraPage() {
+
+        return camerasPage;
     }
 }
