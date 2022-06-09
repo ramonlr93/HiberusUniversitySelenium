@@ -9,11 +9,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 "pretty",
-                //"usage",
                 "json:target/surefire-reports/cucumber.json",
                 "html:target/cucumber-html-report.html",
-                //"junit:target/cucumber-reports/cucumber.xml",
-                //"html:target/cucumber-reports/cucumber-reports.html",
         },
         glue = {
                 "com.hiberus.university.selenium.stepdefs",
