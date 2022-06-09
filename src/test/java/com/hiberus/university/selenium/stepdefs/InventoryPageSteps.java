@@ -19,10 +19,10 @@ public class InventoryPageSteps {
     }
 
     @Then("the cart button shows {int} products")
-    public void theCartButtonShowsItem(int number) {
+    public void theCartButtonShowsItem(int number) throws InterruptedException {
         PagesFactory pf = PagesFactory.getInstance();
         InventoryPage inventoryPage = pf.getCartPage();
-        Assert.assertTrue("The cart does not show "+number+ " products on cart", number== inventoryPage.numberOfProductsOnCart());
+        Assert.assertEquals("The cart does not show " + number + " products on cart", number, inventoryPage.numberOfProductsOnCart());
     }
 
     @When("the user clicks on remove button")

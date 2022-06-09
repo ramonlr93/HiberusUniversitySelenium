@@ -1,4 +1,4 @@
-@login
+@inventory
 Feature: validate inventory test suite
 
   Background: Navigate to the home page

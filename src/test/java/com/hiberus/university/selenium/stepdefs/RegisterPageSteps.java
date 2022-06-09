@@ -47,6 +47,7 @@ public class RegisterPageSteps {
     public void theUserIsRegisteredSuccessfully() {
         PagesFactory pf = PagesFactory.getInstance();
         RegisterPage registerPage = pf.getRegisterPage();
+        registerPage.waitTillRegisterSuccess();
         String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
         Assert.assertEquals("the URL is not success register Page", RegisterPage.REGISTER_SUCCESS_URL, currentUrl);
     }
@@ -55,15 +56,7 @@ public class RegisterPageSteps {
     public void theUserShouldBeShownSomeErrorMessages() {
         PagesFactory pf = PagesFactory.getInstance();
         RegisterPage registerPage = pf.getRegisterPage();
-        boolean firstNameError = registerPage.hasErrorInField("firstName");
-        boolean lastNameError = registerPage.hasErrorInField("lastName");
-        boolean emailError = registerPage.hasErrorInField("email");
-        boolean telephoneError = registerPage.hasErrorInField("telephone");
-        boolean passwordError = registerPage.hasErrorInField("password");
-        Assert.assertTrue("Some message errors are not shown", firstNameError&&lastNameError&&emailError&&telephoneError&&passwordError);
-        //PROGRAMAR QUE
-        // Aquçi hay mucho código igual es mejor esto validarlo en el otro lado
-
+        Assert.assertTrue("Some message errors are not shown", registerPage.errorsShown());
     }
 
     @Then("the user should be shown a password not match error message")

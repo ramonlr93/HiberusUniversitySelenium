@@ -52,14 +52,22 @@ public class RegisterPage extends BasePage {
   @FindBy(xpath = "//*[@id=\"account\"]/div[5]/div/div")
   private WebElement telephoneError;
 
-  @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset[2]/div[2]/div/div")
+  @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset[2]/div[1]/div/div")
   private WebElement passwordError;
+
+  @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset[2]/div[2]/div/div")
+  private WebElement passwordNotMatchError;
 
   @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset[2]/div[1]/div/div")
   private WebElement emailAlreadyInUseError;
 
   @FindBy(xpath = "//*[@id=\"account-register\"]/div[1]")
   private WebElement privacyPolicyNotAgreedError;
+
+  @FindBy(xpath = "//*[@id=\"content\"]/div/div/a")
+  private WebElement successContinueButton;
+
+
 
   public RegisterPage(WebDriver driver) {
     super(driver);
@@ -72,23 +80,27 @@ public class RegisterPage extends BasePage {
   }
 
   public void fillRegister(String firstName, String lastName, String email, String telephone, String password, String passwordConfirm) {
-    firstNameInput.click();
-    firstNameInput.sendKeys(firstName);
+    try {
+      firstNameInput.click();
+      firstNameInput.sendKeys(firstName);
 
-    lastNameInput.click();
-    lastNameInput.sendKeys(lastName);
+      lastNameInput.click();
+      lastNameInput.sendKeys(lastName);
 
-    emailInput.click();
-    emailInput.sendKeys(email);
+      emailInput.click();
+      emailInput.sendKeys(email);
 
-    telephoneInput.click();
-    telephoneInput.sendKeys(telephone);
+      telephoneInput.click();
+      telephoneInput.sendKeys(telephone);
 
-    passwordInput.click();
-    passwordInput.sendKeys(password);
+      passwordInput.click();
+      passwordInput.sendKeys(password);
 
-    passwordConfirmInput.click();
-    passwordConfirmInput.sendKeys(passwordConfirm);
+      passwordConfirmInput.click();
+      passwordConfirmInput.sendKeys(passwordConfirm);
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
   }
 
   public void acceptPrivacyPolicy() {
@@ -126,10 +138,19 @@ public class RegisterPage extends BasePage {
     }
   }
 
+  public boolean errorsShown(){
+    boolean firstNameError = hasErrorInField("firstName");
+    boolean lastNameError = hasErrorInField("lastName");
+    boolean emailError = hasErrorInField("email");
+    boolean telephoneError = hasErrorInField("telephone");
+    boolean passwordError = hasErrorInField("password");
+    return firstNameError&&lastNameError&&emailError&&telephoneError&&passwordError;
+  }
+
   public boolean hasPasswordNotMatchError() {
     getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     try {
-      return passwordError.isDisplayed();
+      return passwordNotMatchError.isDisplayed();
     } catch (org.openqa.selenium.TimeoutException e) {
       log.info("Timeout clicking login: " + e.getClass().getSimpleName());
     }
@@ -161,5 +182,14 @@ public class RegisterPage extends BasePage {
 
   public void clickOnLoginPageLink(){
     clickButton(loginPageLink);
+  }
+
+  public void waitTillRegisterSuccess(){
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    try {
+      successContinueButton.isDisplayed();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
   }
 }

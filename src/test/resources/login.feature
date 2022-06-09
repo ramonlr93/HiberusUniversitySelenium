@@ -4,7 +4,7 @@ Feature: validate login test suite
   Background: Navigate to the home page
     Given the user is on the home page
 
-  @testcase01
+  @testcase07
   @smoke
   Scenario Outline: Verify valid user can login
     And the user clicks My account link
@@ -16,7 +16,7 @@ Feature: validate login test suite
       | mail                | password  |
       | pruebas@hotmail.com | 123456    |
 
-  @testcase02
+  @testcase08
   Scenario Outline: Verify invalid user cannot login
     And the user clicks My account link
     And the user clicks Login link
@@ -27,7 +27,7 @@ Feature: validate login test suite
       | mail               | password |
       | pruebashotmail.com | 123456   |
 
-  @testcase03
+  @testcase09
   Scenario Outline: Verify forgotten password
     And the user clicks My account link
     And the user clicks Login link

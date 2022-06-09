@@ -1,16 +1,20 @@
 package com.hiberus.university.selenium.pages;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.concurrent.TimeUnit;
+
 @Slf4j
 public class CheckoutPage extends BasePage {
   public static final String PAGE_URL = "http://opencart.abstracta.us/";
   public static final String CHECKOUT_URL = "https://opencart.abstracta.us/index.php?route=checkout/checkout";
+  public static final String SUCCESS_URL = "http://opencart.abstracta.us/index.php?route=checkout/success";
 
 
   @FindBy(xpath = "//*[@id=\"cart\"]/ul/li[2]/div/p/a[2]/strong")
@@ -76,6 +80,12 @@ public class CheckoutPage extends BasePage {
   @FindBy(xpath = "//*[@id=\"collapse-checkout-confirm\"]")
   private WebElement step4Panel;
 
+  @FindBy(xpath = "//*[@id=\"accordion\"]/div[2]/div[1]")
+  private WebElement panels;
+
+  @FindBy(xpath = "//*[@id=\"content\"]/div/div/a")
+  private WebElement lastContinue;
+
 
   public CheckoutPage(WebDriver driver) {
     super(driver);
@@ -83,18 +93,31 @@ public class CheckoutPage extends BasePage {
   }
 
   public void clickOnChekoutLink(){
-    checkoutLink.click();
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    try {
+      checkoutLink.click();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
   }
 
-  public void fillBillingDetails (String firstName, String lastName, String address, String city, String country, String region) {
-    Select drpCountry = new Select(countrySelect);
-    Select drpRegion = new Select(regionSelect);
-    firstNameInput.sendKeys(firstName);
-    lastNameInput.sendKeys(lastName);
-    addressInput.sendKeys(address);
-    cityInput.sendKeys(city);
-    drpCountry.selectByVisibleText(country);
-    drpRegion.selectByVisibleText(region);
+  public void fillBillingDetails (String firstName, String lastName, String address, String mail, String telephone, String city, String country, String region) {
+
+      try {
+        Select drpCountry = new Select(countrySelect);
+        Select drpRegion = new Select(regionSelect);
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        addressInput.sendKeys(address);
+        emailInput.sendKeys(mail);
+        telephoneInput.sendKeys(telephone);
+        cityInput.sendKeys(city);
+        drpCountry.selectByVisibleText(country);
+        drpRegion.selectByVisibleText(region);
+      } catch (org.openqa.selenium.TimeoutException e) {
+      } catch (Exception e) {
+      }
+
   }
   @Override
   public WebElement getPageLoadedTestElement() {
@@ -107,6 +130,47 @@ public class CheckoutPage extends BasePage {
 
   public void clickStepOneContinueButton (){
     firstContinueCheckoutButton.click();
+  }
+
+  public void clickStepTwoContinueButton (){
+    secondContinueCheckoutButton.click();
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  }
+
+  public void clickStepThreeContinueButton (){
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    try {
+      thirdContinueCheckoutButton.click();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
+  }
+
+  public void clickTermsAndConditions () {
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    try {
+      termsInput.click();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
+  }
+
+  public void clickConfirmOrderButton (){
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    try {
+      confirmOrderButton.click();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
+  }
+
+  public void waitTillOrderSuccess(){
+    getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    try {
+      lastContinue.isDisplayed();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
   }
 
 }

@@ -45,15 +45,12 @@ public class InventoryPage extends BasePage {
   public WebElement getPageLoadedTestElement() {
     return cartButton;
   }
-
-  // Crea un listado de webelements de los productos
   public List<WebElement> getProducts(){
     List<WebElement> productsList = getDriver().findElements(By.xpath("//div[contains(@class, 'product-layout')]"));
     return productsList;
   }
 
   public int numberOfProductsShown(){
-    System.out.println("Num products: " + getProducts().size());
     return getProducts().size();
   }
 
@@ -67,61 +64,59 @@ public class InventoryPage extends BasePage {
     return false;
   }
 
-  // Devuelve un webelement al azar del listado de productos que le pasamos como parámetro
   public WebElement getRandomProduct(List<WebElement> list){
     int random = ThreadLocalRandom.current().nextInt(0, list.size()-1);
     return list.get(random);
   }
 
-  // Añade el producto al carrito
   public void addRandomProductToCart() {
     WebElement productToAdd = getRandomProduct(getProducts());
-    System.out.println("BUTTON: " + productToAdd.findElement(By.xpath("//button[contains(@onclick, 'cart.add')]")).getText());
     productToAdd.findElement(By.xpath("//button[contains(@onclick, 'cart.add')]")).click();
     getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    System.out.println("items on cart: " + cartButton.getText());
-    //getRandomProduct(getProducts()).findElement(By.xpath("//*[@id=\"content\"]/div[2]/div[1]/div/div[3]/button[1]/span")).click();
   }
 
   public int getProductPrice (WebElement product) {
     return Integer.parseInt(product.findElement(By.xpath("p[@class='price']")).getText());
   }
 
-  public String getProductName (WebElement product) { // AQUI ME QUEDO
-    System.out.println(product.findElement(By.xpath("//a[contains(@href, 'http://opencart')]")).getText());
+  public String getProductName (WebElement product) {
     return product.findElement(By.tagName("a")).getText();
   }
 
   public void getProductInfo(){
     WebElement product = getRandomProduct(getProducts());
-    //System.out.println("Nombre: " + getProductName(product));
-    System.out.println("Precio: " + getProductPrice(product));
-
   }
 
   public void addProductToCartByName(String productToAdd){
     List<WebElement> list = getProducts();
     WebElement productToAddWebelement = getProducts().get(0);
     for (int i=0; i< list.size(); i++){
-      System.out.println("PRODUCTO NUMERO " + i);
-      System.out.println(list.get(i).getText());
       if(list.get(i).getText().contains(productToAdd)){
         productToAddWebelement = list.get(i);
-        System.out.println("producto encontrado" + productToAddWebelement.getText());
         productToAddWebelement.findElement(By.xpath("//button[contains(@onclick, 'cart.add')]")).click();
       }
     }
   }
 
   public void removeProductFromCart() {
-    cartWindowRemoveButton.click();
+    try {
+      cartWindowRemoveButton.click();
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
+
   }
 
   // Devuelve el número de productos del carrito
-  public int numberOfProductsOnCart(){
-    System.out.println("items on cart button:" + itemsOnCartButton.getText());
-    System.out.println("products on cart:" + itemsOnCartButton.getText().substring(0,1));
-   return Integer.parseInt(itemsOnCartButton.getText().substring(0,1));
+  public int numberOfProductsOnCart() throws InterruptedException {
+    Thread.sleep(1000);
+    try {
+      return Integer.parseInt(itemsOnCartButton.getText().substring(0,1));
+    } catch (org.openqa.selenium.TimeoutException e) {
+    } catch (Exception e) {
+    }
+    return 0;
+
   }
 
   private void clickButton (WebElement webelementToClick) {

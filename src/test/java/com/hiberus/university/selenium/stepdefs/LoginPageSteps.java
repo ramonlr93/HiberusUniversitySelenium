@@ -86,12 +86,8 @@ public class LoginPageSteps {
   public void theUserIsLoggedSuccessfully() {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user should login successfully and is brought to the account page");
-    // Si hago luegio una account pag lo pondré aquí
-    //InventoryPage inventoryPage = pf.getInventoryPage();
-    //inventoryPage.waitForPageLoad();
-
     String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
-    Assert.assertEquals("the URL is not inventory Page", LoginPage.LOGGED_URL, currentUrl);
+    Assert.assertEquals("the user is not logged", LoginPage.LOGGED_URL, currentUrl);
   }
 
   @And("the user clicks on Forgotten Password")
