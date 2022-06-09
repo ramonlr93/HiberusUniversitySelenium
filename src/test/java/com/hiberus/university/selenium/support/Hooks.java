@@ -81,10 +81,11 @@ public class Hooks {
    * @param scenario to execute
    */
   @After()
-  public void after(Scenario scenario) throws InterruptedException {
+  public void after(Scenario scenario) {
     log.info("ending " + scenario.getName());
-
-    PagesFactory.getInstance().getHomePage().cleanCartProducts();
+    try {
+      PagesFactory.getInstance().getHomePage().cleanCartProducts();
+    } catch (Exception ignored) { }
 
     if (scenario.isFailed()) {
       final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
