@@ -11,6 +11,7 @@ public class PagesFactory {
 
     private final HomePage homePage;
     private final MyAccountPage myAccountPage;
+    private final CheckoutPage checkoutPage;
 
 
     private PagesFactory(WebDriver driver) {
@@ -19,6 +20,7 @@ public class PagesFactory {
         registerPage = new RegisterPage(driver);
         homePage = new HomePage(driver);
         myAccountPage = new MyAccountPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
     public static void start(WebDriver driver) {
@@ -48,5 +50,9 @@ public class PagesFactory {
 
     public MyAccountPage getMyAccountPage() {
         return myAccountPage;
+    }
+
+    public CheckoutPage getCheckoutPage() {
+        return checkoutPage;
     }
 }
