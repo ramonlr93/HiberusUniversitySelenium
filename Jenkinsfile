@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Running Tests') {
             steps {
-               sh "ls -la"
+               sh "echo hello-world"
             }
         }
 //         stage ('stage 0') {
