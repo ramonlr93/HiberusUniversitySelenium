@@ -16,7 +16,7 @@ Feature: Login test suite
 
     Examples:
       | email                 | password |
-      | gonex68008@falkyz.com | password |
+      | gonex68008@falkyz.com | passwor |
 
   @testcase002
   Scenario Outline: Verify that the user cannot login due to invalid email

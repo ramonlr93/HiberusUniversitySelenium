@@ -229,12 +229,11 @@ public class CheckoutPageSteps {
         checkoutPage.clickConfirmOrder();
     }
 
-    @Then("the order has been successfully processed")
-    public void theOrderHasBeenSuccessfullyProcessed() {
+    @Then("the user clicks the continue button on checkout success page")
+    public void theUserClicksTheContinueButtonCheckoutSuccess() {
         PagesFactory pf = PagesFactory.getInstance();
+        log.info("The user clicks the continue button on checkout success page");
         CheckoutSuccessPage checkoutSuccessPage = pf.getCheckoutSuccessPage();
         checkoutSuccessPage.clickContinue();
     }
-
-
 }

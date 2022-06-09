@@ -21,7 +21,7 @@ Feature: Checkout test suite
     And the user checks the terms and conditions button on checkout page
     And the user clicks the payment method continue button on checkout page
     When the user clicks the confirm order button on checkout page
-    Then the order has been successfully processed
+    Then the user clicks the continue button on checkout success page
 
     Examples:
       | email                 | password | item1   |
@@ -50,7 +50,7 @@ Feature: Checkout test suite
     And the user checks the terms and conditions button on checkout page
     And the user clicks the payment method continue button on checkout page
     When the user clicks the confirm order button on checkout page
-    Then the order has been successfully processed
+    Then the user clicks the continue button on checkout success page
 
     Examples:
       | email             | password | item1   | first_name_payment | last_name_payment | company_payment | address1_payment | address2_payment | city_payment | post_code_payment | country_payment | zone_payment |
@@ -80,7 +80,7 @@ Feature: Checkout test suite
     And the user checks the terms and conditions button on checkout page
     And the user clicks the payment method continue button on checkout page
     When the user clicks the confirm order button on checkout page
-    Then the order has been successfully processed
+    Then the user clicks the continue button on checkout success page
 
     Examples:
       | email             | password | item1   | first_name_payment | last_name_payment | company_payment | address1_payment | address2_payment | city_payment | post_code_payment | country_payment | zone_payment |
