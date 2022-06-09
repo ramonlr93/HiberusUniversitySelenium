@@ -7,19 +7,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 @Slf4j
-public class LoginPage extends BasePage {
-  public static final String PAGE_URL = "https://www.saucedemo.com";
+public class LoginPage extends AbstractPage {
+  public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=account/login";
 
-  @FindBy(id = "user-name")
-  private WebElement usernameInput;
+  @FindBy(id = "input-email")
+  private WebElement emailInput;
 
-  @FindBy(id = "password")
+  @FindBy(id = "input-password")
   private WebElement passwordInput;
 
-  @FindBy(id = "login-button")
+  @FindBy(xpath = "//input[@value='Login']")
   private WebElement loginButton;
 
-  @FindBy(xpath = "//h3[@data-test='error']")
+  @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
   private WebElement errorMessage;
 
 
@@ -50,9 +50,9 @@ public class LoginPage extends BasePage {
     passwordInput.sendKeys(password);
   }
 
-  public void enterUsername(String username) {
-    usernameInput.click();
-    usernameInput.sendKeys(username);
+  public void enterUsername(String email) {
+    emailInput.click();
+    emailInput.sendKeys(email);
   }
 
   public boolean hasUsernamePasswordError() {

@@ -1,99 +1,123 @@
 package com.hiberus.university.selenium.pages;
 
-import com.hiberus.university.selenium.utils.MyFluentWait;
-import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScriptTimeoutException;
-import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
+
+import java.util.List;
 
 @Slf4j
-public abstract class BasePage {
+public class BasePage extends AbstractPage {
 
-  protected Wait<WebDriver> wait;
-  private final WebDriver driver;
+    public static final String PAGE_URL = "http://opencart.abstracta.us/";
 
-  @FindBy(id = "react-burger-menu-btn")
-  private WebElement menuButton;
+    @FindBy(xpath = "//a[@title='My Account']")
+    private WebElement myAccountButton;
 
-  @FindBy(id = "logout_sidebar_link")
-  private WebElement logoutButton;
+    @FindBy(xpath = "//a[@href='https://opencart.abstracta.us:443/index.php?route=account/login']")
+    private WebElement loginButton;
 
-  BasePage(WebDriver driver) {
-    this.driver = driver;
-    wait = new MyFluentWait<>(driver)
-      .withTimeout(10, ChronoUnit.SECONDS)
-      .pollingEvery(2, ChronoUnit.SECONDS)
-      .ignoring(NoSuchElementException.class);
-  }
-  public abstract WebElement getPageLoadedTestElement();
+    @FindBy(xpath = "//a[@href='https://opencart.abstracta.us:443/index.php?route=account/register']")
+    private WebElement registerButton;
 
-  protected WebDriver getDriver() {
-    return driver;
-  }
+    @FindBy(xpath = "//a[@href='https://opencart.abstracta.us:443/index.php?route=account/logout']")
+    private WebElement logoutButton;
 
-  protected Wait<WebDriver> getWait() {
-    return wait;
-  }
+    @FindBy(xpath = "//button[contains(@onclick, 'cart')]")
+    private List<WebElement> addCartButtons;
 
-  protected void setWait(Wait<WebDriver> wait) {
-    this.wait = wait;
-  }
+    @FindBy(xpath = "//button[@class='btn btn-inverse btn-block btn-lg dropdown-toggle']")
+    private WebElement cartButton;
 
-  public void waitForPageLoad() {
-    WebElement testElement = getPageLoadedTestElement();
-    wait.until(ExpectedConditions.visibilityOf(testElement));
-  }
+    @FindBy(xpath = "//button[@title='Remove']")
+    private WebElement cartRemoveButton;
 
-  protected void moveTo(WebElement elem) {
-    if (((RemoteWebDriver) driver).getCapabilities().getBrowserName().equals("firefox")) {
-      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
-    } else {
-      Actions actions = new Actions(driver);
-      actions.moveToElement(elem).build().perform();
+    @FindBy(xpath = "//span[contains(text(),'Checkout')]")
+    private WebElement checkoutButton;
+
+    @FindBy(xpath = "//button[@class='btn btn-link dropdown-toggle']")
+    private WebElement currencyButton;
+
+    @FindBy(xpath = "//p[@class='price']")
+    private WebElement price;
+
+    @FindBy(xpath = "//p[@class='text-center']")
+    private WebElement cartText;
+
+    @FindBy(id = "content")
+    private WebElement textLogout;
+
+    public BasePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
     }
-  }
 
-  protected boolean isPageLoaded(WebElement elem) {
-    boolean isLoaded = false;
-
-    try {
-      isLoaded = elem.isDisplayed();
-    } catch (org.openqa.selenium.NoSuchElementException e) {
-      e.printStackTrace();
+    @Override
+    public WebElement getPageLoadedTestElement() {
+        return myAccountButton;
     }
-    return isLoaded;
-  }
 
-  public void navigateTo(String url) {
-    WebDriver driver = getDriver();
-
-    try {
-      driver.navigate().to(url);
-    } catch (java.lang.Exception e) {
-      if (e instanceof TimeoutException) {
-        log.info("Timeout loading home page");
-      } else if (e instanceof ScriptTimeoutException) {
-        log.info("Script Timeout loading home page");
-      } else {
-        log.error(e.getMessage());
-      }
+    public void clickMyAccount(){
+        myAccountButton.click();
     }
-  }
 
-  public void openMenu() {
-    menuButton.click();
-  }
+    public void clickLogin(){
+        wait.until(ExpectedConditions.visibilityOf(loginButton)).click();
+    }
 
-  public void clickLogout() {
-    logoutButton.click();
-  }
+    public void clickRegister(){
+        wait.until(ExpectedConditions.visibilityOf(registerButton)).click();
+    }
+
+    public void clickLogout(){
+        wait.until(ExpectedConditions.visibilityOf(logoutButton)).click();
+    }
+
+    public void clickAddCartButton(){
+        int random = (int)(Math.random() * (2));
+        addCartButtons.get(random).click();
+    }
+
+    public boolean getCartValue(){
+        return wait.until(ExpectedConditions.visibilityOf(cartRemoveButton)).isDisplayed();
+    }
+
+    public void removeFromCart(){
+        cartRemoveButton.click();
+    }
+
+    public void clickCart(){
+        moveTo(cartButton);
+        cartButton.click();
+    }
+
+    public void clickCheckout(){
+        checkoutButton.click();
+    }
+
+    public void changeCurrency(String currency){
+        currencyButton.click();
+        wait.until(ExpectedConditions.visibilityOf(currencyButton.findElement(By.xpath("//button[contains(text(),'"+currency+"')]")))).click();
+    }
+
+    public boolean getPrice(String symbol){
+        String currency =  price.getText();
+        if(currency.contains(symbol)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean textLogout(){
+        return textLogout.isDisplayed();
+    }
+
+    public boolean textCart(){
+        return cartText.isDisplayed();
+    }
 }
