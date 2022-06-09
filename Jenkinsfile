@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Running Tests') {
             steps {
-               sh "echo hello-world"
+               bat 'dir'
             }
         }
 //         stage ('stage 0') {
