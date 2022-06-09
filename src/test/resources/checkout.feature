@@ -7,7 +7,6 @@ Feature: Validate Checkout test suite
     And The user clicks phones and pdas button
     And the user is on phones and pdas page
     And the user add the first product to the cart
-    And The user clicks cart button
     And The user clicks checkout option
     And The user is on checkout page
 

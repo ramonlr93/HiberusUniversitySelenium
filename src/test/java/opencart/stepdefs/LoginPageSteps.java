@@ -44,4 +44,9 @@ public class LoginPageSteps {
     public void theUserClicksTheForgottenPasswordButton() {
         loginPage.clickForgottenPasswordButton();
     }
+
+    @And("the user clicks login button")
+    public void theUserClicksLoginButton() {
+        loginPage.clickLoginButton();
+    }
 }

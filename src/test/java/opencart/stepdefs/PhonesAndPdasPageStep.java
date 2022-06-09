@@ -54,8 +54,4 @@ public class PhonesAndPdasPageStep {
         phonesAndPdasPage.addTheFirstProductManyTimes(1);
     }
 
-    @And("The user clicks checkout option")
-    public void theUserClicksCheckoutOption() {
-        phonesAndPdasPage.clickCheckout();
-    }
 }

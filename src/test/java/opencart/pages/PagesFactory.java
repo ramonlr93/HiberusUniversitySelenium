@@ -15,6 +15,7 @@ public class PagesFactory {
   private final ForgottenPasswordPage forgottenPasswordPage;
   private final PhonesAndPdasPage phonesAndPdasPage;
   private final CheckoutPage checkoutPage;
+  private final LogoutPage logoutPage;
 
   private PagesFactory(WebDriver driver) {
     this.driver = driver;
@@ -26,6 +27,7 @@ public class PagesFactory {
     forgottenPasswordPage = new ForgottenPasswordPage(driver);
     phonesAndPdasPage = new PhonesAndPdasPage(driver);
     checkoutPage = new CheckoutPage(driver);
+    logoutPage = new LogoutPage(driver);
   }
 
   public static void start(WebDriver driver) {

@@ -1,10 +1,12 @@
 package opencart.pages;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TopButtons extends BasePage {
 
@@ -20,6 +22,12 @@ public class TopButtons extends BasePage {
     @FindBy(xpath = "//a[text() = 'Phones & PDAs']")
     private WebElement phonesAndPdasButton;
 
+    @FindBy(xpath = "//div[@id = 'top-links']//descendant::a[text() = 'Logout']")
+    private WebElement logoutButton;
+
+    @FindBy(xpath = "//span[@class = 'hidden-xs hidden-sm hidden-md' and text() = 'Checkout']")
+    private WebElement checkoutButton;
+
     public TopButtons(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -31,7 +39,7 @@ public class TopButtons extends BasePage {
     }
 
     public void clickMyAccountButton(){
-        myAccountButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(myAccountButton)).click();
     }
 
     public void clickRegisterButton(){
@@ -39,10 +47,18 @@ public class TopButtons extends BasePage {
     }
 
     public void clickLoginButton() {
-        loginButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
     }
 
     public void clickPhonesAndPdasButton(){
         phonesAndPdasButton.click();
+    }
+
+    public void clickLogoutButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
+    }
+
+    public void clickCheckoutButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutButton)).click();
     }
 }
