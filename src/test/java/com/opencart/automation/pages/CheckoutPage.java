@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CheckoutPage extends BasePage {
     public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=checkout/checkout";
@@ -70,8 +71,14 @@ public class CheckoutPage extends BasePage {
         sendText(postcodeField, postCode);
     }
 
-    public void countrySelection(){
-        click(countrySelect);
+    public void countrySelection(String country){
+        Select selectOption = new Select(countrySelect);
+        selectOption.selectByValue(country);
+    }
+
+    public void regionSelection(String region){
+        Select selectOption = new Select(regionSelect);
+        selectOption.selectByValue(region);
     }
 
     public void regionSelection(){
@@ -94,7 +101,6 @@ public class CheckoutPage extends BasePage {
         click(addressContinueButton);
     }
 
-    @Override
     public void clickConfirm() {
         click(confirm);
     }
