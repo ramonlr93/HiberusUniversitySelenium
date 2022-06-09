@@ -5,9 +5,9 @@ Feature: validate login in OpenCart
     Given the user is on the login page
 
   @OC-1
-  @smoke
+    @smoke
   Scenario Outline: Verify valid user can login
-    And the user enters the "<email>" and "<password>"
+    And the user enters the "<email>" and "<password>" credentials
     When the user clicks the login button
     Then the user is logged successfully
     Examples:
@@ -15,9 +15,9 @@ Feature: validate login in OpenCart
       | mario@mail.com | 1311     |
 
   @OC-2
-  @smoke
+    @smoke
   Scenario Outline: Verify a non created user cannot login
-    And the user enters the "<email>" and "<password>"
+    And the user enters the "<email>" and "<password>" credentials
     When the user clicks the login button
     Then the error message is shown
     Examples:

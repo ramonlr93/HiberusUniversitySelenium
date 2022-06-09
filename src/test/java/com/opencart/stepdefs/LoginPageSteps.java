@@ -24,7 +24,7 @@ public class LoginPageSteps {
         loginPage.navigateTo(LoginPage.PAGE_URL);
     }
 
-    @And("the user enters the {string} and {string}")
+    @And("the user enters the {string} and {string} credentials")
     public void theUserEntersTheAnd(String name, String password) {
         loginPage.setEmail(name);
         loginPage.setPassword(password);

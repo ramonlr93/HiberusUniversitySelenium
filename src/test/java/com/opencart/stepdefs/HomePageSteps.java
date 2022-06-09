@@ -39,7 +39,7 @@ public class HomePageSteps {
         homePage.clickDropDownCartButton();
     }
 
-    @When("the user clicks the remove button")
+    @When("the user clicks each of the remove items button")
     public void theUserClicksTheRemoveButton() {
         homePage.removeElementsFromCart();
     }
