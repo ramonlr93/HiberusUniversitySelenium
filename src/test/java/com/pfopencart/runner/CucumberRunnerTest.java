@@ -17,6 +17,9 @@ import org.junit.runner.RunWith;
                 "com.pfopencart.stepdefs",
                 "com.pfopencart.support"
         },
+
+//        tags="@smoke",
+
         features = {
                 "src/test/resources/"
         }
