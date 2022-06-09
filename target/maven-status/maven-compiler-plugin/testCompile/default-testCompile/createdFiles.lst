@@ -1,0 +1,17 @@
+com\practicafinal\pages\PagesFactory.class
+com\practicafinal\pages\CheckoutPage.class
+com\practicafinal\runner\CucumberRunnerTest.class
+com\practicafinal\pages\LoginPage.class
+com\practicafinal\stepdefs\HomePageSteps.class
+com\practicafinal\stepdefs\CheckoutPageSteps.class
+com\practicafinal\stepdefs\LoginPageSteps.class
+com\practicafinal\stepdefs\RegisterPageSteps.class
+com\practicafinal\support\CheckoutContext.class
+com\practicafinal\utils\Flags.class
+com\practicafinal\pages\BasePage.class
+com\practicafinal\pages\RegistrerPage.class
+com\practicafinal\utils\MyFluentWait.class
+com\practicafinal\pages\CartPage.class
+com\practicafinal\pages\HomePage.class
+com\practicafinal\stepdefs\CartPageSteps.class
+com\practicafinal\support\Hooks.class

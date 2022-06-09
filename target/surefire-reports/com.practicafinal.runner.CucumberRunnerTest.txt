@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Test set: com.practicafinal.runner.CucumberRunnerTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 1, Errors: 3, Skipped: 0, Time elapsed: 126.176 s <<< FAILURE! - in com.practicafinal.runner.CucumberRunnerTest
+validate checkout success(Validate checkout test suite)  Time elapsed: 13.079 s  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: 
+Element <input id="input-email" class="form-control" name="email" type="text"> could not be scrolled into view
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-I6VLM93', ip: '172.16.4.5', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_321'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 98.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220313140707, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 9584, moz:profile: C:\Users\pue\AppData\Local\..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: ebc3c1ad-530d-439e-b55f-040d8b4d41c7
+
+validate checkout success with saved data(Validate checkout test suite)  Time elapsed: 12.515 s  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: 
+Element <input id="input-email" class="form-control" name="email" type="text"> could not be scrolled into view
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-I6VLM93', ip: '172.16.4.5', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_321'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 98.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220313140707, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 12136, moz:profile: C:\Users\pue\AppData\Local\..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3427d699-fc59-4ebd-b365-708c94c707b8
+
+validate checkout success as guest(Validate checkout test suite)  Time elapsed: 13.079 s  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: 
+Element <input id="input-email" class="form-control" name="email" type="text"> could not be scrolled into view
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-I6VLM93', ip: '172.16.4.5', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_321'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 98.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220313140707, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 1164, moz:profile: C:\Users\pue\AppData\Local\..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 178cea15-8170-409e-aa63-b57ce741999c
+
+Verify user can register(validate register test suite)  Time elapsed: 16.578 s  <<< FAILURE!
+org.junit.ComparisonFailure: the url is not the same expected:<http[://opencart.abstracta.us/index.php?route=account/success]> but was:<http[s://opencart.abstracta.us/index.php?route=account/register]>
+

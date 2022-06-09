@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports (no 1) - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+        <th>Number</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>saucedemo test project</td>
+        <td>1</td>
+      <td>09 Jun 2022, 16:53</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CartPageSteps.theUserAddsItemsIntoTheSoppingCart(int)</td>
+              <td>1</td>
+              <td class="duration" data-value="532000000">0.532</td>
+              <td class="duration" data-value="532000000">0.532</td>
+              <td class="duration" data-value="532000000">0.532</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CartPageSteps.theUserAddsItemsToTheCart()</td>
+              <td>4</td>
+              <td class="duration" data-value="1143250000">1.143</td>
+              <td class="duration" data-value="1143250000">1.563</td>
+              <td class="duration" data-value="4573000000">4.573</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CartPageSteps.theUserClicksOnTheShoppingCartButton()</td>
+              <td>2</td>
+              <td class="duration" data-value="2833000000">2.833</td>
+              <td class="duration" data-value="2833000000">3.019</td>
+              <td class="duration" data-value="5666000000">5.666</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CartPageSteps.theUserDeletesAnItemFromShoppingCart()</td>
+              <td>1</td>
+              <td class="duration" data-value="3864000000">3.864</td>
+              <td class="duration" data-value="3864000000">3.864</td>
+              <td class="duration" data-value="3864000000">3.864</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CartPageSteps.thereShouldBeItemsInTheShoppingCart(int)</td>
+              <td>2</td>
+              <td class="duration" data-value="19500000">0.019</td>
+              <td class="duration" data-value="19500000">0.023</td>
+              <td class="duration" data-value="39000000">0.039</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theOrderIsCompletedCorrectlyAndRedirectTo(java.lang.String)</td>
+              <td>3</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserClicksContinueOnTheMethodsAndConfirmTheOrder()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserClicksOnCheckoutButton()</td>
+              <td>3</td>
+              <td class="duration" data-value="4122000000">4.122</td>
+              <td class="duration" data-value="4122000000">4.305</td>
+              <td class="duration" data-value="12366000000">12.366</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserClicksOnTheContinueButtons()</td>
+              <td>2</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserClicksTheLoginButtonToCheckout()</td>
+              <td>3</td>
+              <td class="duration" data-value="333333">0.000</td>
+              <td class="duration" data-value="333333">0.001</td>
+              <td class="duration" data-value="1000000">0.001</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserFillsTheForm(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserFillsTheFormAgain(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.CheckoutPageSteps.theUserSelectsAddNewData()</td>
+              <td>1</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="duration" data-value="0">0.000</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.HomePageSteps.theUserClicksOnMyAccountButtonAndTheRegisterOption()</td>
+              <td>2</td>
+              <td class="duration" data-value="3182000000">3.182</td>
+              <td class="duration" data-value="3182000000">3.222</td>
+              <td class="duration" data-value="6364000000">6.364</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.HomePageSteps.theUserClicksTheLoginButton()</td>
+              <td>2</td>
+              <td class="duration" data-value="2562000000">2.562</td>
+              <td class="duration" data-value="2562000000">2.796</td>
+              <td class="duration" data-value="5124000000">5.124</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.HomePageSteps.theUserIsOnTheHomePage()</td>
+              <td>9</td>
+              <td class="duration" data-value="1758555555">1.758</td>
+              <td class="duration" data-value="1758555555">1.876</td>
+              <td class="duration" data-value="15827000000">15.827</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.LoginPageSteps.theUserClicksTheLoginButton()</td>
+              <td>2</td>
+              <td class="duration" data-value="773500000">0.773</td>
+              <td class="duration" data-value="773500000">0.854</td>
+              <td class="duration" data-value="1547000000">1.547</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.LoginPageSteps.theUserIsLoggedSuccessfullyAndIsIntoTheAccountPage()</td>
+              <td>1</td>
+              <td class="duration" data-value="4000000">0.004</td>
+              <td class="duration" data-value="4000000">0.004</td>
+              <td class="duration" data-value="4000000">0.004</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.LoginPageSteps.theUserProvidesTheUsernameAndPassword(java.lang.String,java.lang.String)</td>
+              <td>4</td>
+              <td class="duration" data-value="369250000">0.369</td>
+              <td class="duration" data-value="369250000">1.240</td>
+              <td class="duration" data-value="1477000000">1.477</td>
+              <td class="failed">25.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.LoginPageSteps.theUserProvidesTheUsernameAndWrongPassword(java.lang.String,java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="1252000000">1.252</td>
+              <td class="duration" data-value="1252000000">1.252</td>
+              <td class="duration" data-value="1252000000">1.252</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.LoginPageSteps.theUserShouldBeShownAnInvalidMessage()</td>
+              <td>1</td>
+              <td class="duration" data-value="78000000">0.078</td>
+              <td class="duration" data-value="78000000">0.078</td>
+              <td class="duration" data-value="78000000">0.078</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.RegisterPageSteps.theUserCannotRegistered()</td>
+              <td>1</td>
+              <td class="duration" data-value="62000000">0.062</td>
+              <td class="duration" data-value="62000000">0.062</td>
+              <td class="duration" data-value="62000000">0.062</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.RegisterPageSteps.theUserClicksTheRegisterButton()</td>
+              <td>2</td>
+              <td class="duration" data-value="1678000000">1.678</td>
+              <td class="duration" data-value="1678000000">1.895</td>
+              <td class="duration" data-value="3356000000">3.356</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.RegisterPageSteps.theUserIsRegisteredSuccessfully()</td>
+              <td>1</td>
+              <td class="duration" data-value="6000000">0.006</td>
+              <td class="duration" data-value="6000000">0.006</td>
+              <td class="duration" data-value="6000000">0.006</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.RegisterPageSteps.theUserProvidesTheDataForTheForm(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="3966000000">3.966</td>
+              <td class="duration" data-value="3966000000">3.966</td>
+              <td class="duration" data-value="3966000000">3.966</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.stepdefs.RegisterPageSteps.theUserProvidesTheIncorrectDataForTheForm(io.cucumber.datatable.DataTable)</td>
+              <td>1</td>
+              <td class="duration" data-value="3931000000">3.931</td>
+              <td class="duration" data-value="3931000000">3.931</td>
+              <td class="duration" data-value="3931000000">3.931</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.support.Hooks.after(io.cucumber.java.Scenario)</td>
+              <td>9</td>
+              <td class="duration" data-value="936555555">0.936</td>
+              <td class="duration" data-value="936555555">1.120</td>
+              <td class="duration" data-value="8429000000">8.429</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.practicafinal.support.Hooks.before(io.cucumber.java.Scenario)</td>
+              <td>9</td>
+              <td class="duration" data-value="5069555555">5.069</td>
+              <td class="duration" data-value="5069555555">8.257</td>
+              <td class="duration" data-value="45626000000">45.626</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>28</td>
+            <td>71</td>
+            <td class="duration">1.747</td>
+            <td class="duration">45.626</td>
+            <td class="duration">2:4.090</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>
