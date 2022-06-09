@@ -39,10 +39,14 @@ public class HomePageSteps {
     @Then("the user sees on the menu, on my account, all the logged in options")
     public void theUserSeesOnTheMenuOnMyAccountAllTheLoggedInOptions() {
         homePage.clickTopNavBarOption(NavBar.MY_ACCOUNT);
+        String optionsExpected = "";
+        for (LoggedAccount option : LoggedAccount.values())
+            optionsExpected += option.value();
+
         for (String option : homePage.getMyAccountOptions())
             Assert.assertTrue(
                     "Las opciones no son las adecuadas [" + option + "]",
-                    Arrays.stream(LoggedAccount.values()).anyMatch(loggedOption -> loggedOption.value().equals(option)) // Contains
+                    optionsExpected.contains(option)
             );
     }
 
