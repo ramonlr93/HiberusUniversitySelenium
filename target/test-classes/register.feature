@@ -37,7 +37,7 @@ Feature: Register test suite
 
     Examples:
       | firstname | lastname                            | email                           | telephone | password | confirm |
-      | Antonio   | SinuesSanJuandeDiosdeTodosLosSantos | doixaddibredde-9236@yopmail.com | 555555555 | 9236     | 7890    |
+      | Antonio   | SinuesSanJuandeDiosTodosLosSantos | doixaddibredde-9236@yopmail.com | 555555555 | 9236     | 7890    |
 
 
 
