@@ -1,6 +1,6 @@
 package com.hiberus.university.selenium.support;
 
-import com.hiberus.university.selenium.pages.LoginPage;
+import com.hiberus.university.selenium.pages.BasePage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import com.hiberus.university.selenium.utils.Flags;
 import io.cucumber.java.After;
@@ -39,7 +39,6 @@ public class Hooks {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (isHeadless){
-                    //firefoxOptions.setHeadless(isHeadless);
                     firefoxOptions.addArguments("--headless");
                 }
                 driver = new FirefoxDriver(firefoxOptions);
@@ -53,7 +52,6 @@ public class Hooks {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (isHeadless){
-                    //firefoxOptions.setHeadless(isHeadless);
                     chromeOptions.addArguments("--headless");
                 }
                 driver =  new ChromeDriver(chromeOptions);
@@ -64,7 +62,7 @@ public class Hooks {
         driver.manage().window().maximize();
 
         PagesFactory.start(driver);
-        driver.get(LoginPage.PAGE_URL);
+        driver.get(BasePage.PAGE_URL);
     }
 
     @After
@@ -74,13 +72,8 @@ public class Hooks {
         if(scenario.isFailed()){
             log.info(scenario.getName() + " is Fail");
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            /*long time = new Date().getTime();
-            String failureImage = "screenshot_" + time + ".png";*/
             scenario.attach(screenshot, "image/png", "Failure Image"); // ... and embed it in the report.
         }
-
-
-        driver.close();
+        //driver.close();
     }
-
 }

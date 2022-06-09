@@ -5,20 +5,23 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
 @Getter
-//Clase para gestionar las distintas paginas
 public class PagesFactory {
 
     private static PagesFactory pagesFactories;
     private final WebDriver driver;
-
     private final LoginPage loginPage;
-
-
+    private final RegisterPage registerPage;
+    private final InventoryPage inventoryPage;
+    private final CartPage cartPage;
+    private final CheckoutPage checkoutPage;
 
     public PagesFactory(WebDriver driver) {
         this.driver = driver;
         loginPage = new LoginPage(driver);
-
+        registerPage = new RegisterPage(driver);
+        inventoryPage = new InventoryPage(driver);
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
     public static void start(WebDriver driver) {
@@ -29,7 +32,6 @@ public class PagesFactory {
         return pagesFactories;
     }
 
-   //Getters
     public WebDriver getDriver() {
         return driver;
     }

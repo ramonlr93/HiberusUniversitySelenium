@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
                 "com.hiberus.university.selenium.stepdefs",
                 "com.hiberus.university.selenium.support"
         },
+        tags = "@smoke",
         features = {
                 "src/test/resources/"
         }

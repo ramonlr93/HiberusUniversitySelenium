@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "input-password")
     private WebElement passwordImput;
 
-    @FindBy(xpath = "//h3[@type='submit']")
+    @FindBy(xpath = "//input[@type='submit']")
     private WebElement loginButton;
 
     @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
@@ -34,9 +34,9 @@ public class LoginPage extends BasePage {
         return loginButton;
     }
 
-    public void enterUsername(String username){
+    public void enterUsername(String email){
         emailInput.click();
-        emailInput.sendKeys(username);
+        emailInput.sendKeys(email);
     }
 
     public void enterPassword(String password){
@@ -59,7 +59,4 @@ public class LoginPage extends BasePage {
     public boolean hasUsernamePasswordError(){
         return errorMessage.isDisplayed();
     }
-
-    //inventoryList.get(0).findElement(By.xpath(".//button"))
-
 }

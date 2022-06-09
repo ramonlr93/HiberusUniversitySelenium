@@ -3,7 +3,6 @@ package com.hiberus.university.selenium.utils;
 public class Flags {
     private static final String BROWSER = "browser";
     private static final String HEADLESS = "headless";
-
     private final String browser = System.getProperty(BROWSER);
     private final boolean isHeadless = this.parseBoolean(System.getProperty(HEADLESS));
 

@@ -1,5 +1,6 @@
 package com.hiberus.university.selenium.pages;
 
+import com.hiberus.university.selenium.utils.MyFluentWait;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -7,22 +8,30 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
-import SaucedemoComlete.saucedemo.utils.MyFluentWait;
 
 import java.time.temporal.ChronoUnit;
 
 @Slf4j
 public abstract class BasePage {
-    public static final String PAGE_URL = "https://opencart.abstracta.us/";
+    public static final String PAGE_URL = "http://opencart.abstracta.us/index.php?route=common/home";
 
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
 
-    @FindBy(id = "react-burger-menu-btn")
-    private WebElement menuButton;
+    @FindBy(xpath = "//i[contains(@class,'fa-user')]")
+    private WebElement myAcounts;
 
-    @FindBy(id = "logout_sidebar_link")
-    private WebElement logoutButton;
+    @FindBy(linkText = "Register")
+    private WebElement registerLink;
+
+    @FindBy(linkText = "Login")
+    private WebElement loginLink;
+
+    @FindBy(linkText = "Logout")
+    private WebElement logoutLink;
+
+    @FindBy(linkText = "Shopping Cart")
+    private WebElement cartLink;
 
     BasePage(WebDriver driver) {
         this.driver = driver;
@@ -31,6 +40,7 @@ public abstract class BasePage {
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
+
     public abstract WebElement getPageLoadedTestElement();
 
     protected WebDriver getDriver() {
@@ -86,11 +96,22 @@ public abstract class BasePage {
         }
     }
 
-    public void openMenu() {
-        menuButton.click();
+    public void goToRegister() {
+        myAcounts.click();
+        registerLink.click();
     }
 
-    public void clickLogout() {
-        logoutButton.click();
+    public void goToLogin() {
+        myAcounts.click();
+        loginLink.click();
+    }
+
+    public void logout() {
+        myAcounts.click();
+        logoutLink.click();
+    }
+
+    public void goToShoppingCart() {
+        cartLink.click();
     }
 }
