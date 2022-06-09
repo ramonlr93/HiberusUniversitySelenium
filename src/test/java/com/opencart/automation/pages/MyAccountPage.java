@@ -15,6 +15,9 @@ public class MyAccountPage extends BasePage {
     @FindBy (xpath = "/html/body/div[2]/ul/li[1]")
     private WebElement homeButton;
 
+    @FindBy(xpath = "//*[@id='top-links']/ul/li[5]")
+    private WebElement checkout;
+
     @FindBy(xpath = "//html/body/div[1]/nav/div[2]/ul/li[7]/a")
     private WebElement navCameras;
 
@@ -38,5 +41,7 @@ public class MyAccountPage extends BasePage {
         click(logoutButton);
     }
 
-
+    public void clickOnCheckout(){
+        click(checkout);
+    }
 }

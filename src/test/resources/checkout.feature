@@ -12,17 +12,16 @@ Feature: Validate checkout test suite
     And the user clicks the login button
     And the user go cameras section
     And the user add to cart a camera
-    And the user click checkout button
-    And the user is in the checkout
-
-    And the user enter "<firstname>", "<lastname>", "<company>", "<address_1>", "<address_2>", "<city>", "<postalcode>"
-    And the user select "<country>" and "<state>"
-    And the user clicks the payment button
-    And the user clicks the shipping button
-    And the user clicks the shipping method button
-    And the user accepts the conditions
-    And the user clicks the payment method button
-    And the user clicks the confirm button
+    And the user go checkout
+    #And the user is in the checkout
+    #And the user enter "<firstname>", "<lastname>", "<company>", "<address_1>", "<address_2>", "<city>", "<postalcode>"
+    #And the user select "<country>" and "<state>"
+    #And the user clicks the payment button
+    #And the user clicks the shipping button
+    #And the user clicks the shipping method button
+    #nd the user accepts the conditions
+    #And the user clicks the payment method button
+    #And the user clicks the confirm button
 
     Examples:
       | email                  | password       | firstname | lastname | company | address_1   | address_2 | city     | postalcode | country | state |
