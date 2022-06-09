@@ -51,8 +51,13 @@ public class AddToCartSteps {
         homePage.clickOnLogin();
     }
 
-    @And("the user go to the home page")
-    public void theUserToTheHomePage() {
-        myAccountPage.clickOnHomeButton();
+    @And("the user go cameras section")
+    public void theUserAddsACameraFromTheHomePageToTheCart() {
+        myAccountPage.clickNavCameras();
+    }
+
+    @When("the user a camera add to cart")
+    public void theUserACameraAddToCart() {
+
     }
 }

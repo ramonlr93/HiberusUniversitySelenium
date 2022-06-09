@@ -11,11 +11,11 @@ public class MyAccountPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy (xpath = "/html/body/div[2]/ul/li[1]/a")
+    @FindBy (xpath = "/html/body/div[2]/ul/li[1]")
     private WebElement homeButton;
 
-    @FindBy(xpath = "//html/body/div[1]/nav/div[2]/ul/li[1]/a")
-    private WebElement desktops;
+    @FindBy(xpath = "//html/body/div[1]/nav/div[2]/ul/li[7]/a")
+    private WebElement navCameras;
 
     @FindBy (xpath = "//a[@class='list-group-item'][normalize-space()='Logout']")
     private WebElement logoutButton;
@@ -27,6 +27,10 @@ public class MyAccountPage extends BasePage {
 
     public void clickOnHomeButton(){
         click(homeButton);
+    }
+
+    public void clickNavCameras(){
+       click(navCameras);
     }
 
     public void clickOnLogout(){
