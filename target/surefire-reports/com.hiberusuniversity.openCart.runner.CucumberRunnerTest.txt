@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Test set: com.hiberusuniversity.openCart.runner.CucumberRunnerTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 168.828 s <<< FAILURE! - in com.hiberusuniversity.openCart.runner.CucumberRunnerTest
+the user buys two products with already created address(checkout test suite)  Time elapsed: 10.438 s  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: 
+Element <input id="input-email" class="form-control" name="email" type="text"> could not be scrolled into view
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-I6VLM93', ip: '172.16.4.23', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_321'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 98.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220313140707, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 14948, moz:profile: C:\Users\pue\AppData\Local\..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 760fcfb4-87d9-497b-af76-9c9a61571e97
+
+the user buys two products with new created address(checkout test suite)  Time elapsed: 10.515 s  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: 
+Element <input id="input-email" class="form-control" name="email" type="text"> could not be scrolled into view
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-I6VLM93', ip: '172.16.4.23', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_321'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 98.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220313140707, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 11144, moz:profile: C:\Users\pue\AppData\Local\..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 4dae19cc-6062-4a67-b9f0-180a0ed50155
+
+the user buys two products as a guest(checkout test suite)  Time elapsed: 10.662 s  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: 
+Element <input name="account" type="radio"> could not be scrolled into view
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-I6VLM93', ip: '172.16.4.23', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_321'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 98.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220313140707, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 4052, moz:profile: C:\Users\pue\AppData\Local\..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 6b155b0f-2743-47f9-8366-401783a340e8
+
