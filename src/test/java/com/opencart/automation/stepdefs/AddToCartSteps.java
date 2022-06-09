@@ -51,7 +51,6 @@ public class AddToCartSteps {
         homePage.clickOnLogin();
     }
 
-
     @And("the user go to the home page")
     public void theUserToTheHomePage() {
         myAccountPage.clickOnHomeButton();
