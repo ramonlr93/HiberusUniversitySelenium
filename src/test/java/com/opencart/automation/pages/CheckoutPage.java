@@ -8,41 +8,52 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckoutPage extends BasePage {
     public static final String PAGE_URL = "https://opencart.abstracta.us/index.php?route=checkout/checkout";
 
-    @FindBy(xpath = "//input[contains(@name, 'firstname')]")
-    private WebElement firstname;
-
-    @FindBy(xpath = "//input[contains(@name, 'lastname')]")
-    private WebElement lastname;
-
-    @FindBy(xpath = "//input[contains(@name, 'company')]")
-    private WebElement company;
-
-    @FindBy(xpath = "//input[contains(@name, 'address_1')]")
-    private WebElement address_1;
-
-    @FindBy(xpath = "//input[contains(@name, 'address_2')]")
-    private WebElement address_2;
-
-    @FindBy(xpath = "//input[contains(@name, 'city')]")
-    private WebElement city;
-
-    @FindBy(xpath = "//input[contains(@name, 'postcode')]")
-    private WebElement postcode;
-
-    @FindBy(id = "input-payment-country")
-    private WebElement country_id;
-
-    @FindBy(id = "input-payment-zone")
-    private WebElement zone_id;
-
-    @FindBy(id = "input-payment-zone")
-    private WebElement region;
-
     public CheckoutPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(xpath = "//input[contains(@name, 'firstname')]")
+    private WebElement firstNameField;
+
+    @FindBy(xpath = "//input[contains(@name, 'lastname')]")
+    private WebElement lastNameField;
+
+    @FindBy(xpath = "//input[contains(@name, 'company')]")
+    private WebElement companyField;
+
+    @FindBy(xpath = "//input[contains(@name, 'address_1')]")
+    private WebElement address_1Field;
+
+    @FindBy(xpath = "//input[contains(@name, 'address_2')]")
+    private WebElement address_2Field;
+
+    @FindBy(xpath = "//input[contains(@name, 'city')]")
+    private WebElement cityField;
+
+    @FindBy(xpath = "//input[contains(@name, 'postcode')]")
+    private WebElement postcodeField;
+
+    @FindBy(id = "input-payment-country")
+    private WebElement countrySelect;
+
+    @FindBy(id = "input-payment-zone")
+    private WebElement regionSelect;
+
+    @FindBy(id = "button-payment-address")
+    private WebElement addressContinueButton;
+
+    @FindBy(id = "button-shipping-address")
+    private WebElement shippingContinueButton;
+
+    @FindBy(id = "button-shipping-method")
+    private WebElement shippingMethodContinueButton;
+
+    @FindBy(xpath = "//input[contains(@name, 'agree')]")
+    private WebElement termsAndConditions;
+
+    @FindBy(id = "button-confirm")
+    private WebElement confirm;
 
 
     @Override
@@ -50,5 +61,41 @@ public class CheckoutPage extends BasePage {
         return null;
     }
 
+    public void enterDataBillingDetailst(String firstName, String lastName, String company, String address, String city, String postCode){
+        sendText(firstNameField, firstName);
+        sendText(lastNameField, lastName);
+        sendText(companyField, company);
+        sendText(address_1Field, address);
+        sendText(cityField, city);
+        sendText(postcodeField, postCode);
+    }
 
+    public void countrySelection(){
+        click(countrySelect);
+    }
+
+    public void regionSelection(){
+        click(regionSelect);
+    }
+
+    public void clickAddressContinueButton(){
+        click(addressContinueButton);
+    }
+
+    public void clickShippingContinueButton(){
+        click(shippingContinueButton);
+    }
+
+    public void clickShippingMethodContinueButton(){
+        click(shippingMethodContinueButton);
+    }
+
+    public void clickAcceptTermsAndConditions() {
+        click(addressContinueButton);
+    }
+
+    @Override
+    public void clickConfirm() {
+        click(confirm);
+    }
 }
