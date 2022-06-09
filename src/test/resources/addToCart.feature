@@ -1,4 +1,4 @@
-@shopping
+@addtocart
 Feature: Add product to cart
 
   Background:

@@ -13,8 +13,8 @@ Feature: validate register test suite
     When clicks on continue button
     Then user should see the success message
     Examples:
-      | firstName | lastName | email                    | telephone | password  |
-      | Jodie     | Foster   | joooddieE604@game4hr.com | 999999999 | Caviko609 |
+      | firstName | lastName | email                     | telephone | password  |
+      | Jodie     | Foster   | jjooddiieE604@game4hr.com | 999999999 | Caviko609 |
 
   @testcase02
   Scenario Outline: validate already registered account
@@ -35,6 +35,6 @@ Feature: validate register test suite
     When clicks on continue button
     Then user should see error message, E-Mail Address does not appear to be valid!
     Examples:
-      | firstName | lastName | email |telephone | password  |
-      | Jodie     | Foster   |       |999999999 | Caviko609 |
+      | firstName | lastName | email | telephone | password  |
+      | Jodie     | Foster   |       | 999999999 | Caviko609 |
 
