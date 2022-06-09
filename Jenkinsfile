@@ -30,13 +30,6 @@ pipeline {
     post {
         always {
             cucumber buildStatus: 'UNSTABLE',
-                    failedStepsPercentage: 100,
-                    failedScenariosPercentage: 100,
-                    failedFeaturesPercentage: 100,
-                    failedFeaturesNumber: -1,
-                    failedScenariosNumber: -1,
-                    skippedStepsNumber: -1,
-                    failedStepsNumber: -1,
                     reportTitle: 'My report',
                     fileIncludePattern: '**/cucumber.json',
                     sortingMethod: 'ALPHABETICAL',
