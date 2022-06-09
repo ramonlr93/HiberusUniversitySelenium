@@ -43,8 +43,12 @@ public class CheckoutPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+
+
     @Override
     public WebElement getPageLoadedTestElement() {
         return null;
     }
+
+
 }

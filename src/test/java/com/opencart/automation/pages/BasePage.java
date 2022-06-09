@@ -1,6 +1,7 @@
 package com.opencart.automation.pages;
 
 import com.opencart.automation.utils.MyFluentWait;
+
 import java.time.temporal.ChronoUnit;
 
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -21,98 +21,80 @@ import org.openqa.selenium.support.ui.Wait;
 public abstract class BasePage {
 
 
-  protected Wait<WebDriver> wait;
-  private final WebDriver driver;
-
-  @FindBy(xpath = "//nav[@id='top']/descendant::button[1]")
-    private WebElement currency;
-
-  @FindBy(xpath = "//div[@id='top-links']/ul/li[1]")
-    private WebElement contactUs;
-
-  @FindBy(xpath = "//div[@id='top-links']/ul/li[2]")
-    private WebElement myAccount;
-
-  @FindBy(xpath = "//div[@id='top-links']/ul/li[3]")
-          private WebElement wishList;
-
-  @FindBy(xpath = "//dic[@id='top-links']/ul/li[4]")
-          private WebElement shoppingCart;
-
-  @FindBy(xpath = "//dic[@id='top-links']/ul/li[5]")
-  private WebElement checkOut;
+    protected Wait<WebDriver> wait;
+    private final WebDriver driver;
 
 
-
-  BasePage(WebDriver driver) {
-    this.driver = driver;
-    wait = new MyFluentWait<>(driver)
-      .withTimeout(10, ChronoUnit.SECONDS)
-      .pollingEvery(2, ChronoUnit.SECONDS)
-      .ignoring(NoSuchElementException.class);
-  }
-  public abstract WebElement getPageLoadedTestElement();
-
-  protected WebDriver getDriver() {
-    return driver;
-  }
-
-  protected Wait<WebDriver> getWait() {
-    return wait;
-  }
-
-  protected void setWait(Wait<WebDriver> wait) {
-    this.wait = wait;
-  }
-
-  public void waitForPageLoad() {
-    WebElement testElement = getPageLoadedTestElement();
-    wait.until(ExpectedConditions.visibilityOf(testElement));
-  }
-
-  protected void moveTo(WebElement elem) {
-    if (((RemoteWebDriver) driver).getCapabilities().getBrowserName().equals("firefox")) {
-      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
-    } else {
-      Actions actions = new Actions(driver);
-      actions.moveToElement(elem).build().perform();
+    BasePage(WebDriver driver) {
+        this.driver = driver;
+        wait = new MyFluentWait<>(driver)
+                .withTimeout(10, ChronoUnit.SECONDS)
+                .pollingEvery(2, ChronoUnit.SECONDS)
+                .ignoring(NoSuchElementException.class);
     }
-  }
 
-  protected boolean isPageLoaded(WebElement elem) {
-    boolean isLoaded = false;
+    public abstract WebElement getPageLoadedTestElement();
 
-    try {
-      isLoaded = elem.isDisplayed();
-    } catch (org.openqa.selenium.NoSuchElementException e) {
-      e.printStackTrace();
+    protected WebDriver getDriver() {
+        return driver;
     }
-    return isLoaded;
-  }
 
-  public void navigateTo(String url) {
-    WebDriver driver = getDriver();
-
-    try {
-      driver.navigate().to(url);
-    } catch (java.lang.Exception e) {
-      if (e instanceof TimeoutException) {
-        log.info("Timeout loading home page");
-      } else if (e instanceof ScriptTimeoutException) {
-        log.info("Script Timeout loading home page");
-      } else {
-        log.error(e.getMessage());
-      }
+    protected Wait<WebDriver> getWait() {
+        return wait;
     }
-  }
 
-  public void sendText (WebElement element, String text) {
-    element.click();
-    element.sendKeys(text);
-  }
+    protected void setWait(Wait<WebDriver> wait) {
+        this.wait = wait;
+    }
 
-  public void click (WebElement element) {
-    element.click();
-  }
+    public void waitForPageLoad() {
+        WebElement testElement = getPageLoadedTestElement();
+        wait.until(ExpectedConditions.visibilityOf(testElement));
+    }
+
+    protected void moveTo(WebElement elem) {
+        if (((RemoteWebDriver) driver).getCapabilities().getBrowserName().equals("firefox")) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elem);
+        } else {
+            Actions actions = new Actions(driver);
+            actions.moveToElement(elem).build().perform();
+        }
+    }
+
+    protected boolean isPageLoaded(WebElement elem) {
+        boolean isLoaded = false;
+
+        try {
+            isLoaded = elem.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            e.printStackTrace();
+        }
+        return isLoaded;
+    }
+
+    public void navigateTo(String url) {
+        WebDriver driver = getDriver();
+
+        try {
+            driver.navigate().to(url);
+        } catch (java.lang.Exception e) {
+            if (e instanceof TimeoutException) {
+                log.info("Timeout loading home page");
+            } else if (e instanceof ScriptTimeoutException) {
+                log.info("Script Timeout loading home page");
+            } else {
+                log.error(e.getMessage());
+            }
+        }
+    }
+
+    public void sendText(WebElement element, String text) {
+        element.click();
+        element.sendKeys(text);
+    }
+
+    public void click(WebElement element) {
+        element.click();
+    }
 
 }

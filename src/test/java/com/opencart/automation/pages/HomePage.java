@@ -21,6 +21,8 @@ public class HomePage extends BasePage {
     @FindBy (xpath = "//a[@title='My Account']")
     private WebElement myAccountButton;
 
+
+
     @FindBy (xpath = "//a[normalize-space()='Login']")
     private WebElement loginButton;
 
@@ -38,6 +40,7 @@ public class HomePage extends BasePage {
     public void clickOnMyAccount(){
         super.click(myAccountButton);
     }
+
 
     public void clickOnLogin(){
         super.click(loginButton);

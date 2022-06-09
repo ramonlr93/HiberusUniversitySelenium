@@ -56,7 +56,7 @@ public class AddToCartSteps {
         myAccountPage.clickNavCameras();
     }
 
-    @When("the user a camera add to cart")
+    @When("the user add to cart a camera")
     public void theUserACameraAddToCart() {
 
     }

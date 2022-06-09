@@ -16,7 +16,7 @@ Feature: Add product to cart
     And the user enter the email "<email>" and password "<password>"
     And the user clicks the login button
     And the user go cameras section
-    When the user a camera add to cart
+    When the user add to cart a camera
     Then Item is successfully added to the cart
     Examples:
       | email                  | password       |
