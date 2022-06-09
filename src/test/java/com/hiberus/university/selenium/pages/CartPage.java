@@ -7,48 +7,69 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+//import org.w3c.dom.html.HTMLInputElement;
 
-public class CartPage extends BasePage {
-  public static final String PAGE_URL = "https://www.saucedemo.com/cart.html";
+public class CartPage extends BasePage{
+  public static final String PAGE_URL = "http://opencart.abstracta.us/index.php?route=checkout/cart";
 
-  @FindBy(xpath = "//button[text()='Open Menu']")
-  private WebElement hamburgerElem;
+  @FindBy(xpath = "//i[contains(@class, 'fa fa-home')]")
+  private WebElement yourStore;
 
-  @FindBy(xpath = "//button[@data-test='checkout']")
-  private WebElement checkoutButton;
+  @FindBy(id = "cart-total")
+  private WebElement carrito;
 
-  @FindBy(css = "#shopping_cart_container > a")
-  private WebElement shoppingCartElem;
 
-  @FindAll({@FindBy(css = "#cart_contents_container > div > div.cart_list > div.cart_item")})
-  private List<WebElement> itemsList;
+  @FindBy(xpath = "//button[contains(@onclick, 'cart.remove')]")
+  private WebElement deleteItem;
+
+  @FindBy(xpath = "//span[@id='cart-total']")
+  private WebElement shoppingCartElement;
 
   public CartPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
   }
+    @Override
+    public WebElement getPageLoadedTestElement() {
+     return yourStore;
+    }
+    public void clickYourStore() {
 
-  @Override
-  public WebElement getPageLoadedTestElement() {
-    return hamburgerElem;
+    yourStore.click();
+    }
+//    public void clickCheckout() {
+//      checkOutButton.click();
+//    }
+
+    public void deleteCartItem() {
+
+    deleteItem.click();
+
+    }
+
+  public void clickCart() {
+
+    carrito.click();
+
   }
 
-  public void clickCheckout() {
-    checkoutButton.click();
+    public String cartInfo() {
+
+    return shoppingCartElement.getText();
+    }
   }
 
-  public int getItemCount() {
-    return itemsList.size();
-  }
+//  public int getItemCount() {
+//    return itemsList.size();
+//  }
+//
+//  public List<WebElement> getItemsList() {
+//
+//    return itemsList;
+//  }
+//
 
-  public List<WebElement> getItemsList() {
-    return itemsList;
-  }
+//  public String cartInfo() {
+//    return shoppingCartElement.getText();
+//  }
 
-  public void deleteCarItemtByName(String itemName) {
-    String xpathName = itemName.replace(" ", "-").toLowerCase();
-    String xpath = String.format("//button[@data-test='remove-" + xpathName + "']");
-    WebElement itemElem = getDriver().findElement(By.xpath(xpath));
-    itemElem.click();
-  }
-}

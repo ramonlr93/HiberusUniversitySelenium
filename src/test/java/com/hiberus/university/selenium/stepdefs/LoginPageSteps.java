@@ -1,7 +1,9 @@
 package com.hiberus.university.selenium.stepdefs;
 
-import com.hiberus.university.selenium.pages.InventoryPage;
+
+import com.hiberus.university.selenium.pages.HomePage;
 import com.hiberus.university.selenium.pages.LoginPage;
+import com.hiberus.university.selenium.pages.MyAccountPage;
 import com.hiberus.university.selenium.pages.PagesFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -13,8 +15,8 @@ import org.junit.Assert;
 @Slf4j
 public class LoginPageSteps {
 
-  @Given("the user is on the home page")
-  public void theUserIsOnTheHomePage() {
+  @Given("the user is on the login page")
+  public void theUserIsOnTheLoginPage() {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user is on the Home Page");
     LoginPage loginPage = pf.getLoginPage();
@@ -45,11 +47,11 @@ public class LoginPageSteps {
     PagesFactory pf = PagesFactory.getInstance();
     log.info("The user should login successfully and is brought to the inventory page");
 
-    InventoryPage inventoryPage = pf.getInventoryPage();
-    inventoryPage.waitForPageLoad();
+    MyAccountPage myAccountPage = pf.getMyAccountPage();
+    myAccountPage.waitForPageLoad();
 
     String currentUrl = PagesFactory.getInstance().getDriver().getCurrentUrl();
-    Assert.assertEquals("the URL is not inventory Page", InventoryPage.PAGE_URL, currentUrl);
+    Assert.assertEquals("the URL is not inventory Page", MyAccountPage.PAGE_URL, currentUrl);
   }
 
   @Then("The user should be shown an invalid message")
