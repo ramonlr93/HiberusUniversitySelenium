@@ -1,6 +1,6 @@
-package com.hiberus.university.selenium.pages;
+package com.hiberus.university.opencart.pages;
 
-import com.hiberus.university.selenium.utils.MyFluentWait;
+import com.hiberus.university.opencart.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,15 +15,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 @Slf4j
-abstract class AbstractPage {
+public abstract class BasePage {
 
     protected Wait<WebDriver> wait;
     private final WebDriver driver;
 
-    AbstractPage(WebDriver driver) {
+    BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new MyFluentWait<>(driver)
-                .withTimeout(60, ChronoUnit.SECONDS)
+                .withTimeout(10, ChronoUnit.SECONDS)
                 .pollingEvery(2, ChronoUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
