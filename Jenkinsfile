@@ -20,9 +20,9 @@ pipeline {
 //                          sortingMethod: 'ALPHABETICAL'
 //             }
 //         }
-        stage ('Running All tests') {
+        stage ('Running Test smoke') {
             steps{
-                sh "mvn clean test -Dcucumber.filter.tags=\"@pr-01\""
+                sh "mvn clean test -Dcucumber.filter.tags=\"@smoke\""
             }
         }
     }
