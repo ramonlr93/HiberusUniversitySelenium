@@ -15,7 +15,6 @@ Feature: validate login in OpenCart
       | mario@mail.com | 1311     |
 
   @OC-2
-    @smoke
   Scenario Outline: Verify a non created user cannot login
     And the user enters the "<email>" and "<password>" credentials
     When the user clicks the login button

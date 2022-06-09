@@ -5,6 +5,7 @@ Feature: validate the checkout functionality in OpenCart
     Given the user is on the login page
 
   @OC-12
+    @smoke
   Scenario Outline: The logged user orders one item with existing address
     And the user enters the "mario@mail.com" and "1311" credentials
     And the user clicks the login button
