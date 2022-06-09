@@ -22,7 +22,7 @@ pipeline {
 //         }
         stage ('Running All tests') {
             steps{
-                sh "mvn clean"
+                sh "mvn clean test"
             }
         }
     }
