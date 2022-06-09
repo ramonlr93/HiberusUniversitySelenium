@@ -1,5 +1,4 @@
 @login
-@smoke
 Feature: Validate Login test suite
 
   Background:
@@ -15,6 +14,7 @@ Feature: Validate Login test suite
 
 
   @testcase15
+    @smoke
   Scenario Outline: validate login ok
     And the user complete the login form with email "<email>" and password "<password>"
     When the user clicks the login button

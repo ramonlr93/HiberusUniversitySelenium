@@ -1,5 +1,4 @@
 @checkout
-@smoke
 Feature: Validate Checkout test suite
 
   Background:
@@ -11,6 +10,7 @@ Feature: Validate Checkout test suite
     And The user is on checkout page
 
   @testcase22
+    @smoke
   Scenario Outline: validate checkout ok
     And the user clicks guest checkout
     And the user clicks continue in step 1

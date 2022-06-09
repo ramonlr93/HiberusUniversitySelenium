@@ -1,5 +1,4 @@
 @registration
-@smoke
 Feature: Validate Registration test suite
 
   Background:
@@ -10,14 +9,15 @@ Feature: Validate Registration test suite
 
 
   @testcase01
+    @smoke
   Scenario Outline: validate registration ok
     And the user complete the form with first name "<firstName>" last name "<lastName>" e-mail "<email>" telephone "<telephone>" password "<password>" and password confirm "<passwordConfirm>"
     And the user selects suscribe option "<suscribe>" and accepts check privacy policy "<privacyPolicy>"
     When the user clicks the continue button
     Then The user has successfully registered and can see the congratulations message
     Examples:
-      | firstName | lastName | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy |
-      | prueba    | prueba   | prueba33467580247@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           |
+      | firstName | lastName | email                          | telephone | password | passwordConfirm | suscribe | privacyPolicy |
+      | prueba    | prueba   | prueba3314467580247@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           |
 
 
   @testcase02
@@ -37,7 +37,7 @@ Feature: Validate Registration test suite
     When the user clicks the continue button
     Then The user can see the error "<errorType>"
     Examples:
-      | firstName                            | lastName | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
+      | firstName                            | lastName | email                     | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
       | aaasssdddaaasssdddaaasssdddaaasssddd | prueba   | prueb6a8024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | firstname |
 
 
@@ -48,7 +48,7 @@ Feature: Validate Registration test suite
     When the user clicks the continue button
     Then The user can see the error "<errorType>"
     Examples:
-      | firstName | lastName                             | email                    | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType  |
+      | firstName | lastName                             | email                     | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType  |
       | prueba    | aaasssdddaaasssdddaaasssdddaaasssddd | preueba8024788@prueba.com | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | secondname |
 
   @testcase05
@@ -58,7 +58,7 @@ Feature: Validate Registration test suite
     When the user clicks the continue button
     Then The user can see the error "<errorType>"
     Examples:
-      | firstName | lastName | email   | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
+      | firstName | lastName | email      | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
       | prueba    | prueba   | asdaqt@asd | 600600600 | 1.Prueba | 1.Prueba        | No       | Yes           | email     |
 
   @testcase06
@@ -68,7 +68,7 @@ Feature: Validate Registration test suite
     When the user clicks the continue button
     Then The user can see the error "<errorType>"
     Examples:
-      | firstName | lastName | email                     | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
+      | firstName | lastName | email                      | telephone | password | passwordConfirm | suscribe | privacyPolicy | errorType |
       | prueba    | prueba   | prueba877638763@prueba.com | 01        | 1.Prueba | 1.Prueba        | No       | Yes           | telephone |
 
 

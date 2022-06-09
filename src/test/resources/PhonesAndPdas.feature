@@ -14,7 +14,6 @@ Feature: Validate Phones test suite
     Then The user can see 1 item in the cart button
 
 
-
   @testcase20
   Scenario: validate add 2 items to cart and information is correct
     When the user add an item 2 times to cart
@@ -28,5 +27,3 @@ Feature: Validate Phones test suite
     And The user clicks cart button
     And The user remove the item
     Then The user can see 0 item in the cart button
-
-

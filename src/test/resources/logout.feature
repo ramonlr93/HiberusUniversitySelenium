@@ -1,8 +1,8 @@
 @logout
-@smoke
 Feature: Validate Logout test suite
 
   @testcase34
+    @smoke
   Scenario Outline: validate logout ok
     Given the user is on the home page
     And the user selects -My Account-
