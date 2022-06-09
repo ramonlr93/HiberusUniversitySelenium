@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.Collections;
 import java.util.List;
 
 public class CartPage extends AbstractPage{
@@ -24,8 +23,11 @@ public class CartPage extends AbstractPage{
     @FindBy(xpath = "//button[contains(@data-original-title, 'Update')]")
     private List<WebElement> updateItemCartButton;
 
-    @FindBy(xpath = "//input[contains(@name,\"quantity\")]")
+    @FindBy(xpath = "//input[contains(@name,'quantity')]")
     private List<WebElement> itemQuantityInput;
+
+    @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+    private WebElement updatedMessage;
 
     CartPage(WebDriver driver){
         super(driver);
@@ -47,14 +49,24 @@ public class CartPage extends AbstractPage{
 
     public void removeItemFromCart(){
         List<WebElement> lista = getDriver().findElements(By.xpath("//button[contains(@onclick, 'cart.remove')]"));
-        Collections.shuffle(lista);
-
-        for (int i=2; i<4; i++){
-            lista.get(i).click();
-        }
+        WebElement item2 = lista.get(3);
+        item2.click();
     }
 
     public void updateItemFromCart(){
+        List<WebElement> lista = getDriver().findElements(By.xpath("//input[contains(@name,'quantity')]"));
+        WebElement item1 = lista.get(0);
+        //waitForPageLoad();
+        item1.click();
+        item1.clear();
+        item1.sendKeys("2");
+        List<WebElement> lista2 = getDriver().findElements(By.xpath("//button[contains(@data-original-title, 'Update')]"));
+        WebElement item1updated = lista2.get(0);
+        item1updated.click();
+    }
+
+    public boolean updatedCartMessage(){
+        return updatedMessage.isDisplayed();
 
     }
 

@@ -18,7 +18,8 @@ public class InventoryPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("The user is in the Phones and PDAs page");
         InventoryPage inventoryPage = pf.getInventoryPage();
-        inventoryPage.navigateTo(InventoryPage.PAGE_URL);
+        //inventoryPage.navigateTo(InventoryPage.PAGE_URL);
+        inventoryPage.clickPhoneButton();
     }
 
     @When("the user add {string} item to the cart")
@@ -26,6 +27,7 @@ public class InventoryPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("The user adds one item to the cart");
         InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.waitForPageLoad();
         inventoryPage.addItemToCart(number);
     }
 
@@ -34,6 +36,7 @@ public class InventoryPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("It shows that the item was added");
         InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.waitForPageLoad();
         inventoryPage.addedItemMessage();
     }
 
@@ -42,6 +45,7 @@ public class InventoryPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("The user removes the item from cart");
         InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.waitForPageLoad();
         inventoryPage.removeItemFromCart();
     }
 
@@ -50,15 +54,9 @@ public class InventoryPageSteps {
         PagesFactory pf = PagesFactory.getInstance();
         log.info("It shows the item was removed");
         InventoryPage inventoryPage = pf.getInventoryPage();
+        inventoryPage.waitForPageLoad();
         int currentCount = inventoryPage.getCartCount();
         Assert.assertEquals("The number of item on cart is not 0", 0, currentCount);
     }
 
-    @When("the user adds two items to the cart")
-    public void theUserAddsTwoItemsToTheCart() {
-    }
-
-    @Then("it shows that the {int} items were added")
-    public void itShowsThatTheItemsWereAdded(int arg0) {
-    }
 }

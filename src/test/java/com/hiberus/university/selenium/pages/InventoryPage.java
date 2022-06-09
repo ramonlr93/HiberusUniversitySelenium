@@ -15,6 +15,9 @@ public class InventoryPage extends AbstractPage{
     @FindBy(id = "cart")
     private WebElement cartButton;
 
+    @FindBy(xpath = "//a[@title='Shopping Cart']")
+    private WebElement goToCartButton;
+
     @FindBy(xpath = "//button[contains(@onclick, 'cart.add')]")
     private List<WebElement> addToCartButtonList;
 
@@ -26,6 +29,12 @@ public class InventoryPage extends AbstractPage{
 
     @FindBy(xpath = "//button[@class='btn btn-danger btn-xs']")
     private WebElement deleteItemButton;
+
+    @FindBy(xpath = "//a[@href='http://opencart.abstracta.us:80/index.php?route=product/category&path=24']")
+    private WebElement phoneButton;
+
+    @FindBy(xpath = "//a[@title='Checkout']")
+    private WebElement checkoutButton;
 
     InventoryPage(WebDriver driver){
         super(driver);
@@ -41,6 +50,14 @@ public class InventoryPage extends AbstractPage{
         cartButton.click();
     }
 
+    public void clickOnCheckoutButton(){
+        checkoutButton.click();
+    }
+
+    public void goToCartButton(){
+        goToCartButton.click();
+    }
+
     public void addItemToCart(String number){
 
         List<WebElement> lista = getDriver().findElements(By.xpath("//button[contains(@onclick, 'cart.add')]"));
@@ -53,6 +70,7 @@ public class InventoryPage extends AbstractPage{
     }
 
     public void addedItemMessage(){
+        waitForPageLoad();
         addedItemMessage.isDisplayed();
     }
 
@@ -65,6 +83,11 @@ public class InventoryPage extends AbstractPage{
 
     public void removeItemFromCart(){
         cartButton.click();
+        waitForPageLoad();
         deleteItemButton.click();
+    }
+
+    public void clickPhoneButton(){
+        phoneButton.click();
     }
 }

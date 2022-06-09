@@ -19,7 +19,7 @@ Feature: Register Test Suite
 
   Examples:
     | firstname | lastname | email              | telephone | password | passwordconfirm |
-    | Pepe      | Lopez    | pepe99999@correo.es | 599511    | 55555    | 55555           |
+    | Pepe      | Lopez    | pepe777@correo.es | 599511    | 55555    | 55555           |
 
 
   @testcase01
@@ -35,7 +35,7 @@ Feature: Register Test Suite
 
     Examples:
       | firstname | lastname | email              | telephone | password | passwordconfirm |
-      | Pepe      | Lopez    | pepe99999@correo.es | 599511    | 55555    | 55555           |
+      | Pepe      | Lopez    | pepe777@correo.es | 599511    | 55555    | 55555           |
 
   @testcase02
   Scenario Outline: Verify an user cant register without a first name
@@ -51,7 +51,7 @@ Feature: Register Test Suite
 
     Examples:
       | firstname | lastname | email              | telephone | password | passwordconfirm |
-      |           | Lopez    | pepe99999@correo.es | 599511    | 55555    | 55555           |
+      |           | Lopez    | pepe777@correo.es | 599511    | 55555    | 55555           |
 
 
   @testcase03
@@ -68,7 +68,7 @@ Feature: Register Test Suite
 
     Examples:
       | firstname | lastname | email              | telephone | password | passwordconfirm |
-      | Pepe      |          | pepe99999@correo.es | 599511    | 55555    | 55555           |
+      | Pepe      |          | pepe777@correo.es | 599511    | 55555    | 55555           |
 
 
   @testcase04
@@ -101,7 +101,7 @@ Feature: Register Test Suite
 
     Examples:
       | firstname | lastname | email              | telephone | password | passwordconfirm |
-      | Pepe      | Lopez    | pepe99999@correo.es |           | 55555    | 55555           |
+      | Pepe      | Lopez    | pepe777@correo.es |           | 55555    | 55555           |
 
   @testcase06
   Scenario Outline: Verify an user cant register without a password
@@ -117,7 +117,7 @@ Feature: Register Test Suite
 
     Examples:
       | firstname | lastname | email              | telephone | password | passwordconfirm |
-      | Pepe      | Lopez    | pepe99999@correo.es | 599511    |          | 55555           |
+      | Pepe      | Lopez    | pepe777@correo.es | 599511    |          | 55555           |
 
 
   @testcase07
@@ -134,4 +134,4 @@ Feature: Register Test Suite
 
     Examples:
       | firstname | lastname | email              | telephone | password | passwordconfirm |
-      | Pepe      | Lopez    | pepe99999@correo.es | 599511    | 55555    | 666666          |
+      | Pepe      | Lopez    | pepe777@correo.es | 599511    | 55555    | 666666          |
