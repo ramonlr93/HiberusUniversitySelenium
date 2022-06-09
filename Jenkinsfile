@@ -20,9 +20,11 @@ pipeline {
 //                          sortingMethod: 'ALPHABETICAL'
 //             }
 //         }
-//         stage ('stage 1') {
-//             steps{   }
-//         }
+        stage ('stage 1') {
+            steps{
+                sh "mvn clean"
+            }
+        }
     }
 
 //     post {
