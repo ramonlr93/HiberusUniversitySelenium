@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Running Tests') {
             steps {
-               bat 'dir'
+               sh "ls -la"
             }
         }
 //         stage ('stage 0') {
