@@ -18,7 +18,7 @@ Feature: Login test suite
       | mail                 | password  |
       | manape79@hotmail.com | Manape195 |
 
-   @smoke
+  
   @testcase-2
   Scenario Outline: Verify invalid mail
     And the user fills the mail "<mail>"
