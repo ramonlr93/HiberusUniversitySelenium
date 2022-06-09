@@ -74,6 +74,6 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Failure Image"); // ... and embed it in the report.
         }
-        //driver.close();
+        driver.close();
     }
 }
