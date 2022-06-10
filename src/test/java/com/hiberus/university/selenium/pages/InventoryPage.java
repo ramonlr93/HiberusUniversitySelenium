@@ -15,14 +15,18 @@ import org.openqa.selenium.support.ui.Select;
 public class InventoryPage extends BasePage {
     public static final String PAGE_URL = "http://opencart.abstracta.us/index.php?route=product/category&path=20";
 
+    @FindBy(xpath = "//div[@class='inventory_item_name']")
+    private List<WebElement> inventoryNameList;
+    @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+    private WebElement addedItemMessage;
+    @FindBy(xpath = "//a[@title='Checkout']")
+    private WebElement buttonCheckout;
 
     public InventoryPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='inventory_item_name']")
-    private List<WebElement> inventoryNameList;
 
     @Override
     public WebElement getPageLoadedTestElement() {
@@ -30,9 +34,16 @@ public class InventoryPage extends BasePage {
     }
 
     public void addItemToCartByName(String itemName) {
-        getDriver().findElement(By.xpath("//a[text()='"+itemName+"']//ancestor::div[@class='product-thumb']//descendant::span[text()='Add to Cart']")).click();
+        getDriver().findElement(By.xpath("//a[text()='" + itemName + "']//ancestor::div[@class='product-thumb']//descendant::span[text()='Add to Cart']")).click();
     }
 
+    public boolean addedItemMessageHaveText(String text) {
+        return addedItemMessage.getText().contains(text);
+    }
+
+    public void clickButtonCheckout(){
+        buttonCheckout.click();
+    }
 }
 
 

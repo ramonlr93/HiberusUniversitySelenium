@@ -64,7 +64,7 @@ public class LoginPageSteps {
     loginPage.writeInputPassword(text);
   }
 
-  @When("the user click in the link Button Login")
+  @When("the user click in the link Login button")
   public void clickButtonLogin() {
     loginPage.clickButtonLogin();
   }

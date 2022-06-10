@@ -16,4 +16,5 @@ public class MyAccountPageSteps {
     public void theUserIsInTheMyAccountPage() {
         Assert.assertEquals("The user not is in the My Account page.", myAccountPage.PAGE_URL, driver.getCurrentUrl());
     }
+
 }

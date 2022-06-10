@@ -14,10 +14,11 @@ Feature: Login test suite
     And the user can see the ContinueRegister button
 
   @login02
+  @smoke
   Scenario: The user can login.
     And the user write in the E-Mail "ejemplo@ejemplo.es" login input
     And the user write in the Password "hola" login input
-    When the user click in the link Button Login
+    When the user click in the link Login button
     Then the user is in the MyAccount page
 
   @login03
@@ -27,5 +28,5 @@ Feature: Login test suite
 
   @login04
   Scenario: The user can login.
-    When the user click in the link Button Login
+    When the user click in the link Login button
     Then the user can see the warning messages appear

@@ -36,6 +36,7 @@ public class InventoryPageSteps {
     @Given("the user is in the inventory page")
     public void theUserIsInTheInventoryPage() {
         Assert.assertEquals("The user is not in the register page", InventoryPage.PAGE_URL, driver.getCurrentUrl());
+
     }
 
     @And("the user add the item {string}")
@@ -45,9 +46,16 @@ public class InventoryPageSteps {
             inventoryItemPage.waitForPageLoad();
             inventoryItemPage.select(0, 1);
             inventoryItemPage.clickAddToCart();
-            driver.get(InventoryPage.PAGE_URL);
         }
     }
 
+    @Then("the user can see added item message with the text {string}")
+    public void theUserCanSeeAddedItemMessage(String text) {
+        Assert.assertTrue("The item name don't appear in the message", inventoryPage.addedItemMessageHaveText(text));
+    }
 
+    @When("the user press the checkout button")
+    public void theUserPressTheCheckoutButton() {
+        inventoryPage.clickButtonCheckout();
+    }
 }

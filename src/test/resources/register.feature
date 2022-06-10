@@ -18,6 +18,7 @@ Feature: Register test suite
       And the user can see the Continue button
 
   @register02
+  @smoke
   Scenario: The user can sign in.
     And the user write in the FirstName "firstName" input
     And the user write in the LastName "lastName" input
@@ -30,6 +31,7 @@ Feature: Register test suite
     Then the user is in the register success
 
   @register03
+  @smoke
   Scenario: Validate that all error messages appear
     And the user write in the FirstName "" input
     And the user write in the LastName "" input
