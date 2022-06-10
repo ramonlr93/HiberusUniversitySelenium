@@ -6,23 +6,14 @@ Feature: Login test suite
     And the user click on login button
 
   @smoke
-    @testcase-01
-#  Scenario Outline: Log in with existing user
-#    And type the mail in the "<mail>" field
-#    And type the password in the "<password>" field
-#    When click on login button
+    @testcase-1
+
   Scenario Outline: Verify valid user
     And the user fills the mail "<mail>"
     And the user fills the password "<password>"
     When the user clicks on login button
     Then the user is logged
-#    And the user fills the mail "<mail>"
-#    And the user fills the password "<password>"
-#    When the user clicks on login button
-#    Then the user is logged
-#    And the user fills the mail "<mail>"
-#    And the user fills the password "<password>"
-#    When the user clicks on login button
+
 
 
     Examples:
